@@ -25,3 +25,52 @@ subscriptions:
     stage: A
     diff_threshold_pct: 15
   keyword_recall_mode: or
+  intent_profiles:
+    - tag: embodied-vla
+      description: 具身智能中VLA路径的机器人性能提升技术
+      enabled: true
+      paper_sources:
+        - arxiv
+      keywords:
+        - keyword: vision language action model
+          keyword_cn: 视觉语言动作模型
+          query: vision language action model for embodied intelligence
+        - keyword: humanoid robot control
+          keyword_cn: 人形机器人控制
+          query: advanced control methods for humanoid robots using VLA
+        - keyword: robotic arm manipulation
+          keyword_cn: 机械臂操作
+          query: innovative manipulation techniques for robotic arms with VLA
+        - keyword: embodied intelligence
+          keyword_cn: 具身智能
+          query: embodied intelligence research using vision language action models
+        - keyword: robot language instruction following
+          keyword_cn: 机器人语言指令跟随
+          query: language-conditioned robot control for humanoid and arm tasks
+      intent_queries:
+        - query: How to leverage vision language action models to improve humanoid robot performance
+          query_cn: 如何利用视觉语言动作模型提升人形机器人性能
+          enabled: true
+          source: manual
+          note: ''
+        - query: Innovative VLA techniques for robotic arm manipulation accuracy
+          query_cn: 用于机械臂操作精度的创新VLA技术
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-06T03:29:44.984Z'
+source_backends:
+  arxiv:
+    papers_table: arxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_arxiv_papers
+    vector_rpc_exact: match_arxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_arxiv_papers_bm25
+    sync_table: arxiv_sync_status
+    sync_success_value: success
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
