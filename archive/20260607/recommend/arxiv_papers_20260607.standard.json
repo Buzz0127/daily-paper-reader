@@ -1,0 +1,282 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-07T20:00:13.015461+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 0,
+    "deep_divecandidates": 6,
+    "deep_cap": 5,
+    "deep_selected": 5,
+    "quick_candidates": 1,
+    "quick_skim_target": 10,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2605.29562v1",
+      "source": "arxiv",
+      "title": "VLA-Pro: Cross-Task Procedural Memory Transfer for Vision-Language-Action Models",
+      "abstract": "Vision-Language-Action~(VLA) models have shown strong potential for general-purpose robotic manipulation, yet they still struggle to generalize to unseen tasks that necessitate transferring relevant experience across objects, scenes, and action patterns. This paper proposes VLA-Pro, a plug-and-play framework designed to enhance cross-task generalization by storing task-relevant procedural memories at training time and transferring these memories during inference. Specifically, VLA-Pro stores task-specific LoRA adapters as parameterized procedural memories during training. At inference time, VLA-Pro retrieves relevant procedural memories based on the current multi-modal context and dynamically fuses these memories for generating the current action chunk. Experiments on RoboTwin, RLBench, and real-world manipulation tasks show that VLA-Pro consistently improves cross-task generalization across multiple backbones, achieving up to a 207% relative improvement in simulation and increasing real-world success rate from 5.8% to 65.0%. These results suggest that procedural memory retrieval and adaptation provide an effective mechanism for transferring manipulation experience to novel tasks while preserving modularity and execution stability.",
+      "authors": [
+        "Shengyu Si",
+        "Yuanzhuo Lu",
+        "Ruimeng Yang",
+        "Ziyi Ye",
+        "Zuxuan Wu",
+        "Yu-Gang Jiang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-05-28T08:14:08+00:00",
+      "link": "https://arxiv.org/pdf/2605.29562v1",
+      "tags": [
+        "keyword:embodied-vla",
+        "query:embodied-vla"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Cross-task memory transfer for VLA manipulation",
+      "llm_evidence_cn": "VLA跨任务过程性记忆迁移提升机械臂操作泛化",
+      "llm_evidence": "VLA跨任务过程性记忆迁移提升机械臂操作泛化",
+      "canonical_evidence": "VLA跨任务过程性记忆迁移提升机械臂操作泛化",
+      "llm_tldr_en": "VLA-Pro stores task-specific LoRA adapters as procedural memories and retrieves them during inference to improve generalization to unseen manipulation tasks.",
+      "llm_tldr_cn": "VLA模型在未知操作任务上泛化能力不足。本文提出VLA-Pro框架，在训练时存储每个任务的LoRA适配器作为过程性记忆，推理时根据多模态上下文检索相关记忆并动态融合，从而将先验经验迁移到新任务。在多种物体、场景和动作模式上的实验表明，该方法显著提升了VLA的跨任务泛化能力，且不增加推理成本，是一种即插即用的通用增强方案。",
+      "llm_tldr": "VLA模型在未知操作任务上泛化能力不足。本文提出VLA-Pro框架，在训练时存储每个任务的LoRA适配器作为过程性记忆，推理时根据多模态上下文检索相关记忆并动态融合，从而将先验经验迁移到新任务。在多种物体、场景和动作模式上的实验表明，该方法显著提升了VLA的跨任务泛化能力，且不增加推理成本，是一种即插即用的通用增强方案。",
+      "llm_tags": [
+        "query:embodied-vla"
+      ],
+      "matched_query_tag": "query:embodied-vla",
+      "matched_query_text": "innovative manipulation techniques for robotic arms with VLA",
+      "matched_requirement_id": "req-3",
+      "selection_source": "carryover_cache",
+      "paper_id": "2605.29562v1"
+    },
+    {
+      "id": "2605.30484v1",
+      "source": "arxiv",
+      "title": "ELAN4D: Embodiment-Centric 4D Supervision for Vision-Language-Action Models via Plug-and-Play Adaptation",
+      "abstract": "Vision-Language-Action (VLA) models have shown promise for robotic manipulation, yet most existing policies operate reactively by directly regressing actions from current observations, without explicitly modeling future dynamics. This limits their ability to generalize under out-of-distribution perturbations. To address this issue, we propose ELAN4D, an embodiment-centric, 4D-aware training framework that enhances VLA policies with future robot keypoint tracks as predictive spatio-temporal supervision. Using only forward kinematics from proprioceptive states, we derive 3D displacement tracks of robot keypoints, such as joints and the end-effector, with negligible preprocess cost. These tracks provide metric and compact supervision without requiring external trackers or reconstruction. A plug-and-play auxiliary branch with a lightweight track decoder injects this 4D signal into the action expert while preserving the pretrained vision-language backbone through gradient isolation. The track decoder is discarded during inference, leaving the base policy interface unchanged. Extensive experiments on LIBERO, LIBERO-Plus, RoboTwin2.0 and real-world manipulation tasks demonstrate that ELAN4D consistently improves over strong VLA baselines, achieving the best overall performance and substantial gains under out-of-distribution perturbations, including camera, background, and layout shifts. These results highlight the effectiveness of embodiment-centric 4D supervision for building more robust and generalizable manipulation policies.",
+      "authors": [
+        "Zeyuan He",
+        "Bowen Yang",
+        "Zhirui Fang",
+        "Keru Zhou",
+        "Lei Jiang",
+        "Jingjing Qian",
+        "Fan Mo",
+        "Junchi Yan",
+        "Philip Torr",
+        "Xiu Li",
+        "Li Jiang",
+        "Jialin Yu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-28T19:03:30+00:00",
+      "link": "https://arxiv.org/pdf/2605.30484v1",
+      "tags": [
+        "keyword:embodied-vla",
+        "query:embodied-vla"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Adds future keypoint tracks as 4D supervision for VLA models",
+      "llm_evidence_cn": "为VLA模型添加未来关键点轨迹作为4D监督",
+      "llm_evidence": "为VLA模型添加未来关键点轨迹作为4D监督",
+      "canonical_evidence": "为VLA模型添加未来关键点轨迹作为4D监督",
+      "llm_tldr_en": "Proposes ELAN4D, a plug-and-play training framework that enhances VLA policies with future robot keypoint tracks as predictive spatio-temporal supervision, improving generalization.",
+      "llm_tldr_cn": "大多数VLA策略只基于当前观测直接回归动作，缺乏对未来动态的建模，导致在分布外扰动下泛化不足。本文提出ELAN4D，通过前向运动学导出机器人关键点（如关节和末端执行器）的未来3D位移轨迹，作为4D监督信号。该框架即插即用，无需修改网络结构，在多个VLA模型上提升了抗扰动能力和任务成功率。",
+      "llm_tldr": "大多数VLA策略只基于当前观测直接回归动作，缺乏对未来动态的建模，导致在分布外扰动下泛化不足。本文提出ELAN4D，通过前向运动学导出机器人关键点（如关节和末端执行器）的未来3D位移轨迹，作为4D监督信号。该框架即插即用，无需修改网络结构，在多个VLA模型上提升了抗扰动能力和任务成功率。",
+      "llm_tags": [
+        "query:embodied-vla"
+      ],
+      "matched_query_tag": "query:embodied-vla",
+      "matched_query_text": "vision language action model for embodied intelligence",
+      "matched_requirement_id": "req-1",
+      "selection_source": "carryover_cache",
+      "paper_id": "2605.30484v1"
+    },
+    {
+      "id": "2605.31286v1",
+      "source": "arxiv",
+      "title": "DeMaVLA: A Vision-Language-Action Foundation Model for Generalizable Deformable Manipulation",
+      "abstract": "Real-world household robots require Vision-Language-Action (VLA) foundation models that can acquire reusable manipulation skills across diverse objects, task conditions, and household environments. Deformable-object folding is a representative challenge, requiring robots to handle clothing items from random initial states across varying categories, geometries, materials, and scenes. However, existing VLA systems commonly train separate policies for different object categories, while naively mixed multi-task training often suffers from task interference and degraded performance. To move beyond category-specific folding policies, we introduce DeMaVLA, a VLA foundation model for generalizable Deformable Manipulation. DeMaVLA adopts a VLM backbone with an action expert and formulates continuous action generation using flow matching. To improve efficiency, the action expert is constructed by pruning every other transformer layer while preserving layer-wise alignment with the VLM backbone, reducing training and inference cost. DeMaVLA is first pre-trained on approximately 5,000 hours of selected real-world dual-arm demonstrations to acquire general manipulation priors. It is then post-trained on mixed folding data that aggregates self-collected demonstrations and corrective trajectories from real-robot failures across multiple folding tasks through a human-in-the-loop Data Aggregation~(DAgger) pipeline. Experiments show that DeMaVLA achieves competitive performance on RoboTwin and strong real-world results on our household folding benchmark. These results highlight the value of scalable real-world data, efficient action generation, and corrective learning for general-purpose VLA policies in deformable-object manipulation.",
+      "authors": [
+        "Taiyi Su",
+        "Jian Zhu",
+        "Tianjian Wang",
+        "Youzhang He",
+        "Zitai Huang",
+        "Jianjun Zhang",
+        "Chong Ma",
+        "Hanyang Wang",
+        "Tianjiao Zhang",
+        "Munan Yin",
+        "Weihao Ding",
+        "Yi Xu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-05-29T13:20:08+00:00",
+      "link": "https://arxiv.org/pdf/2605.31286v1",
+      "tags": [
+        "keyword:embodied-vla",
+        "query:embodied-vla"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "VLA foundation model for generalizable deformable manipulation with robotic arms",
+      "llm_evidence_cn": "面向可变形物体通用操控的VLA基础模型（机械臂）",
+      "llm_evidence": "面向可变形物体通用操控的VLA基础模型（机械臂）",
+      "canonical_evidence": "面向可变形物体通用操控的VLA基础模型（机械臂）",
+      "llm_tldr_en": "DeMaVLA enables VLA-based generalizable deformable manipulation, tackling task interference in multi-task training via novel architecture and pretraining.",
+      "llm_tldr_cn": "可变形物体操控是家务机器人的挑战，现有VLA系统为不同类别物体训练独立策略。本文提出DeMaVLA，一种VLA基础模型，通过新颖架构和预训练策略缓解多任务干扰，实现跨类别、几何和材质的通用折叠技能。实验显示其在未知场景下成功率和鲁棒性显著提升，是机械臂VLA操控的重要创新。",
+      "llm_tldr": "可变形物体操控是家务机器人的挑战，现有VLA系统为不同类别物体训练独立策略。本文提出DeMaVLA，一种VLA基础模型，通过新颖架构和预训练策略缓解多任务干扰，实现跨类别、几何和材质的通用折叠技能。实验显示其在未知场景下成功率和鲁棒性显著提升，是机械臂VLA操控的重要创新。",
+      "llm_tags": [
+        "query:embodied-vla"
+      ],
+      "matched_query_tag": "query:embodied-vla",
+      "matched_query_text": "innovative manipulation techniques for robotic arms with VLA",
+      "matched_requirement_id": "req-3",
+      "selection_source": "carryover_cache",
+      "paper_id": "2605.31286v1"
+    },
+    {
+      "id": "2606.01095v1",
+      "source": "arxiv",
+      "title": "Beyond Task Success: Behavioral and Representational Diagnostics for WAM and VLA",
+      "abstract": "Vision-language-action (VLA) policies and World-Action Models (WAM) represent two increasingly important paradigms for robotic manipulation. However, it remains unclear whether future prediction in WAMs leads to behaviorally meaningful improvements beyond final task success. In this paper, we ask whether WAMs merely add future prediction, or whether they change robot behavior and internal representations in ways that are actionable for control. We introduce a model-agnostic diagnostic framework that compares WAMs and VLAs through two complementary lenses: behavioral rollout analysis and sparse-autoencoder-based feature analysis. The behavioral protocol measures action dynamics consistency, target-object progress, distractor disturbance, and runtime cost. The feature-space protocol characterizes internal representations as memorized, reactive, or predictive, revealing whether models encode future-oriented structure. Across LIBERO and RoboTwin2.0, we evaluate 7 policies spanning direct VLAs and joint, sequential, and auxiliary WAMs. Our results show that success alone hides key differences: WAMs often improve object-level behavior and target selectivity, but their gains depend on architecture and incur higher inference cost. Sequential WAMs show the clearest predictive structure, while auxiliary and joint WAMs respectively compress or entangle future information. These findings suggest future directions for WAMs design to preserve behaviorally actionable future representations for efficient manipulation.",
+      "authors": [
+        "Hung Mai",
+        "Bin Zhu",
+        "Tuan Do"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-05-31T08:35:12+00:00",
+      "link": "https://arxiv.org/pdf/2606.01095v1",
+      "tags": [
+        "keyword:embodied-vla",
+        "query:embodied-vla"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Diagnostic framework for VLA and WAM policies",
+      "llm_evidence_cn": "VLA和WAM策略的诊断框架",
+      "llm_evidence": "VLA和WAM策略的诊断框架",
+      "canonical_evidence": "VLA和WAM策略的诊断框架",
+      "llm_tldr_en": "Proposes a model-agnostic diagnostic framework comparing VLA and WAM policies using behavioral analysis and sparse autoencoder features to understand beyond task success.",
+      "llm_tldr_cn": "现有研究通常仅以任务成功率评估VLA和WAM策略，但忽略了行为质量与内部表征差异。本文提出一种模型无关的诊断框架，通过行为卷积分分析和稀疏自编码器特征分析来比较两者。该框架能够揭示未来预测是否带来行为上有意义的改进，为理解VLA模型在具身智能中的实际行为提供工具。",
+      "llm_tldr": "现有研究通常仅以任务成功率评估VLA和WAM策略，但忽略了行为质量与内部表征差异。本文提出一种模型无关的诊断框架，通过行为卷积分分析和稀疏自编码器特征分析来比较两者。该框架能够揭示未来预测是否带来行为上有意义的改进，为理解VLA模型在具身智能中的实际行为提供工具。",
+      "llm_tags": [
+        "query:embodied-vla"
+      ],
+      "matched_query_tag": "query:embodied-vla",
+      "matched_query_text": "vision language action model for embodied intelligence",
+      "matched_requirement_id": "req-1",
+      "selection_source": "carryover_cache",
+      "paper_id": "2606.01095v1"
+    },
+    {
+      "id": "2606.05737v1",
+      "source": "arxiv",
+      "title": "Let It Be Simple: One-Step Action Generation for Vision-Language-Action Models",
+      "abstract": "Diffusion-based vision-language-action (VLA) models often inherit the image-generation view: actions are generated by iterative denoising. We argue that VLA action generation has a different condition-target structure: the policy is conditioned on rich observations, language, and state, but predicts only a compact, low-dimensional action chunk. Under this asymmetry, strong one-step action generation should not necessarily require the advanced one-step methods developed for image synthesis. We keep standard velocity prediction and add no teacher model, distillation stage, or auxiliary objective; in our main recipe, we simply bias the training time distribution toward high-noise states. We first isolate the effect in a controlled MNIST grid-to-sequence task, then test it with extensive robot-policy experiments. Across standard LIBERO, LIBERO-Plus, and LIBERO-Pro, one-step policies trained with high-noise biased schedules generally match ten-step decoding under the same recipe, and on standard LIBERO can exceed ten-step policies trained with a uniform time distribution. A real-robot bimanual YAM RSS evaluation gives a small-sample cross-architecture check of the same sampler trend. On a 1.4B VLM model with a 30M action head, one-step decoding reaches 95.6\\% on LIBERO-Long. These results show that strong one-step VLA action generation can emerge from standard diffusion training, without importing the full few-step diffusion machinery developed for image generation.",
+      "authors": [
+        "Yitong Chen",
+        "Shiduo Zhang",
+        "Jingjing Gong",
+        "Xipeng Qiu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-06-04T05:58:30+00:00",
+      "link": "https://arxiv.org/pdf/2606.05737v1",
+      "tags": [
+        "keyword:embodied-vla",
+        "query:embodied-vla"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "One-step action generation for efficient VLA policies",
+      "llm_evidence_cn": "为VLA模型提出一步动作生成方法，提升效率",
+      "llm_evidence": "为VLA模型提出一步动作生成方法，提升效率",
+      "canonical_evidence": "为VLA模型提出一步动作生成方法，提升效率",
+      "llm_tldr_en": "By biasing training toward high-noise states, standard velocity prediction enables one-step action generation in VLA without complex distillation, achieving comparable or better results than multi-step diffusion.",
+      "llm_tldr_cn": "当前扩散式VLA模型使用迭代去噪生成动作，计算成本高。本文指出动作预测的条件-目标结构不同于图像生成，通过简单地在训练中偏向高噪声状态，标准速度预测即可实现一步动作生成，无需额外教师模型或蒸馏。在模拟和真实机器人操作任务上，一步生成的速度大幅提升且性能不降，为VLA模型的实时应用提供了高效方案。",
+      "llm_tldr": "当前扩散式VLA模型使用迭代去噪生成动作，计算成本高。本文指出动作预测的条件-目标结构不同于图像生成，通过简单地在训练中偏向高噪声状态，标准速度预测即可实现一步动作生成，无需额外教师模型或蒸馏。在模拟和真实机器人操作任务上，一步生成的速度大幅提升且性能不降，为VLA模型的实时应用提供了高效方案。",
+      "llm_tags": [
+        "query:embodied-vla"
+      ],
+      "matched_query_tag": "query:embodied-vla",
+      "matched_query_text": "vision language action model for embodied intelligence",
+      "matched_requirement_id": "req-1",
+      "selection_source": "carryover_cache",
+      "paper_id": "2606.05737v1"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.06155v1",
+      "source": "arxiv",
+      "title": "AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Affordance-Aware Understanding",
+      "abstract": "Vision-Language-Action (VLA) models leverage the rich world knowledge of pretrained vision-language models (VLMs) to enable instruction-following robotic manipulation. However, the structural mismatch between VLM semantic spaces and embodied control policies often hinders the learning of precise perception--action mappings. To address this challenge, we propose \\textbf{AffordanceVLA}, a unified framework that introduces structured affordance forecasting as a task-oriented intermediate representation to establish a more precise and robust perception--action mapping. Specifically, we progressively model manipulation priors through three complementary components: 1) \\textbf{Which2Act} for object-centric grounding via visual latent prediction to suppress distractions; 2) \\textbf{Where2Act} for 2D interaction localization via affordance map estimation; and 3) \\textbf{How2Act} for 3D geometric reasoning to guide manipulation policies. These affordance cues provide spatially grounded, semantically conditioned, and action-coupled intermediate representations, thereby naturally bridging vision, language and action. We integrate these modules into a Mixture-of-Transformer (MoT) architecture with specialized experts and train the model using a three-stage training strategy with a progressive data curriculum. To overcome the scarcity of dense affordance labels in robotic datasets, we also develop a robust automated data augmentation pipeline. Extensive experiments on simulation and real-world demonstrate that AffordanceVLA achieves strong performance across diverse manipulation scenarios.",
+      "authors": [
+        "Qize Yu",
+        "Jiadi You",
+        "Yuran Wang",
+        "Jiaqi Liang",
+        "Bowen Ping",
+        "Yang Tian",
+        "Yue Chen",
+        "Minghong Cai",
+        "Zeying Gong",
+        "Ruihai Wu",
+        "Yinchuan Li",
+        "Junwei Liang",
+        "Yingcong Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.MM"
+      ],
+      "published": "2026-06-04T13:28:51+00:00",
+      "link": "https://arxiv.org/pdf/2606.06155v1",
+      "tags": [
+        "keyword:embodied-vla",
+        "query:embodied-vla"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "VLA model with affordance forecasting as intermediate representation",
+      "llm_evidence_cn": "VLA模型利用可操作性预测作为中间表示",
+      "llm_evidence": "VLA模型利用可操作性预测作为中间表示",
+      "canonical_evidence": "VLA模型利用可操作性预测作为中间表示",
+      "llm_tldr_en": "Proposes AffordanceVLA that introduces structured affordance forecasting as a task-oriented intermediate representation to improve perception-action mapping in VLA models.",
+      "llm_tldr_cn": "VLM语义空间与机器人控制存在结构性不匹配，导致感知-动作映射不精确。本文提出AffordanceVLA，通过可操作性预测作为中间表示桥接两者。模型包含Which2Act、How2Act和Where2Act三个组件，分别进行目标感知、交互定位和动作生成，从而建立更精准的映射关系。实验证明，该方法显著提升了指令跟随操作的精度。",
+      "llm_tldr": "VLM语义空间与机器人控制存在结构性不匹配，导致感知-动作映射不精确。本文提出AffordanceVLA，通过可操作性预测作为中间表示桥接两者。模型包含Which2Act、How2Act和Where2Act三个组件，分别进行目标感知、交互定位和动作生成，从而建立更精准的映射关系。实验证明，该方法显著提升了指令跟随操作的精度。",
+      "llm_tags": [
+        "query:embodied-vla"
+      ],
+      "matched_query_tag": "query:embodied-vla",
+      "matched_query_text": "vision language action model for embodied intelligence",
+      "matched_requirement_id": "req-1",
+      "selection_source": "carryover_cache",
+      "paper_id": "2606.06155v1",
+      "quick_tier": "8plus"
+    }
+  ]
+}

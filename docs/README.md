@@ -6,65 +6,38 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-06
-- 运行时间：2026-06-06 20:40:12 UTC
+- 最新运行日期：2026-06-07
+- 运行时间：2026-06-07 20:05:28 UTC
 - 运行状态：成功
-- 本次总论文数：15
+- 本次总论文数：6
 - 精读区：5
-- 速读区：10
+- 速读区：1
 
 ### 今日简报（AI）
-今日15篇论文聚焦VLA（视觉-语言-动作）模型，精读《IntentVLA》和《PhysBrain》，速读多篇如《RoVLA》等，均获8分高分。最值得关注：短时意图建模解决机器人操作歧义，以及动作对齐的视觉规划方向。建议读者侧重理解“意图与动作对齐”这一核心改进，可简化VLA模型在实际部署中的策略设计。
-- 详情：[/202606/06/README](/202606/06/README)
+今日精读2篇VLA模型论文（VLA-Pro、ELAN4D）及速读1篇AffordanceVLA，均获8分高分，聚焦跨任务记忆迁移与4D感知监督。最值得关注的方向是程序记忆迁移和具身感知中心4D监督对VLA模型泛化能力的提升。建议优先精读VLA-Pro和ELAN4D，理解如何通过模块化适配增强动作生成性能。
+- 详情：[/202606/07/README](/202606/07/README)
 
 ### 精读区论文标签
-1. [IntentVLA: Short-Horizon Intent Modeling for Aliased Robot Manipulation](/202606/06/2605.14712v1-intentvla-short-horizon-intent-modeling-for-aliased-robot-manipulation)  
+1. [VLA-Pro: Cross-Task Procedural Memory Transfer for Vision-Language-Action Models](/202606/07/2605.29562v1-vla-pro-cross-task-procedural-memory-transfer-for-vision-language-action-models)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：基于短期意图建模解决VLA在歧义操作中的不稳定性
-2. [PhysBrain 1.0 Technical Report](/202606/06/2605.15298v1-physbrain-10-technical-report)  
+   evidence：VLA跨任务过程性记忆迁移提升机械臂操作泛化
+2. [ELAN4D: Embodiment-Centric 4D Supervision for Vision-Language-Action Models via Plug-and-Play Adaptation](/202606/07/2605.30484v1-elan4d-embodiment-centric-4d-supervision-for-vision-language-action-models-via-plug-and-play-adaptation)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：利用第一人称视频训练VLM并迁移至VLA策略用于具身智能
-3. [Offline Semantic Guidance for Efficient Vision-Language-Action Policy Distillation](/202606/06/2605.16241v1-offline-semantic-guidance-for-efficient-vision-language-action-policy-distillation)  
+   evidence：为VLA模型添加未来关键点轨迹作为4D监督
+3. [DeMaVLA: A Vision-Language-Action Foundation Model for Generalizable Deformable Manipulation](/202606/07/2605.31286v1-demavla-a-vision-language-action-foundation-model-for-generalizable-deformable-manipulation)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：使用VLM语义指导蒸馏轻量学生策略框架
-4. [Contrastive Conceptor Activation Steering (COAST): Unlocking Vision-Language-Action Models through Hidden States](/202606/06/2605.17144v1-contrastive-conceptor-activation-steering-coast-unlocking-vision-language-action-models-through-hidden-states)  
+   evidence：面向可变形物体通用操控的VLA基础模型（机械臂）
+4. [Beyond Task Success: Behavioral and Representational Diagnostics for WAM and VLA](/202606/07/2606.01095v1-beyond-task-success-behavioral-and-representational-diagnostics-for-wam-and-vla)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：通过激活引导调整VLA潜在表示以改进任务
-5. [PAPO-VLA: Planning-Aware Policy Optimization for Vision-Language-Action Models](/202606/06/2605.19580v1-papo-vla-planning-aware-policy-optimization-for-vision-language-action-models)  
+   evidence：VLA和WAM策略的诊断框架
+5. [Let It Be Simple: One-Step Action Generation for Vision-Language-Action Models](/202606/07/2606.05737v1-let-it-be-simple-one-step-action-generation-for-vision-language-action-models)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：面向VLA可靠性的规划感知策略优化
+   evidence：为VLA模型提出一步动作生成方法，提升效率
 
 ### 速读区论文标签
-1. [RoVLA: Multi-Consistency Constraints for Robust Vision-Language-Action Models](/202606/06/2605.19678v1-rovla-multi-consistency-constraints-for-robust-vision-language-action-models)  
+1. [AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Affordance-Aware Understanding](/202606/07/2606.06155v1-affordancevla-a-vision-language-action-model-empowering-action-generation-through-affordance-aware-understanding)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：多一致性约束增强鲁棒VLA操作
-2. [GesVLA: Gesture-Aware Vision-Language-Action Model Embedded Representations](/202606/06/2605.22812v1-gesvla-gesture-aware-vision-language-action-model-embedded-representations)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：将手势作为指令模态融入VLA模型
-3. [Afford-VLA: Action-Aligned Visual Planning via Internalized Affordance](/202606/06/2605.24203v1-afford-vla-action-aligned-visual-planning-via-internalized-affordance)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：基于可操作性的视觉规划VLA操控方法
-4. [QuoVLA: Quotient Space for Vision-Language-Action Models](/202606/06/2605.24890v1-quovla-quotient-space-for-vision-language-action-models)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：商空间理论揭示VLM潜在已包含动作信息，用于语言条件控制
-5. [X-DiffVLA: X-Embodied Diffusion Action Heads for Vision-Language-Action Models](/202606/06/2605.25044v1-x-diffvla-x-embodied-diffusion-action-heads-for-vision-language-action-models)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：跨具身形态的VLA模型，适用于人形机器人等
-6. [OASIS: Observation-Action Space Alignment via SE(3) Trajectory Prediction for Robotic Manipulation](/202606/06/2605.25829v1-oasis-observation-action-space-alignment-via-se3-trajectory-prediction-for-robotic-manipulation)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：通过SE(3)轨迹预测对齐表示与动作空间以提升操作精度
-7. [ProgVLA: Progress-Aware Robot Manipulation Skill Learning](/202606/06/2605.28231v1-progvla-progress-aware-robot-manipulation-skill-learning)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：紧凑VLA模型，通过进度表示增强操作技能
-8. [Mag-VLA: Vision-Language-Action Model for Bimanual Magnetically Actuated Microrobot Manipulation](/202606/06/2605.28486v1-mag-vla-vision-language-action-model-for-bimanual-magnetically-actuated-microrobot-manipulation)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：双臂磁驱动微机器人操作VLA模型
-9. [PrimitiveVLA: Learning Reusable Motion Primitives for Efficient and Generalizable Robotic Manipulation](/202606/06/2605.28634v1-primitivevla-learning-reusable-motion-primitives-for-efficient-and-generalizable-robotic-manipulation)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：VLA框架学习可重用运动基元
-10. [ElegantVLA: Learning When to Think for Efficient Vision-Language-Action Models](/202606/06/2605.29438v1-elegantvla-learning-when-to-think-for-efficient-vision-language-action-models)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：学习何时投入计算以提升VLA效率
+   evidence：VLA模型利用可操作性预测作为中间表示
 
 
 <div class="dpr-home-promo-card">
