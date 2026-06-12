@@ -123,6 +123,41 @@ subscriptions:
             updated_at: '2026-06-06T03:37:45.993372+00:00'
       updated_at: '2026-06-06T03:29:44.984Z'
       paused: true
+    - tag: agent-build
+      description: 介绍ai agent的构建方式，组成ai agent的内容分别有什么作用，如何构建这些内容
+      enabled: true
+      paper_sources:
+        - arxiv
+      keywords:
+        - keyword: AI agent architecture
+          keyword_cn: AI智能体架构
+          query: architecture of AI agents
+        - keyword: agent reasoning engine
+          keyword_cn: 智能体推理引擎
+          query: reasoning engine component for AI agents
+        - keyword: tool integration for agents
+          keyword_cn: 智能体工具集成
+          query: integrating external tools with AI agents
+        - keyword: knowledge base construction
+          keyword_cn: 知识库构建
+          query: building knowledge base for AI agents
+      intent_queries:
+        - query: how to build an AI agent from scratch
+          query_cn: 如何从零构建AI智能体
+          enabled: true
+          source: manual
+          note: ''
+        - query: roles and functions of AI agent components
+          query_cn: AI智能体各组件的角色与功能
+          enabled: true
+          source: manual
+          note: ''
+        - query: guide to construct AI agent modules
+          query_cn: 构建AI智能体模块指南
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-12T08:12:14.378Z'
 source_backends:
   arxiv:
     papers_table: arxiv_papers
