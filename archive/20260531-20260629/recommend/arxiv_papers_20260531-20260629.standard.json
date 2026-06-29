@@ -1,0 +1,932 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-29T09:03:13.708848+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 20,
+    "deep_cap": 6,
+    "deep_selected": 9,
+    "quick_candidates": 23,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2606.03784v2",
+      "source": "arxiv",
+      "title": "Revisiting Embodied Chain-of-Thought for Generalizable Robot Manipulation",
+      "abstract": "Embodied chain-of-thought (CoT) aims to bridge linguistic reasoning and robotic control, but its effective form and integration strategy remain underexplored. In this paper, we revisit embodied CoT for vision-language-action (VLA) models at large scale. We construct the largest embodied CoT corpus to date, comprising 978,743 trajectories, 226.3M samples, and 2592.5 hours of robot data. Through extensive experiments, we find that effective embodied CoT should ground high-level semantic understanding into concrete action guidance, such as end-effector movement descriptions and image-space trajectories, while high-level reasoning alone brings only marginal gains. We further show that explicit CoT does not scale reliably when used as an autoregressive action prefix, as it suffers from compounding inference errors and unstable reasoning-action coupling. To address these limitations, we propose ERVLA, a VLA model that uses embodied CoT as representation-shaping supervision rather than mandatory test-time reasoning. ERVLA is trained with a reasoning-dropout strategy, enabling the model to absorb rich reasoning traces during training while predicting actions directly without CoT decoding during inference. This design improves scalability with increasing pre-training data and avoids autoregressive instability. ERVLA achieves state-of-the-art performance on LIBERO-Plus with an 86.9% success rate and reaches 53.2% success rate on VLABench, demonstrating strong out-of-distribution generalization. In real-robot experiments, ERVLA further outperforms competitive state-of-the-art baselines, especially on tasks requiring semantic disambiguation and long-horizon execution.",
+      "authors": [
+        "Nan Sun",
+        "Yuan Zhang",
+        "Yongkun Yang",
+        "Wentao Zhao",
+        "Peiyan Li",
+        "Jun Guo",
+        "Wenxuan Song",
+        "Pengxiang Ding",
+        "Runze Suo",
+        "Yifei Su",
+        "Xin Xiao",
+        "Xinghang Li",
+        "Huaping Liu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-02T15:37:59+00:00",
+      "link": "https://arxiv.org/pdf/2606.03784v2",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "large-scale study of embodied chain-of-thought for VLA models in robot manipulation",
+      "llm_evidence_cn": "大规模研究VLA模型中具身思维链用于机器人操作",
+      "llm_evidence": "大规模研究VLA模型中具身思维链用于机器人操作",
+      "canonical_evidence": "大规模研究VLA模型中具身思维链用于机器人操作",
+      "llm_tldr_en": "Constructs 978k embodied CoT trajectories and shows that grounding reasoning into concrete action guidance (e.g., end-effector movements) is critical for VLA models.",
+      "llm_tldr_cn": "针对视觉-语言-动作（VLA）模型中具身思维链的有效形式，构建了迄今最大的CoT语料（978,743条轨迹），发现将高层语义理解具体化为末端执行器运动等具象引导才能显著提升性能，而纯高层推理增益有限。",
+      "llm_tldr": "针对视觉-语言-动作（VLA）模型中具身思维链的有效形式，构建了迄今最大的CoT语料（978,743条轨迹），发现将高层语义理解具体化为末端执行器运动等具象引导才能显著提升性能，而纯高层推理增益有限。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.08107v1",
+      "source": "arxiv",
+      "title": "Ego-Pi: VLA Fine-Tuning for Ego-Centric Human and Robot Data",
+      "abstract": "Robotics faces a fundamental challenge of data scarcity. Unlike language or vision research, there is no internet-scale dataset for robotic manipulation. A promising path forward is to leverage egocentric human data, which can be collected more easily, with greater breadth, and at a larger scale. Towards this end, we investigate key design choices for learning across human and humanoid embodiments equipped with dexterous five-finger hands, using the $π_{0.5}$ model as a foundation. Our results show that human data enables robots to learn new task semantics and compose existing skills into novel behaviors without corresponding robot data. The paper website is here: https://egopipaper.github.io/",
+      "authors": [
+        "Ji Woong Kim",
+        "Ke Wang",
+        "Zipeng Fu",
+        "Sirui Chen",
+        "Cong Zhao",
+        "Jeff Lai",
+        "Chelsea Finn"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-06T11:14:21+00:00",
+      "link": "https://arxiv.org/pdf/2606.08107v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Ego-Pi fine-tunes Pi0.5 VLA model with egocentric human data for humanoid robots",
+      "llm_evidence_cn": "Ego-Pi使用人类自我中心数据微调π0.5 VLA模型用于人形机器人",
+      "llm_evidence": "Ego-Pi使用人类自我中心数据微调π0.5 VLA模型用于人形机器人",
+      "canonical_evidence": "Ego-Pi使用人类自我中心数据微调π0.5 VLA模型用于人形机器人",
+      "llm_tldr_en": "Ego-Pi investigates VLA fine-tuning of the Pi0.5 foundation model using egocentric human data, enabling robots to learn new tasks without robot data.",
+      "llm_tldr_cn": "机器人操作面临数据稀缺问题。Ego-Pi利用易于收集的人类自我中心数据，对π0.5基础模型进行微调。研究发现，人类数据使机器人能够学习新任务语义并将已有技能组合为新行为，无需对应机器人数据。该方法为利用人类数据扩展机器人技能提供了有效途径。",
+      "llm_tldr": "机器人操作面临数据稀缺问题。Ego-Pi利用易于收集的人类自我中心数据，对π0.5基础模型进行微调。研究发现，人类数据使机器人能够学习新任务语义并将已有技能组合为新行为，无需对应机器人数据。该方法为利用人类数据扩展机器人技能提供了有效途径。",
+      "llm_tags": [
+        "query:pi-series"
+      ],
+      "matched_query_tag": "query:pi-series",
+      "matched_query_text": "Pi series embodied AI",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.01241v1",
+      "source": "arxiv",
+      "title": "OneVLA: A Unified Framework for Embodied Tasks",
+      "abstract": "Navigation and manipulation are fundamental capabilities of embodied intelligence, enabling robots to interpret natural language commands and interact physically with their surroundings. However, current Vision-Language-Action (VLA) models remain constrained by task-specific architectures, specializing in either navigation or manipulation, which hinders the development of general-purpose robotic agents. To bridge this gap, we introduce OneVLA, a unified architecture that integrates these distinct tasks into a single, cohesive framework. Specifically, we design a unified action head capable of generating both navigation and manipulation actions without requiring task-specific variants. Furthermore, we propose a multi stage progressive training strategy-incorporating curated data construction and Chain-of-Thought (CoT) fine-tuning that facilitates strong positive transfer and mutual reinforcement between the two domains. Extensive experiments in both simulated and real-world environments demonstrate that OneVLA achieves state-of-the-art performance, significantly outperforming both specialized single-task and existing cross-task models. By unifying these core capabilities, OneVLA paves the way for truly general-purpose robotic systems. The model and source code will be publicly released.",
+      "authors": [
+        "Lingfeng Zhang",
+        "Xiaoshuai Hao",
+        "Yingbo Tang",
+        "Lei Zhou",
+        "Shuyi Zhang",
+        "Jinkun Liu",
+        "Hongsheng Li",
+        "Chenhao Zhang",
+        "Qiang Zhang",
+        "Hangjun Ye",
+        "Xiaojun Liang",
+        "Long Chen",
+        "Wenbo Ding"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-31T13:43:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.01241v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "OneVLA unified VLA framework for both navigation and manipulation",
+      "llm_evidence_cn": "OneVLA统一VLA框架，兼顾导航与操作",
+      "llm_evidence": "OneVLA统一VLA框架，兼顾导航与操作",
+      "canonical_evidence": "OneVLA统一VLA框架，兼顾导航与操作",
+      "llm_tldr_en": "OneVLA unifies navigation and manipulation into a single Vision-Language-Action model with a unified action head and multi-stage progressive training, addressing task-specific bottlenecks in embodied AI.",
+      "llm_tldr_cn": "当前的视觉-语言-动作模型通常专精于导航或操作任务，限制了通用具身智能体的发展。OneVLA提出统一架构，通过设计统一动作头和渐进式多阶段训练策略，将导航与操作整合到单个模型中。实验证明该框架能有效生成两种任务的联合动作，为构建通用机器人智能体提供了新思路。",
+      "llm_tldr": "当前的视觉-语言-动作模型通常专精于导航或操作任务，限制了通用具身智能体的发展。OneVLA提出统一架构，通过设计统一动作头和渐进式多阶段训练策略，将导航与操作整合到单个模型中。实验证明该框架能有效生成两种任务的联合动作，为构建通用机器人智能体提供了新思路。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.01241v2",
+      "source": "arxiv",
+      "title": "OneVLA: A Unified Framework for Embodied Tasks",
+      "abstract": "Navigation and manipulation are fundamental capabilities of embodied intelligence, enabling robots to interpret natural language commands and interact physically with their surroundings. However, current Vision-Language-Action (VLA) models remain constrained by task-specific architectures, specializing in either navigation or manipulation, which hinders the development of general-purpose robotic agents. To bridge this gap, we introduce OneVLA, a unified architecture that integrates these distinct tasks into a single, cohesive framework. Specifically, we design a unified action head capable of generating both navigation and manipulation actions without requiring task-specific variants. Furthermore, we propose a multi stage progressive training strategy-incorporating curated data construction and Chain-of-Thought (CoT) fine-tuning that facilitates strong positive transfer and mutual reinforcement between the two domains. Extensive experiments in both simulated and real-world environments demonstrate that OneVLA achieves state-of-the-art performance, significantly outperforming both specialized single-task and existing cross-task models. By unifying these core capabilities, OneVLA paves the way for truly general-purpose robotic systems. The model and source code will be publicly released.",
+      "authors": [
+        "Lingfeng Zhang",
+        "Xiaoshuai Hao",
+        "Yingbo Tang",
+        "Lei Zhou",
+        "Shuyi Zhang",
+        "Jinkun Liu",
+        "Hongsheng Li",
+        "Chenhao Zhang",
+        "Qiang Zhang",
+        "Hangjun Ye",
+        "Xiaojun Liang",
+        "Long Chen",
+        "Wenbo Ding"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-31T13:43:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.01241v2",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "unified VLA framework for navigation and manipulation, task-agnostic action head",
+      "llm_evidence_cn": "统一的VLA框架同时支持导航与操作，任务无关的动作头",
+      "llm_evidence": "统一的VLA框架同时支持导航与操作，任务无关的动作头",
+      "canonical_evidence": "统一的VLA框架同时支持导航与操作，任务无关的动作头",
+      "llm_tldr_en": "OneVLA proposes a unified VLA architecture that handles both navigation and manipulation with a single action head, using multi-stage training to enable general-purpose robotic agents.",
+      "llm_tldr_cn": "该论文提出OneVLA，一个统一的视觉-语言-动作（VLA）框架，能够同时处理导航和操作任务。通过设计统一动作头和渐进式多阶段训练策略，打破了现有VLA模型任务专用的局限。实验表明OneVLA在多个基准上表现优异，向通用具身智能体迈出了重要一步，为机器人同时完成移动与操作任务提供了统一方案。",
+      "llm_tldr": "该论文提出OneVLA，一个统一的视觉-语言-动作（VLA）框架，能够同时处理导航和操作任务。通过设计统一动作头和渐进式多阶段训练策略，打破了现有VLA模型任务专用的局限。实验表明OneVLA在多个基准上表现优异，向通用具身智能体迈出了重要一步，为机器人同时完成移动与操作任务提供了统一方案。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.03784v1",
+      "source": "arxiv",
+      "title": "Revisiting Embodied Chain-of-Thought for Generalizable Robot Manipulation",
+      "abstract": "Embodied chain-of-thought (CoT) aims to bridge linguistic reasoning and robotic control, but its effective form and integration strategy remain underexplored. In this paper, we revisit embodied CoT for vision-language-action (VLA) models at large scale. We construct the largest embodied CoT corpus to date, comprising 978,743 trajectories, 226.3M samples, and 2592.5 hours of robot data. Through extensive experiments, we find that effective embodied CoT should ground high-level semantic understanding into concrete action guidance, such as end-effector movement descriptions and image-space trajectories, while high-level reasoning alone brings only marginal gains. We further show that explicit CoT does not scale reliably when used as an autoregressive action prefix, as it suffers from compounding inference errors and unstable reasoning-action coupling. To address these limitations, we propose ERVLA, a VLA model that uses embodied CoT as representation-shaping supervision rather than mandatory test-time reasoning. ERVLA is trained with a reasoning-dropout strategy, enabling the model to absorb rich reasoning traces during training while predicting actions directly without CoT decoding during inference. This design improves scalability with increasing pre-training data and avoids autoregressive instability. ERVLA achieves state-of-the-art performance on LIBERO-Plus with an 86.9% success rate and reaches 53.2% success rate on VLABench, demonstrating strong out-of-distribution generalization. In real-robot experiments, ERVLA further outperforms competitive state-of-the-art baselines, especially on tasks requiring semantic disambiguation and long-horizon execution. Code, data, and model checkpoints will be released.",
+      "authors": [
+        "Nan Sun",
+        "Yuan Zhang",
+        "Yongkun Yang",
+        "Wentao Zhao",
+        "Peiyan Li",
+        "Jun Guo",
+        "Wenxuan Song",
+        "Pengxiang Ding",
+        "Runze Suo",
+        "Yifei Su",
+        "Xin Xiao",
+        "Xinghang Li",
+        "Huaping Liu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-02T15:37:59+00:00",
+      "link": "https://arxiv.org/pdf/2606.03784v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "embodied chain-of-thought for VLA models, large-scale dataset for robot manipulation",
+      "llm_evidence_cn": "面向VLA模型的具身链式思维，大规模机器人操作数据集",
+      "llm_evidence": "面向VLA模型的具身链式思维，大规模机器人操作数据集",
+      "canonical_evidence": "面向VLA模型的具身链式思维，大规模机器人操作数据集",
+      "llm_tldr_en": "This paper revisits embodied CoT for VLA models, constructing the largest embodied CoT corpus (978k trajectories) and finding grounded CoT with action guidance significantly improves manipulation generalization.",
+      "llm_tldr_cn": "该论文大规模重新审视具身链式思维（CoT）在VLA模型中的作用。构建了包含97万多条轨迹的具身CoT语料库，并发现有效的CoT应将高层语义理解转化为具体的动作引导（如末端执行器运动描述），而非仅依赖高层推理。实验表明，结合接地CoT能显著提升机器人操作的泛化性能，为VLA模型中的语言推理与行动结合提供了重要指导。",
+      "llm_tldr": "该论文大规模重新审视具身链式思维（CoT）在VLA模型中的作用。构建了包含97万多条轨迹的具身CoT语料库，并发现有效的CoT应将高层语义理解转化为具体的动作引导（如末端执行器运动描述），而非仅依赖高层推理。实验表明，结合接地CoT能显著提升机器人操作的泛化性能，为VLA模型中的语言推理与行动结合提供了重要指导。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.11324v1",
+      "source": "arxiv",
+      "title": "Embodied-R1.5: Evolving Physical Intelligence via Embodied Foundation Models",
+      "abstract": "We introduce Embodied-R1.5, a unified Embodied Foundation Model (EFM) that integrates comprehensive embodied reasoning capabilities, spanning embodied cognition, task planning, correction, and pointing, within a single architecture toward general physical intelligence. Leveraging three automated data construction pipelines to significantly expand the data coverage of critical capabilities, we build a large-scale data system of over 15B tokens, and design a multi-task balanced RL recipe to alleviate heterogeneous task conflicts. We further introduce a Planner-Grounder-Corrector (PGC) closed-loop framework that enables a single model to autonomously execute and self-correct over long-horizon tasks. With only 8B parameters, Embodied-R1.5 achieves SOTA on 16 out of 24 embodied VLM benchmarks, surpassing leading models like Gemini-Robotics-ER-1.5 and GPT-5.4. Benefiting from the internalized embodied capabilities, Embodied-R1.5 can be fine-tuned into a VLA with only a small amount of data, outperforming leading VLA models like $π_{0.5}$ across 4 popular manipulation benchmark suites. We further conduct extensive zero-shot real-robot experiments, validating performance in instruction following, affordance grounding, articulated object manipulation, and long-horizon complex tasks, demonstrating strong generalization to the physical world. We open-source model weights, datasets, training code, and EmbodiedEvalKit, an evaluation framework tailored for embodied tasks, to facilitate future research in EFMs.",
+      "authors": [
+        "Yifu Yuan",
+        "Yaoting Huang",
+        "Xianze Yao",
+        "Yutong Li",
+        "Shuoheng Zhang",
+        "Linqi Han",
+        "Pengyi Li",
+        "Jiangeng Sun",
+        "Wenting Jia",
+        "Zhao Zhang",
+        "Yuhao Liu",
+        "Ruihao Liao",
+        "Yucheng Hu",
+        "Qiyu Wu",
+        "Yuxiao Li",
+        "Zibin Dong",
+        "Fei Ni",
+        "Yan Zheng",
+        "Shuyang Gu",
+        "Yi Ma",
+        "Hongyao Tang",
+        "Han Hu",
+        "Jianye Hao"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-09T18:07:50+00:00",
+      "link": "https://arxiv.org/pdf/2606.11324v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "unified embodied foundation model with reasoning, planning, correction for physical intelligence",
+      "llm_evidence_cn": "统一的具身基础模型，集成推理、规划与纠正能力",
+      "llm_evidence": "统一的具身基础模型，集成推理、规划与纠正能力",
+      "canonical_evidence": "统一的具身基础模型，集成推理、规划与纠正能力",
+      "llm_tldr_en": "Embodied-R1.5 is an 8B unified embodied foundation model integrating cognition, planning, correction, and pointing, achieving SOTA on diverse tasks via multi-task balanced RL and a Planner-Grounder-Corrector framework.",
+      "llm_tldr_cn": "该论文提出Embodied-R1.5，一个仅8B参数的统一具身基础模型，集成了具身认知、任务规划、纠正和指向等能力。采用大规模数据管道和多任务平衡强化学习训练，并设计规划-接地-纠正闭环框架，使模型能够自主执行并自我纠正长时序任务。在多项基准上达到最优，展示了将多种具身推理能力统一于单一架构的可行性与高效性。",
+      "llm_tldr": "该论文提出Embodied-R1.5，一个仅8B参数的统一具身基础模型，集成了具身认知、任务规划、纠正和指向等能力。采用大规模数据管道和多任务平衡强化学习训练，并设计规划-接地-纠正闭环框架，使模型能够自主执行并自我纠正长时序任务。在多项基准上达到最优，展示了将多种具身推理能力统一于单一架构的可行性与高效性。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.17030v1",
+      "source": "arxiv",
+      "title": "Qwen-RobotWorld Technical Report: Unifying Embodied World Modeling through Language-Conditioned Video Generation",
+      "abstract": "We introduce Qwen-RobotWorld, a language-conditioned video world model for embodied intelligence. With natural language as a unified action interface, it predicts physically grounded future visual trajectories from current observations across robotic manipulation, autonomous driving, indoor navigation, and human-to-robot transfer. This unified formulation provides three promising application directions: synthetic data generation for policy training augmentation, scalable virtual environments for policy evaluation, and language-guided planning signals for downstream robot control. This is achieved through a three-part design: a) Double-Stream MMDiT with MLLM Action Encoding, where a 60-layer double-stream diffusion transformer couples frozen Qwen2.5-VL semantics with video-VAE latents through layer-wise joint attention; b) Embodied World Knowledge (EWK), an 8.6M video-text corpus (200M+ frames) with action-language mapping over 20+ embodiments and 500+ action categories; and c) General+Expert Progressive Curriculum, a two-stage training strategy that first learns general visual priors and then injects embodied specialization under a shared language interface. Extensive results show strong competitiveness: ranks 1st overall on EWMBench and DreamGen Bench, outperforms all open-source models on WorldModelBench and PBench. Additional zero-shot analyses on RoboTwin-IF benchmark further support robust generalization and multi-view consistency.",
+      "authors": [
+        "Jie Zhang",
+        "Xiaoyue Chen",
+        "Anzhe Chen",
+        "Chenxu Lv",
+        "Deqing Li",
+        "Gengze Zhou",
+        "Hang Yin",
+        "Haoqi Yuan",
+        "Haoyang Li",
+        "Jiahao Li",
+        "Jiazhao Zhang",
+        "Jingren Zhou",
+        "Kaiyuan Gao",
+        "Kun Yan",
+        "Lihan Jiang",
+        "Ningyuan Tang",
+        "Pei Lin",
+        "Qihang Peng",
+        "Shengming Yin",
+        "Tianhe Wu",
+        "Tianyi Yan",
+        "Xiao Xu",
+        "Yan Shu",
+        "Yanran Zhang",
+        "Ye Wang",
+        "Yi Wang",
+        "Yilei Chen",
+        "Yixian Xu",
+        "Yiyang Huang",
+        "Yuxiang Chen",
+        "Zekai Zhang",
+        "Zhendong Wang",
+        "Zhixing Lei",
+        "Zhixuan Liang",
+        "Zihao Liu",
+        "Zikai Zhou",
+        "Xiong-Hui Chen",
+        "Chenfei Wu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-15T17:52:31+00:00",
+      "link": "https://arxiv.org/pdf/2606.17030v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "language-conditioned video world model for embodied intelligence and robotic manipulation",
+      "llm_evidence_cn": "语言条件视频世界模型用于具身智能与机器人操作",
+      "llm_evidence": "语言条件视频世界模型用于具身智能与机器人操作",
+      "canonical_evidence": "语言条件视频世界模型用于具身智能与机器人操作",
+      "llm_tldr_en": "Qwen-RobotWorld uses natural language as a unified action interface to predict physically grounded future visual trajectories for embodied tasks, enabling synthetic data generation and language-guided planning.",
+      "llm_tldr_cn": "现有具身世界模型多针对预测优化，泛化能力有限。本文提出Qwen-RobotWorld，以自然语言为统一行动接口，预测物理真实的未来视觉轨迹，覆盖机器人操作、自动驾驶、室内导航等任务。该方法通过双流MMDiT与MLLM动作编码实现，为策略训练提供合成数据、虚拟评估环境及语言引导规划信号，统一了具身世界建模。",
+      "llm_tldr": "现有具身世界模型多针对预测优化，泛化能力有限。本文提出Qwen-RobotWorld，以自然语言为统一行动接口，预测物理真实的未来视觉轨迹，覆盖机器人操作、自动驾驶、室内导航等任务。该方法通过双流MMDiT与MLLM动作编码实现，为策略训练提供合成数据、虚拟评估环境及语言引导规划信号，统一了具身世界建模。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.23565v1",
+      "source": "arxiv",
+      "title": "HoloAgent-0: A Unified Embodied Agent Framework with 3D Spatial Memory",
+      "abstract": "LLM agents follow a practical execution loop in digital environments: they reason over structured states, invoke tools, inspect feedback, and revise actions. Extending this loop to physical robots is difficult because physical execution is continuous, embodiment-dependent, uncertain, and constrained by safety. Existing embodied-AI systems have advanced manipulation, spatial understanding, navigation, and humanoid control, but these capabilities often remain specialized modules or loosely coupled decision loops. In this work, we introduce HoloAgent-0, a unified embodied agent framework for real-world robot deployment. Embodied AgentOS converts language instructions into executable skill graphs, schedules robot resources, monitors execution, and triggers clarification or re-planning from runtime feedback. HoloAgent-0 organizes heterogeneous robot models and controllers through three coupled layers: Embodied AgentOS for closed-loop execution, 3D spatial memory for physical world grounding, and embodied skills for robot action. We deploy HoloAgent-0 on real hardware and evaluate its spatial memory, long-horizon navigation, and closed-loop execution across motion generation, object search, cross-robot coordination, and mobile manipulation.",
+      "authors": [
+        "Xiaolin Zhou",
+        "Liu Liu",
+        "Tingyang Xiao",
+        "Wei Feng",
+        "Fa Fu",
+        "Xinrui Meng",
+        "Xinjie Wang",
+        "Jialiang Han",
+        "Boyang Yu",
+        "Yun Du",
+        "Wei Sui",
+        "Zhizhong Su"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-06-22T16:31:48+00:00",
+      "link": "https://arxiv.org/pdf/2606.23565v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "unified embodied agent framework with 3D spatial memory and skill graphs",
+      "llm_evidence_cn": "统一具身智能体框架，含3D空间记忆和技能图",
+      "llm_evidence": "统一具身智能体框架，含3D空间记忆和技能图",
+      "canonical_evidence": "统一具身智能体框架，含3D空间记忆和技能图",
+      "llm_tldr_en": "HoloAgent-0 unifies LLM agent loop, 3D spatial memory, and skill graphs for deploying physical robots from language instructions.",
+      "llm_tldr_cn": "针对物理机器人部署中连续执行、依赖本体和安全约束的困难，HoloAgent-0提供了统一具身智能体框架，将语言指令转化为可执行技能图，调度资源并监控执行，同时集成3D空间记忆以增强环境理解。",
+      "llm_tldr": "针对物理机器人部署中连续执行、依赖本体和安全约束的困难，HoloAgent-0提供了统一具身智能体框架，将语言指令转化为可执行技能图，调度资源并监控执行，同时集成3D空间记忆以增强环境理解。",
+      "llm_tags": [
+        "query:agent-build:composite"
+      ],
+      "matched_query_tag": "query:agent-build:composite",
+      "matched_query_text": "Papers central to 介绍ai agent的构建方式，组成ai agent的内容分别有什么作用，如何构建这些内容, especially work that connects or combines: architecture of AI agents; reasoning engine component for AI agents; integrating external tools with AI agents; building knowledge base for AI agents; how to build an AI agent from scratch; roles and functions of AI agent components; guide to construct AI agent modules.",
+      "matched_requirement_id": "req-composite-agent-build",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.27268v1",
+      "source": "arxiv",
+      "title": "E-TTS: A New Embodied Test-Time Scaling Framework for Robotic Manipulation",
+      "abstract": "Recently, a few works have made early attempts to study test-time scaling for embodied tasks. However, two major challenges remain unsolved: (1) reasoning can effectively improve the performance of the policy, but its scaling mechanism has seldom been studied; (2) historical information is essential, as embodied tasks are inherently long-horizon and sequential, making sole reliance on current observations for action scaling inadequate due to the lack of historical context utilization. To address these challenges, we introduce E-TTS, a modular and plug-and-play Embodied Test-Time Scaling framework that unifies reasoning and action scaling for robotic manipulation via history-aware iterative refinement with vision-language verifiers. To support joint reasoning-action scaling, E-TTS performs reasoning-action joint sampling and scoring in a pairwise manner. To better utilize historical information, E-TTS uses a history buffer to store historical context, which is then used by reasoning and action verifiers to evaluate the sampled candidates. Unlike conventional open-loop TTS methods, E-TTS introduces feedback generation into the sampling process to form a closed-loop iterative refinement mechanism, enhancing both inference efficiency and environmental adaptability. Each component functions as an independent and composable module, allowing flexible and adaptive configuration depending on task requirements. To evaluate the advantages of our framework, we conduct experiments across 4 different benchmarks, 6 environments, 3 embodiments, and 4 base vision-language-action models. The experimental results demonstrate that, without requiring additional expert data collection or retraining, E-TTS consistently improves performance, achieving up to a 33.14% increase in simulation and 26.62% in real-world scenarios.",
+      "authors": [
+        "Wen Ye",
+        "Peiyan Li",
+        "Tingyu Yuan",
+        "Yuan Xu",
+        "Xiangnan Wu",
+        "Chaoyang Zhao",
+        "Jing Liu",
+        "Nianfeng Liu",
+        "Yan Huang",
+        "Liang Wang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-25T16:50:21+00:00",
+      "link": "https://arxiv.org/pdf/2606.27268v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "embodied test-time scaling for robotic manipulation with vision-language verifiers",
+      "llm_evidence_cn": "基于视觉语言验证器的具身测试时缩放，用于机器人操作",
+      "llm_evidence": "基于视觉语言验证器的具身测试时缩放，用于机器人操作",
+      "canonical_evidence": "基于视觉语言验证器的具身测试时缩放，用于机器人操作",
+      "llm_tldr_en": "E-TTS unifies reasoning and action scaling for robotic manipulation via history-aware iterative refinement with vision-language verifiers.",
+      "llm_tldr_cn": "现有测试时缩放方法忽略推理机制与历史信息。本文提出E-TTS框架，统一推理与动作缩放，利用视觉语言验证器进行历史感知迭代精化。在长期机器人操作任务上，该方法显著提升策略成功率，且即插即用。",
+      "llm_tldr": "现有测试时缩放方法忽略推理机制与历史信息。本文提出E-TTS框架，统一推理与动作缩放，利用视觉语言验证器进行历史感知迭代精化。在长期机器人操作任务上，该方法显著提升策略成功率，且即插即用。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.01851v1",
+      "source": "arxiv",
+      "title": "PHASOR: Phase-Anchored Universal Action Representations for Humanoid Embodiments",
+      "abstract": "Learning a good action embedding space is fundamental to scalable robot policy learning, yet existing methods treat action latents as task-specific intermediates rather than first-class representations. The resulting latents are unstructured, embodiment-specific, and weakly tied to motion semantics, limiting interpretability, controllability, and transferability across robots. We position the action embedding space itself as a first-class design target, with downstream policy quality emerging from representation quality. Exploiting motion's intrinsic periodicity, we factorize it into a phase manifold that captures cyclic structure via FFT-parametric coefficients, together with a pose branch that conditions the manifold on non-periodic configuration detail. Combined with motion-semantic distillation, this factorized structure yields a cross-embodiment motion manifold that is interpretable and embodiment-agnostic by design. Anchoring multiple humanoid robots to a shared human-pretrained manifold then produces a unified action embedding space across diverse platforms, achieving strong cross-embodiment retrieval and consistent gains on downstream robot tasks.",
+      "authors": [
+        "Kihyun Kim",
+        "Chaeyun Kim",
+        "Jongho Shin",
+        "Taeyoun Kwon",
+        "Junghyun Kim",
+        "Mijin Koo",
+        "Haon Park"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-01T08:02:24+00:00",
+      "link": "https://arxiv.org/pdf/2606.01851v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "phase-anchored universal action representations for humanoid robots, enables transferable policy learning",
+      "llm_evidence_cn": "面向人形机器人的相位锚定通用动作表示，支持策略迁移",
+      "llm_evidence": "面向人形机器人的相位锚定通用动作表示，支持策略迁移",
+      "canonical_evidence": "面向人形机器人的相位锚定通用动作表示，支持策略迁移",
+      "llm_tldr_en": "PHASOR introduces a phase-anchored action representation for humanoid robots, factorizing motion into a phase manifold and pose branch to improve interpretability, controllability, and transferability across embodiments.",
+      "llm_tldr_cn": "该论文提出PHASOR，一种相位锚定的通用动作表示方法，专门针对人形机器人。通过将运动分解为相位流形和姿态分支，解决了现有动作表示缺乏结构化、难以迁移的问题。实验表明该表示能够提升下游策略学习质量，有助于实现跨机器人动作表示的标准化与复用，为人形机器人的VLA控制提供了更优的动作空间设计。",
+      "llm_tldr": "该论文提出PHASOR，一种相位锚定的通用动作表示方法，专门针对人形机器人。通过将运动分解为相位流形和姿态分支，解决了现有动作表示缺乏结构化、难以迁移的问题。实验表明该表示能够提升下游策略学习质量，有助于实现跨机器人动作表示的标准化与复用，为人形机器人的VLA控制提供了更优的动作空间设计。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.02463v1",
+      "source": "arxiv",
+      "title": "MASER: Modality-Adaptive Specialist Routing for Embodied 3D Spatial Intelligence",
+      "abstract": "In 3D environments, Embodied Agents answer spatially relevant questions through reasoning from a mixture of modalities including natural language, RGB images, point clouds, depth maps and camera poses. Existing Vision-Language models (VLMs) are fine-tuned over a single modality. This completely ignores the question semantics which may favor a different modality than the finetuned modality. To address this, we propose MASER (Modality-Adaptive SpEcialist Routing), a lightweight framework that trains five different modality adapters of a shared VLM backbone and learns a neural routing policy that selects the best adapter based on the question during inference. We encode each question with a frozen sentence transformer and pass the embedding through a small Multi-layer Perceptron (MLP) trained on oracle adapter-accuracy labels. We evaluate our methodology over the Open3D-VQA benchmark and our evaluations show that no single modality is universally optimal -- point-cloud answers are best in 51.5% of cases. MASER routes with 51.3% oracle agreement, outperforming a Random-Forest ablation (43.5%), with only a single adapter call per question.",
+      "authors": [
+        "Hilton Raj",
+        "Vishnuram AV"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-01T16:36:21+00:00",
+      "link": "https://arxiv.org/pdf/2606.02463v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "modality-adaptive routing for embodied 3D spatial intelligence",
+      "llm_evidence_cn": "具身3D空间智能的模态自适应路由",
+      "llm_evidence": "具身3D空间智能的模态自适应路由",
+      "canonical_evidence": "具身3D空间智能的模态自适应路由",
+      "llm_tldr_en": "MASER learns a neural routing policy to select the best modality adapter for each question, improving embodied spatial reasoning performance.",
+      "llm_tldr_cn": "现有方法固定使用单模态微调，忽略问题对不同模态的需求。本文提出MASER，训练多个模态适配器并学习路由策略，根据问题语义选择最优适配器。在具身空间问答任务上，路由选择显著优于单一模态基线。",
+      "llm_tldr": "现有方法固定使用单模态微调，忽略问题对不同模态的需求。本文提出MASER，训练多个模态适配器并学习路由策略，根据问题语义选择最优适配器。在具身空间问答任务上，路由选择显著优于单一模态基线。",
+      "llm_tags": [
+        "query:pi-series"
+      ],
+      "matched_query_tag": "query:pi-series",
+      "matched_query_text": "embodied intelligence research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.01063v1",
+      "source": "arxiv",
+      "title": "MindClaw: Closed-Loop Embodied Mental-State Reasoning for Precision Intervention",
+      "abstract": "Theory of Mind (ToM) enables an agent to reason about another actor's beliefs, goals, and intentions, which is essential for human-centered embodied assistance. Existing ToM benchmarks have advanced text and multimodal mental-state recognition, but they mostly evaluate offline question answering or final action prediction. They do not fully test whether an embodied agent can stay connected to a changing environment, update actor-specific beliefs, decide when reasoning is needed, and intervene only when help is useful. Building on MindPower, we extend robot-centric ToM reasoning to a real-time closed-loop setting and introduce MindClaw, a framework for embodied mental-state reasoning with precision intervention. MindClaw connects multi-source inputs, belief memory, an embodied cognitive trigger skill, mental reasoning, and action generation, allowing the agent to output helpful actions at the right time while remaining silent when intervention is unnecessary. Experiments show that direct VLM baselines struggle with task awareness and intervention calibration, while MindClaw achieves the best overall performance, demonstrating the importance of trigger-skill optimization for closed-loop embodied ToM assistance.",
+      "authors": [
+        "Ruoxuan Zhang",
+        "Qiaoqiao Wan",
+        "Zhengguang Wang",
+        "Chenghao Yu",
+        "Hongxia Xie",
+        "Jianlong Fu",
+        "Wen-Huang Cheng"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-05-31T07:09:37+00:00",
+      "link": "https://arxiv.org/pdf/2606.01063v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "embodied mental-state reasoning with closed-loop intervention",
+      "llm_evidence_cn": "具身心智状态推理与闭环干预",
+      "llm_evidence": "具身心智状态推理与闭环干预",
+      "canonical_evidence": "具身心智状态推理与闭环干预",
+      "llm_tldr_en": "MindClaw extends Theory of Mind to real-time closed-loop embodied settings, enabling precise intervention decisions based on changing environment and actor beliefs.",
+      "llm_tldr_cn": "现有心智理论基准仅评估离线问答，未测试实时闭环干预。本文提出MindClaw，在实时环境中连接多源感知，持续更新并推理他人信念，仅在需要时干预。实验证明其能精确判断干预时机，减少无效帮助。",
+      "llm_tldr": "现有心智理论基准仅评估离线问答，未测试实时闭环干预。本文提出MindClaw，在实时环境中连接多源感知，持续更新并推理他人信念，仅在需要时干预。实验证明其能精确判断干预时机，减少无效帮助。",
+      "llm_tags": [
+        "query:pi-series"
+      ],
+      "matched_query_tag": "query:pi-series",
+      "matched_query_text": "embodied intelligence research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.09457v1",
+      "source": "arxiv",
+      "title": "$ω$-EVA: Envision, Verify, and Act with Latent Interactive World Models",
+      "abstract": "Embodied policies typically map current observations directly to actions, leaving candidate-action consequences implicit. World models provide predictive supervision, representations, or external simulation, but rarely let a policy inspect the imagined consequence of its own proposal before acting. We introduce $ω$-EVA, a latent interactive world model that realizes an Envision--Verify--Act loop for embodied action generation. Its three-stage framework learns action-conditioned latent dynamics, trains a language-conditioned flow policy on dynamics-aware visual representations, and feeds the policy's proposal back through the world model. A tri-branch refiner jointly reasons over the current state, proposal-conditioned future, and proposed action to produce the final action chunk. Because consequence reasoning remains in latent feature space, $ω$-EVA avoids generating future videos at inference. Evaluations across diverse single-arm, bimanual, long-horizon, and perturbed simulation settings show that the complete interaction pipeline consistently improves the proposal policy, while latent diagnostics indicate meaningful action-conditioned future structure. With approximately 1.2B parameters and no additional robot-data pretraining, $ω$-EVA demonstrates a compact and competitive performance--scale--data trade-off, making the world model an active action-feedback module rather than a passive predictor.",
+      "authors": [
+        "Zhenguo Sun",
+        "Yu Sun",
+        "Hande Huang",
+        "Alois Knoll"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-08T13:12:56+00:00",
+      "link": "https://arxiv.org/pdf/2606.09457v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "latent interactive world model for envision-verify-act loop in embodied action generation",
+      "llm_evidence_cn": "隐式交互世界模型实现具身动作生成的想象-验证-行动循环",
+      "llm_evidence": "隐式交互世界模型实现具身动作生成的想象-验证-行动循环",
+      "canonical_evidence": "隐式交互世界模型实现具身动作生成的想象-验证-行动循环",
+      "llm_tldr_en": "ω-EVA introduces a tri-branch refiner that jointly reasons over current state, proposal-conditioned future, and proposed action to improve embodied policies.",
+      "llm_tldr_cn": "现有具身策略无法事先检查候选动作的后果，ω-EVA提出隐式交互世界模型，通过“想象-验证-行动”循环：学习动作条件隐动力学，训练语言条件流策略，再利用三分支精炼器联合当前状态、动作预想未来和候选动作进行推理，从而提升动作质量。",
+      "llm_tldr": "现有具身策略无法事先检查候选动作的后果，ω-EVA提出隐式交互世界模型，通过“想象-验证-行动”循环：学习动作条件隐动力学，训练语言条件流策略，再利用三分支精炼器联合当前状态、动作预想未来和候选动作进行推理，从而提升动作质量。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.07089v1",
+      "source": "arxiv",
+      "title": "Dreaming when Necessary: Advancing World Action Models with Adaptive Multi-Modal Reasoning",
+      "abstract": "World Action Models (WAMs) offer a promising approach to embodied intelligence, yet existing methods rely heavily on video prediction as action priors and lack adaptive multimodal reasoning, limiting their effectiveness on long-horizon, complex tasks. We observe that WAMs require different multimodal reasoning modes under different execution contexts: textual reasoning is essential during task transitions to guide high-level action prediction, while visual reasoning is critical during fine-grained manipulation for precise control. Motivated by this observation, we propose \\textbf{AdaWAM}, a world action model with adaptive multimodal reasoning abilities. AdaWAM integrates a lightweight dynamic router that autonomously triggers textual or visual reasoning as needed during task execution. Experiments on both simulated and real-world embodied tasks show that AdaWAM substantially improves inference efficiency while outperforming state-of-the-art embodied policies. Codes and demos are available at: https://adawam.github.io/.",
+      "authors": [
+        "Yinzhou Tang",
+        "Jingbo Xu",
+        "Yu Shang",
+        "Zihao Song",
+        "Chen Gao",
+        "Wei Wu",
+        "Yong Li"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-05T09:35:48+00:00",
+      "link": "https://arxiv.org/pdf/2606.07089v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AdaWAM advances World Action Models with adaptive text/visual reasoning for embodied tasks",
+      "llm_evidence_cn": "AdaWAM通过自适应文本/视觉推理推进世界行动模型在具身任务中的应用",
+      "llm_evidence": "AdaWAM通过自适应文本/视觉推理推进世界行动模型在具身任务中的应用",
+      "canonical_evidence": "AdaWAM通过自适应文本/视觉推理推进世界行动模型在具身任务中的应用",
+      "llm_tldr_en": "AdaWAM equips World Action Models with adaptive multi-modal reasoning, dynamically switching between textual and visual reasoning based on context, improving long-horizon task performance.",
+      "llm_tldr_cn": "世界行动模型依赖视频预测作为动作先验，缺乏自适应多模态推理，在复杂长时程任务中效果有限。AdaWAM引入轻量动态路由，根据执行上下文自主触发文本推理或视觉推理。实验表明，自适应推理显著提升长时程任务的成功率与效率。该方法为VLA模型注入了灵活的推理能力。",
+      "llm_tldr": "世界行动模型依赖视频预测作为动作先验，缺乏自适应多模态推理，在复杂长时程任务中效果有限。AdaWAM引入轻量动态路由，根据执行上下文自主触发文本推理或视觉推理。实验表明，自适应推理显著提升长时程任务的成功率与效率。该方法为VLA模型注入了灵活的推理能力。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.24068v1",
+      "source": "arxiv",
+      "title": "ObsGraph: Hierarchical Observation Representation for Embodied Reasoning and Exploration",
+      "abstract": "Embodied reasoning and exploration are increasingly considered crucial abilities for robots operating in complex and unfamiliar environments. To accomplish tasks in such settings, an agent must identify and acquire the information necessary for the task through exploration. We propose ObsGraph, an observation-centric hierarchical scene graph that unifies scene representation, retrieval, and exploration. It retains visual evidence and organizes it into room-view-object layers: rooms provide coarse semantic anchors, views preserve contextual object covisibility, and objects store fine-grained details. On top of this representation, we perform coarse-to-fine hierarchical retrieval under a bounded budget, and crucially use retrieval outcomes to structure the exploration candidate space--activating room-level exploration, view refinement, or frontier exploration--thereby tightly coupling representation, retrieval, and adaptive multi-scale exploration. Experiments across embodied reasoning and exploration benchmarks demonstrate improved success and efficiency, highlighting the benefits of structured scene representation and more targeted information gathering driven by identified evidence gaps.",
+      "authors": [
+        "Taekbeom Lee",
+        "Youngseok Jang",
+        "Jeonghwa Heo",
+        "Jeongjun Choi",
+        "H. Jin Kim"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-06-23T02:17:08+00:00",
+      "link": "https://arxiv.org/pdf/2606.24068v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "ObsGraph provides hierarchical observation representation for embodied reasoning and exploration",
+      "llm_evidence_cn": "ObsGraph提供层次化观测表示，支持具身推理与探索",
+      "llm_evidence": "ObsGraph提供层次化观测表示，支持具身推理与探索",
+      "canonical_evidence": "ObsGraph提供层次化观测表示，支持具身推理与探索",
+      "llm_tldr_en": "ObsGraph constructs hierarchical scene graphs from observations for embodied agents to reason and explore environments efficiently.",
+      "llm_tldr_cn": "在陌生环境中，机器人需要采集任务相关信息进行推理与探索。ObsGraph提出以观测为中心的分层场景图，包含房间、视图、物体三个层次，统一表示与检索。通过由粗到精的层次化检索，在有限预算下高效定位信息。实验证明该方法提升探索效率和任务表现。该表示可广泛应用于具身智能体的空间理解。",
+      "llm_tldr": "在陌生环境中，机器人需要采集任务相关信息进行推理与探索。ObsGraph提出以观测为中心的分层场景图，包含房间、视图、物体三个层次，统一表示与检索。通过由粗到精的层次化检索，在有限预算下高效定位信息。实验证明该方法提升探索效率和任务表现。该表示可广泛应用于具身智能体的空间理解。",
+      "llm_tags": [
+        "query:pi-series"
+      ],
+      "matched_query_tag": "query:pi-series",
+      "matched_query_text": "embodied intelligence research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.10363v1",
+      "source": "arxiv",
+      "title": "HiMem-WAM: Hierarchical Memory-Gated World Action Models for Robotic Manipulation",
+      "abstract": "World Action Models (WAMs) have emerged as a new powerful paradigm for embodied intelligence, learning action-relevant visual dynamics that significantly enhance generalization and robustness. However, existing WAMs still struggle with task-relevant memory in long-horizon robotic manipulation. To address this, we present HiMem-WAM, a Hierarchical Memory-Gated WAM that integrates motion-centric latent actions, high-level skill latents, and boundary-triggered memory updates. Specifically, we develop a hierarchical latent action framework that jointly learns low-level motion and high-level skill latents, providing structured temporal abstraction. Meanwhile, a boundary-aware memory gate writes compact task states at predicted skill transitions, enabling causal inference without test-time generation of future video or optical flow estimation. Evaluated on LIBERO, LIBERO-PLUS, RMBench and real-world tasks, HiMem-WAM shows that hierarchical latents improve robustness under deployment perturbations, and the memory module substantially benefits memory-dependent long-horizon manipulation.",
+      "authors": [
+        "Xiaoquan Sun",
+        "Ruijian Zhang",
+        "Chen Cao",
+        "Yihan Sun",
+        "Jiahui Chen",
+        "Zetian Xu",
+        "Bo Chen",
+        "Haijier Chen",
+        "Zhen Yang",
+        "Jiarun Zhu",
+        "Yijun Hong",
+        "JingZhe Xu",
+        "Jingrui Pang",
+        "Mingqi Yuan",
+        "Jiayu Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-09T03:22:34+00:00",
+      "link": "https://arxiv.org/pdf/2606.10363v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "HiMem-WAM introduces hierarchical memory-gated World Action Model for robotic manipulation",
+      "llm_evidence_cn": "HiMem-WAM提出层次记忆门控世界行动模型用于机器人操作",
+      "llm_evidence": "HiMem-WAM提出层次记忆门控世界行动模型用于机器人操作",
+      "canonical_evidence": "HiMem-WAM提出层次记忆门控世界行动模型用于机器人操作",
+      "llm_tldr_en": "HiMem-WAM enhances World Action Models with hierarchical latent actions and boundary-aware memory for long-horizon robotic manipulation.",
+      "llm_tldr_cn": "现有世界行动模型在长时程机器人操作中缺乏任务相关记忆。HiMem-WAM设计层次化潜在动作框架，结合边界感知记忆门，在预测的技能切换点写入紧凑任务状态。实验表明该模型在长时程操作任务中具备更强的泛化与鲁棒性。该方法将记忆机制融入VLA类模型，提升复杂任务能力。",
+      "llm_tldr": "现有世界行动模型在长时程机器人操作中缺乏任务相关记忆。HiMem-WAM设计层次化潜在动作框架，结合边界感知记忆门，在预测的技能切换点写入紧凑任务状态。实验表明该模型在长时程操作任务中具备更强的泛化与鲁棒性。该方法将记忆机制融入VLA类模型，提升复杂任务能力。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.14778v1",
+      "source": "arxiv",
+      "title": "FactCheck: Feasibility-aware Long-term Action Anticipation with Multi-agent Collaboration",
+      "abstract": "Long-term action anticipation (LTA) aims to predict an ordered sequence of future verb-noun actions from a partially observed video. While this task serves as the foundation for embodied intelligence, anticipating physically feasible long-term actions remains a critical challenge. Existing methods, which operate in an open-loop manner, often hallucinate non-existent objects, violate object affordances, or disregard object states, as they lack explicit mechanisms to verify action feasibility against the physical environment. To address this, we propose FactCheck, a novel multi-agent collaboration framework that improves feasibility through a closed-loop \"Observe-Plan-Verify\" mechanism. FactCheck decomposes the complex LTA task into specialized roles: an Observer that recognizes historical actions from video observations and constructs a dual-form structured memory, comprising a History Action Abstract that captures high-level human intentions and environmental status, and a History Action Graph that encodes object states and temporal dependencies; a Planner that generates draft future actions conditioned on both low-level historical actions and high-level History Action Abstract; and a Verifier that rigorously validates the draft against the History Action Graph and refines infeasible actions. Extensive experiments on the EPIC-Kitchens-55 and EGTEA Gaze+ benchmarks demonstrate that FactCheck consistently outperforms state-of-the-art methods. Our work establishes a new paradigm for feasibility-aware long-term action anticipation, effectively closing the loop of action recognition, action prediction and action verification.",
+      "authors": [
+        "Rui Cao",
+        "Jiannong Cao",
+        "Bo Yuan",
+        "Zhiyuan Wen",
+        "Mingjin Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-10T06:25:09+00:00",
+      "link": "https://arxiv.org/pdf/2606.14778v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "long-term action anticipation for embodied intelligence",
+      "llm_evidence_cn": "长期动作预测用于具身智能",
+      "llm_evidence": "长期动作预测用于具身智能",
+      "canonical_evidence": "长期动作预测用于具身智能",
+      "llm_tldr_en": "FactCheck uses a multi-agent collaboration framework with closed-loop Observe-Plan-Verify to improve feasibility of long-term action anticipation in embodied tasks.",
+      "llm_tldr_cn": "长期动作预测常产生不可行序列，违反物体属性与状态。本文提出FactCheck多智能体协作框架，通过闭环“观察-规划-验证”机制分解任务，逐阶段验证动作可行性。实验证明该方法能显著减少幻觉，保持物理一致性。",
+      "llm_tldr": "长期动作预测常产生不可行序列，违反物体属性与状态。本文提出FactCheck多智能体协作框架，通过闭环“观察-规划-验证”机制分解任务，逐阶段验证动作可行性。实验证明该方法能显著减少幻觉，保持物理一致性。",
+      "llm_tags": [
+        "query:pi-series"
+      ],
+      "matched_query_tag": "query:pi-series",
+      "matched_query_text": "embodied intelligence research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.27962v1",
+      "source": "arxiv",
+      "title": "Building a Scalable, Reproducible, Evaluatable, and Closed-Loop Simulation Environment Foundation for Embodied Intelligence Cloud-Native Simulation Infrastructure for Embodied Intelligence Training, Evaluation, and Data Collection",
+      "abstract": "This paper presents a cloud-native simulation infrastructure framework for embodied intelligence that supports large-scale training, standardized evaluation, and simulation-based data collection. The framework unifies simulation environment generation, task execution, trajectory collection, model evaluation, data management, and cloud services into a scalable and reproducible platform.   To address the high cost, limited scalability, and poor reproducibility of real-world robotic data collection, the framework adopts cloud-native technologies including elastic resource scheduling, containerized simulation, unified data management, and service-oriented system design, enabling efficient large-scale simulation for multi-model and multi-task workloads.   Built on a four-layer architecture, the framework provides standardized environment assets, automated task generation, trajectory collection, benchmark evaluation, and closed-loop data optimization. It further integrates representative systems including D-VLA, RL-VLA3, Sword, and Pre-VLA to support scalable simulation, dynamic scheduling, visual augmentation, and real-time data filtering.   We argue that cloud-native simulation infrastructure provides a unified foundation for data generation, model training, standardized evaluation, and real-world deployment, and will play a key role in the future development of embodied intelligence.",
+      "authors": [
+        "Junwu Xiong",
+        "Yongjian Guo",
+        "Mingxi Luo",
+        "Ning Qiao",
+        "Lei Kang",
+        "Song Wang",
+        "Yince Gao"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-26T11:04:34+00:00",
+      "link": "https://arxiv.org/pdf/2606.27962v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "cloud-native simulation infrastructure for embodied intelligence training, evaluation, data collection",
+      "llm_evidence_cn": "面向具身智能的云原生仿真基础设施，支持训练、评估与数据收集",
+      "llm_evidence": "面向具身智能的云原生仿真基础设施，支持训练、评估与数据收集",
+      "canonical_evidence": "面向具身智能的云原生仿真基础设施，支持训练、评估与数据收集",
+      "llm_tldr_en": "This paper presents a cloud-native simulation infrastructure for embodied intelligence, enabling scalable training, standardized evaluation, and simulation-based data collection.",
+      "llm_tldr_cn": "该论文提出一套云原生仿真基础设施框架，用于具身智能的大规模训练、标准化评估和仿真数据收集。它统一了环境生成、任务执行、轨迹收集、模型评估等环节，采用弹性资源调度和容器化技术解决真实数据采集成本高、可复现性差的问题。该框架为具身智能研究提供了可复用的平台，尤其适合需要大量仿真数据的VLA模型训练。",
+      "llm_tldr": "该论文提出一套云原生仿真基础设施框架，用于具身智能的大规模训练、标准化评估和仿真数据收集。它统一了环境生成、任务执行、轨迹收集、模型评估等环节，采用弹性资源调度和容器化技术解决真实数据采集成本高、可复现性差的问题。该框架为具身智能研究提供了可复用的平台，尤其适合需要大量仿真数据的VLA模型训练。",
+      "llm_tags": [
+        "query:pi-series"
+      ],
+      "matched_query_tag": "query:pi-series",
+      "matched_query_text": "embodied intelligence research",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.11909v1",
+      "source": "arxiv",
+      "title": "Embodied-BenchClaw: An Autonomous Multi-Agent System for Embodied Spatial Intelligence Benchmark Construction",
+      "abstract": "Benchmarks are essential for evaluating embodied spatial intelligence, yet their construction is labor-intensive, hard to reuse, and difficult to maintain. Existing embodied benchmarks are often static and may quickly become saturated as models improve, limiting their ability to distinguish new capabilities. We propose Embodied-BenchClaw, an autonomous agentic system for constructing embodied spatial intelligence benchmarks. Given a user-specified evaluation intent, Embodied-BenchClaw automatically produces a complete and continually updatable benchmark package through a five-stage pipeline: intent blueprinting, data collection, structuring and cleaning, benchmark synthesis, and evaluation reporting. The pipeline is coordinated by three agents for planning, construction, and evaluation. To improve reusability and reliability, Embodied-BenchClaw introduces an extensible Skill Library and process quality control, enabling benchmark construction to be composable, verifiable, and repairable. We instantiate multiple benchmarks covering indoor spatial reasoning, outdoor spatial reasoning, robotic manipulation, quadruped robot navigation, UAV/aerial-view understanding, and static benchmark enhancement. These benchmarks span diverse embodied carriers, data sources, and spatial capabilities. Experiments with human evaluation, judge-based assessment, consistency checks, cost analysis, and ablations show that Embodied-BenchClaw can construct verifiable, executable, maintainable, and diagnostically useful embodied spatial benchmarks with reduced manual effort.",
+      "authors": [
+        "Baoyang Jiang",
+        "Fengchun Zhang",
+        "Leyuan Wang",
+        "Haotian Li",
+        "Yida Wang",
+        "Zhe Ji",
+        "Jinshan Lai",
+        "Xi Ren",
+        "Jianwei Hu",
+        "Qiang Ma"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-10T10:37:27+00:00",
+      "link": "https://arxiv.org/pdf/2606.11909v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "autonomous multi-agent system for benchmark construction",
+      "llm_evidence_cn": "自主多智能体系统用于基准构建",
+      "llm_evidence": "自主多智能体系统用于基准构建",
+      "canonical_evidence": "自主多智能体系统用于基准构建",
+      "llm_tldr_en": "Embodied-BenchClaw is an autonomous agentic system that constructs embodied spatial intelligence benchmarks from user intent via a five-stage pipeline.",
+      "llm_tldr_cn": "现有具身基准构建耗时、难复用、易饱和。本文提出Embodied-BenchClaw，一个自主多智能体系统，根据用户意图自动完成基准包构建：包括任务蓝图、数据收集、结构化清洗、合成与评估报告。该系统可持续更新，有效避免饱和。",
+      "llm_tldr": "现有具身基准构建耗时、难复用、易饱和。本文提出Embodied-BenchClaw，一个自主多智能体系统，根据用户意图自动完成基准包构建：包括任务蓝图、数据收集、结构化清洗、合成与评估报告。该系统可持续更新，有效避免饱和。",
+      "llm_tags": [
+        "query:agent-build:composite"
+      ],
+      "matched_query_tag": "query:agent-build:composite",
+      "matched_query_text": "Papers central to 介绍ai agent的构建方式，组成ai agent的内容分别有什么作用，如何构建这些内容, especially work that connects or combines: architecture of AI agents; reasoning engine component for AI agents; integrating external tools with AI agents; building knowledge base for AI agents; how to build an AI agent from scratch; roles and functions of AI agent components; guide to construct AI agent modules.",
+      "matched_requirement_id": "req-composite-agent-build",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.16533v1",
+      "source": "arxiv",
+      "title": "Kairos: A Native World Model Stack for Physical AI",
+      "abstract": "World models are transitioning from passive visual generators to foundational, operational infrastructure for Physical AI: they must natively acquire world knowledge from heterogeneous experience, maintain persistent states over long horizons, and execute efficiently within real deployment constraints. We introduce Kairos, a native world model stack designed around these requirements. (1) Kairos learns the world by pioneering a Native Pre-training Paradigm governed by a Cross-Embodiment Data Curriculum, which organizes open-world videos, human behavioral data, and robot interactions into a progressive developmental pathway. (2) Kairos maintains the world by unified world understanding, generation, and prediction within a Native Unified Architecture equipped with Hybrid Linear Temporal Attention, where sliding-window attention captures local dynamics, dilated sliding windows capture mid-range dependencies, and gated linear attention maintains persistent global memory. We establish formal theoretical bounds demonstrating that this temporal factorization strictly limits error accumulation, mathematically guaranteeing state propagation across extended horizons. (3) Kairos runs the world by incorporating a Deployment-Aware System Co-Design to support low-latency rollout generation on server and consumer-grade hardware for real-world observation-action-feedback loops. Experiments on embodied world-model, long-horizon, and action-policy benchmarks show that Kairos achieves top level performance while offering a strong efficiency-capability trade-off. Together, these results position Kairos as a cohesive operational foundation for future self-evolving physical intelligence.",
+      "authors": [
+        "Kairos Team",
+        "Fei Wang",
+        "Shan You",
+        "Qiming Zhang",
+        "Tao Huang",
+        "Zuoyi Fu",
+        "Zhisheng Zheng",
+        "Yunlong Xi",
+        "Feng Lv",
+        "Xiaoming Wu",
+        "Zeyu Liu",
+        "Cong Wan",
+        "Pu Li",
+        "Ruiqing Yang",
+        "Xiaoou Li",
+        "Wei Wang",
+        "Kangkang Zhu",
+        "Yuwei Zhang",
+        "Shi Fu",
+        "Xiaoning Wu",
+        "Xuzeng Fan",
+        "Dacheng Tao",
+        "Xiaogang Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-06-15T10:37:42+00:00",
+      "link": "https://arxiv.org/pdf/2606.16533v1",
+      "tags": [
+        "keyword:pi-series",
+        "query:pi-series"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "native world model stack for Physical AI, enabling vision-language planning",
+      "llm_evidence_cn": "为物理AI构建原生世界模型栈，支持视觉语言规划",
+      "llm_evidence": "为物理AI构建原生世界模型栈，支持视觉语言规划",
+      "canonical_evidence": "为物理AI构建原生世界模型栈，支持视觉语言规划",
+      "llm_tldr_en": "Kairos introduces a native world model stack with cross-embodiment pre-training and hybrid linear attention for Physical AI.",
+      "llm_tldr_cn": "世界模型正从被动视觉生成器演变为物理AI的基础设施，Kairos提出了原生世界模型栈：通过跨具身数据课程预训练学习世界知识，采用统一架构融合理解、生成与预测，并利用混合线性注意力实现高效部署。",
+      "llm_tldr": "世界模型正从被动视觉生成器演变为物理AI的基础设施，Kairos提出了原生世界模型栈：通过跨具身数据课程预训练学习世界知识，采用统一架构融合理解、生成与预测，并利用混合线性注意力实现高效部署。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

@@ -1,0 +1,548 @@
+Title: FactCheck: Feasibility-aware Long-term Action Anticipation with Multi-agent Collaboration
+
+URL Source: https://arxiv.org/pdf/2606.14778v1
+
+Published Time: Tue, 16 Jun 2026 00:05:31 GMT
+
+Number of Pages: 16
+
+Markdown Content:
+Received: Added at production Revised: Added at production Accepted: Added at production DOI: xxx/xxxx 
+
+A R T I C L E T Y P E 
+
+# FactCheck: Feasibility-aware Long-term Action Anticipation with Multi-agent Collaboration 
+
+## Rui Cao 1 Jiannong Cao 1 Bo Yuan 2 Zhiyuan Wen 1 Mingjin Zhang 1
+
+> 1
+
+Department of Computing, The Hong Kong Polytechnic University, Hong Kong SAR, China 
+
+> 2
+
+JIUTIAN Research, China Mobile, Beijing, China 
+
+Correspondence 
+
+Corresponding author Zhiyuan Wen, The Hong Kong Polytechnic University, 11 Yuk Choi Road, Hung Hom, Kowloon, Hong Kong SAR, China, Email: zhiyuan.wen@polyu.edu.hk Corresponding author Bo Yuan, JIUTIAN Research, China Mobile, 28 Financial Street, Xicheng District, Beijing, China, Email: yuanbo@cmjt.chinamobile.com 
+
+Abstract 
+
+Long-term action anticipation (LTA) aims to predict an ordered sequence of future verb-noun actions from a partially observed video. While this task serves as the foundation for embodied intelligence, anticipating physically feasible long-term actions remains a critical challenge. Existing methods, which operate in an open-loop manner, often hallucinate non-existent objects, violate object affordances, or disregard object states, as they lack explicit mechanisms to verify action feasibility against the physical environment. To address this, we propose FactCheck, a novel multi-agent collaboration framework that improves feasibility through a closed-loop "Observe-Plan-Verify" mechanism. FactCheck decomposes the complex LTA task into specialized roles: an Observer that recognizes historical actions from video observations and constructs a dual-form structured memory, comprising a History Action Abstract that captures high-level human intentions and environmental status, and a History Action Graph that encodes object states and temporal dependencies; a Planner that generates draft future actions conditioned on both low-level historical actions and high-level History Action Abstract; and a Verifier that rigorously validates the draft against the History Action Graph and refines infeasible actions. Extensive experiments on the EPIC-Kitchens-55 and EGTEA Gaze+ benchmarks demonstrate that FactCheck consistently outperforms state-of-the-art methods. Our work establishes a new paradigm for feasibility-aware long-term action anticipation, effectively closing the loop of action recognition, action prediction and action verification. 
+
+K E Y W O R D S 
+
+Human Action Recognition, Long-term Action Anticipation, Multi-agent Collaboration, Large Language Model 
+
+## 1 INTRODUCTION 
+
+Long-term action anticipation (LTA) is a critical task for em-bodied intelligence 1,2 , as it enables agents to learn complex skills from human demonstrations 3,4 and plays a key role in providing proactive assistance during human-robot collabora-tion 5,6 . Specifically, given an egocentric video sequence from a human, the objective of LTA is to predict a series of future ac-tions performed by this camera wearer. Each action is typically formatted as a verb-noun pair, where the noun identifies the interactive object and the verb describes the specific motion 7,8 .However, long-term action anticipation (LTA) is also chal-lenging, as it demands both historical action recognition to understand the visual context and future action prediction to forecast the semantic verb-noun action pairs 9,10,11 . Another fundamental challenge of LTA lies in its extended prediction horizon. Different from short-term action anticipation , which typically focuses on predicting the immediate next action in a few seconds 12,13,14 , long-term action anticipation aims to pre-dict a sequence of future actions over a much broader horizon, typically spanning several minutes 15,16,17 . While LTA serves as the cornerstone of embodied intelligence, this task remains challenging. The difficulty of LTA stems not only from the complex temporal dynamics of long-term actions but also from the latent human intentions underlying these actions. LTA remains particularly challenging due to three aspects. First, it demands both historical action recognition to under-stand the visual context and future action prediction to forecast semantic verb-noun action pairs 9,10,11 , requiring methods to excel at both ends. Second, unlike short-term action antici-pation that predicts the immediate next action within a few seconds 12,13,14 , LTA forecasts action sequences over a much broader horizon spanning several minutes 15,16,17 . This leads to 
+
+Journal 2023;00:1–16 wileyonlinelibrary.com/journal/ © 2023 Copyright Holder Name 1  
+
+> arXiv:2606.14778v1 [cs.CV] 10 Jun 2026 2CAO ET AL .
+
+growing temporal complexity and compounding prediction er-rors. Third, the actions in LTA are driven by implicit human intentions that are difficult to directly observe, yet critically determine the course of future actions. To address these difficulties, existing approaches have pri-marily evolved along two distinct paradigms: (1) Data-driven temporal modeling methods: Early research predominantly for-mulates LTA as a sequence modeling task and captures the dependencies between observed visual data to future actions through learned temporal representations. Specifically, archi-tectures such as recurrent neural networks (RNNs) 18,19,20 , long short-term memory (LSTMs) 21,22 , and transformers 23,11,24 are employed to encode the observed video frames and predict future actions. While effective on specific benchmarks, these data-driven methods heavily rely on domain-specific training data. This reliance limits their ability to generalize to long-tail classes or unseen scenarios and neglects underlying human in-tention 17 . (2) Large Language Model (LLM)-driven agentic reasoning methods: To mitigate data dependency and reason hu-man intention, recent advancements instantiate agents based on pretrained LLMs to generate future actions adaptively 17,16,25,26 .These methods first encode video context into textual action descriptions, the LLM agents then generate future action se-quences only requiring lightweight fine-tuning or in-context learning (ICL). Additionally, by leveraging the rich world knowledge, LLM agents are capable of inferring the action narrations or latent human intentions behind observed behav-iors. This high-level reasoning ability enables the LLM agent to generate semantically coherent action sequences. Despite their respective strengths in temporal consis-tency 18,21,23 or semantic coherence 17,16,25,26 , both paradigms share a fundamental limitation: they operate in an open-loop prediction manner, largely ignoring the physical feasibility of predicted actions in the actual environment. As a result, exist-ing approaches frequently generate actions that are unrealistic or impossible to execute. As illustrated in Figure 1, previous methods may exhibit three typical types of feasibility failures: (1) Hallucinating non-existent objects: Prediction 1 attempts to "cut cheese", ignoring that no cheese is present in the scene. (2) Violating object affordance: Prediction 2 predicts "open cucumber", failing to recognize that a cucumber does not pos-sess the affordance to be opened. (3) Disregarding object state: Prediction 3 attempts to "open" a "fridge" that is already open, conflicting with the object’s current physical status. Those feasibility failures stem from the lack of mechanisms to verify whether the generated actions meet the physical re-quirements. More specifically, (1) Object Availability : The interactive object must be visually observable in the current environment. (2) Affordance Validity : The predicted action must be compatible with the inherent physical properties of the object category (e.g., openable vs. cuttable). (3) State Con-sistency : The action must be valid given the object’s current dynamic state (e.g., an object must be closed before it can be opened). Existing models may violate these constraints, leaving the problem of infeasible action generation unresolved. However, implementing an effective feasibility verifica-tion mechanism is non-trivial and introduces several research challenges. The first challenge lies in the egocentric video un-derstanding: How can we extract the global memory of the environment from unstructured egocentric videos? Egocentric videos suffer from severe occlusion and dynamic viewpoint changes, where objects frequently vanish from the current view. Thus, single-agent approaches often suffer from contextual forgetting, struggling to maintain a global memory of the en-vironment from the video observation. The second challenge lies in the action prediction: How can we predict future actions that are consistent with the global memory? Existing LLM-based approaches typically rely on either fine-grained historical action narrations 17 or high-level human intentions 16 to pre-dict future actions. As a result, the generated actions may lack either step-by-step coherence or high-level goal consistency, therefore neglecting the feasibility of the future actions. The third challenge concerns the action verification: How can we validate the feasibility of action predictions? Most existing methods 11,27 predict actions without any explicit verification, overlooking the feasibility constraints of the environment. In summary, existing single-agent approaches struggle with con-textual forgetting and lack the mechanism to explicitly verify physical states. Building upon the above challenges, there is a need for a collaborative mechanism to conduct long-term ac-tion anticipation through action recognition, action prediction, and action verification under feasibility constraints. In this paper, we propose FactCheck, a multi-agent collab-oration framework designed for feasibility-aware long-term action anticipation (LTA). To mitigate the contextual forgetting inherent in single-agent solutions and enhance the ability to verify action predictions, FactCheck decomposes the complex LTA task into specialized subtasks, each handled by a dedicated agent within a collaborative "Observe-Plan-Verify" 
+
+mechanism. To address the first challenge of extracting the global memory from the egocentric video, we introduce an 
+
+Observer agent as the perception and memory unit. This agent transforms historical observations into a dual-form struc-tured memory. Specifically, it infers a History Action Abstract to capture high-level human intentions and low-level environ-mental status. Moreover, the Observer agent generates a History Action Graph to provide a topological record of object states and temporal dependencies. To tackle the second challenge of action prediction, we propose a Planner agent. By synthesiz-ing the dual-level guidance from the History Action Abstract, FactCheck: Feasibility-aware Long-term Action Anticipation with Multi-agent Collaboration 3Ground truth:            
+
+> Predictions 1:
+> open fridge, take cucumber, take onion, close fridge, cut cucumber, cut onion
+> open fridge, take cucumber, take onion, close fridge, cut cucumber, cut cheese
+> open fridge, take cucumber, take onion, open fridge ,cut cucumber, cut onion
+> open fridge, take cucumber, take onion, close fridge, open cucumber ,cut onion
+> Observation: open fridge, take cucumber, take onion
+> Predictions 2:
+> Predictions 3:
+
+F I G U R E 1 Illustration of infeasible action predictions in the existing Long-Term Action Anticipation (LTA) models. Given the video observation above, current open-loop models often generate predictions that are temporally consistent and semantically coherent, but physically unexecutable. Prediction 1 violates Object Availability by hallucinating a non-existent object (“cut cheese”). Prediction 2 violates Affordance Validity by predicting an interaction unsupported by the object category (“open cucumber”). Prediction 3 violates State Consistency by attempting to “open” a fridge that is already in an open state. These failures highlight the critical limitation of neglecting action feasibility in LTA. the Planner is fine-tuned via QLoRA to maintain high se-mantic coherence across variable-length sequences, ensuring the predictions align with both the high-level human intentions and low-level environmental status. To resolve the third chal-lenge of action verification, we develop a Verifier agent to close the loop between action prediction and the physi-cal environment. Unlike open-loop single-agent methods that lack an explicit action verification, the Verifier records the topological structure of object states and temporal dependen-cies to perform a three-phase feasibility verification through Chain-of-Thought (CoT) reasoning. This specialized agent sys-tematically validates and corrects violations in the draft actions. This verification procedure ensures the predictions are physi-cally executable. Experiments on the Epic-Kitchen 55 28 and EGTEA Gaze+ 29 benchmarks demonstrate that FactCheck out-performs existing state-of-the-art (SoTA) methods, achieving performance gains of 3.1% and 1.1%, respectively. Specifically, our contributions in this paper are as follows: 
+
+• We propose FactCheck, a multi-agent collaboration frame-work that enables feasibility-aware long-term action antici-pation (LTA) through a closed-loop "Observe-Plan-Verify" mechanism. 
+
+• We introduce an Observer agent that serves as the perception and memory unit to obtain a History Action Abstract and a History Action Graph from the video observation. 
+
+• Based on the History Action Abstract, we propose a Plan-ner agent to predict future actions that are consistent with environmental status and human intention. 
+
+• Based on the History Action Graph, we develop a Verifier agent to explicitly detect infeasible actions and refine them to ensure feasibility-aware LTA. 
+
+• By closing the loop of action recognition, action prediction and action verification, FactCheck outperforms existing SoTA methods in both the Epic-Kitchen 55 and EGTEA Gaze+ benchmarks. 
+
+## 2 RELATED WORKS 
+
+This section reviews the literature relevant to our work. First, we discuss existing paradigms in action anticipation, highlighting the shift from data-driven temporal modeling to LLM-based agentic reasoning. Second, we introduce recent advancements in LLM-based multi-agent collaboration, with a specific focus on the memory mechanism and verification mechanism that motivate our framework. 
+
+## 2.1 Action Anticipation 
+
+Given an observed video segment, action anticipation aims to predict a sequence of future actions, typically formatted as 
+
+verb-noun pairs. Existing works have addressed this challenge across various domains, including both third-person 10,30,31 and egocentric 11,8,16 video settings. However, egocentric action anticipation poses unique challenges due to drastic camera mo-tion, severe object occlusions, and the inherent ambiguity of 4 CAO ET AL .
+
+inferring latent human intentions from a first-person perspec-tive 24,17,25 . Unlike short-term anticipation, which focuses on the immediate next action 12,32,13,14 , long-term action anticipation (LTA) requires modeling complex temporal dependencies and reasoning about the future action sequence over several min-utes 11 . To address these difficulties, existing LTA approaches have primarily evolved along two distinct paradigms: Data-driven temporal modeling methods and LLM-driven agentic reasoning methods. 
+
+Data-driven temporal modeling methods. Early ap-proaches treated LTA as a sequence modeling problem, utilizing recurrent neural networks (RNNs) 18,19,20 , long short-term mem-ory (LSTMs) 21,22 to encode observed frames and autoregres-sively decode future actions. Transformer-based architectures have shown stronger capability in modeling long-horizon tem-poral dependencies. FUTR 11 introduces an end-to-end Future Transformer that leverages global attention over all input frames and output tokens, predicting the future actions in parallel de-coding. ObjectPrompt 8 argues that objects provide critical cues for future interactions. It enhances the Transformer architecture by incorporating object-centric video representations, using "object prompts" to query pre-trained vision-language models and retrieve task-relevant object information without expen-sive fine-tuning. Modeling long-term dependencies often incurs high computational costs due to the need to process long video history. To address this memory bottleneck, MeMViT 24 intro-duces a memory-augmented Multiscale Vision Transformer that processes video in an online manner. EGO-TOPO 33 con-structs a topological graph of the environment to organize the video into a series of spatial zones, linking these zones to their functional affordances 33 . Other methods enhance the tempo-ral modeling via skip-connections 34 , message passing neural networks 35 , and generative models 36 .
+
+LLM-driven agentic reasoning methods. While data-driven methods excel at pattern recognition, the reliance on large datasets limits the model’s ability to generalize to less common, long-tail classes and unseen scenarios. Additionally, data-driven methods typically lack the explicit, semantic-level reasoning capability to interpret human intent. To bridge this gap, recent methods alleviate the dependency on large-scale human action video datasets by reasoning about the high-level human intention of the task goal. AbstractGoal 20 attempted to implicitly model the abstract goal via a stochastic RNN. However, the learned latent representations lack the explicit semantic reasoning capabilities required to interpret complex human intentions, paving the way for LLM-based agentic reasoning. AntGPT 16 formulates LTA from a top-down perspec-tive, where an LLM first explicitly infers the actor’s high-level goal from observed actions using in-context learning, and then generates the future action sequence to achieve that goal. PALM 17 bridges the modality gap by converting visual context into narrative captions via a Vision-Language Model (VLM), feeding these descriptions into an LLM agent to reason about future steps. To further refine generation quality, PlausiVL 25 
+
+introduces a "plausibility" constraint, fine-tuning the LLM with counterfactual losses to implicitly ensure predicted sequences adhere to real-world temporal logic. ICVL 27 explicitly infers behavioral intentions as textual features using a VLM and fuses them with visual embeddings, creating intention-enhanced representations that guide the LLM agent to generate more consistent long-term plans. These methods demonstrate that leveraging the commonsense knowledge embedded in LLM agents significantly enhances the semantic coherence and inten-tional reasoning in action anticipation with high-level human intentions. However, most existing models perform action anticipation in an open-loop manner, directly generating actions without explicitly verifying their physical feasibility in the current environment. Differently, our work proposes a closed-loop multi-agent framework, ensuring that long-term action antic-ipation is not only semantically coherent but also physically executable. 
+
+## 2.2 LLM-based Multi-agent Collaboration 
+
+Although single LLM agents have demonstrated strong rea-soning and planning abilities, they still lack an adequate long-context processing capability and suffer from cascading hallucinations. To address these limitations, recent research has shifted towards LLM-based multi-agent collaboration sys-tems 37,38 . This paradigm tackles complex problems through the collaboration of multiple specialized LLM agents. Re-cent approaches have demonstrated improved performance by incorporating different memory and verification mechanisms. 
+
+Memory mechanism in multi-agent collaboration. Serv-ing as the storage and retrieval unit, the memory module equips the agent with the capacity to utilize existing cognitive and ex-periential knowledge 37 . Existing works primarily address two aspects: memory storage and memory retrieval. On one hand, memory storage is the process of archiving the information perceived and the experiences learned by agents during inter-actions into natural language 39 . LLM agents also encompass multimodal information, such as visual data 40,41 and audio sig-nals 42,43 . To achieve efficient and flexible information retention, existing methodologies employ improved data storage struc-tures rather than simple logging. For instance, some approaches adopt embedding vectors to represent memory sections and historical dialogues 44,45,46 , while others generate SQL-like in-structions for structured data manipulation 47 . On the other hand, memory retrieval facilitates dynamic interactions by au-tonomously extracting valuable information relevant to the FactCheck: Feasibility-aware Long-term Action Anticipation with Multi-agent Collaboration 5
+
+current situation from the agent’s memory. Park et al. 48 em-phasize evaluating memory information based on predefined metrics such as recency, relevance, and importance to prioritize the most significant memories for the current context. Mem-oryBank employs a dual-tower dense retrieval architecture to encode dialogue contexts and memory fragments into vectors for efficient semantic matching 49 . To further handle multimodal data, HM-RAG orchestrates specialized retrieval agents to con-duct parallel searches across vector, graph, and web-based databases for comprehensive knowledge synthesis 41 .
+
+Verification mechanism in multi-agent collaboration. 
+
+Ensuring the reliability of agent behaviors and mitigating hal-lucinations are critical challenges in multi-agent systems 37 .To address these issues, current research predominantly em-ploys two strategies: multi-agent debate (MAD) and dedicated verifier roles. In the MAD framework, agents verify and re-fine outputs through iterative arguments to correct each other’s errors and reach a more accurate conclusion 50,51 . Similarly, ChatEval constructs a multi-agent referee team to evaluate generated text, significantly improving the consistency with human judgments through collaborative communication 52 . Be-yond peer discussion, structural verification introduces specific agents tasked solely with oversight. VeriMAP 53 proposes a verification-aware planning system where a dedicated Veri-fier module operates alongside Planner and Executor agents to validate subtask outputs before proceeding. In hierarchical sys-tems like MegaAgent 54 , a Boss Agent performs system-level monitoring to review the outputs of all agent groups, ensuring consistency and adherence to global constraints. Thucy 55 em-ploys a specialized Verifier agent that orchestrates SQL experts to verify claims against relational databases, ensuring responses are grounded in structured evidence. Building upon these advancements, we develop a multi-agent framework that explicitly integrates memory and verification for LTA. Unlike prior open-loop approaches, our system per-forms through a closed-loop collaboration mechanism, ensuring that anticipated actions are both semantically coherent and physically feasible in dynamic environments. 
+
+## 3 PROBLEM FORMULATION 
+
+Long-term Action Anticipation (LTA) is the task of predicting a sequence of future actions based on historical video obser-vations. Formally, consider an egocentric video observation O
+
+consisting of M action segments. Let α ∈ [0, 1] denote the observation ratio and β ∈ [0, 1 − α] denote the prediction ra-tio. The video observation is partitioned into a sequence of segments O = {( Sk, ak)} Mk=1 , where each Sk represents a video segment and ak = ( vk, nk) is the corresponding action label comprising a verb vk ∈ V verb and a target object noun nk ∈ N obj .Given an observation ratio α, the historical video segments are Ohist = {( Sk, ak)} Nk=1 , where N = ⌊αM⌋ is the number of observed segments. Accordingly, we denote the sequence of recognized historical actions as Ahist = { a1, . . . , aN }. The objective of LTA is to predict the subsequent sequence of future actions Afut = { aN+1 , . . . , aN+Z } spanning a horizon Z = ⌊βM⌋.Prior LTA approaches typically formulate this task as maximizing the conditional probability P(Afut |Ohist )10,11,16 .However, purely maximizing likelihood often ignores the phys-ical causality of the real world. Let Nobs denote the set of the objects observed in Ohist . For each object n ∈ N obs , let 
+
+t∗(n) = max {j ≤ N | nj = n} be the index of its most recent interaction. The current environment state Env N is defined as the aggregation of the states of all observed objects, determined by their last associated verbs: Env N = {( n, Post( vt∗(n))) | n ∈ N obs }, (1) where Post (v) denotes the state resulting from verb v (e.g., “open” → “opened”). A predicted action aj (for j > N) is considered valid only if it is physically executable given the evolving state derived from the history. To explicitly model this dependency, we in-troduce three feasibility guidelines on each predicted action 
+
+ak = ( vk, nk). 
+
+• Object Availability ( Cobj ): To mitigate object hallucina-tions, the agent prioritizes objects that are already observed in the current environment. We define the available object set Nobs as the set of objects observed in the historical observation Ohist . The constraint is defined as: 
+
+Cobj (aj, Ohist ) : nj ∈ N obs . (2) 
+
+• Affordance validity ( Caff ): The action verb vj is feasible if the target object nj affords this specific interaction. Let Aff (n) ⊆ V verb be the set of valid affordances for object noun n. The constraint is: 
+
+Caff (aj) : vj ∈ Aff( nj). (3) 
+
+• State Consistency ( Csta ): The action verb vj is feasible if the current state of the object nj satisfies the preconditions required by the action. For a predicted action ak = ( vk, nk), we retrieve the current state of object nk based on its most recent interaction time t∗ = max {j < k | nj = nk}. The constraint ensures that the state resulting from the previous interaction satisfies the precondition of the current verb vk:
+
+Csta (ak, Ohist ) : Post( vt∗ ) ∈ Pre( vk), (4) where Pre (vk) denotes the set of requisite preconditions for verb vk.6 CAO ET AL .
+
+Consequently, we formulate feasibility-aware LTA as a con-strained optimization problem. Our goal is to predict the future action sequence A∗ 
+
+> fut
+
+that maximizes the joint probability while satisfying the proposed feasibility constraints at each time step. Formally, the objective is defined as: 
+
+A∗ 
+
+> fut
+
+= arg max 
+
+> Afut
+> N+Z
+
+X
+
+> k=N+1
+
+log P(ak | Ohist , aN+1: k−1) (5) s.t. Cobj (ak) ∧ C aff (ak) ∧ C sta (ak) ⇐⇒ True, ∀k.
+
+## 4 METHODOLOGY 
+
+In this section, we present FactCheck , a multi-agent collaboration framework designed to achieve feasibility-aware Long-Term Action Anticipation (LTA). As illus-trated in Figure 2, our framework implements a closed-loop “Observe-Plan-Verify” mechanism that itera-tively grounds high-level semantic planning in low-level physical constraints. This mechanism orchestrates three spe-cialized agents, each designed to address a core challenge outlined in Section 1: (1) The Observer agent serves as the perception and memory unit. It processes raw video observa-tions to recognize history actions, subsequently constructing and maintaining a global History Action Abstract and a struc-tured History Action Graph. (2) The Planner agent acts as the action prediction unit. Conditioned on the extracted his-torical actions and the global memory, it generates a draft sequence of future actions. This agent leverages a Large Lan-guage Model (LLM) that is efficiently fine-tuned via QLoRA to learn task-specific temporal dynamics. (3) The Verifier 
+
+agent functions as the feasibility verification unit. It rigorously validates each draft action against the History Action Graph us-ing Chain-of-Thought (CoT) reasoning to check for violations of the three feasibility constraints. The infeasible actions are then corrected through a targeted In-Context Learning (ICL) refinement step, ensuring the final predictions are both seman-tically coherent and physically executable. This collaborative, closed-loop process ensures that long-term action anticipation is feasible in the real-world environment. 
+
+## 4.1 Observer Agent 
+
+The Observer agent functions as the perception and memory core of FactCheck. It encodes raw egocentric video streams into structured history action knowledge through three components: (1) an Action Recognition module that extracts past verb-noun pairs from the observed frames; (2) a History Action Abstract Reasoning module that infers the underlying task goal and envi-ronmental status; and (3) a History Action Graph Construction module that maintains a topological graph of object states and their temporal dependencies. This structured memory forms the essential environmental context for the subsequent planning and verification stages. 
+
+Action Recognition Module. To initiate the anticipation process, this module functions as the core perception unit, ex-tracting historical actions from the video input Ohist . Given the observed video segments { S1, S2, . . . , SN }, the module pro-duces a sequence of past actions { a1, a2, . . . , aN }, where each 
+
+ak = ( vk, nk) consists of a verb vk and a noun nk. Leverag-ing on the strong vision-language alignment capability learned from large-scale image-text pairs, we employ the pretrained CLIP-ViT-L/14-336px model 56 for feature extraction. For each video segment Sk, we uniformly sample T frames and ex-tract frame-level CLIP image features { o1, o2, . . . , oT }, where 
+
+ot ∈ Rdclip . These features are temporally aggregated via average pooling to produce a segment-level representation 
+
+xk ∈ Rdclip . This open-vocabulary paradigm enables the agent to capture semantic-aware image embeddings for further action recognition. These features xk are then classified into the corre-sponding verb-noun action pair ak = ( vk, nk) using a lightweight transformer-based classification head fAR 16 , which is trained of-fline on the target dataset. The classification model minimizes the cross-entropy loss: 
+
+LAR = −
+
+> N
+
+X
+
+> k=1
+
+log P(vk|xk) + log P(nk|xk) , (6) where vk and nk are ground-truth labels. This action recognition process provides the history action sequence { a1, a2, . . . , aN }, forming the foundational input for all subsequent reasoning stages. 
+
+History Action Abstract Reasoning Module. This module reasons about the underlying task goal and environmental status by interpreting the historical actions. Given the history ac-tion sequence { a1, a2, . . . , ak, . . . , aN } where each ak = ( vk, nk), this module generates a History Action Abstract Ihistory in the form of natural language description that captures both the current object states and the inferred high-level human in-tention. We formulate this as a conditional generation task: 
+
+Ihistory = freason (a1, . . . , aN ), where freason is implemented using a large language model (LLM) with commonsense reasoning ability. Leveraging In-Context Learning (ICL), this module is provided with few-shot exemplars to bridge the semantic gap between low-level action sequences and high-level task goals. Specifically, these structured demonstrations guide the LLM to synthesize discrete actions into a coherent semantic narrative that describes the current environmental state and the most likely task goal. This process leverages the LLM’s com-monsense knowledge to infer latent intentions from observed interactions without requiring task-specific parameter updates. As illustrated in Figure 2, for a recognized sequence such as FactCheck: Feasibility-aware Long-term Action Anticipation with Multi-agent Collaboration 7Observer 
+
+## Planner 
+
+CLIP 
+
+Image 
+
+Encoder 
+
+❄ ... 
+
+> [Planner Instruction;
+> History Actions;
+> History Action Abstract ]
+> Frozen
+> LLM
+
+、
+
+... 
+
+... 
+
+> ⨁
+> 🔥
+> 🔥
+
+❄ 
+
+> LLM QLoRA Fine-tuning
+
+...  、
+
+、
+
+> History Action Graph
+
+LLM 
+
+Commonsense  Reasoning 
+
+History Action Abstract  fridge  
+
+> take
+> (w=2)
+> cucumber
+> take
+> (w=1)
+> onion
+> recipe
+> open
+> (w=1)
+> close
+> (w=1)
+> cut
+> (w=1)
+> "With cucumbers and onions on
+> hand, this person is about to
+> make a salad."
+
+Classification 
+
+Head  🔥 
+
+History Actions 
+
+> LoRA
+> Adapters
+> Draft Actions
+> (open, fridge),
+> (take, cucumber),
+> (take, onion),
+> (read, recipe),
+> (operate, stove),
+> ...
+
+## Verifier     
+
+> [Verifier Instruction;
+> History Action Graph;
+> Draft Actions] Future Actions
+> (close, fridge),
+> (cut, cucumber),
+> (cut, onion),
+> (read, recipe),
+> (operate, stove),
+> ...
+> Step 1: State Reconstruction
+> Step 2: Constraint Verification
+> Step 3: Action Refinement
+> LLM Chain-of-Thought
+> Reasoning
+> (open, fridge),
+> (take, cucumber),
+> (take, onion),
+
+F I G U R E 2 Overview of the FactCheck Framework. Our approach achieves feasibility-aware Long-Term Action Antici-pation (LTA) through a closed-loop “Observe-Plan-Verify” mechanism: (1) The Observer Agent functions as the perception and memory core. It employs an Action Recognition Module to extract historical actions from video frames to obtain the History Action Abstract, and the History Action Graph to encode object states and temporal dependencies. (2) The Planner Agent acts as the action prediction unit. Conditioned on the historical actions and the History Action Abstract, it utilizes a QLoRA fine-tuned LLM to generate future draft actions. (3) The Verifier Agent serves as the feasibility verification unit. It validates the draft against the History Action Graph using Chain-of-Thought (CoT) reasoning to enforce Object Availability ,
+
+Affordance Validity , and State Consistency . The identified violations are corrected to ensure the verified actions are physically executable. (open, fridge), (take, cucumber), (take, onion) , the module gen-erates Ihistory : “With cucumbers and onions on hand, this person is about to make a salad." This History Action Abstract Ihistory 
+
+serves as essential semantic guidance for the subsequent Plan-ner agent, ensuring that predicted future actions align with both the high-level human intention and the low-level environmental status. 
+
+History Action Graph Construction Module. To maintain a structured memory of past interactions and object states, the Observer agent constructs and updates the History Action Graph G = ( Nobs , E) based on the recognized action sequence {a1, a2, . . . , aN }. As illustrated in Figure 2, this graph serves as a knowledge base that encodes both the temporal dependencies between actions and the evolving states of objects throughout the observed video. 
+
+• Nodes ( Nobs ): Each node n ∈ N obs corresponds to a unique object noun that has been interacted with in the observed video. Beyond static identification, each node maintains a dynamic attribute list Attr (n) that records every action performed on the object along with precise start and end timestamps. Formally, for an object n, its attribute list con-tains tuples ( v, tstart , tend ) for each action ak = ( v, n) involving that object, enabling precise tracking of state changes over time. 
+
+• Edges ( E): Directed edges capture the temporal transition flow between consecutive actions. An edge eij ∈ E from action ai to action aj is established if ai and aj appear con-secutively in the observed sequence, i.e., j = i + 1. This structure preserves the chronological order of interactions. 
+
+• Weights ( wij ): Each edge eij carries a weight wij that quanti-fies the transition frequency between the two actions. This weight is incrementally updated each time the transition 
+
+ai → aj is observed, effectively encoding a probabilistic prior over action transitions based on the observed history. The History Action Graph G is constructed and updated as each new action ak is recognized by the Action Recogni-tion module. Through this topological procedure, the Observer agent consolidates unstructured visual observations into a struc-tured memory. This memory serves as a critical resource for the Verifier agent, providing explicit access to historical object 8 CAO ET AL .
+
+states and action transition patterns that enable the verification of physical feasibility constraints as defined in Section 1. 
+
+## 4.2 Planner Agent 
+
+The Planner agent serves as the prediction unit. To addresses the second challenge outlined in Section 1, the Planner aiming to generate draft of future actions ˆAfut = { ˆaN+1 , . . . , ˆaN+Z } that are consistent with the environmental context. Existing meth-ods generate plans based predominantly on historical action narrations 17 or inferred high-level goals 16 , thereby neglecting the current physical state of recent observations. To mitigate this key limitation, the Planner synthesizes in-formation from both the recognized historical action sequence {a1, . . . , aN } and the History Action Abstract Ihistory with the current state description and the human intention. Furthermore, to handle the variable-length nature of real-world tasks, we de-sign our training strategy to encompass varying observation ratios α ∈ {25%, 50%, 75%} and correspondingly different fu-ture sequence lengths Z. This enables the Planner to adapt to diverse task durations rather than being constrained to predict a fixed number of actions. We then fine-tune a pre-trained Large Language Model (LLM) to serve as the action generation unit. To achieve parameter-efficient adaptation, we employ QLoRA, which introduces trainable low-rank adapters into the LLM’s attention and feed-forward layers while keeping the base model weights frozen. This allows the model to learn task-specific temporal relationships between actions with efficient model training. The model is trained to maximize the likelihood of the ground-truth future action sequence Afut given the planner prompt Pplan :max 
+
+> θQLoRA
+> N+Z
+
+X
+
+> k=N+1
+
+log P(ak | Pplan , aN+1: k−1; θQLoRA ), (7) where θQLoRA represents the parameters of the low-rank adapters. This training objective enables the Planner to gen-erate a draft action sequence ˆAfut that is not only temporally consistent with the observed history and semantically aligned with the inferred human intention encoded in Ihistory , but also adaptable to variable-length prediction scenarios. This draft is then passed to the Verifier for feasibility validation, completing the verification stage of our closed-loop framework. 
+
+## 4.3 Verifier Agent 
+
+To systematically assess feasibility, the Verifier ensures the three constraints defined in Section 3. Conditioned on the His-tory Action Graph G from the Observer, the draft actions ˆak
+
+generated by the Planner, the Verifier agent performs the feasi-bility check via a structured validation pipeline. As illustrated in Figure 2, the Verifier conducts a step-by-step feasibility check using Chain-of-Thought (CoT) reasoning through three phases: state reconstruction, constraint verification, and action refinement. 
+
+State Reconstruction. Before validating the draft action ˆak, the agent first parses the History Action Graph G to reconstruct the current environmental state Env N as defined in Eq. (1). Lever-aging few-shot exemplars, the model is guided to explicitly derive the current status of the objects from the history of ac-tions. Specifically, for each object node n ∈ N obs , the Verifier retrieves the attribute list Attr (n) to identify the most recent interaction verb vt∗(n), where t∗(n) represents the index of the last interaction. This process allows the agent to explicitly de-rive the object’s physical status Post (vt∗(n)), such as inferring the state “opened” from a past “open” action, thereby estab-lishing the environment state Env N required for the subsequent consistency checks. 
+
+Constraint Verification. As shown in Figure 2, the Verifier con-ducts a step-by-step feasibility check to verify the constraints formulated in Section 3: 
+
+• Object Availability ( Cobj ): First, the Verifier implements the constraint in Eq. (2) by confirming that the target object ˆnk exists within the graph’s node set Nobs , penaliz-ing predictions that involves unobserved objects to reduce hallucinations. 
+
+• Affordance Validity ( Caff ): Second, the Verifier enforces Eq. (3) by verifying whether the predicted verb ˆvk falls within the valid affordance set Aff (ˆnk), retrieving the interaction history recorded in Attr( n). 
+
+• State Consistency ( Csta ): Finally, the Verifier evaluates the logical precondition constraint defined in Eq. (4) by com-paring the preconditions of the draft action, Pre (ˆvk), against the object’s current state Post (vt∗ ) derived in the State Reconstruction phase. This ensures Post( vt∗ ) ∈ Pre( ˆvk). To ensure robustness, few-shot exemplars guide the model to verify the above constraints against the draft actions. We provide specific violation examples of each constraint to en-hance the model’s discriminative ability in detecting infeasible actions. 
+
+Action Refinement. Leveraging the results in Constraint Verifi-cation, the verifier employs In-Context Learning (ICL) to revise the infeasible action. The Verifier generates a revised action 
+
+A∗ 
+
+> fut
+
+that prioritizes physical feasibility and is compliant with the constraints, effectively closing the “Observe-Plan-Verify” loop. FactCheck addresses feasibility-aware long-term action anticipation with multi-agent collaboration via these three spe-cialized agents. By closing the loop between action recognition, action prediction, and action verification, this collaborative framework ensures that the final action sequence A∗ 
+
+> fut
+
+is not FactCheck: Feasibility-aware Long-term Action Anticipation with Multi-agent Collaboration 9
+
+only consistent with the human intention but also adheres to the feasibility constraints of the real-world environment. 
+
+## 5 EXPERIMENTS AND ANALYSIS 
+
+In this section, we present a comprehensive empirical evalua-tion of our proposed FactCheck framework. First, we detail the experimental setup, including the mainstream LTA benchmarks, evaluation metrics, baseline methods, and implementation de-tails. Subsequently, we report both the quantitative results and the qualitative results on two challenging ego-centric bench-marks: EPIC-Kitchens 55 28 and EGTEA Gaze+ 29 , comparing our approach with previous baseline methods. Finally, we con-duct extensive ablation studies to validate the effectiveness of each modules and the collaborative mechanism. 
+
+## 5.1 Experimental Setup 5.1.1 Benchmarks and Metrics 
+
+EPIC-KITCHENS-55 (EK-55). 28 EK-55 is a large-scale ego-centric video dataset recording unscripted daily activities in native kitchen environments. It contains 55 hours of videos col-lected by 32 participants in 4 countries. The dataset is annotated with 39.6K action segments, covering 125 verbs and 352 nouns. We follow the standard train and test splits as EGO-TOPO 33 to evaluate action anticipation performance. 
+
+EGTEA Gaze+(EGTEA). 29 EGTEA Gaze+ is another promi-nent egocentric video dataset with 86 unique videos of 32 subjects over 28 hours. The action annotations include 10325 in-stances of fine-grained actions covering 19 verbs and 53 nouns. We follow the standard train and test splits as EGO-TOPO 33 to evaluate action anticipation performance. 
+
+Evaluation Metrics. We follow the standard evaluation met-rics for long-term action anticipation on both the EK-55 and the EGTEA datasets 33 . Given an observation ratio α, the model observes the first α portion of a video and predicts the set of action classes that will occur in the remaining (1 − α) por-tion. We evaluate across multiple anticipation horizons using 
+
+α ∈ {25%, 50%, 75%}. The primary evaluation metric is Mean Average Precision (mAP) across all classes. To account for the long-tailed distribution of action classes in both datasets, we also report frequency-based metrics mAP-Freq, and mAP-Rare. We partition the class set C into frequent subsets Cfreq 
+
+and rare subsets Crare as in EGO-TOPO 33 . We report mAP-All, mAP-Freq, and mAP-Rare for each dataset to comprehensively evaluate the performance of FactCheck. 
+
+## 5.1.2 Baselines 
+
+To evaluate the effectiveness of FactCheck, we select the base-line methods that cover the major paradigms in the LTA field. We categorize the baseline methods into data-driven temporal modeling methods and LLM-driven agentic reasoning methods: 
+
+(1) Data-driven temporal modeling methods. This category focuses on learning the temporal patterns of the observed visual data to predict future actions through end-to-end training on large-scale datasets. Here are the baseline methods: 
+
+• I3D 9: A two-stream architecture that inflates pre-trained 2D image classification models into 3D ConvNets to learn seamless spatio-temporal feature extractors from video data. 
+
+• ActionVLAD 57 : A spatio-temporal aggregation architec-ture that pooling local convolutional features over space and time for end-to-end action classification. 
+
+• Timeception 58 : A temporal convolutional layer-based method that models complex actions by using multi-scale temporal convolutions to capture long-range temporal de-pendencies and multi-scale temporal kernels to tolerate variations in temporal extents. 
+
+• VideoGraph 7: A graph-based method that learns a soft undirected graph of latent concepts directly from video data to model the temporal structure inherent in minutes-long human activities. 
+
+• EGO-TOPO 33 : A graph-based approach that constructs a topological map of the environment. It anticipates actions by reasoning about the functional affordances associated with the specific spatial zones visited by the agent. 
+
+• Anticipatr 1: A two-stage learning approach employed to train a transformer-based model leverages both segment-level and video-level representations for long-term action anticipation. 
+
+(2) LLM-driven agentic reasoning methods. These methods leverage the semantic knowledge of pre-trained LLMs to infer future behaviors, typically utilizing a single-agent architecture. Here are the baseline methods: 
+
+• AntGPT 16 : An LLM-based action anticipation framework that infers the actor’s high-level goal from observations, and then generates future actions conditioned on the inferred goal, leveraging the LLM’s language priors. 
+
+• PALM 17 : An LLM-based action anticipation framework that converts visual context into narrative captions via a VLM and leverages an LLM to generate future actions based on the narrative history. 10 CAO ET AL .
+
+## 5.1.3 Implementation Details 
+
+We detail the implementation settings for each module within the FactCheck framework. 
+
+Action Recognition. Following AntGPT 16 , we first employ the CLIP-ViT-L/14-336px model to extract visual features with-out any model fine-tuning. For each video segment, we sample 
+
+T = 4 frames at uniform temporal intervals. The lightweight transformer-based classification head follows the architecture of the action recognition module from AntGPT 16 for a fair com-parison. The training objective is the cross-entropy loss over the verb and noun classes, as defined in Eq. (6). 
+
+History Action Abstract Reasoning. This module lever-ages the commonsense reasoning capability of a large language model. We employ the Grok-4-1-fast-reasoning API 59 via in-context learning. The prompt template is constructed by con-catenating the recognized history action sequence { a1, . . . , aN }with a fixed instruction for the LLM to describe the current state of objects and the likely goal of the person in one sentence. The LLM response is then obtained as the History Action Abstract 
+
+Ihistory .
+
+Planner Agent Fine-tuning. The Planner agent is imple-mented by fine-tuning pretrained Qwen2.5 models using the QLoRA technique. We train two model variants: a Qwen2.5-3B-Instruct model 60 and a larger Qwen2.5-7B-Instruct model 60 .For both variants, we construct a supervised fine-tuning dataset by formatting the input as a concatenation of the history actions and the History Action Abstract Ihistory , with the target being the ground-truth future action sequence. The LoRA configu-ration uses a rank rLoRA = 16, alpha αLoRA = 32, dropout rate = 0.05, and applies to all linear layers. For the Qwen2.5-3B-Instruct model, we fine-tune the model on a single NVIDIA RTX 4090 GPU, while the Qwen2.5-7B-Instruct model is fine-tuned across 8 NVIDIA RTX 3090 GPUs. We use bfloat16 mixed precision with 4-bit quantization for efficient model fine-tuning. 
+
+Verifier Agent. We implement the Verifier using the Grok-4-1-fast-reasoning API 59 . The History Action Graph G is linearized into a JSON Lines (JSONL) format. We design a structured Chain-of-Thought (CoT) prompt to guide the agent through a three-step reasoning process: (1) State Recon-struction, where the model interprets the linearized graph to reconstruct the current environmental state Env N . Specifically, it parses the attribute list Attr (u) of each object node to identify the most recent interaction vt∗(n) as defined in Eq. 1, thereby in-ferring the object’s physical status; (2) Constraint Verification, which executes a sequential checklist to validate the draft action against the graph data: The agent first checks Object Availabil-ity by confirming that the target noun exists within the graph’s node set Nobs ; Next, it assesses Affordance Validity by verify-ing if the predicted verb is semantically compatible with the object’s interaction history recorded in Attr (u); Finally, it eval-uates State Consistency by comparing the logical preconditions of the draft action against the current object state Env N derived in step (1), such as rejecting an “open” action if the object is already in an “opened” state; (3) Action Refinement. Critically, the refinement stage is empowered by the In-Context Learning (ICL) mechanism. We embed k = 3 manually crafted few-shot examples within the prompt, which demonstrate how to iden-tify specific constraint violations and generate corresponding logic-based corrections. This enables the agent to adaptively revise infeasible predictions into verified actions that align with the history graph. 
+
+## 5.2 Result Analysis 
+
+We comprehensively evaluate the performance of FactCheck through both quantitative metrics in Section 5.2.1 and qualita-tive case studies in Section 5.2.2. 
+
+## 5.2.1 Quantitative Analysis 
+
+To validate the effectiveness of our proposed framework, we evaluate our method on two mainstream LTA datasets: EK-55 and EGTEA Gaze+ . Table 1 presents the comparison on the EK-55 validation set, where FactCheck consistently out-performs baselines in mAP scores across all metrics. Table 2 reports the results on the EGTEA Gaze+ dataset. Our method achieves superior performance over existing methods, demon-strating the effectiveness of the FactCheck framework in diverse egocentric scenarios. 
+
+T A B L E 1 Comparison with existing methods on EK-55 in mAP (%). The first and second highest results are highlighted in bold and the best result in each column is marked with red background.                                              
+
+> Method ALL ↑FREQ ↑RARE ↑
+> I3D 932.7 53.3 23.0 ActionVLAD 57 29.8 53.5 18.6 Timeception 58 35.6 55.9 26.1 VideoGraph 722.5 49.4 14.0 EGO-TOPO 33 38.0 56.9 29.2 Anticipatr 139.1 58.1 29.1 AntGPT 16 40.1 58.8 31.9 PALM 17 40.4 59.3 30.3
+> FactCheck-3B (Ours) 43.2 62.4 32.1 FactCheck-7B (Ours) 43.5 63.3 32.2 FactCheck: Feasibility-aware Long-term Action Anticipation with Multi-agent Collaboration 11
+
+T A B L E 2 Comparison with existing methods on EGTEA Gaze+ in mAP (%). The first and second highest results are highlighted in bold and the best result in each column is marked with red background.                                             
+
+> Method ALL ↑FREQ ↑RARE ↑
+> I3D 972.1 79.3 53.3 ActionVLAD 57 73.3 79.0 58.6 Timeception 58 74.1 79.7 59.7 VideoGraph 767.7 77.1 47.2 EGO-TOPO 33 73.5 80.7 54.7 Anticipatr 176.8 83.3 55.1 AntGPT 16 80.2 84.8 72.9 PALM 17 80.7 85.0 73.5 FactCheck-3B (Ours) 81.5 85.4 73.3
+> FactCheck-7B (Ours) 81.8 86.9 73.6
+
+The quantitative results demonstrate the effectiveness of FactCheck across both datasets. As shown in Table 1, FactCheck-7B establishes a new SoTA with 43.5% mAP-All, outperforming the previous best method PALM by a signifi-cant margin of 3.1% on EK-55. Notably, the improvements are consistent across both frequent (+4.0%) and rare (+1.9%) action classes. FactCheck-3B also demonstrates competitive performance, achieving 43.2% mAP-All and surpassing PALM by 2.8%, which highlights the efficiency of our architecture even with a smaller LLM backbone model. As shown in Table 2, FactCheck-7B similarly achieve strong performance with 81.8% mAP-All. FactCheck-7B surpasses PALM by 1.1%, with notable gains in the frequent category (+1.9%). Even the smaller FactCheck-3B outperforms the best baseline with 81.5% mAP-All. Overall, these experimental results indicate that our proposed Observe-Plan-Verify mechanism effectively ensures the physical feasibility of predictions, leading to robust improvements in both common and long-tail scenarios. Traditional data-driven methods rely heavily on statistical patterns in training data and often fail to generalize to rare or unseen scenarios due to their limited capacity for semantic reasoning. While recent LLM-based single-agent approaches leverage commonsense knowledge for better intention infer-ence, they operate in an open-loop manner without considering the current physical environment, leading to predictions that are semantically plausible but physically infeasible. In contrast, FactCheck’s closed-loop "Observe-Plan-Verify" mechanism explicitly enforces physical feasibility constraints through struc-tured environment modeling and iterative verification, resulting in more accurate and reliable long-term action anticipation. Both FactCheck-3B and FactCheck-7B achieve strong per-formance, demonstrating the effectiveness of our framework across different model scales. The slight but consistent advan-tage of FactCheck-7B can be attributed to its greater capacity for complex reasoning, which is further supported by our obser-vation that the 7B model required significantly fewer training steps to achieve optimal performance. As illustrated in Figure 3, both the 3B and 7B Planner models converge smoothly during training, and the stable validation loss confirms that neither model exhibits signs of overfitting. 
+
+## 5.2.2 Qualitative Analysis 
+
+To further investigate the "Observe-Plan-Verify" mecha-nism of FactCheck, we present a qualitative case study on the "Continental Breakfast" task (video ID: P21-R04-ContinentalBreakfast) from the EGTEA Gaze+ dataset. This task contains a total of 79 actions. We set the observation ratio to 50%, meaning the model observes the first 40 actions and predicts the subsequent sequence. In Table 3, we provide a case to demonstrate how the Verifier agent effectively corrects the Planner’s infeasible draft actions. As detailed in Table 3, the Observer agent first functions as the perception unit, utilizing the Action Recognition module to extract the history action sequence from the observed video frames. Based on these recognized actions, this agent generates a History Action Abstract via commonsense reasoning: “After putting on the pot, operating the stove, and inspecting the recipe, this person is going to make a continental breakfast.” This abstract captures the high-level human intention and low-level environmental status. Furthermore, the Observer constructs a structured History Action Graph G that records the precise state of each object, for example, the faucet is [Off], and the cabinet is [Closed]. This graph serves as the structured memory for the subsequent verification process. Conditioned on the History Action Abstract, the Planner agent generates a draft prediction sequence. While the high-level intention to continue preparing breakfast is correct, the Planner hallucinates two physically infeasible actions due to the lack of explicit physical verification in the open-loop gener-ation process. Specifically, the Planner predicts [Open cup] ,ignoring the object’s operatable affordance, and [Turn off faucet] , disregarding the object’s current state. The Verifier agent then rigorously validates the draft against the History Action Graph G. The Verifier first parses the graph to reconstruct the environment state. For the action [Open cup] , the Verifier queries the object attributes and detects a violation of Affordance Validity. It recognizes that a “cup” lacks a mechanically openable structure, making the action physically impossible. Leveraging In-Context Learning (ICL), the Verifier refines this action to [Take cup] . For the action [Turn off faucet] , the Verifier finds that the faucet is already in the [Off] state, as the last recorded action on the faucet 
+
+is Turn off . Thus, the Verifier identifies a violation of state consistency and corrects the redundant action to [Turn on 12 CAO ET AL . 
+
+> F I G U R E 3 The training and validation loss of the Planner agent.
+
+faucet] , which aligns with the task goal. This case validates that FactCheck successfully provides feasibility-aware long-term action anticipation. 
+
+## 5.3 Ablation Study 
+
+To comprehensively evaluate the contribution of our FactCheck framework, we conduct ablation studies from three perspec-tives: (1) the effectiveness of each individual module within the FactCheck framework, (2) the generalizability across dif-ferent large language model backbones, and (3) the impact of the multi-agent architecture compared to single-agent base-lines. These experiments are performed on the EGTEA Gaze+ dataset. 
+
+## 5.3.1 Effectiveness of each component 
+
+To validate the effectiveness of our proposed FactCheck, we conduct an ablation study on the EGTEA Gaze+ dataset, as summarized in Table 4. We compare the full FactCheck-7B model against three variants, each removing a key module: the History Action Abstract, the History Action Graph, and the Verifier. 
+
+Impact of the History Action Abstract. Removing the History Action Abstract leads to a consistent performance drop across all metrics. This indicates that the summarization of the current environmental state and the high-level human intention serve as a crucial global context, helping the model maintain a memory of the historical actions. The History Action Abstract benefits both frequent and rare actions, suggesting that this module helps enhance the overall task performance. 
+
+Impact of the History Action Graph. The removal of the structured graph results in a decline in mAP-All and mAP-Freq. This confirms that explicitly modeling noun-verb relationships via a graph is essential for capturing the historical actions. However, we observe an increase in mAP-Rare. This suggests that while the graph effectively enhances the task performance via action verification, it may introduce a bias towards common transitions, potentially suppressing some less common actions in the long tail distribution. 
+
+Impact of the Verifier. Removing the Verifier also leads to a drop in mAP-All and mAP-Freq performance. This re-sult underscores the critical role of the "Observe-Plan-Verify" mechanism. Without the feasibility constraints imposed by the Verifier, the model is prone to hallucinating physically infeasi-ble actions, resulting in performance degradation. We observe that the FactCheck w/o Verifier achieves a higher score on Rare action classes. This suggests a trade-off where the Verifier acts as a strong critic that prioritizes physical feasibility over risky long-tail predictions. In conclusion, the full model achieves the best balance, yield-ing the highest mAP-All and mAP-Freq scores, validating that each module is indispensable for the LTA task. 
+
+## 5.3.2 Generalizability across large language model backbones 
+
+To evaluate the generalizability of the FactCheck framework, we investigate the performance across different large language model backbones. To ensure a fair comparison, we replace the default grok-4-1-fast-reasoning backbone used in the Ob-server and Verifier agents with gemini-3-flash-preview, while keeping all other components strictly identical. As reported in Table 5, FactCheck maintains robust performance across differ-ent backbones. The variant employing gemini-3-flash-preview achieves an mAP-All of 81.3%, which is highly competitive with the grok-4-1-fast-reasoning and still significantly outper-forms existing state-of-the-art LTA methods. This ablation FactCheck: Feasibility-aware Long-term Action Anticipation with Multi-agent Collaboration 13 
+
+T A B L E 3 Qualitative example of the FactCheck correction process on the "Continental Breakfast" task. The red text highlights physically infeasible actions predicted by the Planner, while the green text shows the corrected actions after the Verifier’s reasoning process. 
+
+Component Action Sequence / Reasoning Process Ground Truth His-tory Actions (50%) 
+
+... [Open cabinet] → [Close cabinet] → [Inspect/Read recipe] → [Turn on faucet] →
+
+[Turn off faucet] → [Put pot] → [Operate stove] → [Inspect/Read recipe] 
+
+Observer History Action Recognition (50%): ... [Open cabinet] → [Close cabinet] → [Inspect/Read recipe] → [Turn on faucet] → [Turn off faucet] → [Put pot] → [Operate stove] →
+
+[Inspect/Read recipe] 
+
+History Action Abstract ( Ihistory ): “After putting on the pot, operating the stove, and inspecting the recipe, this person is going to make a continental breakfast.” 
+
+History Action Graph ( G):                                  
+
+> {“nodes”: [{“id”: “cabinet”, “state”: “closed”, “history”: [“Open”, “Close”]}, {“id”: “faucet”, “state”: “off”, “history”: [“Turn on”, “Turn off”]}, {“id”: “pot”, “state”: “on_stove”, “history”: [“Put”]}, {“id”: “stove”, “state”: “on”, “history”: [“Operate”]}, {“id”: “recipe”, “state”: “inspected”, “history”: [“Inspect/Read”]}], “edges”: [{“src”: “cabinet”, “tgt”: “recipe”, “w”: 1}, ..., {“src”: “faucet”, “tgt”: “pot”, “w”: 1}, {“src”: “stove”, “tgt”: “recipe”, “w”: 1}]}
+
+Planner Draft Prediction (ˆAfut ): [Open cabinet] → [Open cup] → [Close cabinet] → ... → [Take sponge] → [Put sponge] → [Turn off faucet] ... 
+
+Verifier CoT Reasoning : 
+
+1. State Reconstruction: Parse graph G. Current state of “faucet” is [Off] (last action: Turn off); “cup” is a container object. 
+
+2. Constraint Verification: 
+
+- Action [Open cabinet]: Valid. - Action [Open cup]: Violation: Affordance Validity Error . “Cup” lacks a mechanically openable structure. - ... - Action [Turn off faucet]: Violation: State Consistency Error . Current state is already [Off]; turning it off again is redundant and physically infeasible. 
+
+3. Action Refinement: 
+
+- Replace “Open cup” with “Take cup” (correct interaction). - Replace “Turn off faucet” with “Turn on faucet” (logical next step for washing). 
+
+Final Output [Open cabinet] → [Take cup] → [Close cabinet] → ... → [Take sponge] → [Put sponge] → [Turn on faucet] → ... 
+
+Ground Truth Fu-ture Actions 
+
+[Open cabinet] → [Take cup] → [Close cabinet] → ... → [Take sponge] → [Put sponge] → [Turn on faucet] → ... 
+
+T A B L E 4 Ablation study on different components of FactCheck on the EGTEA Gaze+ dataset in mAP (%). 
+
+Variant ALL ↑ FREQ ↑ RARE ↑
+
+FactCheck-7B 81.8 86.9 73.6 w/o History Action Abstract 81.5 86.4 73.2 w/o History Action Graph 81.1 85.6 74.1 w/o Verifier 81.0 84.9 74.4 
+
+study demonstrates that our "Observe-Plan-Verify" mechanism consistently enhances action feasibility by leveraging the in-herent reasoning capabilities of various LLMs. This suggests that the effectiveness of FactCheck stems from its collaborative architecture rather than a specific choice of the LLM. 
+
+## 5.3.3 Impact of multi-agent architecture 
+
+To validate the necessity of our multi-agent collaboration framework, we compare FactCheck against single-agent base-lines. All single-agent baselines are provided with the same 
+
+T A B L E 5 Generalizability of FactCheck across different LLM backbones (Observer & Verifier) on EGTEA Gaze+ .
+
+Backbone (Observer & Verifier) ALL ↑ FREQ ↑ RARE ↑
+
+gemini-3-flash-preview 81.3 85.5 73.0 
+
+grok-4-1-fast-reasoning (Default) 81.5 85.4 73.3 
+
+input information: the sequence of history actions and the History Action Abstract. We design three specific baselines to evaluate the backbone models without the multi-agent ar-chitecture: (1) Qwen-2.5-3B-Instruct (LoRA): We fine-tune a single Qwen-2.5-3B-Instruct model using LoRA. This investi-gates whether the performance gains can be achieved simply by fine-tuning a single LLM agent rather than through multi-agent collaboration. (2) Grok-4-1-fast-reasoning (Zero-shot): A single-agent baseline using the Grok-4-1-fast-reasoning model without task-specific demonstrations. This evaluates the back-bone model’s inherent reasoning capabilities on the LTA task. (3) Grok-4-1-fast-reasoning (Few-shot) : A single-agent base-line using the Grok-4-1-fast-reasoning model with few-shot 14 CAO ET AL .
+
+guidance. This setup tests whether a state-of-the-art LLM agent matches the FactCheck framework’s performance without its collaborative architecture. As shown in Table 6, FactCheck-3B consistently outperforms all single-agent baselines across all metrics. Specifically, compared to the Qwen-2.5-3B-Instruct (LoRA) baseline, our framework achieves a substantial im-provement of 6.2% in mAP-All. Furthermore, FactCheck-3B surpasses the Grok-4-1-fast-reasoning (Zero-shot) baseline by 3.3% and the Grok-4-1-fast-reasoning (Few-shot) baseline by 1.9% in mAP-All. We observe that single agents often hal-lucinate non-existent objects, violate object affordances, or disregard object states, as they operate in an open-loop manner without a mechanism to explicitly verify the physical feasibility of their predictions against the environment. This ablation study shows our multi-agent collaboration mechanism effectively unlocks the potential of LLMs for feasibility-aware LTA. 
+
+T A B L E 6 Performance comparison between single-agent baselines and the multi-agent framework FactCheck on the 
+
+EGTEA Gaze+ dataset in mAP (%).                   
+
+> Method ALL ↑FREQ ↑RARE ↑
+> Qwen-2.5-3B-Instruct (LoRA) 75.3 82.1 56.8 Grok-4-1-fast-reasoning (Zero-shot) 78.2 80.6 71.4 Grok-4-1-fast-reasoning (Few-shot) 79.6 82.9 73.1
+> FactCheck-3B (Ours) 81.5 85.4 73.3
+
+## 5.4 Future Works 
+
+In this paper, we propose FactCheck, a multi-agent framework that enables feasibility-aware Long-term Action Anticipation (LTA). Feasibility-aware LTA serves as a critical capability for the advancement of embodied intelligence. We discuss future research directions from the perspectives of long-horizon robot manipulation, proactive human-robot collaboration (HRC) and handling unseen objects in an open-world environment below: 
+
+Long-horizon Robot Manipulation. Long-horizon robot manipulation is a cornerstone of autonomous systems, en-abling agents to perform complex, multi-step tasks. However, it remains a significant challenge for LLM-based robot ma-nipulation methods due to the compounding uncertainty of long-term future sequences and the strict physical constraints of real-world environments, where a single error may disrupt an entire workflow. FactCheck addresses this by generating action sequences that are verified for physical feasibility rather than just semantic coherence. These validated sequences can be exe-cuted by a robot using a library of low-level motion primitives, where each step in the plan is directly mapped to a specific con-trol policy. By bridging the gap between high-level planning and physical execution, our framework enables robots to reli-ably accomplish complex real-world tasks, including household activities such as cooking and cleaning. 
+
+Proactive Human-Robot Collaboration (HRC). 
+
+FactCheck empowers Proactive HRC by enabling service robots to accurately anticipate human intentions and provide timely assistance without the need for human explicit in-structions. In collaborative environments such as a kitchen, if our FactCheck framework predicts a user intends to "cut a cucumber," the robot can proactively retrieve and hand over a knife. Crucially, the "feasibility-aware" nature of our model ensures the safety and reliability of these interactions. Unlike open-loop approaches that may hallucinate unnecessary or impossible steps, FactCheck explicitly verifies that the required tool is available and the target object is in the appropriate state. This validation prevents the robot from performing confusing or unsafe actions based on false predictions, thereby fostering reliability in human-robot collaboration. 
+
+Handling Unseen Objects in Open-World Environments. 
+
+While our current framework applies Object Availability con-straints based on observed history to effectively mitigate object hallucination, this strict constraint may unintentionally filter out correct predictions involving objects that have not yet appeared in the video, such as when entering a new room or opening an unseen cabinet. In future work, we plan to incorporate open-vocabulary object detection to estimate the likelihood of unobserved objects entering the scene. This would enable a bet-ter balance between feasibility verification and generalization to open-world scenarios. 
+
+## 6 CONCLUSIONS 
+
+In this paper, we present FactCheck, a multi-agent collabora-tion framework for long-term action anticipation that enhances the feasibility of predicted actions in a closed-loop “Observe-Plan-Verify” manner. The proposed Observer agent encodes the video observation into a dual-form memory of historical actions, comprising a concise textual description and a structured graph. The Planner agent anticipates future actions consistent with the textual action memory. The Verifier agent explicitly verifies fu-ture actions with the graph-based memory, enabling physically executable actions. Factcheck achieves effective performance on the EK-55 and EGTEA Gaze+ benchmark and outperforms other SoTA baselines. Ablation studies demonstrate the neces-sity of each component in our multi-agent framework. Our work establishes a new paradigm for feasibility-aware long-term action anticipation, effectively closing the loop of action recognition, action prediction, and action verification. FactCheck: Feasibility-aware Long-term Action Anticipation with Multi-agent Collaboration 15 
+
+ACKNOWLEDGMENTS 
+
+This work was supported by HK RGC General Research Fund (No. PolyU-15235424), “Research on Key Technologies for Systematic Artificial Intelligence Agents” project under China Mobile Innovation and Research Institute (No. R24114H7), PolyU Internal Research Fund (No. BDZ3), PolyU LTC Project (No. TDLEG25-28/IICA/P/05) and Research Institute for Ar-tificial Intelligence of Things, The Hong Kong Polytechnic University. 
+
+## References 
+
+1. Nawhal M, Jyothi AA, Mori G. Rethinking learning approaches for long-term action anticipation. In: European Conference on Computer Vision Springer. 2022:558–576. 2. Chang CY, Huang DA, Xu D, Adeli E, Fei-Fei L, Niebles JC. Pro-cedure planning in instructional videos. In: European Conference on Computer Vision Springer. 2020:334–350. 3. Verghese M, Atkeson C. Skills made to order: Efficient acquisition of robot cooking skills guided by multiple forms of internet data. In: 
+
+2025 IEEE International Conference on Robotics and Automation (ICRA) IEEE. 2025:11965–11971. 4. Li G, Tsagkas N, Song J, et al. Learning precise affordances from egocentric videos for robotic manipulation. In: Proceedings of the IEEE/CVF International Conference on Computer Vision IEEE. 2025:10581–10591. 5. De Lazzari D, Terreran M, Giacomuzzo G, et al. PACE: Proactive assistance in human-robot collaboration through action-completion estimation. In: 2025 IEEE International Conference on Robotics and Automation (ICRA) IEEE. 2025:6725–6731. 6. Hoffman G, Bhattacharjee T, Nikolaidis S. Inferring human intent and predicting human action in human–robot collaboration. Annual Review of Control, Robotics, and Autonomous Systems. 2024;7. 7. Hussein N, Gavves E, Smeulders AW. Videograph: Recogniz-ing minutes-long human activities in videos. arXiv preprint arXiv:1905.05143. 2019. 8. Zhang C, Fu C, Wang S, et al. Object-centric video representation for long-term action anticipation. In: Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision IEEE. 2024:6751– 6761. 9. Carreira J, Zisserman A. Quo vadis, action recognition? a new model and the kinetics dataset. In: proceedings of the IEEE Conference on Computer Vision and Pattern Recognition IEEE. 2017:6299–6308. 10. Abu Farha Y, Richard A, Gall J. When will you do what?-anticipating temporal occurrences of activities. In: Proceedings of the IEEE con-ference on computer vision and pattern recognition IEEE. 2018:5343– 5352. 11. Gong D, Lee J, Kim M, Ha SJ, Cho M. Future transformer for long-term action anticipation. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. 2022:3052–3061. 12. Fernando B, Herath S. Anticipating human actions by correlating past with the future with jaccard similarity measures. In: Proceed-ings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. 2021:13224–13233. 13. Roy D, Rajendiran R, Fernando B. Interaction region visual trans-former for egocentric action anticipation. In: Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vi-sion IEEE. 2024:6740–6750. 14. Cao C, Sun Z, Lv Q, Min L, Zhang Y. VS-TransGRU: A novel transformer-GRU-based framework enhanced by visual-semantic fu-sion for egocentric action anticipation. IEEE Transactions on Circuits and Systems for Video Technology. 2024. 15. Grauman K, Westbury A, Byrne E, et al. Ego4d: Around the world in 3,000 hours of egocentric video. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. 2022:18995–19012. 16. Zhao Q, Wang S, Zhang C, et al. AntGPT: Can Large Language Models Help Long-term Action Anticipation from Videos?. In: The Twelfth International Conference on Learning Representations ICLR. 2024. 17. Kim S, Huang D, Xian Y, Hilliges O, Van Gool L, Wang X. Palm: Predicting actions through language models. In: European Conference on Computer Vision Springer. 2024:140–158. 18. Shi Y, Fernando B, Hartley R. Action anticipation with rbf kernelized feature mapping rnn. In: Proceedings of the European Conference on Computer Vision (ECCV) Springer. 2018:301–317. 19. Sener F, Singhania D, Yao A. Temporal aggregate representations for long-range video understanding. In: European conference on computer vision Springer. 2020:154–171. 20. Roy D, Fernando B. Predicting the next action by modeling the abstract goal. In: International Conference on Pattern Recognition Springer. 2024:162–177. 21. Furnari A, Farinella GM. Rolling-unrolling lstms for action anticipa-tion from first-person video. IEEE Transactions on Pattern Analysis and Machine Intelligence. 2020;43(11):4021–4036. 22. Osman N, Camporese G, Coscia P, Ballan L. Slowfast rolling-unrolling lstms for action anticipation in egocentric videos. In: Proceedings of the IEEE/CVF International Conference on Computer Vision IEEE. 2021:3437–3445. 23. Girdhar R, Grauman K. Anticipative video transformer. In: Pro-ceedings of the IEEE/CVF International Conference on Computer Vision IEEE. 2021:13505–13515. 24. Wu CY, Li Y, Mangalam K, et al. Memvit: Memory-augmented multi-scale vision transformer for efficient long-term video recognition. In: 
+
+Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. 2022:13587–13597. 25. Mittal H, Agarwal N, Lo SY, Lee K. Can’t make an omelette without breaking some eggs: Plausible action anticipation using large video-language models. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. 2024:18580–18590. 26. Wang B, Tian Y, Wang S, Yang L. Multimodal large models are effective action anticipators. IEEE Transactions on Multimedia. 2025. 27. Cao C, Hu L, Yu Y, Zhang Y. Vision and Intention Boost Large Language Model in Long-Term Action Anticipation. arXiv preprint arXiv:2505.01713. 2025. 28. Damen D, Doughty H, Farinella GM, et al. The epic-kitchens dataset: Collection, challenges and baselines. IEEE Transactions on Pattern Analysis and Machine Intelligence. 2020;43(11):4125–4141. 16 CAO ET AL .
+
+29. Li Y, Liu M, Rehg JM. In the eye of the beholder: Gaze and actions in first person video. IEEE transactions on pattern analysis and machine intelligence. 2021;45(6):6731–6747. 30. Chen J, Mittal G, Yu Y, Kong Y, Chen M. Gatehub: Gated history unit with background suppression for online action detection. In: Proceed-ings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. 2022:19925–19934. 31. Rizve MN, Mittal G, Yu Y, et al. Pivotal: Prior-driven supervision for weakly-supervised temporal action localization. In: Proceed-ings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. 2023:22992–23002. 32. Ragusa F, Farinella GM, Furnari A. Stillfast: An end-to-end ap-proach for short-term object interaction anticipation. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. 2023:3636–3645. 33. Nagarajan T, Li Y, Feichtenhofer C, Grauman K. Ego-topo: Envi-ronment affordances from egocentric video. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recogni-tion IEEE. 2020:163–172. 34. Ke Q, Fritz M, Schiele B. Time-conditioned action anticipation in one shot. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. :9925–9934. 35. Tai TM, Fiameni G, Lee CK, See S, Lanz O. Unified recurrence modeling for video action anticipation. In: 2022 26th International Conference on Pattern Recognition (ICPR) IEEE. 2022:3273–3279. 36. Mascaró EV, Ahn H, Lee D. Intention-conditioned long-term human egocentric action anticipation. In: Proceedings of the IEEE/CVF Win-ter Conference on Applications of Computer Vision IEEE. 2023:6048– 6057. 37. Li X, Wang S, Zeng S, Wu Y, Yang Y. A survey on LLM-based multi-agent systems: workflow, infrastructure, and challenges. Vicinagearth. 
+
+2024;1(1):9. 38. Zhao J, Gao P, Cao J, et al. CodeEdu: A Multi-Agent Collabora-tive Platform for Personalized Coding Education. arXiv preprint arXiv:2507.13814. 2025. 39. Achiam J, Adler S, Agarwal S, et al. Gpt-4 technical report. arXiv preprint arXiv:2303.08774. 2023. 40. Arefeen MA, Debnath B, Uddin MYS, Chakradhar S. Vita: An effi-cient video-to-text algorithm using vlm for rag-based video analysis system. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. 2024:2266–2274. 41. Liu P, Liu X, Yao R, et al. Hm-rag: Hierarchical multi-agent multi-modal retrieval augmented generation. In: Proceedings of the 33rd ACM International Conference on Multimedia ACM. 2025:2781–2790. 42. Lu Y, Dai W, Liu J, et al. ViDove: A Translation Agent System with Multimodal Context and Memory-Augmented Reasoning. In: 
+
+Proceedings of the 2025 Conference on Empirical Methods in Nat-ural Language Processing: System Demonstrations Association for Computational Linguistics. 2025:228–243. 43. Dutta B, Ranjan R, Jain A, Singh R, Vatsa M. Can RAG-Driven Enhancements Amplify Audio LLMs for Low-Resource Languages?. In: ICASSP 2025-2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) IEEE. 2025:1–5. 44. Zhu X, Chen Y, Tian H, et al. Ghost in the minecraft: Generally capable agents for open-world environments via large language models with text-based knowledge and memory. arXiv preprint arXiv:2305.17144. 
+
+2023. 45. Qian C, Liu W, Liu H, et al. Chatdev: Communicative agents for soft-ware development. In: Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Pa-pers) Association for Computational Linguistics. 2024:15174–15186. 46. Lin J, Zhao H, Zhang A, Wu Y, Ping H, Chen Q. Agentsims: An open-source sandbox for large language model evaluation. arXiv preprint arXiv:2308.04026. 2023. 47. Hu C, Fu J, Du C, Luo S, Zhao J, Zhao H. Chatdb: Augment-ing llms with databases as their symbolic memory. arXiv preprint arXiv:2306.03901. 2023. 48. Park JS, O’Brien J, Cai CJ, Morris MR, Liang P, Bernstein MS. Gener-ative agents: Interactive simulacra of human behavior. In: Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology ACM. 2023:1–22. 49. Zhong W, Guo L, Gao Q, Ye H, Wang Y. Memorybank: Enhanc-ing large language models with long-term memory. In: Proceedings of the AAAI Conference on Artificial Intelligence . 38. AAAI Press. 2024:19724–19731. 50. Liang T, He Z, Jiao W, et al. Encouraging divergent thinking in large language models through multi-agent debate. In: Proceedings of the 2024 Conference on Empirical Methods in Natural Language Process-ing Association for Computational Linguistics. 2024:17889–17904. 51. Ning Y, Lin X, Fang F, Cao Y. MAD-Fact: A Multi-Agent Debate Framework for Long-Form Factuality Evaluation in LLMs. arXiv preprint arXiv:2510.22967. 2025. 52. Chan CM, Chen W, Su Y, et al. ChatEval: Towards Better LLM-based Evaluators through Multi-Agent Debate. In: The Twelfth International Conference on Learning Representations ICLR. 2024. 53. Xu T, Zhang D, Mitra K, Hruschka E. Verification-Aware Planning for Multi-Agent Systems. arXiv preprint arXiv:2510.17109. 2025. 54. Wang Q, Wang T, Tang Z, et al. MegaAgent: A large-scale au-tonomous LLM-based multi-agent system without predefined SOPs. In: Findings of the Association for Computational Linguistics: ACL 2025 Association for Computational Linguistics. 2025:4998–5036. 55. Theologitis M, Suciu D. Thucy: An LLM-based Multi-Agent System for Claim Verification across Relational Databases. arXiv preprint arXiv:2512.03278. 2025. 56. Radford A, Kim JW, Hallacy C, et al. Learning transferable visual mod-els from natural language supervision. In: International conference on machine learning PmLR. 2021:8748–8763. 57. Girdhar R, Ramanan D, Gupta A, Sivic J, Russell B. Actionvlad: Learning spatio-temporal aggregation for action classification. In: 
+
+Proceedings of the IEEE conference on computer vision and pattern recognition IEEE. 2017:971–980. 58. Hussein N, Gavves E, Smeulders AW. Timeception for complex ac-tion recognition. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition IEEE. 2019:254–263. 59. xAI . Grok 4.1 Fast and Agent Tools API. https://x.ai/news/ grok-4-1-fast; 2025. 60. Team Q. Qwen2.5: A Party of Foundation Models. https://qwenlm. github.io/blog/qwen2.5/; 2024.
