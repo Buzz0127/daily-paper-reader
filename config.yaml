@@ -159,6 +159,28 @@ subscriptions:
           note: ''
       updated_at: '2026-06-12T08:12:14.378Z'
       paused: true
+    - tag: pi-series
+      description: 帮我查找具身智能领域pi系列的一系列迭代的论文
+      enabled: true
+      paper_sources:
+        - arxiv
+      keywords:
+        - keyword: embodied intelligence
+          keyword_cn: 具身智能
+          query: embodied intelligence research
+        - keyword: Pi series
+          keyword_cn: Pi系列
+          query: Pi series embodied AI
+        - keyword: robotics manipulation
+          keyword_cn: 机器人操作
+          query: robotics manipulation
+      intent_queries:
+        - query: Pi series iterations in embodied intelligence
+          query_cn: 具身智能中的Pi系列迭代
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-29T08:58:06.292Z'
 source_backends:
   arxiv:
     papers_table: arxiv_papers
