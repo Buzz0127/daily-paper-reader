@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-21T11:59:03.029773+00:00",
-  "updated_date": "20260622-20260721",
+  "generated_at": "2026-07-21T21:29:19.479921+00:00",
+  "updated_date": "20260721",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,82 +480,42 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260622-20260721",
+      "updated_date": "20260721",
       "carryover_days": 9,
       "items": [
         {
-          "id": "2606.27353v1",
+          "id": "2607.15880v1",
           "source": "arxiv",
-          "title": "Continual Robot Policy Learning via Variational Neural Dynamics",
-          "abstract": "Robots deployed in the real world rarely operate under a single fixed dynamics model: wind changes, payloads vary, batteries drain, contacts shift, and hardware wears. Yet most learning-based controllers are trained once and deployed as if learning were complete. This prevents the robot from using deployment experience to further improve task performance. In this work, we propose a continual learning framework that uses real-world experience to improve robot policies under hidden and recurring dynamics. Our method learns a condition-aware dynamics model from real state-action trajectories by combining an analytical physics prior with a neural residual for unmodeled effects. A recurrent encoder infers the current hidden condition from recent interaction, and this estimate conditions both the residual model and the policy. Policy learning is performed via differentiable simulation using diverse learned dynamics sampled from the latent model. At deployment, these sampled conditions are replaced by conditions inferred online from recent real interaction, allowing the policy to recover recurring dynamics by recognition rather than residual re-fitting. Through extensive simulation studies and real-world experiments, we demonstrate that the framework improves policy performance under diverse unobserved disturbances. On real quadrotor trajectory tracking under changing wind, the policy recovers from recurring disturbances in roughly 1s, about 5x faster than online residual re-fitting. It also reduces large-disturbance hover and tracking errors by 65.7% and 53.3% over the state-of-the-art online adaptation approaches",
+          "title": "Dynamics-Aware Meta-Imitation for Generalization to Unseen Robotic Manipulation",
+          "abstract": "Imitation Learning aims to learn skills from extensive observations and demonstrations for robots, so it suffers from data scarcity and environment generalization. The existing methods predominantly focus on imitation from in-domain tasks and consequently struggle with generalization to unseen tasks. To bridge this generalization gap, we propose the \\textbf{D}ynamics-\\textbf{A}ware \\textbf{M}eta-\\textbf{I}mitation (DAMI) framework. By integrating meta-learning to construct a shared skill space, DAMI equips agents for rapid adaptation to novel tasks. We introduce the Visual-Motor Trajectory (VMT) module to capture complex spatio-temporal dynamics within the task latent space. Furthermore, we propose the Unpaired Unified Task (U2T) block to fuse unstructured multimodal observations. To coordinate these representations, we integrate a Task-Conditioned Feature Modulation (TCFM) mechanism customized for modulating low-level 3D features. By capturing intrinsic dynamics from a random complete reference demonstration, our framework learns the underlying task logic rather than memorizing static cues, ensuring effective generalization. Extensive experiments in both simulation and real-world settings demonstrate that our approach outperforms state-of-the-art baselines regarding direct inference on seen tasks and adaptation to unseen tasks via few-shot fine-tuning.",
           "authors": [
-            "Jiaxu Xing",
-            "Zhiyuan Zhu",
-            "Yunfan Ren",
-            "Ismail Geles",
-            "Yifan Zhai",
-            "Rudolf Reiter",
-            "Davide Scaramuzza"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-06-25T17:56:04+00:00",
-          "link": "https://arxiv.org/pdf/2606.27353v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Continual learning framework for improving robot policies using deployment experience",
-          "llm_evidence_cn": "利用部署经验持续改进机器人策略的框架",
-          "llm_evidence": "利用部署经验持续改进机器人策略的框架",
-          "canonical_evidence": "利用部署经验持续改进机器人策略的框架",
-          "llm_tldr_en": "Proposes a continual learning framework with variational neural dynamics to improve robot policies under changing dynamics by combining physics prior and neural residual.",
-          "llm_tldr_cn": "实际部署中环境动态不断变化，但大多数策略停止学习。本文提出变分神经动力学方法，结合物理先验和残差网络推断隐条件，利用部署经验持续改进策略。实验证明该方法能有效适应隐藏的动态变化，提升任务成功率。",
-          "llm_tldr": "实际部署中环境动态不断变化，但大多数策略停止学习。本文提出变分神经动力学方法，结合物理先验和残差网络推断隐条件，利用部署经验持续改进策略。实验证明该方法能有效适应隐藏的动态变化，提升任务成功率。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2606.27353v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2606.27475v1",
-          "source": "arxiv",
-          "title": "Support-Constrained RL Enables Real-World Policy Improvement without Real-World Experience",
-          "abstract": "Robots trained on real world data tend to be imprecise, slow, and brittle to perturbations. Improving these policies with reinforcement learning (RL) is an appealing alternative, but this process often requires expensive training in the real world. Performing policy improvement in simulation instead provides a far cheaper alternative, but unconstrained RL in simulation can exploit contact and dynamics mismatches, resulting in unsafe behaviors that do not transfer to hardware. Common forms of regularization can furthermore limit improvement by overconstraining to an imperfect behavior prior. In this work, we propose Support-Constrained Off-Domain REinforcement (SCORE), a real-to-sim-to-real framework that constrains RL in simulation to the support of a generative policy pretrained on real data. We instantiate this constraint through flow steering, restricting SCORE to actions the base policy can already produce, which ensures transferable behaviors while maximizing policy improvement. Improving a policy with SCORE requires minimal effort: it learns from sparse rewards, avoids distillation, and leaves the base policy untouched. Across eight real-world dexterous multi-fingered robotic manipulation tasks, SCORE improves average success rate from 37.8% to 89.9%, compared to 59.5% for the best baseline, and reaches success in 36.8% fewer steps than the base policy. Ultimately, through extensive experiments and ablations, we show that simulation can substantially improve real-world manipulation policies when policy optimization is appropriately constrained, introducing a new paradigm for real-to-sim-to-real policy improvement. Videos and code are available at https://weirdlabuw.github.io/score/.",
-          "authors": [
-            "Raymond Yu",
-            "William Huey",
-            "Mustafa Mukadam",
-            "Anusha Nagabandi",
-            "Abhishek Gupta"
+            "Zhenduo Shang",
+            "Xiyao Liu",
+            "Bohan Li",
+            "Xudong Wang",
+            "Teng Ren",
+            "Lianqing Liu",
+            "Zhi Han"
           ],
           "primary_category": "cs.RO",
           "categories": [
             "cs.RO",
             "cs.LG"
           ],
-          "published": "2026-06-25T18:52:27+00:00",
-          "link": "https://arxiv.org/pdf/2606.27475v1",
+          "published": "2026-07-17T11:50:03+00:00",
+          "link": "https://arxiv.org/pdf/2607.15880v1",
           "tags": [
             "keyword:pi-robotics",
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "policy improvement in simulation without real-world experience, directly addresses policy improvement",
-          "llm_evidence_cn": "在仿真中无需真实经验即可实现策略改进，直接针对策略改进",
-          "llm_evidence": "在仿真中无需真实经验即可实现策略改进，直接针对策略改进",
-          "canonical_evidence": "在仿真中无需真实经验即可实现策略改进，直接针对策略改进",
-          "llm_tldr_en": "SCORE constrains RL in simulation to a support set of real-world data, enabling safe policy improvement that transfers to hardware without real-world interaction.",
-          "llm_tldr_cn": "机器人策略通过强化学习改进时，真实世界训练昂贵且不安全。SCORE提出支持约束离域强化学习框架，在仿真中通过约束策略接近真实数据支持集，避免利用动力学差异产生不安全行为，同时实现有效策略改进，并能零样本迁移到真实硬件。",
-          "llm_tldr": "机器人策略通过强化学习改进时，真实世界训练昂贵且不安全。SCORE提出支持约束离域强化学习框架，在仿真中通过约束策略接近真实数据支持集，避免利用动力学差异产生不安全行为，同时实现有效策略改进，并能零样本迁移到真实硬件。",
+          "llm_evidence_en": "Dynamics-Aware Meta-Imitation for policy generalization in robotic manipulation",
+          "llm_evidence_cn": "动力学感知元模仿学习用于机器人操作策略泛化",
+          "llm_evidence": "动力学感知元模仿学习用于机器人操作策略泛化",
+          "canonical_evidence": "动力学感知元模仿学习用于机器人操作策略泛化",
+          "llm_tldr_en": "Proposes DAMI, a meta-imitation framework that integrates dynamics-awareness for rapid adaptation to unseen manipulation tasks.",
+          "llm_tldr_cn": "针对模仿学习数据稀缺和环境泛化困难的问题，本文提出了DAMI（动力学感知元模仿）框架。该框架通过元学习构建共享技能空间，并引入视觉运动轨迹模块和未配对统一任务模块，以捕获任务潜在空间中的复杂时空动态。实验证明DAMI能有效泛化到未见过的操作任务，为机器人技能学习提供了新思路。",
+          "llm_tldr": "针对模仿学习数据稀缺和环境泛化困难的问题，本文提出了DAMI（动力学感知元模仿）框架。该框架通过元学习构建共享技能空间，并引入视觉运动轨迹模块和未配对统一任务模块，以捕获任务潜在空间中的复杂时空动态。实验证明DAMI能有效泛化到未见过的操作任务，为机器人技能学习提供了新思路。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -563,19 +523,110 @@
           "matched_query_text": "policy improvement for robotics performance",
           "matched_requirement_id": "req-3",
           "selection_source": "carryover_cache",
-          "paper_id": "2606.27475v1",
+          "paper_id": "2607.15880v1",
           "carry_days": 1
         },
         {
-          "id": "2607.01111v1",
+          "id": "2607.14021v1",
           "source": "arxiv",
-          "title": "FAR: Failure-Aware Retry for Test-Time Recovery and Continual Policy Improvement",
-          "abstract": "Robot policies inevitably encounter failures when deployed in real environments. Naive retries often repeat the same mistakes, while many existing recovery methods rely on human intervention. In this paper, we propose Failure-Aware Retry (FAR), a framework that enables robots to learn from previous failures at test time, adapt their behavior accordingly, and eventually complete the task autonomously. FAR combines Failure-Contrastive Preference Adaptation, which constructs preference learning data from failures to steer the policy away from previously unsuccessful behaviors, with lightweight action perturbations during retries to encourage local exploration. We further incorporate successful recovery trajectories into a training loop for continual policy improvement. Experiments in both simulation and real-world manipulation tasks show that FAR substantially improves success rates and robustness, with average gains of 17.6% over the standard diffusion policy in simulation and 11.7% in the real world. In addition, FAR significantly improves data efficiency under both reset and timestep budgets during continual policy improvement by exploiting informative failure cases.",
+          "title": "Industrial Dexterity Benchmark: A Hardware-Software Benchmarking Platform for Industrial Dexterous Manipulation",
+          "abstract": "Dexterous manipulation remains a critical bottleneck in industrial automation; tasks such as cable routing, connector insertion, and precision assembly still rely heavily on manual labor despite decades of robotics research. This work presents a progression from classical, modular robotics pipelines toward an end-to-end multimodal imitation-learning framework for industrial dexterous manipulation. As a part of this work, we introduce three key contributions: a set of Industrial Dexterity Benchmark (IDB) boards aimed to mimic datacenter cable management, automotive cable harnesses, and gearbox assembly tasks; a scalable imitation learning framework (DAG-ROS); and a multimodal diffusion-based policy framework (AG-iDP3) that creates models fusing RGB images, point clouds, joint positions, and wrist-frame wrench data. Focusing on the datacenter cable manipulation board, we evaluate the performance of a task involving cleaning a single cable over variations of an end-to-end AI policy using 48 trials per configuration. The best performing configuration, a multimodal expansion Diffusion Policy (DP), includes a multi-view RGB image source passed through an R3M encoder and reaches a 78% grasp and insert combined task success rate. This performance marks a significant improvement over the 36% observed from the single-camera RGB DP baseline. Each of the tested configurations requires only approximately 100 teleoperated demonstrations per task phase. These results indicate that the correct learned policy can outperform classical vision and control robotic methods in robustness, generalization, and deployment efficiency, justifying a shift toward scalable robotic automation for high up-time industrial environments.",
           "authors": [
-            "Haoran Hao",
-            "Shahram Najam Syed",
-            "Jeffrey Ichnowski",
-            "Jeff Schneider"
+            "Honglu He",
+            "Jacob Laufer",
+            "Zhiwu Zheng",
+            "David Elkan-gonzalez",
+            "Raman Goyal",
+            "Xinyi Li",
+            "Su Lu",
+            "Mishek Musa",
+            "Berke Saat",
+            "Nicolas Tan",
+            "Colm Prendergast"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-07-15T16:54:28+00:00",
+          "link": "https://arxiv.org/pdf/2607.14021v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "multimodal diffusion-based policy framework (AG-) for industrial dexterous manipulation",
+          "llm_evidence_cn": "多模态扩散策略框架用于工业灵巧操作",
+          "llm_evidence": "多模态扩散策略框架用于工业灵巧操作",
+          "canonical_evidence": "多模态扩散策略框架用于工业灵巧操作",
+          "llm_tldr_en": "Introduces Industrial Dexterity Benchmark (IDB) and a multimodal diffusion-based policy (AG-) for industrial dexterous manipulation.",
+          "llm_tldr_cn": "针对工业自动化中灵巧操作的瓶颈，本文提出了工业灵巧度基准（IDB）和多模态扩散策略框架（AG-）。该工作从经典管道迈向端到端模仿学习，涉及电缆管理、汽车线束等任务。基准板提供了标准评估，而策略框架展示了在复杂装配任务上的潜力。",
+          "llm_tldr": "针对工业自动化中灵巧操作的瓶颈，本文提出了工业灵巧度基准（IDB）和多模态扩散策略框架（AG-）。该工作从经典管道迈向端到端模仿学习，涉及电缆管理、汽车线束等任务。基准板提供了标准评估，而策略框架展示了在复杂装配任务上的潜力。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2607.14021v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2607.17651v1",
+          "source": "arxiv",
+          "title": "HCPG-Flow:Hierarchical Contact-Progress Guidance for Flow-Policy Robot Manipulation",
+          "abstract": "Flow policies can represent multimodal action distributions for robot manipulation, yet a robot must execute one action at each control step. When several proposals are sampled, critic-based ranking makes data collection depend on value estimates over candidate actions that may be weakly represented in replay. We introduce HCPG-Flow, an analytic rollout-time selector that augments SAC-Flow with hierarchical, object-centric contact-progress guidance while preserving its actor and critic objectives. HCPG switches from end-effector approach to task progress after contact, scores each proposal by the first-order reduction of a task-relevant distance, standardizes scores within the candidate set, and executes a temperature-controlled action embedding. Across ten simulated tasks, HCPG improves mean success over SAC-Flow on both benchmarks, including a 9.5 percentage-point gain on Maniskill. Four physical tasks further show high success with a 17.4% reduction in successful completion steps.Project page: https://hitxraz.github.io/HCPG-Flow/",
+          "authors": [
+            "Guanghu Xie",
+            "Mingxu Li",
+            "Shuo Zhang",
+            "Yonglong Zhang",
+            "Yifan Yang",
+            "Yang Liu",
+            "Zongwu Xie",
+            "Baoshi Cao"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-07-20T08:04:35+00:00",
+          "link": "https://arxiv.org/pdf/2607.17651v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "hierarchical contact-progress guidance for flow-policy robot manipulation",
+          "llm_evidence_cn": "分层接触进度指导用于流策略机器人操作",
+          "llm_evidence": "分层接触进度指导用于流策略机器人操作",
+          "canonical_evidence": "分层接触进度指导用于流策略机器人操作",
+          "llm_tldr_en": "HCPG-Flow augments SAC-Flow with hierarchical contact-progress guidance for better action selection in robot manipulation.",
+          "llm_tldr_cn": "针对流策略中基于评论家的动作选择在数据依赖上的不足，本文提出HCPG-Flow，一种层次化接触进度指导的滚动时间选择器。该方法在接触后切换评估指标，利用任务相关距离的一阶减少评分，并执行温度控制动作。在操作任务上，HCPG-Flow提升了策略质量和效率。",
+          "llm_tldr": "针对流策略中基于评论家的动作选择在数据依赖上的不足，本文提出HCPG-Flow，一种层次化接触进度指导的滚动时间选择器。该方法在接触后切换评估指标，利用任务相关距离的一阶减少评分，并执行温度控制动作。在操作任务上，HCPG-Flow提升了策略质量和效率。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2607.17651v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2607.11874v1",
+          "source": "arxiv",
+          "title": "A Minimalist Retargeting-Guided Reinforcement Learning Recipe for Dexterous Manipulation",
+          "abstract": "Recent work in humanoid whole-body control has found success with a simple recipe: retarget human motion to robot kinematic references, then train policies via reinforcement learning (RL) to track them. But how does this recipe transfer to dexterous manipulation? The answer is not obvious, as manipulation involves complex, contact-rich dynamics and requires delicate regulation of contact modes and forces. We present REGRIND, a minimalist retargeting-guided RL pipeline that learns dexterous manipulation policies from a single human demonstration. REGRIND retargets human hand-object motion to a robot reference that preserves hand-object spatial and contact relationships, trains a residual RL policy in simulation to track object-centric keypoints along that reference, and transfers the resulting policy zero-shot to hardware with careful system identification. The resulting policies produce fluid, human-like behavior on two different multi-fingered hands across contact-rich tool-use tasks, including operating a pair of scissors and turning a screwdriver. Through systematic hardware experiments, we identify and analyze the key factors that govern sim-to-real transfer in dexterous manipulation, offering practical guidance for retargeting-based learning in contact-rich settings. Videos and code are available at https://yunhaifeng.com/REGRIND.",
+          "authors": [
+            "Yunhai Feng",
+            "Natalie Leung",
+            "Jiaxuan Wang",
+            "Lujie Yang",
+            "Haozhi Qi",
+            "Preston Culbertson"
           ],
           "primary_category": "cs.RO",
           "categories": [
@@ -583,28 +634,28 @@
             "cs.AI",
             "cs.LG"
           ],
-          "published": "2026-07-01T16:01:54+00:00",
-          "link": "https://arxiv.org/pdf/2607.01111v1",
+          "published": "2026-07-13T17:56:08+00:00",
+          "link": "https://arxiv.org/pdf/2607.11874v1",
           "tags": [
             "keyword:pi-robotics",
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "Test-time policy improvement from failures via preference adaptation",
-          "llm_evidence_cn": "通过失败偏好的测试时策略改进",
-          "llm_evidence": "通过失败偏好的测试时策略改进",
-          "canonical_evidence": "通过失败偏好的测试时策略改进",
-          "llm_tldr_en": "FAR enables robots to learn from failures at test time by combining failure-contrastive preference adaptation with action perturbations, achieving continual policy improvement and autonomous recovery.",
-          "llm_tldr_cn": "机器人策略在真实环境部署时难免失败，简单重试常重复错误。FAR提出失败感知重试框架，通过失败对比偏好调整使策略远离失败行为，结合轻量动作扰动促进局部探索，并将成功恢复轨迹纳入持续训练。最终实现测试时的持续策略改进和自主恢复，显著提升任务完成率。",
-          "llm_tldr": "机器人策略在真实环境部署时难免失败，简单重试常重复错误。FAR提出失败感知重试框架，通过失败对比偏好调整使策略远离失败行为，结合轻量动作扰动促进局部探索，并将成功恢复轨迹纳入持续训练。最终实现测试时的持续策略改进和自主恢复，显著提升任务完成率。",
+          "llm_evidence_en": "learns dexterous manipulation policies from human demo via RL",
+          "llm_evidence_cn": "通过强化学习从人类演示学习灵巧操作策略",
+          "llm_evidence": "通过强化学习从人类演示学习灵巧操作策略",
+          "canonical_evidence": "通过强化学习从人类演示学习灵巧操作策略",
+          "llm_tldr_en": "REGRIND retargets human hand-object motion to robot reference and trains residual RL policy in simulation to track object-centric targets, enabling dexterous manipulation from single demo.",
+          "llm_tldr_cn": "人类演示数据在机器人灵巧操作中的直接使用受限于接触动力学复杂。本文提出REGRIND，一种极简的重定向引导强化学习流水线：首先将人类手-物体运动重定向到保持空间和接触关系的机器人参考，然后在仿真中训练残差强化学习策略以跟踪物体中心目标。仅需单次人类演示，该方法即可学习灵巧操作策略，并通过实验展示了在多种物体上的有效性和泛化能力。",
+          "llm_tldr": "人类演示数据在机器人灵巧操作中的直接使用受限于接触动力学复杂。本文提出REGRIND，一种极简的重定向引导强化学习流水线：首先将人类手-物体运动重定向到保持空间和接触关系的机器人参考，然后在仿真中训练残差强化学习策略以跟踪物体中心目标。仅需单次人类演示，该方法即可学习灵巧操作策略，并通过实验展示了在多种物体上的有效性和泛化能力。",
           "llm_tags": [
             "query:pi-robotics"
           ],
           "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
           "selection_source": "carryover_cache",
-          "paper_id": "2607.01111v1",
+          "paper_id": "2607.11874v1",
           "carry_days": 1
         }
       ]

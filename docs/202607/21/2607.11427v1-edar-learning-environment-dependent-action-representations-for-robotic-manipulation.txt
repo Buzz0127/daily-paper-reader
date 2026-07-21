@@ -1,0 +1,1970 @@
+EDAR: Learning Environment-Dependent Action Representations for Robotic
+Manipulation
+Yuecheng Xu1†, Tong Yang2,3†, Jingkai Jia1, Chi Zhang3,
+Xuelong Li3‡, Wenqiang Zhang1,2‡
+1College of Intelligent Robotics and Advanced Manufacturing, Fudan University
+2Shanghai Key Lab of Intelligent Information Processing,
+College of Computer Science and Artificial Intelligence, Fudan University
+3TeleAI, China Telecom
+{ycxu25, tongyang23}@m.fudan.edu.cn, wqzhang@fudan.edu.cn
+Abstract
+Learning effective action representations is critical for
+robotic manipulation, where raw control trajectories are of-
+ten noisy, redundant, and difficult to model directly. Ex-
+isting methods mainly encode the structure of the action
+stream itself, treating the role of actions in the environ-
+ment as implicit. Yet manipulation is about changing the
+world: the same action segment can induce different out-
+comes under different scene contexts, making action se-
+mantics inherently environment-dependent.
+We propose
+EDAR, an Environment-Dependent Action Representation
+that grounds action tokens in both executable control struc-
+ture and expected visual consequences. By coupling mo-
+tor commands with their environment-conditioned effects,
+EDAR encourages the learned action space to capture in-
+teraction semantics rather than merely command-level pat-
+terns. Experiments on simulated and real-robot manipula-
+tion benchmarks demonstrate that EDAR improves down-
+stream policy learning, especially in long-horizon manipu-
+lation. These results highlight the importance of grounding
+action representations in executable control structure and
+environment-conditioned visual change.
+1. Introduction
+Raw action trajectories, especially those collected from
+demonstrations or teleoperation, are often noisy, redun-
+dant, and uneven. They contain high-frequency jitter, task-
+irrelevant micro-corrections, and embodiment-specific con-
+trol patterns, making them difficult to model directly as a
+reliable interface for policy learning. This issue becomes
+more pronounced in manipulation, where policies must gen-
+†Equal contribution.
+‡Corresponding authors.
+erate temporally coherent and physically feasible behaviors
+over long horizons. As a result, learning effective action
+representations has become an important problem in robotic
+manipulation. A good action representation should provide
+a compact and learnable interface between perception and
+control, while preserving the information necessary for ac-
+curate and robust task execution. The central question is
+therefore: what kind of action representation is appropriate
+for robotic manipulation?
+Most existing action representations [24, 33] are learned
+primarily from the action stream itself. They may differ in
+form, ranging from compact trajectory codes to action to-
+kens or frequency-based representations, but they typically
+share a trajectory-structure-based view: the goal is to pre-
+serve or regularize the organization of the control trajec-
+tory, such as its geometry, temporal variation, smoothness,
+or predictability. This view is useful for reducing redun-
+dancy and making actions easier to model, but it remains
+largely action-only. It describes how a command sequence
+is structured, while leaving its role in the environment im-
+plicit. This is limiting for manipulation, where an action
+is not merely a motor signal but a means of changing the
+world. The same gripper-closing and rightward-motion seg-
+ment may be inconsequential in free space, grasp an object
+under contact, or close a drawer when aligned with a han-
+dle, as shown in Fig. 1. Such cases suggest that action se-
+mantics are not determined by the command alone, but by
+the environment-conditioned transition it induces. There-
+fore, an appropriate action representation for manipulation
+should not only encode the execution pattern of a command,
+but also be grounded in its expected effect on the scene.
+In this work, we argue that learning environment-
+dependent action representations requires more than just
+feeding visual context into an action encoder.
+Under
+an action-reconstruction objective alone, the model has a
+arXiv:2607.11427v1  [cs.RO]  13 Jul 2026
+
+
+Existing
+Action
+Encoder 
+ 𝑎଴
+ 𝑎଴
+ 𝑎ଵ
+ 𝑎ଵ 𝑎ଶ
+ 𝑎ଶ 𝑎ଷ
+ 𝑎ଷ
+Free space
+Object Motion
+Drawer Closing
+EDAR
+Action
+Encoder
+EDAR
+Action
+Encoder
+Trajectory-only Action Representation 
+Environment-dependent Action Representation 
+𝑎଴
+𝑎଴
+𝑎ଵ
+𝑎ଵ𝑎ଶ
+𝑎ଶ
+𝑎ଷ
+𝑎ଷ
+ 𝑎଴
+ 𝑎଴
+ 𝑎ଵ
+ 𝑎ଵ 𝑎ଶ
+ 𝑎ଶ 𝑎ଷ
+ 𝑎ଷ
+ 𝑎଴
+ 𝑎଴
+ 𝑎ଵ
+ 𝑎ଵ 𝑎ଶ
+ 𝑎ଶ 𝑎ଷ
+ 𝑎ଷ
+ 𝑎଴
+ 𝑎଴
+ 𝑎ଵ
+ 𝑎ଵ 𝑎ଶ
+ 𝑎ଶ 𝑎ଷ
+ 𝑎ଷ
+ 𝑎଴
+ 𝑎଴
+ 𝑎ଵ
+ 𝑎ଵ 𝑎ଶ
+ 𝑎ଶ 𝑎ଷ
+ 𝑎ଷ
+Supervised
+By
+Action
+Reconstruction
+Action
+Reconstruction
+Supervised
+By
+Supervised
+By
+Action
+Reconstruction
+Action
+Reconstruction
+Action
+Reconstruction
+Action
+Reconstruction
+Action
+Reconstruction
+Action
+Reconstruction
+Visual
+Consequence 
+Visual
+Consequence 
+Visual
+Consequence 
+Free space
+Object Motion
+Drawer Closing
+ C
+Figure 1. Conceptual comparison. The same action segment can induce different effects under different scene contexts, and should
+therefore not be represented as a context-invariant representation. Left: trajectory-only action representation collapses these environment-
+dependent effects into the same latent action. Right: EDAR conditions the action representation on the current scene and grounds it with
+visual consequences, separating actions according to their context-dependent effects.
+shortcut: it can encode sufficient trajectory information
+without relying on the visual condition. As a result, the la-
+tent space remains organized primarily by command-level
+similarity: two action segments with similar motor patterns
+may be mapped nearby even when they play different roles
+in different scenes. To prevent this collapse, the representa-
+tion must be constrained by what the action does to the envi-
+ronment. We therefore introduce EDAR, an Environment-
+Dependent Action Representation that learns latent action
+tokens from both execution and effect. EDAR preserves
+the original control trajectory through action reconstruction,
+while simultaneously requiring the same tokens to model
+the visual consequence of executing the action under the
+current scene context. By letting action tokens interact with
+image tokens in a shared token space, EDAR allows scene
+context and predicted environmental change to shape the ac-
+tion embedding itself, rather than serving as external condi-
+tioning signals. This yields an action representation that is
+not merely compact, but grounded in interaction semantics.
+We conduct extensive experiments in both simulated and
+real-world manipulation settings. On diverse standard sim-
+ulation benchmarks including LIBERO [16], CALVIN [21],
+and Meta-World [41], we compare EDAR-based policies
+with competitive visuomotor systems. These include strong
+VQ-based VLA/LLM-style approaches (e.g., FAST, VQ-
+VLA) as well as continuous-control baselines.
+Across
+these benchmarks, EDAR-based policies achieve higher
+success rates or longer completed task sequences under
+matched training settings, demonstrating that environment-
+dependent action representations provide a more effective
+policy interface than trajectory-centric alternatives. We fur-
+ther validate EDAR on challenging real-world long-horizon
+manipulation tasks, where it consistently improves over the
+baseline system under the same training budget.
+These
+results establish the empirical advantage of grounding ac-
+tion representations in both executable control structure and
+environment-conditioned visual consequences.
+In summary, our contributions are as follows:
+• We formulate robotic action representation from an
+environment-dependent perspective, where action repre-
+sentations explicitly capture both control structure and
+scene-conditioned visual effects.
+• We propose EDAR (Environment-Dependent Action
+Representation), a latent action representation framework
+that combines action reconstruction with visual conse-
+quence modeling in a shared image-action token space.
+• We show that EDAR improves downstream policy learn-
+ing on diverse simulated and real-robot manipulation
+benchmarks, with especially strong gains in challenging
+long-horizon manipulation.
+2. Related Work
+Vision-Language-Action Models.
+Vision-Language-
+Action (VLA) models provide a powerful paradigm for
+grounding visual observations and language instructions
+into robot actions. RT-style systems demonstrated that large
+sequence models and vision-language priors can be adapted
+to robotic control [4, 5], and subsequent models have ad-
+vanced this direction through larger heterogeneous datasets,
+stronger multimodal backbones, efficient adaptation, and
+improved action decoders [3, 8, 11, 18, 25, 29, 31, 37].
+Despite these advances, the action representation remains
+a central interface in VLA policies: it defines what the
+model predicts, how action sequences are structured, and
+how demonstrations are converted into learnable supervi-
+sion. Thus, beyond scaling data and backbones, design-
+ing better action representations is an important path toward
+more effective robotic policies. This motivates action rep-
+resentation learning, which aims to replace raw control tra-
+jectories with more structured policy interfaces.
+
+
+Action Representation Learning.
+Prior work has ex-
+plored various ways to convert raw control trajectories into
+more learnable action interfaces.
+Discrete or tokenized
+approaches represent actions with frequency-space tokens,
+spline or control-point tokens, vector-quantized codes, la-
+tent skills, or hierarchical token spaces for long-horizon
+behavior [9, 10, 17, 19, 22, 24, 35, 46]. Continuous ap-
+proaches instead preserve the structure of action chunks
+or latent trajectories, enabling temporally coherent predic-
+tion and planning in continuous action spaces [33, 39, 45].
+Although these methods differ in whether the representa-
+tion is discrete or continuous, they largely share an action-
+stream-centric view: the representation is learned to pre-
+serve, compress, or regularize the structure of the control
+trajectory itself. As a result, the learned action space is
+mainly organized by command-level properties such as ge-
+ometry, smoothness, frequency content, reconstruction fi-
+delity, or multiscale decomposition, while the environment-
+dependent role of the action remains implicit. EDAR in-
+stead focuses on this missing dimension. It uses continuous
+latent action tokens, but its key contribution is to ground
+those tokens in the visual consequences induced by actions
+under the current scene context, allowing environment-
+conditioned effects to shape the action representation be-
+yond trajectory structure alone.
+World Models for Robot Learning. Recent robot learn-
+ing methods increasingly use future-aware supervision, in-
+cluding future observation prediction, video prediction, and
+latent world modeling [6, 12, 14, 40, 47]. JEPA-style meth-
+ods perform prediction in latent space to emphasize abstract
+dynamics over pixel-level details [1, 2, 20, 30, 32]. These
+methods demonstrate the value of future prediction for pol-
+icy learning, planning, and action–world modeling. EDAR
+is related, but addresses a separate question. Existing world-
+model approaches typically use actions to condition, gener-
+ate, or reason about future world states; EDAR instead uses
+predicted visual consequences to organize the latent action
+space. This distinction is key to our work: future dynamics
+are not modeled for their own sake, but are used to make
+action representations environment-dependent.
+3. Method
+3.1. Overview
+EDAR aims to learn an action representation whose seman-
+tics depend on the environment in which the action is exe-
+cuted. Given an action chunk At = {at+h}H−1
+h=0 , current
+multi-view observations It = {Im
+t }M
+m=1, and future ob-
+servations after executing the chunk It+H = {Im
+t+H}M
+m=1,
+where H denotes the chunk horizon and M denotes the
+number of views, our goal is to encode the action chunk
+into a fixed number of continuous latent action tokens Zt =
+{zt,i}K
+i=1, where K ≪H. These latent tokens serve as the
+action interface for downstream policy learning.
+A useful action representation for manipulation should
+be both executable and environment-dependent: it must re-
+cover the original control trajectory while reflecting the role
+of the action under the current scene context. These re-
+quirements expose two potential degeneracies. Action-only
+learning can map similar command trajectories to similar la-
+tents despite different environmental effects. Simply adding
+visual context is insufficient: action reconstruction alone
+does not force the context to shape the action space.
+EDAR addresses these issues by making latent action to-
+kens responsible for both execution and effect as shown in
+Fig. 2. Specifically, the current scene participates in latent
+formation through shared attention between action tokens,
+visual tokens, and learnable register tokens. The resulting
+latent tokens are then trained with two complementary sig-
+nals: action reconstruction preserves executability, while vi-
+sual consequence prediction forces the same tokens to ex-
+plain how the scene changes after the action is executed. In
+this way, environmental change is not merely provided as
+input, but directly shapes the learned action space.
+3.2.
+Environment-Dependent
+Representation
+Learning
+We begin by extracting visual tokens from the current multi-
+view observations using a pretrained image encoder Eim.
+The tokens from all views are concatenated as
+Xt = [Eim(I1
+t ); . . . ; Eim(IM
+t )].
+(1)
+The future visual target is similarly extracted in the same
+feature space:
+Xt+H = [Eim(I1
+t+H); . . . ; Eim(IM
+t+H)].
+(2)
+We use visual features rather than pixels as the target, so that
+the supervision emphasizes task-relevant semantic scene
+change and interaction dynamics instead of low-level ap-
+pearance reconstruction.
+To form the latent action representation, EDAR jointly
+encodes the action chunk and the current visual context. We
+instantiate the encoder with a Transformer fθ and a set of
+learnable register tokens R = {ri}K
+i=1. The action sequence
+is first projected into action tokens, which are then concate-
+nated with the register tokens and the current visual tokens.
+The output states corresponding to the register tokens define
+the latent action tokens:
+Zt = fθ([At; R; Xt]).
+(3)
+The register tokens provide a fixed-size interface for
+variable-length action chunks, while shared self-attention
+allows action content and scene context to interact before
+the latent representation is formed. This design lets the la-
+tent action tokens be formed with respect to the current en-
+vironment, rather than being determined solely by the struc-
+ture of the action chunk.
+
+
+Environment-Dependent Representation Learning
+Transformer Encoder 
+𝑿𝒕
+𝑨𝒕
+𝑹
+𝒁𝒕
+Transformer Decoder 
+𝑿𝒕
+෡𝑨𝒕
+𝒁𝒕
+𝑽
+෡𝑿𝒕+𝑯
+Dual-Target Decoding with 
+Specialized Branches
+Shared Self-Attention
+𝐅𝐅𝐍𝐚𝐜𝐭
+𝐅𝐅𝐍𝐯𝐢𝐬
+𝒀𝒍+𝟏
+𝒀𝒍
+Figure 2. Overview of Environment-Dependent Action Representation (EDAR). EDAR encodes the action chunk At, current visual
+tokens Xt, and learnable register tokens R into continuous latent action tokens Zt. The decoder reconstructs the original action chunk
+ˆAt while predicting future visual tokens ˆ
+Xt+H, forcing the latent action representation to capture both executable control structure and
+environment-conditioned visual consequences. A shared-attention decoder with specialized FFNact and FFNvis branches handles the
+heterogeneous action and visual targets.
+However, context-conditioned latent formation alone is
+not sufficient. If the only objective is to reconstruct At, the
+representation can still be optimized around trajectory ge-
+ometry, temporal variation, or other command-level proper-
+ties. To make environment dependence intrinsic to the latent
+space, EDAR requires Zt to explain not only the executed
+command, but also its consequence under the current scene
+context. A decoder gϕ takes Zt, Xt, and a learnable query
+embedding V as input, and predicts both the original action
+chunk and the future visual tokens:
+( ˆAt, ˆXt+H) = gϕ(Zt, V, Xt).
+(4)
+Here, V serves as a learnable action query that helps decode
+the latent tokens into the executable action chunk.
+The action reconstruction loss preserves the executable
+structure of the latent representation:
+Lact = 1
+H
+H−1
+X
+h=0
+∥at+h −ˆat+h∥2
+2 .
+(5)
+The visual consequence loss encourages the latent to cap-
+ture the environment-conditioned effect of the action:
+Leff = 1
+M
+M
+X
+m=1
+
+1 −cos
+ sg(Xm
+t+H), ˆXm
+t+H
+
+,
+(6)
+where M is the number of multi-view observations, sg(·)
+denotes stop-gradient, and cos(·, ·) denotes cosine similar-
+ity.
+The stop-gradient operation keeps the visual target
+space fixed, so that the action representation is shaped by
+pretrained visual semantics.
+The full representation learning objective is
+LEDAR = Lact + λLeff.
+(7)
+The two terms remove different degeneracies.
+Without
+Lact, the latent may become a representation of scene
+change without remaining a reliable action interface. With-
+out Leff, the latent may collapse back to an action-only tra-
+jectory code. Their combination makes Zt both executable
+and environment-dependent.
+3.3.
+Dual-Target
+Decoding
+with
+Specialized
+Branches
+The two learning signals in EDAR correspond to heteroge-
+neous output spaces: action reconstruction is performed in
+continuous control space, while visual consequence predic-
+tion is performed in pretrained visual feature space. A naive
+decoder that applies the same token-wise transformation to
+both targets can introduce optimization conflict, since the
+two targets require different output structures and levels
+of abstraction. At the same time, using two separate de-
+coders would weaken the coupling between execution and
+effect, reducing the ability of visual consequence prediction
+to shape the same latent action space used for control.
+To balance these requirements, EDAR uses a decoder
+with shared attention and token-specialized feed-forward
+branches. The latent action tokens Zt and current visual
+tokens Xt are first projected into a common hidden space,
+Y 0 = [Πz(Zt); Πx(Xt)].
+(8)
+At each decoder layer, all tokens interact through a shared
+self-attention module, while the feed-forward update is spe-
+
+
+cialized according to token type:
+˜Y ℓ= Attnℓ(Y ℓ),
+Y ℓ+1 =
+h
+FFNℓ
+act( ˜Y ℓ
+Z); FFNℓ
+vis( ˜Y ℓ
+X)
+i
+.
+(9)
+Here, ˜Y ℓ
+Z and ˜Y ℓ
+X denote the hidden states at latent-action-
+token and visual-token positions. After the final layer, sep-
+arate output heads predict the two targets:
+ˆAt = oact(Y L
+Z ),
+ˆXt+H = ovis(Y L
+X ).
+(10)
+This design keeps the two targets coupled through shared
+attention, while allowing each target to use a specialized
+feed-forward transformation. As a result, the decoder sup-
+ports both control fidelity and consequence modeling with-
+out forcing a single output head to serve incompatible pre-
+diction spaces. Importantly, the future prediction branch
+is not used to build a pixel-level world model or to per-
+form rollout-based planning. Its role is to provide an effect-
+sensitive learning signal that organizes the latent action
+space according to environment-conditioned consequences.
+3.4. Downstream Policy Evaluation
+After representation learning, EDAR can be used as an ac-
+tion interface for downstream policies. Instead of predicting
+raw action chunks, the policy predicts latent action tokens
+Zt, which are then decoded into executable controls by the
+learned action decoder. This evaluation tests whether the
+environment-dependent latent space is easier to model than
+the raw action space or an action-only latent space.
+We instantiate the downstream policy with a flow-
+matching policy in the EDAR latent space. Given visual
+observations and language instruction, the policy receives
+a visuolinguistic condition c. Let Z1 = Zt denote the tar-
+get latent action tokens obtained from EDAR, and sample a
+Gaussian noise endpoint Z0 ∼N(0, I). For interpolation
+time τ ∈[0, 1], define:
+Zτ = (1 −τ)Z0 + τZ1.
+(11)
+The policy learns a velocity field vψ(Zτ, τ, c) in latent
+space by minimizing:
+LFM = Eτ, Z0, Z1
+hvψ(Zτ, τ, c) −(Z1 −Z0)
+2
+2
+i
+.
+(12)
+At inference, the policy denoises Gaussian noise into la-
+tent action tokens via the learned velocity field. The EDAR
+decoder then maps the generated latent tokens back to ex-
+ecutable robot controls. The downstream policy is not the
+main contribution of EDAR; rather, it serves as an evalua-
+tion protocol for whether the learned action representation
+provides a more effective policy interface.
+4. Experiments
+We design our experiments to test the central hypothesis
+of EDAR: action representations for robotic manipulation
+should be environment-dependent. Specifically, we exam-
+ine whether environment-dependent action representations
+provide a more effective policy interface than trajectory-
+centric alternatives.
+We organize the experiments around three questions:
+• Environment-dependent advantage. Does EDAR out-
+perform trajectory-centric action representations under
+matched training settings?
+• Robustness across settings.
+Are the gains consistent
+across different environments, task distributions, and pol-
+icy backbones?
+• Long-horizon and real-world stability.
+Does EDAR
+improve execution stability in long-horizon and real-
+world manipulation tasks under the same training budget?
+4.1. Simulation Experiments
+We
+evaluate
+EDAR
+in
+simulation
+on
+three
+widely
+used robotic manipulation benchmarks:
+LIBERO [16],
+CALVIN [21], and Meta-World [41].
+LIBERO eval-
+uates language-conditioned manipulation across multiple
+task suites with different forms of generalization, while
+CALVIN focuses on long-horizon language-conditioned
+control in a changing tabletop environment, and Meta-
+World focuses on multi-task manipulation across tasks
+of varying difficulty.
+Together, these benchmarks allow
+us to test both the controlled advantage of environment-
+dependent action representation and its robustness across
+different task structures.
+4.1.1. Evaluation on the LIBERO Benchmark
+Setup.
+We first evaluate EDAR on LIBERO [16], which
+includes four manipulation suites testing generalization
+over spatial relations, object categories, task goals, and
+long-horizon behaviors.
+Our controlled study uses SmolVLA [29] as a common
+backbone, keeping the data, preprocessing, and training
+protocol fixed while varying only the action interface. We
+compare the original SmolVLA action head with trajectory-
+tokenization alternatives, including SmolVLA-FAST and
+SmolVLA-VQ-VLA, and our environment-dependent con-
+tinuous latent action tokens. To isolate the role of envi-
+ronment dependence, we further include SmolVLA-VAE,
+which keeps the learned latent-action interface but removes
+environment information and visual consequence supervi-
+sion. We also integrate EDAR into the stronger diffusion-
+based π0 model [3]. Representative VLA systems are re-
+ported as contextual baselines, since they differ in back-
+bone, pretraining data, action heads, and training recipes.
+
+
+Table 1. Comparison on LIBERO. We report success rates (%) on the four LIBERO task suites. Methods are organized by their role in
+the evaluation: representative VLA systems are provided for context, while controlled comparisons isolate the effect of replacing the action
+interface with EDAR under the same policy backbone. Avg. denotes the average success rate.
+Method
+Spatial
+Object
+Goal
+Long
+Avg.
+Octo [31]
+78.9
+85.7
+84.6
+51.1
+75.1
+OpenVLA [11]
+84.7
+88.4
+79.2
+53.7
+75.9
+VQ-VLA [35]
+–
+–
+75.2
+60.0
+–
+Diffusion Policy [7]
+78.3
+92.5
+68.3
+50.5
+72.4
+VLA-4D [44]
+93.8
+92.8
+95.6
+86.5
+92.2
+CogACT [13]
+97.2
+98.0
+90.2
+88.8
+93.2
+OmniSAT [19]
+94.1
+98.7
+94.6
+86.0
+93.4
+SmolVLA-FAST
+87.0
+93.0
+90.0
+68.0
+84.5
+SmolVLA-VQ-VLA
+90.0
+94.0
+86.0
+71.0
+85.3
+SmolVLA [29]
+90.0
+96.0
+92.0
+71.0
+87.3
+SmolVLA-VAE
+90.8
+97.6
+92.8
+75.0
+89.1
+SmolVLA-EDAR (Ours)
+94.6
+98.0
+93.8
+80.6
+91.8
+π0-FAST [24]
+96.4
+96.8
+88.6
+60.2
+85.0
+π0 [3]
+96.8
+98.8
+95.8
+85.2
+94.2
+π0-EDAR (Ours)
+98.2
+99.2
+96.8
+94.2
+97.1
+Results.
+Table 1 reports the LIBERO results. Under the
+controlled SmolVLA setting, EDAR improves the average
+success rate from 87.3% to 91.8% (+4.5) without chang-
+ing the backbone, data, or training protocol, with the largest
+gain on LIBERO-Long from 71.0% to 80.6% (+9.6).
+It also outperforms SmolVLA-FAST and SmolVLA-
+VQ-VLA across all four suites, providing a system-level
+comparison against representative action-interface alterna-
+tives under the same VLA backbone and demonstrating the
+effectiveness of an environment-dependent continuous la-
+tent interface for downstream policy learning.
+The comparison with SmolVLA-VAE further shows that
+while a learned latent-action interface is already beneficial,
+explicitly conditioning it on the environment and supervis-
+ing it with visual consequences provides additional benefits,
+improving the average success rate from 89.1% to 91.8%
+and LIBERO-Long from 75.0% to 80.6%.
+EDAR also improves the stronger π0 backbone, increas-
+ing the average success rate from 94.2% to 97.1%, with the
+largest gain on LIBERO-Long from 85.2% to 94.2% (+9.0),
+suggesting that EDAR can serve as a plug-in action repre-
+sentation component across different VLA backbones.
+Overall, these results support the central claim that
+effective manipulation action interfaces should preserve
+executable control structure while being grounded in
+environment-conditioned consequences.
+4.1.2. Evaluation on the CALVIN ABCD→D Benchmark
+Setup.
+We
+further
+evaluate
+EDAR
+on
+CALVIN
+ABCD→D [21],
+a long-horizon language-conditioned
+manipulation benchmark. Each episode contains a chain
+of five instructions executed without resetting the environ-
+ment, so later subtasks depend on the scene state produced
+by earlier actions. This makes CALVIN a suitable testbed
+for evaluating whether an action representation remains
+reliable across compounding scene transitions.
+We
+integrate
+EDAR
+into
+two
+policy
+backbones:
+SmolVLA [29] and FLOWER-VLA [28].
+In both
+cases, EDAR replaces the original action interface with
+environment-dependent latent action tokens, while the re-
+maining policy architecture and training protocol are kept
+matched to the corresponding baseline.
+For FLOWER-
+VLA, we report both the original published results as ex-
+ternal context and our FSDP reproduction as the controlled
+baseline for comparison with FLOWER-VLA-EDAR.
+Results.
+Table 2 reports the CALVIN results.
+In the
+matched SmolVLA setting, EDAR improves the average
+completed sequence length from 3.34 to 3.80. The improve-
+ment becomes larger as the instruction chain progresses,
+with gains of +1.9, +5.3, +10.2, +13.8, and +14.2 points
+from 1/5 to 5/5 success. This indicates that EDAR is espe-
+cially beneficial when the policy must remain coherent over
+multiple environment transitions.
+EDAR also improves the stronger FLOWER-VLA back-
+bone under the controlled FSDP reproduction, increasing
+the average completed sequence length from 4.58 to 4.75.
+The gains are consistent across all chain positions, from
++1.7 at 1/5 to +3.4 at 5/5.
+Since the original published
+FLOWER-VLA numbers come from a different distributed-
+training pipeline, we treat them as external context rather
+than the primary controlled comparison.
+Overall, CALVIN confirms the long-horizon benefit of
+environment-dependent action representation. By ground-
+ing latent action tokens in expected scene changes, EDAR
+improves not only local instruction execution but also ro-
+bustness over extended action chains where earlier actions
+determine the states faced by later ones.
+
+
+Table 2. Comparison on CALVIN ABCD→D. We report the success rate (%) of completing at least k consecutive instructions over 1000
+five-instruction chains, and the average completed sequence length. The upper block lists representative baselines for context; for these
+rows, Avg. Len. is the scalar reported by the original paper and is not recomputed from rounded per-step percentages. The lower block
+reports our controlled comparisons, where each baseline and EDAR variant share the same training data, schedule, and evaluation protocol.
+∗denotes models with pretraining.
+Method
+1/5
+2/5
+3/5
+4/5
+5/5
+Avg. Len.
+Diff-P-CNN [7]
+86.3
+72.7
+60.1
+51.2
+41.7
+3.16
+RoboFlamingo [15]
+96.4
+89.6
+82.4
+74.0
+66.0
+4.09
+DeeR-VLA [42]
+99.1
+93.3
+82.1
+74.6
+63.8
+4.13
+GR-1 [38]
+94.9
+89.6
+84.4
+78.9
+73.1
+4.21
+MDT [27]
+98.6
+95.8
+91.6
+86.2
+80.1
+4.52
+MoDE [26]
+97.1
+92.5
+87.9
+83.5
+77.9
+4.39
+MINT-4B [10]
+97.4
+94.2
+91.7
+88.2
+86.1
+4.57
+FLOWER-VLA [28]
+98.9
+96.7
+93.9
+90.2
+85.5
+4.62
+FLOWER-VLA∗[28]
+99.2
+96.9
+96.9
+92.3
+88.3
+4.67
+SmolVLA [29]
+92.5
+78.9
+65.1
+53.2
+44.7
+3.34
+SmolVLA-EDAR (Ours)
+94.4
+84.2
+75.3
+67.0
+58.9
+3.80
+FLOWER-VLA (FSDP repro.)
+98.0
+95.1
+91.7
+88.2
+84.7
+4.58
+FLOWER-VLA-EDAR (Ours)
+99.7
+98.2
+96.0
+92.5
+88.1
+4.75
+Table 3. Comparison on Meta-World. We report success rates (%) across tasks grouped by difficulty. Avg. denotes the unweighted mean
+over the four difficulty groups.
+Method
+Easy
+Medium
+Hard
+Very Hard
+Avg.
+Diffusion Policy [7]
+23.1
+10.7
+1.9
+6.1
+10.5
+TinyVLA-H [36]
+77.6
+21.5
+11.4
+15.8
+31.6
+π0 [3]
+80.4
+40.9
+36.7
+44.0
+50.5
+SmolVLA(0.45B,our repro.)
+88.6
+71.8
+55.0
+62.0
+69.3
+SmolVLA-EDAR (Ours)
+89.3
+76.4
+78.3
+78.0
+80.5
+4.1.3. Evaluation on the Meta-World Benchmark
+Setup.
+We further evaluate EDAR on Meta-World [41],
+a multi-task robotic manipulation benchmark. Following
+prior work, we group tasks into four difficulty levels: Easy,
+Medium, Hard, and Very Hard, and report the unweighted
+average over the four groups.
+We use SmolVLA as the policy backbone for con-
+trolled evaluation. EDAR is integrated into our reproduced
+SmolVLA-0.45B baseline by replacing its original continu-
+ous action interface with latent action tokens, while keeping
+the data processing, training schedule, evaluation code, and
+checkpoint selection unchanged. This allows us to isolate
+the effect of the proposed action representation.
+We also include results from prior work, including Dif-
+fusion Policy [7], TinyVLA [36], and π0 [3], as external
+context. These numbers may differ in model scale, train-
+ing data, preprocessing, and evaluation details, and are not
+intended as strictly controlled comparisons.
+Results.
+Table 3 reports the Meta-World results. Under
+the controlled SmolVLA setting, EDAR improves the aver-
+age success rate from 69.3% to 80.5%, yielding a consistent
+absolute gain of +11.2 points. The improvement is modest
+on Easy tasks (+0.7), but becomes substantially larger on
+Medium (+4.6), Hard (+23.3), and Very Hard (+16.0) tasks.
+This shows that replacing the original SmolVLA action in-
+terface with EDAR provides clear gains, especially in more
+challenging task groups.
+Compared with external baselines from prior work,
+SmolVLA-EDAR achieves the highest average perfor-
+mance in this table. These results indicate that EDAR re-
+mains effective on Meta-World, a broad multi-task manipu-
+lation benchmark with diverse task difficulties.
+4.2. Long-Horizon Real-World Manipulation
+Setup.
+We evaluate EDAR on four long-horizon real-
+world manipulation tasks: Stack-5 (stack four cubes se-
+quentially on a red base cube to form a five-cube tower),
+Drawer (open the top drawer, place a tissue inside, and
+close it; then open the middle drawer and remove a sponge),
+Rope (thread a rope through two rings sequentially), and
+Flower (pick and place two roses into a vase, one at a
+time). These tasks require sequential completion of multi-
+ple manipulation stages, where later stages strongly depend
+on the intermediate scene state produced by earlier actions,
+as shown in Figure 4. The experiments are conducted with
+a single ARX R5 arm equipped with one third-person cam-
+era and one wrist camera. For each task, we collect 100
+teleoperated demonstrations and train a task-specific policy.
+
+
+0
+20
+40
+60
+80
+100
+normalized average score
+29
+43
+53
+(a) Stack-5
+0
+20
+40
+60
+80
+100
+49
+61
+69
+(b) Drawer
+0
+20
+40
+60
+80
+100
+62
+70
+74
+(c) Rope
+0
+20
+40
+60
+80
+100
+40
+68
+80
+(d) Flower
+0
+20
+40
+60
+80
+100
+45
+60.5
+69
+Average
+SmolVLA
+SmolVLA-VAE
+SmolVLA-EDAR
+Figure 3. Real-world long-horizon manipulation results. We report normalized average score on four real-world tasks: Stack-5, Drawer,
+Rope, and Flower, together with the average score across tasks.
+Task Progress
+(a) Stack-5: stack blocks in yellow-green-orange-blue-red order.
+(b) Drawer: open the top drawer, put the tissue into the top drawer and
+close it; open the middle drawer, take the sponge out and close the drawer.
+(c) Rope: pick the rope, thread it into the first ring, drop it, pick it from the
+other side of the ring, and thread it into the second ring.
+(d) Flower: pick one flower and insert it into the vase; pick the remaining
+flower and insert it into the vase.
+Figure 4. Qualitative results of long-horizon real-world tasks.
+Key frames for the four long-horizon tasks. Each subfigure shows
+the progression from start to completion.
+As the baseline, SmolVLA is trained independently
+on each task.
+For the latent-action variants, we com-
+pare SmolVLA-VAE, an environment-independent VAE-
+style action representation, and SmolVLA-EDAR, which
+uses action reconstruction and visual consequence ground-
+ing. Both representations are first pretrained on Open X-
+Embodiment [23] following the VQ-VLA [34] setup, then
+fine-tuned on the target task demonstrations and integrated
+into SmolVLA. All policy variants are trained for the same
+number of task-specific steps, isolating the effect of the ac-
+tion representation.
+For evaluation, each task is decomposed into 4–8 sub-
+steps according to its execution horizon. Each completed
+sub-step contributes one point, and the total score is normal-
+ized to a 0–100 scale, where 100 indicates that all sub-steps
+are completed. For each task, we conduct 10 evaluation runs
+and report the average normalized score across runs.
+Results and analysis.
+Fig. 3 reports the normalized task
+scores on the four real-world tasks.
+SmolVLA-EDAR
+achieves the best performance across all tasks, improving
+the average score from 45.0% for SmolVLA and 60.5%
+for SmolVLA-VAE to 69.0%. Compared with SmolVLA,
+EDAR improves Stack-5, Drawer, Rope, and Flower by
++24.0, +20.0, +12.0, and +40.0 points, respectively.
+EDAR further improves over SmolVLA-VAE by +8.5
+points on average, showing that the gain is not only due
+to learning a structured latent action representation.
+By
+grounding action latents in current visual context and future
+visual consequences, EDAR better handles changing scene
+states and reduces compounding errors during long-horizon
+execution. The consistent improvements across stacking,
+articulated-object manipulation, and deformable-object ma-
+nipulation suggest that EDAR is particularly beneficial in
+real-world sequential manipulation scenarios where inter-
+mediate progress directly affects the final outcome.
+Representative qualitative examples of successful real-
+world executions are shown in Fig. 4 for reference.
+4.3. Ablation Studies
+We analyze the design choices of EDAR in Table 4. Un-
+less otherwise specified, all variants use SmolVLA as the
+downstream policy backbone and are evaluated on LIBERO
+under the same data, training schedule, and evaluation pro-
+tocol as the main experiments.
+Environment-conditioned
+action
+encoding.
+Tab.
+4a
+evaluates the effect of current environment context in ac-
+tion encoding. Removing encoder-side environment con-
+text reduces the average success rate from 91.8% to 90.9%.
+This drop directly supports our motivation that action se-
+mantics in manipulation are environment-dependent. The
+same motor trajectory can induce different effects under dif-
+ferent scene states; therefore, latent action tokens should be
+formed with access to the current environment rather than
+learned as scene-agnostic trajectory embeddings.
+
+
+Action encoding
+Avg. ↑
+∆
+Full EDAR
+91.8
+0.0
+w/o Enc. env. ctx.
+90.9
+-0.9
+(a) Env.-conditioned encoding. Ablates current
+environment context in action encoding.
+Effect supervision
+Avg. ↑
+∆
+Full EDAR
+91.8
+0.0
+w/o future pred.
+90.1
+-1.7
+(b) Consequence prediction. Ablates the future
+visual prediction objective.
+Decoder design
+Avg. ↑
+∆
+Specialized branches
+91.8
+0.0
+Single decoder
+90.2
+-1.6
+Two decoders
+88.7
+-3.1
+(c) Decoder design. Compares decoder designs
+for joint action-effect prediction.
+Table 4. Ablation study of EDAR on LIBERO. Each panel isolates one design question using Full EDAR as the reference setting:
+environment-conditioned action encoding, future consequence prediction, and dual-target decoder design. Gray cells denote the reference
+setting in each panel, and ∆is computed relative to that setting.
+Consequence prediction supervision.
+Tab. 4b evaluates
+the effect of future visual prediction as auxiliary supervi-
+sion. Removing this objective decreases the average suc-
+cess rate from 91.8% to 90.1%, even though the action en-
+coder still uses current environment context. This indicates
+that environment-conditioned encoding alone is insufficient
+to make the latent action space effect-aware. By predicting
+future visual consequences, EDAR encourages latent action
+tokens to preserve information about action-induced scene
+changes, such as object motion, contact outcomes, and task-
+relevant transitions.
+Dual-target decoder design.
+Tab. 4c compares decoder
+designs for joint action-effect prediction. EDAR uses spe-
+cialized branches, where action and visual tokens interact
+through shared attention while target-specific FFNs handle
+their different output spaces. Replacing this design with
+a single shared decoder reduces performance from 91.8%
+to 90.2%, suggesting interference between continuous ac-
+tion reconstruction and visual feature prediction. Using two
+fully separate decoders further drops performance to 88.7%,
+indicating that decoupling the two targets weakens action–
+effect interaction.
+These results show that future conse-
+quence prediction is most effective when action and effect
+representations are coupled through shared attention but de-
+coded with target-specific transformations.
+Visual feature encoder.
+Fig. 5 studies the choice of pre-
+trained visual encoder used to construct future feature tar-
+gets. All variants use the same EDAR architecture, down-
+stream SmolVLA policy, and training schedule, and dif-
+fer only in the feature space used for future consequence
+prediction. We first observe a clear scaling trend within
+the DINOv3 family. Compared with the action-only base-
+line at 89.1%, DINOv3-S improves the average success rate
+to 89.9%, DINOv3-B further increases it to 91.8%, and
+DINOv3-L reaches 92.0%. This suggests that stronger im-
+age feature targets provide more informative supervision for
+shaping the latent action space.
+In contrast, JEPA-based targets do not show the same
+benefit. I-JEPA achieves 89.2%, close to the baseline, and
+V-JEPA 2.1 reaches 89.7%, still below the DINOv3-B/L
+Base
+DINOv3-S
+DINOv3-B
+DINOv3-L
+I-JEPA
+V-JEPA 2.1
+89
+90
+91
+92
+Average success rate (%)
+89.1
+89.9
+91.8
+92.0
+89.2
+89.7
+Visual Feature Space Ablation
+Figure 5. Ablation of visual feature spaces for future conse-
+quence prediction. All variants use the same EDAR architecture
+and differ only in the visual encoder used to produce future feature
+targets. We report the average success rate on LIBERO.
+variants. This may be because EDAR relies on endpoint
+dense-feature prediction, where the target space should pro-
+vide spatially stable local supervision for action-induced
+scene changes. As visualized in Appendix C, DINOv3 fea-
+tures show clearer object-background separation than V-
+JEPA2.1 features, making them more effective visual tar-
+gets for organizing action latents.
+5. Conclusion
+This work studies action representation learning for robotic
+manipulation from an environment-dependent perspective.
+We argue that the meaning of an action should not be de-
+fined by its control trajectory alone, but by the consequence
+it induces in a specific scene. Based on this idea, we pro-
+pose EDAR, which conditions latent action encoding on the
+current environment and supervises the latent space with
+future visual consequences.
+The resulting representation
+preserves executability while encouraging action tokens to
+capture interaction-relevant scene changes. Across simula-
+tion and real-world experiments, EDAR provides a more
+effective action interface for downstream policy learning
+than trajectory-only representations. The ablation studies
+further show that environment-conditioned encoding, future
+consequence prediction, and the dual-target decoder design
+each contribute to the final performance. These findings
+support the broader view that action spaces for embodied
+agents should be grounded in action–environment interac-
+tion, rather than only in motor trajectory structure.
+
+
+References
+[1] Mahmoud Assran, Quentin Duval, Ishan Misra, Piotr Bo-
+janowski, Pascal Vincent, Michael Rabbat, Yann LeCun, and
+Nicolas Ballas. Self-supervised learning from images with a
+joint-embedding predictive architecture. In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern
+Recognition, 2023. 3
+[2] Mido Assran, Adrien Bardes, David Fan, Quentin Garrido,
+Russell Howes, Mojtaba Komeili, et al.
+V-JEPA 2: Self-
+supervised video models enable understanding, prediction
+and planning. arXiv preprint arXiv:2506.09985, 2025. 3
+[3] Kevin Black, Noah Brown, Danny Driess, Adnan Esmail,
+Michael Equi, Chelsea Finn, et al.
+pi0: A vision-language-action flow model for general robot
+control. arXiv preprint arXiv:2410.24164, 2024. 2, 5, 6, 7
+[4] Anthony Brohan, Noah Brown, Justice Carbajal, Yevgen
+Chebotar, Joseph Dabis, Chelsea Finn, et al. RT-1: Robotics
+transformer for real-world control at scale. arXiv preprint
+arXiv:2212.06817, 2022. 2
+[5] Anthony Brohan, Noah Brown, Justice Carbajal, Yevgen
+Chebotar, Xi Chen, Krzysztof Choromanski, et al.
+RT-2:
+Vision-language-action models transfer web knowledge to
+robotic control. arXiv preprint arXiv:2307.15818, 2023. 2
+[6] Jun Cen, Chaohui Yu, Hangjie Yuan, Yuming Jiang, Siteng
+Huang, et al. Worldvla: Towards autoregressive action world
+model. arXiv preprint arXiv:2506.21539, 2025. 3
+[7] Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun
+Du, Benjamin Burchfiel, Russ Tedrake, and Shuran Song.
+Diffusion policy: Visuomotor policy learning via action dif-
+fusion. arXiv preprint arXiv:2303.04137, 2023. 6, 7
+[8] Gemini Robotics Team. Gemini robotics: Bringing ai into
+the physical world. arXiv preprint arXiv:2503.20020, 2025.
+2
+[9] Zhefei Gong, Pengxiang Ding, Shangke Lyu, Siteng Huang,
+Mingyang Sun, Wei Zhao, Zhaoxin Fan, and Donglin Wang.
+Carp: Visuomotor policy learning via coarse-to-fine autore-
+gressive prediction.
+In Proceedings of the IEEE/CVF In-
+ternational Conference on Computer Vision, pages 13460–
+13470, 2025. 3
+[10] Renming Huang, Chendong Zeng, Wenjing Tang, Jingtian
+Cai, Cewu Lu, and Panpan Cai. Mimic intent, not just trajec-
+tories. arXiv preprint arXiv:2602.08602, 2026. 3, 7
+[11] Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti, Ted Xiao,
+Ashwin Balakrishna, et al. Openvla: An open-source vision-
+language-action model.
+arXiv preprint arXiv:2406.09246,
+2024. 2, 6, 12
+[12] Moo Jin Kim, Yihuai Gao, Tsung-Yi Lin, Yen-Chen Lin,
+Yunhao Ge, Grace Lam, et al. Cosmos policy: Fine-tuning
+video models for visuomotor control and planning. arXiv
+preprint arXiv:2601.16163, 2026. 3
+[13] Qixiu Li, Yaobo Liang, Zeyu Wang, Lin Luo, Xi Chen,
+Mozheng Liao, et al.
+CogACT: A foundational vision-
+language-action model for synergizing cognition and action
+in robotic manipulation. arXiv preprint arXiv:2411.19650,
+2024. 6
+[14] Shuang Li,
+Yihuai Gao,
+Dorsa Sadigh,
+and Shuran
+Song.
+Unified video action model.
+arXiv preprint
+arXiv:2503.00200, 2025. 3
+[15] Xinghang Li, Minghuan Liu, Hanbo Zhang, Cunjun Yu, Jie
+Xu, Hongtao Wu, Chilam Cheang, Ya Jing, Weinan Zhang,
+Huaping Liu, Hang Li, and Tao Kong. Vision-language foun-
+dation models as effective robot imitators. arXiv preprint
+arXiv:2311.01378, 2023. 7
+[16] Bo Liu, Yifeng Zhu, Chongkai Gao, Yihao Feng, Qiang Liu,
+Yuke Zhu, and Peter Stone. Libero: Benchmarking knowl-
+edge transfer for lifelong robot learning. Advances in Neural
+Information Processing Systems, 36:44776–44791, 2023. 2,
+5
+[17] Chaoqi Liu, Xiaoshen Han, Jiawei Gao, Yue Zhao, Haonan
+Chen, and Yilun Du.
+OAT: Ordered action tokenization.
+arXiv preprint arXiv:2602.04215, 2026. 3
+[18] Jiaming Liu, Mengzhen Liu, Zhenyu Wang, Pengju An, Xi-
+aoqi Li, Kaichen Zhou, et al. RoboMamba: Efficient vision-
+language-action model for robotic reasoning and manipula-
+tion. arXiv preprint arXiv:2406.04339, 2024. 2
+[19] Huaihai Lyu, Chaofan Chen, Senwei Xie, Pengwei Wang,
+Xiansheng Chen, Shanghang Zhang, and Changsheng Xu.
+OmniSAT: Compact action token, faster auto regression.
+arXiv preprint arXiv:2510.09667, 2025. 3, 6
+[20] Lucas Maes, Quentin Le Lidec, Damien Scieur, Yann Le-
+Cun, and Randall Balestriero. LeWorldModel: Stable end-
+to-end joint-embedding predictive architecture from pixels.
+arXiv preprint arXiv:2603.19312, 2026. 3
+[21] Oier Mees, Lukas Hermann, Erick Rosete-Beas, and Wol-
+fram Burgard.
+CALVIN: A benchmark for language-
+conditioned policy learning for long-horizon robot manip-
+ulation tasks. arXiv preprint arXiv:2112.03227, 2021. 2, 5,
+6, 12
+[22] Atharva Mete, Haotian Xue, Albert Wilcox, Yongxin Chen,
+and Animesh Garg. Quest: Self-supervised skill abstractions
+for learning continuous control. Advances in Neural Infor-
+mation Processing Systems, 37:4062–4089, 2024. 3
+[23] Abby O’Neill, Abdul Rehman, Abhiram Maddukuri, Ab-
+hishek Gupta, Abhishek Padalkar, Abraham Lee, Acorn Poo-
+ley, Agrim Gupta, Ajay Mandlekar, Ajinkya Jain, et al. Open
+x-embodiment: Robotic learning datasets and rt-x models:
+Open x-embodiment collaboration 0. In 2024 IEEE Inter-
+national Conference on Robotics and Automation (ICRA),
+pages 6892–6903. IEEE, 2024. 8, 14
+[24] Karl Pertsch, Kyle Stachowicz, Brian Ichter, Danny Driess,
+Suraj Nair,
+et al.
+Fast:
+Efficient action tokeniza-
+tion for vision-language-action models.
+arXiv preprint
+arXiv:2501.09747, 2025. 1, 3, 6
+[25] Physical Intelligence, Kevin Black, Noah Brown, James
+Darpinian, Karan Dhabalia, Danny Driess, et al. π0.5: A
+vision-language-action model with open-world generaliza-
+tion. arXiv preprint arXiv:2504.16054, 2025. 2
+[26] Moritz Reuss, Jyothish Pari, Pulkit Agrawal, and Rudolf Li-
+outikov. Efficient diffusion transformer policies with mixture
+of expert denoisers for multitask learning.
+arXiv preprint
+arXiv:2412.12953, 2024. 7
+[27] Moritz Reuss, ¨Omer Erdinc¸ Ya˘gmurlu, Fabian Wenzel, and
+Rudolf Lioutikov. Multimodal diffusion transformer: Learn-
+
+
+ing versatile behavior from multimodal goals. In Robotics:
+Science and Systems, 2024. 7
+[28] Moritz Reuss, Hongyi Zhou, Marcel R¨uhle, ¨Omer Erdinc
+Yagmurlu, Fabian Otto, and Rudolf Lioutikov. FLOWER:
+Democratizing
+generalist
+robot
+policies
+with
+efficient
+vision-language-action flow policies.
+arXiv preprint
+arXiv:2509.04996, 2025. 6, 7, 13
+[29] Mustafa Shukor, Dana Aubakirova, Francesco Capuano,
+Pepijn Kooijmans, Steven Palma, et al. Smolvla: A vision-
+language-action model for affordable and efficient robotics.
+arXiv preprint arXiv:2506.01844, 2025. 2, 5, 6, 7, 13
+[30] Jingwen Sun, Wenyao Zhang, Zekun Qi, Shaojie Ren, Zezhi
+Liu, Hanxin Zhu, et al.
+VLA-JEPA: Enhancing vision-
+language-action model with latent world model.
+arXiv
+preprint arXiv:2602.10098, 2026. 3
+[31] Octo Model Team, Dibya Ghosh, Homer Walke, Karl
+Pertsch, Kevin Black, Oier Mees, Sudeep Dasari, Joey
+Hejna,
+Tobias Kreiman,
+Charles Xu,
+et al.
+Octo:
+An open-source generalist robot policy.
+arXiv preprint
+arXiv:2405.12213, 2024. 2, 6
+[32] Aleksandar Vujinovic and Aleksandar Kovacevic.
+ACT-
+JEPA:
+Joint-embedding
+predictive
+architecture
+im-
+proves policy representation learning.
+arXiv preprint
+arXiv:2501.14622, 2025. 3
+[33] Junming Wang. LatentVLA: Taming latent space for gen-
+eralizable and long-horizon bimanual manipulation. In Pro-
+ceedings of the AAAI Conference on Artificial Intelligence,
+pages 18593–18601, 2026. 1, 3
+[34] Yating Wang, Haoyi Zhu, Mingyu Liu, Jiange Yang, Hao-
+Shu Fang, and Tong He.
+Vq-vla:
+Improving vision-
+language-action models via scaling vector-quantized action
+tokenizers. arXiv preprint arXiv:2507.01016, 2025. 8
+[35] Yating Wang, Haoyi Zhu, Mingyu Liu, Jiange Yang, Hao-
+Shu Fang, and Tong He.
+Vq-vla:
+Improving vision-
+language-action models via scaling vector-quantized ac-
+tion tokenizers.
+In Proceedings of the IEEE/CVF Inter-
+national Conference on Computer Vision (ICCV), 2025.
+arXiv:2507.01016. 3, 6
+[36] Junjie Wen, Yichen Zhu, Jinming Li, Minjie Zhu, Kun Wu,
+Zhiyuan Xu, Ning Liu, Ran Cheng, Chaomin Shen, Yaxin
+Peng, Feifei Feng, and Jian Tang. Tinyvla: Towards fast,
+data-efficient vision-language-action models for robotic ma-
+nipulation. arXiv preprint arXiv:2409.12514, 2024. 7
+[37] Junjie Wen, Yichen Zhu, Jinming Li, Minjie Zhu, Kun
+Wu, Zhiyuan Xu, et al.
+TinyVLA: Towards fast, data-
+efficient vision-language-action models for robotic manipu-
+lation. arXiv preprint arXiv:2409.12514, 2024. 2
+[38] Hongtao Wu, Ya Jing, Chilam Cheang, Guangzeng Chen,
+Jiafeng Xu, Xinghang Li, Minghuan Liu, Hang Li, and
+Tao Kong.
+Unleashing large-scale video generative pre-
+training for visual robot manipulation.
+arXiv preprint
+arXiv:2312.13139, 2023. 7
+[39] Songwei Wu, Zhiduo Jiang, Guanghu Xie, Wandong Sun,
+Hong Liu, and Yang Liu.
+CoLA-Flow policy: Tempo-
+rally coherent imitation learning via continuous latent ac-
+tion flow matching for robotic manipulation. arXiv preprint
+arXiv:2601.23087, 2026. 3
+[40] Seonghyeon Ye, Yunhao Ge, Kaiyuan Zheng, Shenyuan
+Gao, Sihyun Yu, George Kurian, et al. World action mod-
+els are zero-shot policies. arXiv preprint arXiv:2602.15922,
+2026. 3
+[41] Tianhe Yu, Deirdre Quillen, Zhanpeng He, Ryan Julian,
+Karol Hausman, Chelsea Finn, and Sergey Levine. Meta-
+world: A benchmark and evaluation for multi-task and meta
+reinforcement learning. In Proceedings of the Conference on
+Robot Learning, pages 1094–1100. PMLR, 2020. 2, 5, 7
+[42] Yang Yue, Yulin Wang, Bingyi Kang, Yizeng Han, Shenzhi
+Wang, Shiji Song, Jiashi Feng, and Gao Huang. DeeR-VLA:
+Dynamic inference of multimodal large language models for
+efficient robot execution. In Advances in Neural Information
+Processing Systems, 2024. 7
+[43] Biao Zhang and Rico Sennrich. Root mean square layer nor-
+malization. Advances in neural information processing sys-
+tems, 32, 2019. 12
+[44] Haochen Zhang et al.
+VLA-4D: Embedding 4d aware-
+ness into vision-language-action models for spatiotem-
+porally coherent robotic manipulation.
+arXiv preprint
+arXiv:2511.17199, 2025. 6
+[45] Tony Z. Zhao, Vikash Kumar, Sergey Levine, and Chelsea
+Finn.
+Learning fine-grained bimanual manipulation with
+low-cost hardware. arXiv preprint arXiv:2304.13705, 2023.
+3
+[46] Hongyi Zhou, Weiran Liao, Xi Huang, Yucheng Tang,
+Fabian Otto, Xiaogang Jia, et al.
+BEAST: Efficient tok-
+enization of b-splines encoded action sequences for imitation
+learning. arXiv preprint arXiv:2506.06072, 2025. 3
+[47] Chuning Zhu, Raymond Yu, Siyuan Feng, Benjamin Burch-
+fiel, Paarth Shah, and Abhishek Gupta. Unified world mod-
+els: Coupling video and action diffusion for pretraining on
+large robotic datasets.
+arXiv preprint arXiv:2504.02792,
+2025. 3
+
+
+EDAR: Learning Environment-Dependent Action Representations for Robotic
+Manipulation
+Supplementary Material
+A. Implementation Details
+This section provides architecture details and training pro-
+cedures details across all benchmarks. We describe the de-
+tails as follows.
+A.1. Architecture
+Overview.
+EDAR is implemented as an 8-layer Trans-
+former encoder paired with an 8-layer Transformer decoder,
+each with a hidden size of 512, 8 attention heads, and feed-
+forward networks with a 4× expansion ratio. We use RM-
+SNorm [43] as the normalization layer for all Transformer
+blocks. The image encoder is instantiated as DINOv3-Base
+and is used to extract visual features from image observa-
+tions, as shown in Fig. A. The dimensionality of the action
+latent is set equal to the original action dimension.
+Visual feature encoder and feauture space.
+EDAR uses
+the current multi-view observation as visual context and
+predicts both the action chunk and a future visual-context
+target. Standard EDAR constructs DINOv3-Base patch fea-
+tures; the DINO encoder is used as a frozen feature extractor
+in the action representation implementation. The decoder
+predicts actions and future DINOv3 patch features. The im-
+age prediction loss is implemented as a cosine-distance loss
+between predicted and target DINO features, scaled by the
+configured image supervision weight.
+Encoder.
+The encoder uses a bidirectional self-attention
+mask over all input tokens, including current visual tokens,
+action tokens, and learnable register tokens. This design al-
+lows every token to access the entire action chunk and the
+visual environment. In particular, the register tokens can
+aggregate temporal information across the full action se-
+quence while interacting with environment context, so that
+the latent action tokens are formed from both executable ac-
+tion structure and scene-dependent information.
+Decoder.
+The decoder uses an asymmetric attention mask
+tailored to the heterogeneous reconstruction targets. For fu-
+ture visual feature prediction, visual queries are allowed to
+attend to the full decoder token set, including latent tokens
+and action-token states. This enables the visual branch to
+predict the endpoint scene consequence from complete ac-
+tion and latent information. For action reconstruction, ac-
+tion queries follow a causal reconstruction mask: each ac-
+tion position can attend to the latent action tokens and its
+available causal action context, but is prevented from at-
+tending to future action positions and visual prediction to-
+kens. This preserves the autoregressive structure of action
+reconstruction and prevents exploiting future visual tokens
+as a shortcut. As a result, the decoder couples action recon-
+struction and visual consequence prediction through shared
+latent conditioning, while maintaining a clean generation
+path from action embedding tokens to executable controls.
+A.2. Training Pipeline
+The training adopts a two-stage pipeline. In the first stage,
+EDAR is trained to capture environment-dependent, con-
+tinuous latent representations of action trajectories. In the
+second stage, the pre-trained EDAR is embedded into a pol-
+icy model, and this policy is trained for downstream control
+tasks while EDAR’s parameters are kept frozen. We use
+fixed random seeds to ensure reproducibility.
+LIBERO.
+For LIBERO experiments, we use the cleaned
+and reformatted dataset released by the HuggingFace team
+following the preprocessing pipeline of OpenVLA [11].
+The dataset removes no-op frames and failed episodes,
+and contains 1,693 expert demonstrations converted to the
+LeRobot format. We use the same dataset version as the
+SmolVLA baseline to ensure a fair comparison.
+EDAR is first trained in a representation-learning stage
+using the training setting in Table E, with action recon-
+struction and future visual consequence prediction as the
+learning objectives. We then integrate the pretrained EDAR
+module into SmolVLA by replacing the original action in-
+terface with EDAR latent action tokens. The downstream
+policy is trained on the same LIBERO dataset for 100k steps
+with batch size 64 and chunk size 16. The learning rate fol-
+lows a cosine decay schedule from 1.5e−4 to 5e−6. During
+evaluation, the policy predicts 16 future actions at each step
+and executes the first 8 actions.
+CALVIN.
+For CALVIN, we use the official CALVIN
+ABCD→D benchmark converted into the LeRobot format.
+CALVIN is a long-horizon language-conditioned manipula-
+tion benchmark built from human-teleoperated demonstra-
+tions in a tabletop environment [21]. The dataset contains
+four environment splits, denoted A, B, C, and D; in the stan-
+dard ABCD→D protocol, policies are trained on splits A–D
+and evaluated on the held-out split D.
+We first train EDAR on the CALVIN dataset using the
+recipe in Table E. The EDAR module is integrated into
+
+
+Transformer Encoder 
+Transformer Decoder 
+Image 
+Encoder
+𝑿𝒕
+𝑨𝒕
+𝑹
+𝒁𝒕
+𝑿𝒕
+𝑽
+෡𝑿𝒕+𝑯
+Shared Self-Attention
+𝐅𝐅𝐍𝐚𝐜𝐭
+𝐅𝐅𝐍𝐯𝐢𝐬
+𝒀𝒍
+𝒀𝒍+𝟏
+Dual-Target Decoding with Specialized Branches
+Environment-Dependent Representation Learning
+𝑿𝒕+𝑯
+𝓛𝒗𝒊𝒔
+𝓛rec
+current
+visual 
+context
+future
+visual 
+context
+actions
+𝑎0
+𝑎1
+𝑎2
+𝑎3
+𝜟𝒙
+𝜟𝜽
+𝜟𝒈𝒓𝒊𝒑
+෡𝑨𝒕
+decoder
+attention
+mask
+𝑍𝑡
+𝑉
+𝑋𝑡
+𝑍𝑡
+𝑉
+𝑋𝑡
+Figure A. Detailed EDAR mechanism. EDAR forms latent action tokens through full-attention interaction among current visual tokens,
+action tokens, and learnable register tokens, then decodes them to reconstruct actions and predict future visual features. The bottom-right
+panels illustrate the decoder asymmetric mask, where visual prediction tokens can attend to the full token set, while action reconstruction
+remains causal and independent of visual prediction tokens.
+Table E. Training recipes for EDAR representation learning.
+Parameter
+Simulation
+Real-world
+LIBERO
+CALVIN
+MetaWorld
+Latent action dim
+7
+7
+4
+7
+Image supervision weight λ
+0.2
+0.1
+0.2
+0.2
+Training steps
+100k
+100k
+Batch size
+64
+128
+Chunk size
+16
+20
+Latent action tokens K
+4
+4
+Learning rate schedule
+1e−4 →1e−5
+2e−4 →2e−5
+Optimizer
+Adam
+Adam
+Optimizer betas
+(0.9, 0.99)
+(0.9, 0.99)
+SmolVLA, and the downstream policy is trained on the
+same dataset for 100k steps with batch size 64 and chunk
+size 16. The learning rate follows a cosine schedule decay-
+ing from 1.5e−4 to 5e−6. During evaluation, the policy
+predicts 16 actions and executes the first 8 at each step.
+We additionally integrate the same CALVIN-trained
+EDAR module into FLOWER-VLA [28]. For controlled
+comparison, EDAR only replaces the action representation
+interface, while all FLOWER-VLA training hyperparame-
+ters and evaluation settings are kept unchanged, including
+the training budget, batch size, optimizer and scheduler set-
+tings, denoising architecture, and evaluation action horizon.
+Following the original setup, the policy is trained for 40k
+steps across 4 GPUs with batch size 8 per GPU, and the ac-
+tion horizon is set to 10 during evaluation. Different from
+the original DDP implementation, our reproduction uses
+FSDP for distributed training.
+MetaWorld.
+For MetaWorld, we follow the standard
+MT50 evaluation setting used in SmolVLA [29] and eval-
+uate on 50 manipulation tasks grouped into Easy, Medium,
+Hard, and Very Hard difficulty categories.
+We
+first
+train
+EDAR
+on
+MetaWorld
+using
+the
+representation-learning recipe in Table E, with action recon-
+struction and future visual consequence prediction as the
+learning objectives. The original SmolVLA paper reports
+
+
+MetaWorld results, but omits some MetaWorld-specific hy-
+perparameters needed for exact reproduction. We therefore
+build a controlled SmolVLA-MetaWorld baseline under our
+verified training recipe. The baseline loads the pretrained
+VLM weights and uses a four-dimensional state and ac-
+tion interface, chunk size 16, action horizon 8, 100k sched-
+uler decay steps, and a cosine learning-rate schedule from
+1.5e−4 to 5e−6. We then integrate the pretrained EDAR
+module into the same reproduced SmolVLA pipeline by re-
+placing the original action interface with EDAR latent ac-
+tion tokens. All other settings, including data processing,
+training schedule, learning-rate schedule, evaluation code,
+and checkpoint selection, are kept identical.
+Real-World Experiments.
+For real-world EDAR repre-
+sentation learning, we adopt a two-stage training procedure.
+In the first stage, EDAR is pretrained on 10 Hz, 15 Hz, and
+20 Hz subsets from the OpenX dataset [23], where sam-
+ples are drawn uniformly across individual datasets. In the
+second stage, EDAR is further trained on our self-collected
+tele-operated real-world data. Both stages follow the same
+real-world training recipe in Tab. E.
+For downstream policy learning, the pretrained EDAR
+module is integrated into SmolVLA by replacing the orig-
+inal action interface with EDAR latent action tokens. The
+downstream policy is trained on the same self-collected task
+data for 100k steps with batch size 64 and chunk size 20.
+The learning rate follows a cosine decay schedule from
+1.5×10−4 to 5×10−6. The SmolVLA baseline uses the
+same policy training setup.
+B. Environment-dependent Structure of Ac-
+tion Latent Space
+Figure B illustrates the environment-dependent structure of
+the action latent space by comparing action chunks with
+similar command-level motion but different scene contexts.
+The goal is to examine whether EDAR assigns different la-
+tent representations to similar motor patterns when the en-
+vironment changes their expected consequences.
+We construct the visualization from 16-step action
+chunks in the LIBERO demonstration dataset. For each dis-
+played pair, the two chunks have similar local command
+structure, as shown by the near-overlapping action trajec-
+tories, but are executed in different visual contexts.
+We
+compare an environment-independent action encoder with
+EDAR. The baseline encodes each action chunk without the
+current observation, while EDAR encodes the same chunk
+together with its corresponding current visual observation.
+We then project the latent representations into two dimen-
+sions with t-SNE. Gray points show sampled background
+chunks, and colored points highlight the matched pairs.
+Each middle panel shows one matched pair from two
+LIBERO episodes. The start and end observations show the
+scene before and after the 16-step horizon, illustrating that
+similar motions can correspond to different environment-
+conditioned consequences. The reported pairwise map dis-
+tance is computed between the two highlighted points in the
+corresponding t-SNE map and is used only as a local diag-
+nostic of separation for the displayed pair.
+Across the three examples, the environment-independent
+encoder places each pair almost on top of each other, reflect-
+ing their similar command-level motion. In contrast, EDAR
+separates the same pairs more clearly when they occur un-
+der different scene contexts. This suggests that EDAR does
+not merely encode short-horizon motor patterns, but allows
+scene context to modulate the latent action representation.
+Similar action chunks can therefore occupy different re-
+gions of the latent space when they are associated with dif-
+ferent expected effects on the environment.
+C. Visualization of Visual Context Prediction
+Figures C visualizes future visual-context feature predic-
+tion for a randomly selected LIBERO action segment un-
+der the standard DINOv3-based EDAR checkpoint and a
+V-JEPA2.1 variant. Since the ground truth is a feature field
+rather than an RGB reconstruction, each example shows the
+raw future image together with palette-stylized PCA projec-
+tions of the ground-truth and predicted future patch features.
+The left and right sides of each strip correspond to the two
+camera views used as visual context.
+The visualization helps explain why DINOv3 features
+serve as a stronger visual target for EDAR. Since EDAR
+predicts an endpoint future feature field rather than an RGB
+image or a full video rollout, the target feature space should
+provide spatially stable and locally interpretable supervi-
+sion. In Fig. C, the DINOv3 projections show clearer sepa-
+ration between task-relevant objects, robot parts, and back-
+ground regions. The predicted DINOv3 feature field also
+preserves much of this region-level layout, suggesting that
+the auxiliary loss provides a clean signal for associating ac-
+tion latents with object-centric scene changes.
+By contrast, the V-JEPA2.1 projections appear more lo-
+cally fragmented, with weaker separation between fore-
+ground objects and background regions.
+Although V-
+JEPA2.1 is designed for image-video representation learn-
+ing, its representation space is less aligned with EDAR’s
+static endpoint dense-feature regression objective.
+This
+mismatch may make the visual consequence loss less in-
+formative for organizing action latents.
+D. Qualitative Results
+We provide qualitative visualizations of successful rollouts
+across all benchmarks. In each figure, every row shows one
+task rollout, with the leftmost frame depicting the initial
+
+
+VAE Space
+EDAR Space
+Start
+End
+action trajectory
+A
+B
+Start
+End
+action trajectory
+A
+B
+Start
+End
+action trajectory
+A
+B
+𝐿ଶ 
+𝐿
+baseline 𝐿ଶ distance = 3.23
+EDAR 𝐿ଶdistance = 9.90
+𝐿ଶ
+𝐿
+baseline 𝐿ଶdistance = 3.27
+EDAR 𝐿ଶdistance = 10.02
+𝐿ଶ
+𝐿
+baseline 𝐿ଶdistance = 3.02
+EDAR 𝐿ଶdistance = 9.62
+Figure B. Environment-dependent structure of action latent space. We compare the environment-independent VAE and EDAR on the
+same three matched action pairs from LIBERO. Each middle panel shows one pair from two different episodes, with start/end observations
+and a action trajectory indicating similar short-horizon command structure. In the environment-independe baseline latent map, each pair
+remains close, while in the EDAR latent map the same pair becomes more separated under different visual contexts. The reported L2
+distances measure the separation between the two highlighted points in their raw latent spaces.
+view1
+gt
+predicted
+view2
+gt
+predicted
+(a) DINOv3.
+view1
+gt
+predicted
+view2
+gt
+predicted
+(b) V-JEPA2.1.
+Figure C. Visualization of visual context prediction. We compare the predicted future feature maps when EDAR is supervised with
+DINOv3 and V-JEPA2.1 features on the same black-bowl segment. Each subfigure corresponds to one target feature space. Within each
+subfigure, we show both the main-camera view and the wrist-camera view; for each view, the panels are ordered as the future RGB
+observation, ground-truth future feature map, and predicted future feature map. The colored maps are PCA projections of patch-level
+visual features in the corresponding encoder space.
+state and the rightmost frame depicting the final state.
+D.1. Qualitative Results on LIBERO
+As illustrated in Figure D, we show sampled rollout frames
+from the four LIBERO task suites: Spatial, Object, Goal,
+
+
+and Long. Each row corresponds to one task suite, where
+we uniformly sample six frames from one representative
+episode.
+D.2. Qualitative Results on CALVIN
+Figure E visualizes successful multi-step CALVIN evalua-
+tion sequences. Each row is formed from six square main-
+view frames: the initial frame of the sequence followed by
+one late frame from each of the five successful subtasks in
+the same rollout sequence.
+D.3. Qualitative Results on MetaWorld
+Figure F visualizes representative MetaWorld mt50 tasks.
+Each row corresponds to one task and contains six uni-
+formly sampled frames from one episode. The script uses
+the local cache when available and otherwise downloads
+only the required mt50 task shards.
+
+
+(a) Spatial: pick up the black bowl on the wooden cabinet and place it on the plate.
+(b) Object: pick up the orange juice and place it in the basket.
+(c) Goal: put the wine bottle on the rack.
+(d) Long: put the yellow and white mug in the microwave and close it.
+Figure D. Qualitative results on LIBERO tasks. Representative examples include tasks from Spatial, Object, Goal, and Long.
+
+
+take the blue block and
+rotate it to the right
+grasp and lift
+the pink block
+store the grasped block
+in the sliding cabinet
+push the sliding
+door to the left side
+pull the handle
+to open the drawer
+go push the
+pink block right
+grasp and lift
+the pink block
+store the grasped block
+in the sliding cabinet
+slide the block that it
+falls into the drawer
+push the handle to
+close the drawer
+take the blue block and
+rotate it to the left
+grasp and lift
+the blue block
+store the grasped
+block in the drawer
+push the sliding door
+to the right side
+use the switch to turn
+off the light bulb
+lift the pink block
+from the sliding cabinet
+store the grasped block
+in the sliding cabinet
+use the switch to
+turn on the light bulb
+take the blue block and
+rotate it to the right
+pull the handle
+to open the drawer
+lift the red block from
+the sliding cabinet
+stack the
+grasped block
+push the sliding
+door to the left side
+press the button to
+turn off the led light
+pull the handle
+to open the drawer
+Figure E. Qualitative results on CALVIN. Each row shows one successful 5-step task sequence reconstructed from the local CALVIN
+evaluation videos using only the main camera view.
+
+
+(a) Pick up a nut and place it onto a peg.
+(b) Dunk the basketball into the basket.
+(c) Grasp the puck from one bin and place it into another bin.
+(d) Grasp the cover and close the box with it.
+(e) Press a button from the top.
+Figure F. Qualitative results on MetaWorld. Representative examples include peg, basketball, puck-transfer, box-closing, and button-
+press tasks from the mt50 benchmark.
