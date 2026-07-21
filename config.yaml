@@ -248,6 +248,7 @@ subscriptions:
           source: manual
           note: ''
       updated_at: '2026-07-21T11:52:11.068Z'
+      paused: false
 source_backends:
   arxiv:
     papers_table: arxiv_papers
