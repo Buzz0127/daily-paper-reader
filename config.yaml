@@ -218,6 +218,36 @@ subscriptions:
             updated_at: '2026-06-29T09:00:34.304369+00:00'
       updated_at: '2026-06-29T08:58:06.292Z'
       paused: true
+    - tag: pi-robotics
+      description: 查找通过改进pi0或者pi0.5提升机器人或机械臂性能的论文
+      enabled: true
+      paper_sources:
+        - arxiv
+      keywords:
+        - keyword: pi0 policy
+          keyword_cn: pi0策略
+          query: pi0 policy robot performance
+        - keyword: pi0.5 model
+          keyword_cn: pi0.5模型
+          query: pi0.5 model robotic arm improvement
+        - keyword: policy improvement robotics
+          keyword_cn: 机器人策略改进
+          query: policy improvement for robotics performance
+        - keyword: robot manipulation enhancement
+          keyword_cn: 机器人操控增强
+          query: robot manipulation enhancement through policy
+      intent_queries:
+        - query: improving pi0 policy for better robot manipulation
+          query_cn: 改进pi0策略以提升机器人操控能力
+          enabled: true
+          source: manual
+          note: ''
+        - query: pi0.5 enhancement for robotic arm performance
+          query_cn: pi0.5增强对机械臂性能的提升
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-07-21T11:52:11.068Z'
 source_backends:
   arxiv:
     papers_table: arxiv_papers
