@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-22T20:38:08.394933+00:00",
-  "updated_date": "20260722",
+  "generated_at": "2026-07-23T21:01:18.456425+00:00",
+  "updated_date": "20260723",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,95 +480,9 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260722",
+      "updated_date": "20260723",
       "carryover_days": 9,
-      "items": [
-        {
-          "id": "2607.16506v1",
-          "source": "arxiv",
-          "title": "Foresight Residual RL for Long-Horizon Robot Manipulation with Vision-Language-Action Models",
-          "abstract": "Vision-Language-Action (VLA) policies offer strong general-purpose manipulation priors, but often fail on tight-tolerance, contact-rich assembly due to long-horizon credit assignment and subtask coupling: a state that is geometrically successful for the current skill can be brittle for downstream skills. We show this failure mode in residual reinforcement learning (RL) over a frozen VLA base policy: constant sparse success rewards improve each subtask in isolation yet yield little or no gain when skills are chained, because terminal state quality is uncontrolled. We propose Foresight Residual RL, which optimizes handoff quality by augmenting each subtask's sparse success reward with an offline-estimated foresight value -- the probability of future subtask success conditioned on the terminal state of the current subtask. Concretely, we (i) train a visual foresight predictor from images of terminal states of the base policy, labeled using downstream rollout statistics, and (ii) train residual policies via backward foresight induction, using the predictor output as a reward multiplier. On a three-phase wrench-based nut-tightening assembly task in Isaac Gym (grasp, move-insert, rotate), our method achieves 85.6% full-task success, outperforming standard subtask residual RL (54.5%) and VLA baselines, while leaving per-subtask success unchanged. These results highlight that improving long-horizon performance requires shaping which successful states are produced at each sub-task, not only whether success occurs.",
-          "authors": [
-            "Yuhan Liu",
-            "Xinyu Zhang",
-            "Litao Liu",
-            "Abdeslam Boularias"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.LG"
-          ],
-          "published": "2026-07-17T21:00:28+00:00",
-          "link": "https://arxiv.org/pdf/2607.16506v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "residual RL over VLA policy to improve long-horizon manipulation",
-          "llm_evidence_cn": "在VLA基础策略上进行残差强化学习改进长时域操作",
-          "llm_evidence": "在VLA基础策略上进行残差强化学习改进长时域操作",
-          "canonical_evidence": "在VLA基础策略上进行残差强化学习改进长时域操作",
-          "llm_tldr_en": "Foresight Residual RL optimizes handoff quality between subtasks by augmenting rewards with offline foresight values.",
-          "llm_tldr_cn": "针对VLA策略在紧容差、接触丰富的长时域装配任务中因子任务耦合而失败的问题，提出Foresight Residual RL，通过离线估计的前瞻值增强每个子任务的稀疏成功奖励，优化任务交接质量。实验表明该方法显著提高了装配任务的成功率，且优于传统残差RL。",
-          "llm_tldr": "针对VLA策略在紧容差、接触丰富的长时域装配任务中因子任务耦合而失败的问题，提出Foresight Residual RL，通过离线估计的前瞻值增强每个子任务的稀疏成功奖励，优化任务交接质量。实验表明该方法显著提高了装配任务的成功率，且优于传统残差RL。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2607.16506v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2607.15982v1",
-          "source": "arxiv",
-          "title": "Data and Learning Where it Matters for Contact-Rich Manipulation",
-          "abstract": "Learned policies trained end-to-end on large datasets often remain brittle in high-precision tasks and struggle with generalization. We find that these limitations largely stem from a lack of structure and focus in data collection. Our key insight is to leverage dense data collection only for the critical segment of contact-rich tasks and to rely on traditional planning during simple free-space motion. We propose an automated data-collection scheme in combination with offline deep reinforcement learning for the critical segment of the task, eliminating reliance on a teleoperator's skill and on online policy updates. Across four challenging real-world tasks, using only 2 to 2.5 hours of autonomous data collection, we achieve an average success rate of 96%, compared to the strongest baseline at 55%. Notably, performance remains high in out-of-distribution scenarios where end-to-end approaches struggle. Our results pave the way for targeted data collection for contact-rich tasks and for high success rates in precision applications.",
-          "authors": [
-            "Oliver Hausdörfer",
-            "Linus Schwarz",
-            "Gabor Marko",
-            "Christian Dietz",
-            "Timo Class",
-            "Luka Hofer",
-            "Jim Yun-Jin Li",
-            "Johannes Hechtl",
-            "Ralf Römer",
-            "Angela P. Schoellig"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-07-17T14:18:20+00:00",
-          "link": "https://arxiv.org/pdf/2607.15982v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Data-efficient policy learning via focused data collection and offline RL",
-          "llm_evidence_cn": "通过聚焦数据收集和离线强化学习实现数据高效策略学习",
-          "llm_evidence": "通过聚焦数据收集和离线强化学习实现数据高效策略学习",
-          "canonical_evidence": "通过聚焦数据收集和离线强化学习实现数据高效策略学习",
-          "llm_tldr_en": "Proposes an automated data collection scheme combined with offline RL focused on critical segments of contact-rich tasks, achieving 96% success with only 2-2.5 hours of data.",
-          "llm_tldr_cn": "针对端到端学习在高精度操作任务中脆弱且泛化差的问题，本文提出只在接触关键段进行密集数据收集，并结合离线强化学习进行训练。该方法无需操作员技能和在线更新，在四个挑战性任务上仅用2-2.5小时自主数据收集即达到96%的平均成功率，证明了聚焦学习的重要性。",
-          "llm_tldr": "针对端到端学习在高精度操作任务中脆弱且泛化差的问题，本文提出只在接触关键段进行密集数据收集，并结合离线强化学习进行训练。该方法无需操作员技能和在线更新，在四个挑战性任务上仅用2-2.5小时自主数据收集即达到96%的平均成功率，证明了聚焦学习的重要性。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2607.15982v1",
-          "carry_days": 1
-        }
-      ]
+      "items": []
     }
   }
 }
