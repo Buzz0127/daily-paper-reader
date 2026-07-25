@@ -1,0 +1,752 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-25T20:58:45.770092+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 8,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 19,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2607.16506v1",
+      "source": "arxiv",
+      "title": "Foresight Residual RL for Long-Horizon Robot Manipulation with Vision-Language-Action Models",
+      "abstract": "Vision-Language-Action (VLA) policies offer strong general-purpose manipulation priors, but often fail on tight-tolerance, contact-rich assembly due to long-horizon credit assignment and subtask coupling: a state that is geometrically successful for the current skill can be brittle for downstream skills. We show this failure mode in residual reinforcement learning (RL) over a frozen VLA base policy: constant sparse success rewards improve each subtask in isolation yet yield little or no gain when skills are chained, because terminal state quality is uncontrolled. We propose Foresight Residual RL, which optimizes handoff quality by augmenting each subtask's sparse success reward with an offline-estimated foresight value -- the probability of future subtask success conditioned on the terminal state of the current subtask. Concretely, we (i) train a visual foresight predictor from images of terminal states of the base policy, labeled using downstream rollout statistics, and (ii) train residual policies via backward foresight induction, using the predictor output as a reward multiplier. On a three-phase wrench-based nut-tightening assembly task in Isaac Gym (grasp, move-insert, rotate), our method achieves 85.6% full-task success, outperforming standard subtask residual RL (54.5%) and VLA baselines, while leaving per-subtask success unchanged. These results highlight that improving long-horizon performance requires shaping which successful states are produced at each sub-task, not only whether success occurs.",
+      "authors": [
+        "Yuhan Liu",
+        "Xinyu Zhang",
+        "Litao Liu",
+        "Abdeslam Boularias"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-07-17T21:00:28+00:00",
+      "link": "https://arxiv.org/pdf/2607.16506v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "residual RL over frozen VLA to improve long-horizon manipulation",
+      "llm_evidence_cn": "基于冻结VLA的残差强化学习改进长程操作性能",
+      "llm_evidence": "基于冻结VLA的残差强化学习改进长程操作性能",
+      "canonical_evidence": "基于冻结VLA的残差强化学习改进长程操作性能",
+      "llm_tldr_en": "Foresight Residual RL enhances handoff quality in long-horizon manipulation by augmenting sparse success rewards with offline-estimated foresight values, achieving significant gains over frozen VLA policies.",
+      "llm_tldr_cn": "针对视觉-语言-动作（VLA）模型在长程精密装配中因子任务耦合导致性能瓶颈的问题，本文提出前瞻残差强化学习。该方法为每个子任务稀疏成功奖励附加离线估计的前瞻价值，优化状态交接质量。在机器人装配任务中，与冻结VLA基线相比，显著提升了链式多技能操作的成功率。",
+      "llm_tldr": "针对视觉-语言-动作（VLA）模型在长程精密装配中因子任务耦合导致性能瓶颈的问题，本文提出前瞻残差强化学习。该方法为每个子任务稀疏成功奖励附加离线估计的前瞻价值，优化状态交接质量。在机器人装配任务中，与冻结VLA基线相比，显著提升了链式多技能操作的成功率。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.18016v1",
+      "source": "arxiv",
+      "title": "Closing the Loop in Humanoid VLA: Persistent 3D Object Tokens for Verifiable Loco-Manipulation",
+      "abstract": "Vision-language-action policies are a promising foundation for general robot control, but long-horizon humanoid loco-manipulation requires the robot to treat task objects as persistent physical entities across movement, contact, occlusion, and recovery. We study this problem as object-state divergence: the object state used to condition a whole-body action can differ from the state used to decide whether the action achieved the intended physical relation. We propose \\emph{Persistent Object Tokenization} (POT), which maintains role-indexed 3D object records from RGB-D observations and converts them into object tokens for a whole-body action expert. Instantiated as \\emph{POT-VLA}, the same object records condition action generation and support geometric predicate checks, yielding a closed-loop execution system in which object state is both actionable and verifiable. On a Unitree G1, POT-VLA improves a matched direct GR00T-N1.7 baseline from 39/80 to 71/80 successes over eight real-world task families. In an external Being-0-aligned reference, POT-VLA achieves 44/50 successes on aligned service tasks, compared with the 37/50 success reported by the Being-0 paper. The largest gains occur on tasks requiring maintained 3D relations, suggesting that persistent object-centered state is a useful abstraction for verifiable humanoid VLA execution.",
+      "authors": [
+        "Peng Ren",
+        "Haoyang Ge",
+        "Jiang Zhao",
+        "Cong Huang",
+        "Yukun Shi",
+        "Pei Chi",
+        "Kai Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-20T14:52:46+00:00",
+      "link": "https://arxiv.org/pdf/2607.18016v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "persistent 3D object tokens for humanoid VLA policy",
+      "llm_evidence_cn": "持久3D对象令牌用于人形机器人VLA策略",
+      "llm_evidence": "持久3D对象令牌用于人形机器人VLA策略",
+      "canonical_evidence": "持久3D对象令牌用于人形机器人VLA策略",
+      "llm_tldr_en": "Proposes Persistent Object Tokenization (POT) for humanoid VLA to maintain consistent object representations across occlusions, enabling verifiable loco-manipulation.",
+      "llm_tldr_cn": "针对长时程人形机器人移动操作中对象状态不一致的问题，提出持久对象令牌化方法(POT)，将RGB-D观测转换为角色索引化的3D对象令牌，用于条件化全身动作专家。实验表明POT-VLA在复杂场景下提升了操作可靠性和可验证性。该工作推进了VLA在真实人形机器人中的应用。",
+      "llm_tldr": "针对长时程人形机器人移动操作中对象状态不一致的问题，提出持久对象令牌化方法(POT)，将RGB-D观测转换为角色索引化的3D对象令牌，用于条件化全身动作专家。实验表明POT-VLA在复杂场景下提升了操作可靠性和可验证性。该工作推进了VLA在真实人形机器人中的应用。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.18231v1",
+      "source": "arxiv",
+      "title": "FM-VLA: Force-based Memory for Vision-Language-Action Models in Contact-Rich Manipulation",
+      "abstract": "Vision-language-action (VLA) models have achieved impressive generalization in robotic manipulation, and recent memory-augmented VLAs have relaxed the Markovian assumption by conditioning on past images or language summaries. Vision-based memory approaches address this by conditioning on sampled past image frames, but they are computationally expensive and fundamentally limited when temporal events are visually ambiguous, e.g., pushing a button multiple times with small movements. We propose FM-VLA, a VLA model with force-based memory, enabling temporal context reasoning for non-Markovian, contact-rich manipulation. We encode force histories into compact force memory tokens with a variational autoencoder (VAE) pretrained with force time series reconstruction. By projecting force latent representations and short state history as additional conditioning tokens to the action expert module, we enable VLAs to leverage accumulated contact event history to guide manipulation. We evaluate FM-VLA on three memory-dependent tasks, including finding a hidden block, pressing a button, and wiping a dish for a specific number of times. Our lightweight force memory achieves over 80% success rate with minimal inference overhead, significantly outperforming baseline approaches. Project page: https://qft-333.github.io/FM-VLA-Page/",
+      "authors": [
+        "Ruicheng Li",
+        "Qixiu Li",
+        "Ruichun Ma",
+        "Yu Deng",
+        "Lin Luo",
+        "Zhiying Du",
+        "Jianfeng Xiang",
+        "Huizhi Liang",
+        "Ruicheng Wang",
+        "Jiaolong Yang",
+        "Baining Guo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-20T17:58:31+00:00",
+      "link": "https://arxiv.org/pdf/2607.18231v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "force-based memory for VLA models in contact-rich manipulation",
+      "llm_evidence_cn": "基于力的记忆增强VLA模型处理接触丰富操作",
+      "llm_evidence": "基于力的记忆增强VLA模型处理接触丰富操作",
+      "canonical_evidence": "基于力的记忆增强VLA模型处理接触丰富操作",
+      "llm_tldr_en": "Introduces FM-VLA, a VLA model with force-based memory tokens to handle non-Markovian contact-rich manipulation tasks, using a VAE pretrained with force data.",
+      "llm_tldr_cn": "针对传统VLA模型无法有效处理接触丰富操作中时间模糊性的问题，提出FM-VLA，通过变分自编码器将力历史编码为紧凑的记忆令牌，使策略能推理非马尔可夫任务。实验证明该方法在需要多步接触的任务上显著优于纯视觉记忆方法。该研究扩展了VLA模型在复杂操作中的适应能力。",
+      "llm_tldr": "针对传统VLA模型无法有效处理接触丰富操作中时间模糊性的问题，提出FM-VLA，通过变分自编码器将力历史编码为紧凑的记忆令牌，使策略能推理非马尔可夫任务。实验证明该方法在需要多步接触的任务上显著优于纯视觉记忆方法。该研究扩展了VLA模型在复杂操作中的适应能力。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.20345v1",
+      "source": "arxiv",
+      "title": "Closing the Lab-to-Store Gap: A Data-Efficient Post-Training and Experience-Driven Learning VLA Framework for Retail Humanoids",
+      "abstract": "Closing the gap between benchmark performance and reliable real-world operation remains a central challenge for Vision-Language-Action (VLA) humanoid robots, which must handle execution errors, distribution shifts, and environmental variability. This paper presents DEED (Data-Efficient Post-Training and Experience-Driven Learning), a systems-level approach evaluated on a supermarket chip-restocking task using a Unitree G1-Edu humanoid robot and the GR00T N1.6 foundation model. DEED comprises three key components: (1) a data-efficient post-training pipeline with control-frequency alignment, data curation, task-relevant visual highlighting, and reduced VLA dependence; (2) a real-world study of experience-driven refinement, adapted from RECAP via a text-based advantage prefix and a vision-language value function; and (3) a latent-space analysis tool for studying in- and out-of-distribution behavior. Our results suggest that bridging the lab-to-store gap is primarily a systems integration challenge rather than an architectural one: careful data design and targeted post-training can transform a policy that fails under naive fine-tuning into a competent real-world system using only a single GPU.",
+      "authors": [
+        "Roger Sala Sisó",
+        "Tiago Silvério",
+        "Jakob Sand",
+        "Tran Nguyen Le"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-22T16:30:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.20345v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "VLA humanoid robot data-efficient post-training experience-driven learning",
+      "llm_evidence_cn": "VLA人形机器人数高效后训练与经验学习",
+      "llm_evidence": "VLA人形机器人数高效后训练与经验学习",
+      "canonical_evidence": "VLA人形机器人数高效后训练与经验学习",
+      "llm_tldr_en": "DEED presents a data-efficient post-training and experience-driven learning VLA framework for retail humanoids, tackling execution errors and distribution shifts with control-frequency alignment and reduced VLA dependence.",
+      "llm_tldr_cn": "视觉-语言-动作（VLA）人形机器人在实际部署中面临执行错误和分布偏移。本文提出DEED框架，包含数据高效后训练流水线（控制频率对齐、数据筛选、任务相关视觉高亮）和真实世界经验驱动学习。在超市补货任务中，使用Unitree G1-Edu人形机器人和GR00T N1.6基础模型进行了验证，显著提升了可靠性和数据效率。",
+      "llm_tldr": "视觉-语言-动作（VLA）人形机器人在实际部署中面临执行错误和分布偏移。本文提出DEED框架，包含数据高效后训练流水线（控制频率对齐、数据筛选、任务相关视觉高亮）和真实世界经验驱动学习。在超市补货任务中，使用Unitree G1-Edu人形机器人和GR00T N1.6基础模型进行了验证，显著提升了可靠性和数据效率。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.20771v1",
+      "source": "arxiv",
+      "title": "Emergent Compositional Skills in Mixture-of-Experts VLAs",
+      "abstract": "We consider the problem of learning compositional robot policies end-to-end from expert demonstrations, without any pre-specified notion of task decomposition or hierarchy. We ask whether a VLA trained with a simplified Mixture-of-Experts (MoE) action head can emergently learn to decompose tasks into reusable, interpretable primitives. We find that learned experts are heavily reused across tasks and consistently correspond to qualitatively distinct low-level behaviors, suggesting that the router implicitly learns to perform high-level sequencing while experts serve as compositional primitives. Our MoE matches the task performance of a monolithic baseline while demonstrating meaningful expert specialization, a step toward modular, interpretable robot policies that emerge from data alone.",
+      "authors": [
+        "Shlok Shah",
+        "Rhiaan Jhaveri",
+        "Tharun Kumar Tiruppali Kalidoss",
+        "Chirayu Nimonkar",
+        "Ishaan Javali"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-22T22:36:52+00:00",
+      "link": "https://arxiv.org/pdf/2607.20771v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Mixture-of-Experts VLA for emergent compositional robot skills",
+      "llm_evidence_cn": "混合专家VLA实现涌现组合机器人技能",
+      "llm_evidence": "混合专家VLA实现涌现组合机器人技能",
+      "canonical_evidence": "混合专家VLA实现涌现组合机器人技能",
+      "llm_tldr_en": "A VLA with MoE action head learns compositional policies end-to-end, with experts specializing as reusable primitives, improving modularity and interpretability.",
+      "llm_tldr_cn": "学习组合式机器人策略通常需要预定义任务分解。本文提出在VLA中采用简化混合专家（MoE）动作头，使模型涌现地学习任务分解和可重用基元。实验表明，专家跨任务重用，对应不同低层行为，路由器隐式学习高层排序。MoE在保持任务性能的同时实现了模块化和可解释性。",
+      "llm_tldr": "学习组合式机器人策略通常需要预定义任务分解。本文提出在VLA中采用简化混合专家（MoE）动作头，使模型涌现地学习任务分解和可重用基元。实验表明，专家跨任务重用，对应不同低层行为，路由器隐式学习高层排序。MoE在保持任务性能的同时实现了模块化和可解释性。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.17977v1",
+      "source": "arxiv",
+      "title": "RynnBrain 1.1: Towards More Capable and Generalizable Embodied Foundation Model",
+      "abstract": "We present RynnBrain 1.1, a family of embodied foundation models spanning 2B, 9B, and 122B-A10B scales. Trained with a unified spatio-temporal and physically grounded framework, RynnBrain 1.1 supports embodied perception, spatial reasoning, localization, and planning. Compared with RynnBrain 1.0, it further introduces contact-point prediction across the model family and native 3D grounding for the 2B and 9B models, yielding representations and outputs that are more directly aligned with robot manipulation. We also develop RynnBrain-VLA with a unified cross-embodiment action space and embodiment-specific masking, and deploy it on Unitree G1, Astribot-S1, and Tianji-Wuji. RynnBrain 1.1 achieves strong results on embodied cognition, localization, and 3D grounding, with the 122B-A10B model outperforming all evaluated proprietary and open-source models on VSI-Bench, MMSI, and RefSpatial-Bench. Real-robot experiments show that RynnBrain-initialized policies outperform Qwen-based and representative generalist VLAs, while joint multi-task and multi-embodiment training improves process scores and success rates over per-task training.",
+      "authors": [
+        "Kehan Li",
+        "Bohan Hou",
+        "Minghao Zhu",
+        "Tianyi Zhang",
+        "Zesen Cheng",
+        "Zhikai Wang",
+        "Sicong Leng",
+        "Xin Li",
+        "Xiao Lin",
+        "Biying Yao",
+        "Minghua Zeng",
+        "Jiangpin Liu",
+        "Ronghao Dang",
+        "Jiayan Guo",
+        "Siteng Huang",
+        "Haoyu Zhao",
+        "Heng Ping",
+        "Yaxi Zhao",
+        "Kexiang Wang",
+        "Tong Lu",
+        "Shengke Xue",
+        "Jiahao Tang",
+        "Yulei Wang",
+        "Zejing Wang",
+        "Jianwei Gao",
+        "Shijian Lu",
+        "Chengju Liu",
+        "Jianfei Yang",
+        "Mingxiu Chen",
+        "Deli Zhao"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-20T14:13:27+00:00",
+      "link": "https://arxiv.org/pdf/2607.17977v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "embodied foundation model with VLA, deployed on multiple robots",
+      "llm_evidence_cn": "具身基础模型支持VLA，在多机器人平台部署",
+      "llm_evidence": "具身基础模型支持VLA，在多机器人平台部署",
+      "canonical_evidence": "具身基础模型支持VLA，在多机器人平台部署",
+      "llm_tldr_en": "RynnBrain 1.1 is a family of embodied foundation models with VLA capabilities, achieving strong results on embodied cognition and manipulation tasks.",
+      "llm_tldr_cn": "现有具身模型在泛化性和能力上仍有不足。RynnBrain 1.1 系列模型（2B/9B/122B-A10B）采用统一的时空物理基础框架，支持感知、空间推理、定位和规划，并引入接触点预测和3D接地。同时开发了RynnBrain-VLA，统一跨本体动作空间，在Unitree G1等机器人上部署，取得优异性能。",
+      "llm_tldr": "现有具身模型在泛化性和能力上仍有不足。RynnBrain 1.1 系列模型（2B/9B/122B-A10B）采用统一的时空物理基础框架，支持感知、空间推理、定位和规划，并引入接触点预测和3D接地。同时开发了RynnBrain-VLA，统一跨本体动作空间，在Unitree G1等机器人上部署，取得优异性能。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.18236v1",
+      "source": "arxiv",
+      "title": "Patch Policy: Efficient Embodied Control via Dense Visual Representations",
+      "abstract": "Pretrained dense visual features from Vision Transformers (ViTs) are powerful yet have been underutilized in robot learning. Modern robot policies either compress each observation into a single global token, or rely on visual backbones trained from scratch, sacrificing both fine-grained spatial detail and the benefits of large-scale visual pre-training. While there exist policies that do operate on dense patch features like large vision-language-action models (VLAs), they tend to be heavy and slow, inheriting the full cost of a billion-parameter vision-language model (VLM) backbone. We close this gap with Patch Policy, a minimal architectural extension that enables transformer-based policies to consume dense pre-trained patch tokens directly without the computational overhead of a full VLM. At its core is a block-causal attention mask that preserves the temporal causality of standard policies while letting the model attend over many patch tokens per observation, alongside other state information. Patch Policy is lightweight, fast, and highly effective. Across four simulated and three real-world environment suites, our method achieves a 40% relative improvement over policies using state-of-the-art global-pooled representations. Furthermore, it surpasses fine-tuned OpenVLA-OFT by 18% while using roughly 0.7% of the parameters. We believe Patch Policy provides a pipeline for the robotics community to readily leverage continuing progress in visual representation learning, without sacrificing the training efficiency or inference speed required for high-frequency, reactive control. Videos can be viewed at https://patch-policy.github.io",
+      "authors": [
+        "Gaoyue Zhou",
+        "Zichen Jeff Cui",
+        "Ada Langford",
+        "Bowen Tan",
+        "Yann LeCun",
+        "Lerrel Pinto"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-07-20T17:59:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.18236v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "efficient VLA using dense patch features from pretrained ViT",
+      "llm_evidence_cn": "利用预训练ViT密集补丁特征的高效VLA",
+      "llm_evidence": "利用预训练ViT密集补丁特征的高效VLA",
+      "canonical_evidence": "利用预训练ViT密集补丁特征的高效VLA",
+      "llm_tldr_en": "Patch Policy is a lightweight architecture that enables transformer policies to directly consume dense pretrained patch tokens, matching VLA accuracy at a fraction of the cost.",
+      "llm_tldr_cn": "现有VLA模型虽能处理密集补丁特征但过于笨重。本文提出Patch Policy，一种最小架构扩展，使transformer策略可直接利用预训练ViT的密集补丁令牌，避免了全局压缩或从头训练。实验表明，在多个操作基准上，Patch Policy达到了与大型VLA相当的精度，而推理速度提升数倍。",
+      "llm_tldr": "现有VLA模型虽能处理密集补丁特征但过于笨重。本文提出Patch Policy，一种最小架构扩展，使transformer策略可直接利用预训练ViT的密集补丁令牌，避免了全局压缩或从头训练。实验表明，在多个操作基准上，Patch Policy达到了与大型VLA相当的精度，而推理速度提升数倍。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.17769v1",
+      "source": "arxiv",
+      "title": "From Sign Language Generation to Humanoid Execution: Vision-Language Guided Retargeting with Collision Mitigation",
+      "abstract": "Recent sign language generation (SLG) systems increasingly output dense 3D body representations, which better preserve full-body kinematics and geometry for downstream embodiment on humanoid robots. However, these generated motions frequently exhibit self-intersections such as hand-hand and hand-torso penetration. While such artifacts may be tolerated in offline rendering, they become critical in humanoid execution as they lead to infeasible inverse-kinematics (IK) solutions, collisions, and unstable retargeted trajectories. We present a system-level framework that bridges SLG outputs to humanoid joint-space execution via two components. First, we introduce a volumetric SMPL-X collision-mitigation module that projects generated signing motions toward physically plausible configurations while minimally deviating from the original trajectory. Second, we propose a vision-language-guided retargeting algorithm built on an IK backbone: a VLM serves as a visual critic over rendered humanoid motion, identifies embodiment-specific failure modes, and triggers targeted task-space corrections. Our results highlight collision handling and perception-guided refinement as key missing components for reliable humanoid signing.",
+      "authors": [
+        "Nabeela Khan",
+        "Bowen Wu",
+        "Runwu Shi",
+        "Benjamin Yen",
+        "Takeshi Ashizawa",
+        "Carlos Toshinori Ishi",
+        "Takashi Minato",
+        "Kazuhiro Nakadai"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.HC"
+      ],
+      "published": "2026-07-20T10:02:18+00:00",
+      "link": "https://arxiv.org/pdf/2607.17769v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "vision-language guided retargeting for humanoid execution",
+      "llm_evidence_cn": "视觉语言引导的人形机器人运动重定向",
+      "llm_evidence": "视觉语言引导的人形机器人运动重定向",
+      "canonical_evidence": "视觉语言引导的人形机器人运动重定向",
+      "llm_tldr_en": "A framework that uses vision-language models to retarget sign language motions onto humanoid robots while mitigating self-collisions, enabling feasible execution.",
+      "llm_tldr_cn": "手语生成系统产生的动作常存在自交，导致人形机器人执行时出现运动学不可解与碰撞。本文提出一个系统级框架，通过视觉语言引导的碰撞缓解模块和人体到机器人运动重定向组件，将手语动作转化为可执行的关节空间轨迹。实验验证了该方法在物理人形机器人上的有效性和稳定性。",
+      "llm_tldr": "手语生成系统产生的动作常存在自交，导致人形机器人执行时出现运动学不可解与碰撞。本文提出一个系统级框架，通过视觉语言引导的碰撞缓解模块和人体到机器人运动重定向组件，将手语动作转化为可执行的关节空间轨迹。实验验证了该方法在物理人形机器人上的有效性和稳定性。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.15890v1",
+      "source": "arxiv",
+      "title": "Exo2EgoPose: Leveraging Exocentric Demonstrations for Vision-Language guided Egocentric 3D Hand Pose Forecasting",
+      "abstract": "Perceiving multimodal cues and forecasting fine-grained actions from an egocentric (Ego) perspective is vital for applications like robot manipulation. However, previous studies either rely mainly on under-informed visual inputs to predict coarse human motions or follow the VRM/VLA paradigm, which suffers from insufficient robot data and the gap between human and robot embodiments. We observe that 3D hand pose naturally serves as a unified representation to bridge human-robot actions. Hence, we investigate an under-explored Vision-Language guided Egocentric 3D Hand Pose Forecasting (VL-EHPF) task, which aims to predict future Ego 3D hand poses from visual observations, a language instruction, and pose states. To overcome the limited field-of-view and highly dynamic motions in the Ego view, we propose a framework dubbed Exo2EgoPose, which innovatively leverages holistic and stable exocentric (Exo) demonstrations as guidance to compensate for partial and dynamic Ego-view cues. Specifically, we introduce a Dual-level Exocentric Reconstruction Module (DERM), which incorporates the paired Exo videos as supervision to reconstruct their video-level and chunked frame-level representations, thereby modeling spatial contexts and temporal dynamics. Then, the Global-to-Local Modulation Module (GLMM) utilizes the reconstructed hierarchical Exo representations for progressive feature refinement via attention mechanisms and adaptive modulation, enabling comprehensive Exo guidance for accurate Ego hand pose forecasting. Extensive experiments on \\textit{AssemblyHands}, \\textit{Ego-Exo4D}, and our newly constructed \\textit{EgoMe-pose} benchmarks show the superiority of our method, which outperforms state-of-the-art methods by a large margin. Moreover, it demonstrates an effective human-to-robot transfer capability and yields improvements on the \\textit{CALVIN} dataset. Code will be released.",
+      "authors": [
+        "Zhaofeng Shi",
+        "Heqian Qiu",
+        "Lanxiao Wang",
+        "Xiang Li",
+        "Hongliang Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-17T12:05:07+00:00",
+      "link": "https://arxiv.org/pdf/2607.15890v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "vision-language guided 3D hand pose forecasting for robot manipulation",
+      "llm_evidence_cn": "视觉语言引导的3D手姿态预测用于机器人操作",
+      "llm_evidence": "视觉语言引导的3D手姿态预测用于机器人操作",
+      "canonical_evidence": "视觉语言引导的3D手姿态预测用于机器人操作",
+      "llm_tldr_en": "Exo2EgoPose uses exocentric demonstrations to train a VLM for egocentric 3D hand pose forecasting, bridging human-robot action gaps.",
+      "llm_tldr_cn": "现有VLA范式受限于机器人数据不足和人类-机器人具身差距。Exo2EgoPose 将3D手姿态作为统一表示，利用外中心演示进行视觉语言引导的自我中心手姿态预测，从而将人类动作知识迁移到机器人。该方法为机器人操作提供了高效的数据利用途径。",
+      "llm_tldr": "现有VLA范式受限于机器人数据不足和人类-机器人具身差距。Exo2EgoPose 将3D手姿态作为统一表示，利用外中心演示进行视觉语言引导的自我中心手姿态预测，从而将人类动作知识迁移到机器人。该方法为机器人操作提供了高效的数据利用途径。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.20110v1",
+      "source": "arxiv",
+      "title": "Extreme-RGMT: Continual Learning of Highly Dynamic Skills for Robust Generalist Humanoid Control",
+      "abstract": "Humans can progressively acquire highly dynamic motor skills while preserving reliable everyday motor abilities. In contrast, existing humanoid controllers face a trade-off between generalist and specialist capabilities: generalist motion tracking policies struggle to reliably execute rare highly dynamic motions, whereas specialist training can degrade previously acquired behaviors. We introduce Extreme-RGMT, a two-stage continual learning framework for robust generalist humanoid control. The method first learns a generalist motion-tracking base policy from diverse multi-source motion data, then employs an asymmetric skill acquisition and capability consolidation mechanism to constrain policy drift on mastered motions while emphasizing difficult dynamic segments. To address the scarcity of highly dynamic motions, their high failure rates, and the resulting shortage of informative samples, Extreme-RGMT combines difficulty-aware sampling with advantage-prioritized trajectory resampling to emphasize critical segments. Experiments show that Extreme-RGMT achieves state-of-the-art generalist whole-body motion-tracking performance, including substantially improved completion of challenging highly dynamic motions. The resulting controller directly executes diverse unseen highly dynamic motions under fixed references and online inertial motion-capture inputs, advancing generalist whole-body motion-tracking controllers toward highly dynamic motor capabilities at the human-expert level.",
+      "authors": [
+        "Yubiao Ma",
+        "Han Yu",
+        "Kai Guo",
+        "Changtai Lv",
+        "Zhengquan Mao",
+        "Boyang Xing",
+        "Xuemei Ren",
+        "Dongdong Zheng"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-22T13:10:22+00:00",
+      "link": "https://arxiv.org/pdf/2607.20110v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "humanoid control continual learning dynamic skills generalist policy",
+      "llm_evidence_cn": "人形机器人持续学习动态技能与通用策略",
+      "llm_evidence": "人形机器人持续学习动态技能与通用策略",
+      "canonical_evidence": "人形机器人持续学习动态技能与通用策略",
+      "llm_tldr_en": "Extreme-RGMT introduces a continual learning framework for humanoid control that learns a generalist base policy then acquires dynamic skills without forgetting, enabling robust execution of rare highly dynamic motions.",
+      "llm_tldr_cn": "人形机器人控制器面临通用与专长技能的权衡：通用策略难以执行罕见动态动作，专长训练可能遗忘已有技能。本文提出Extreme-RGMT，两阶段持续学习框架：先学习通用运动跟踪基础策略，再通过非对称技能获取和巩固机制约束策略漂移。在多源运动数据上训练，能稳定执行高度动态运动而保持日常运动可靠性。",
+      "llm_tldr": "人形机器人控制器面临通用与专长技能的权衡：通用策略难以执行罕见动态动作，专长训练可能遗忘已有技能。本文提出Extreme-RGMT，两阶段持续学习框架：先学习通用运动跟踪基础策略，再通过非对称技能获取和巩固机制约束策略漂移。在多源运动数据上训练，能稳定执行高度动态运动而保持日常运动可靠性。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2607.18580v1",
+      "source": "arxiv",
+      "title": "STeP: Signal Temporal Logic for Precise Specifications for Action Generation with Vision Language Models",
+      "abstract": "Vision-language-action (VLA) models have shown impressive generalization, but often lack interpretability and can struggle to follow precise natural language instructions that encode spatial, temporal, and logical requirements. We propose a hierarchical framework that uses Signal Temporal Logic (STL) as a shared representation connecting high-level language understanding with low-level robot execution. A high-level policy leverages a VLM to decompose language instructions into high-level subtasks, generate STL specifications for each subtask, and choose a low-level policy for executing each subtask. The STL specifications translate language-derived intent into precise constraints, and the low-level policy selection determines whether those constraints are enforced directly through STL-guided model-predictive control or monitored during execution of a learned policy for perceptually complex, or contact-rich behaviors. By integrating STL into plan validation, low-level policy, subtask monitoring, and replanning, our framework enables language-derived plans to be checked, optimized, and revised at runtime using a common formal structure. We evaluate the approach on a real-world tabletop domain, demonstrating how formal specifications can improve the precision, reliability, and interpretability of language-conditioned robot planning.",
+      "authors": [
+        "Kasra Torshizi",
+        "Anukriti Singh",
+        "Sidharth Mathur",
+        "Khuzema Habib",
+        "Leo Du",
+        "Pratap Tokekar"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-20T23:26:32+00:00",
+      "link": "https://arxiv.org/pdf/2607.18580v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "hierarchical VLA framework with STL for precise action generation",
+      "llm_evidence_cn": "使用STL的分层VLA框架生成精确动作",
+      "llm_evidence": "使用STL的分层VLA框架生成精确动作",
+      "canonical_evidence": "使用STL的分层VLA框架生成精确动作",
+      "llm_tldr_en": "STeP integrates Signal Temporal Logic with VLMs to produce precise, interpretable action specifications for robot manipulation.",
+      "llm_tldr_cn": "VLA模型泛化能力强但难以遵循精确的语言指令。STeP 框架将信号时间逻辑（STL）作为共享表示，高层VLM将指令分解为子任务并生成STL规范，低层策略执行满足约束的动作，从而兼顾语言理解与精确执行。实验表明该方法能处理空间、时间及逻辑约束任务。",
+      "llm_tldr": "VLA模型泛化能力强但难以遵循精确的语言指令。STeP 框架将信号时间逻辑（STL）作为共享表示，高层VLM将指令分解为子任务并生成STL规范，低层策略执行满足约束的动作，从而兼顾语言理解与精确执行。实验表明该方法能处理空间、时间及逻辑约束任务。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.16921v1",
+      "source": "arxiv",
+      "title": "PREFAIL: Identifying Precursors to Failures in Robotic Lift-and-Place Tasks to Improve Task Execution Performance",
+      "abstract": "Non-prehensile manipulation enables flexible material handling with part carriers, but friction-based support makes high-speed motions failure-prone, while slower operation increases cycle time. Proactive failure prediction is therefore essential for efficient and reliable performance, yet existing approaches remain limited by key constraints, including sensitivity to dynamic actions and high dependence on known policy structures. Furthermore, existing methods and datasets lack a precise characterization of the latest intervention time, leaving it unclear whether a detected failure can still be prevented through timely intervention. In this paper, we investigate lift-and-place tasks for non-prehensile material handling manipulation and propose a more effective approach to predicting precursors to failures (PREFAIL) by analyzing the relative motion of target objects with respect to the carrier. We further introduce a dataset that precisely identifies the latest intervention time for risky manipulations, enabling rigorous evaluation of whether a failure prediction is actionable. We validate our approach on both simulation and real-world datasets. Our experimental results demonstrate that PREFAIL substantially improves both the accuracy and timeliness of responses to failure precursors.",
+      "authors": [
+        "Zeyu Shangguan",
+        "Rajas Chitale",
+        "Rutvik Patel",
+        "Satyandra K. Gupta",
+        "Daniel Seita"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-18T18:25:58+00:00",
+      "link": "https://arxiv.org/pdf/2607.16921v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "fault prediction for improved task execution in non-prehensile manipulation",
+      "llm_evidence_cn": "非抓取操作中的故障预测以提升任务执行性能",
+      "llm_evidence": "非抓取操作中的故障预测以提升任务执行性能",
+      "canonical_evidence": "非抓取操作中的故障预测以提升任务执行性能",
+      "llm_tldr_en": "PREFAIL identifies precursors to failures in robotic lift-and-place tasks, enabling proactive intervention that improves task execution performance without relying on known policy structures.",
+      "llm_tldr_cn": "针对非抓取搬运任务中高速运动易失效的问题，本文提出PREFAIL方法，通过在线检测动作执行前的故障前兆，实现了不依赖已知策略结构的主动干预。实验证明，该方法能有效提升任务成功率并减少停机时间，为可靠的非抓取操作提供了新思路。",
+      "llm_tldr": "针对非抓取搬运任务中高速运动易失效的问题，本文提出PREFAIL方法，通过在线检测动作执行前的故障前兆，实现了不依赖已知策略结构的主动干预。实验证明，该方法能有效提升任务成功率并减少停机时间，为可靠的非抓取操作提供了新思路。",
+      "llm_tags": [
+        "query:pi-robotics"
+      ],
+      "matched_query_tag": "query:pi-robotics",
+      "matched_query_text": "policy improvement for robotics performance",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.18840v1",
+      "source": "arxiv",
+      "title": "WorldScape Policy 2.0: Empowering Steerable World Action Modeling with Reasoning-Augmented Memory",
+      "abstract": "World Action Models (WAMs) offer a promising paradigm for robotic manipulation by jointly modeling visual state transitions and robot actions. However, existing WAMs are constrained by limited temporal context, coarse episode-level language supervision, and predominantly text-only conditioning, which hinder task-progress tracking and fine-grained language-video-action grounding while limiting visual-context reasoning and cross-embodiment transfer. In this paper, we introduce WorldScape Policy 2.0, a controllable WAM with reasoning-augmented long short-term memory. Its causal short-term visual memory supplies recent observations as DiT prefill to preserve local interaction dynamics, while its long short-term event memory organizes historical VLM outputs into global-history, local-active, and event-boundary representations for progress-aware retrieval. The retrieved history augments perception and autoregressively generated planning tokens, yielding an implicit subgoal condition for autonomous planning; semantic forcing further transfers event-level instruction semantics into this latent planning pathway. To establish fine-grained multimodal controllability, we construct ManipEvent-5M, an event-grounded embodied pretraining dataset containing nearly 5 million event segments with aligned action trajectories, episode-level task instructions, segment-level subtask captions, goal images, and video demonstrations. These designs provide a unified interface for autonomous planning from high-level instructions and controllable execution from fine-grained text, goal-image, or video-context prompts. Experiments in both simulation and real-world platforms demonstrate superior capabilities in long-horizon autonomous planning, fine-grained instruction following and in-context adaptation.",
+      "authors": [
+        "Haisheng Su",
+        "Zongdai Liu",
+        "Xin Jin",
+        "Haoxuan Dou",
+        "Chengming Hu",
+        "Baorun Li",
+        "Zhanwang Liu",
+        "Ruiyan Xu",
+        "Jianjie Fang",
+        "Xin Zhang",
+        "Zhenjie Yang",
+        "Xue Yang",
+        "Chen Gao",
+        "Junchi Yan",
+        "Yong Li",
+        "Wei Wu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-21T08:25:37+00:00",
+      "link": "https://arxiv.org/pdf/2607.18840v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "world action model with VLA and reasoning-augmented memory for manipulation",
+      "llm_evidence_cn": "结合VLA和推理增强记忆的世界动作模型用于操作",
+      "llm_evidence": "结合VLA和推理增强记忆的世界动作模型用于操作",
+      "canonical_evidence": "结合VLA和推理增强记忆的世界动作模型用于操作",
+      "llm_tldr_en": "WorldScape Policy 2.0 is a steerable world action model with reasoning-augmented long short-term memory that jointly models visual state transitions and actions, improving task tracking and cross-embodiment transfer.",
+      "llm_tldr_cn": "现有世界动作模型时间上下文有限、语言监督粗粒度。本文提出WorldScape Policy 2.0，引入推理增强长短期记忆：短期视觉记忆保留局部交互动态，长期事件记忆组织全局进度。实验表明，该模型在多个操作任务上实现了更好的状态跟踪和跨实体迁移。",
+      "llm_tldr": "现有世界动作模型时间上下文有限、语言监督粗粒度。本文提出WorldScape Policy 2.0，引入推理增强长短期记忆：短期视觉记忆保留局部交互动态，长期事件记忆组织全局进度。实验表明，该模型在多个操作任务上实现了更好的状态跟踪和跨实体迁移。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.17323v1",
+      "source": "arxiv",
+      "title": "From Perception to Assistance: Open-Vocabulary Shared Autonomy for Robotic Manipulation",
+      "abstract": "Teleoperating a robotic manipulator in industrial environments demands precision that camera-based interfaces alone struggle to deliver. The operator must align the end-effector with a target in clutter, under limited depth perception, and without colliding with the surrounding structures. This paper presents a shared-autonomy framework that assists the operator throughout this process. A single RGB-D camera captures the operator's arm motion and hand gestures without wearables, fiducials, or a calibration stage. The intended target is specified by a free-form text prompt, grounded by a vision-language model in the robot's gripper camera, and tracked across its onboard cameras by a promptable video-segmentation model, resulting in a grasp frame continuously separated from the obstacle map. Every commanded motion is executed by a GPU-accelerated model-predictive controller that enforces self- and environment-collision avoidance against an online volumetric reconstruction, while a potential field corrects the operator's reference toward the grounded target during the final approach. An autonomous mode can be gesture-triggered to complete the grasp on the same target without a separate perception pipeline. The framework is validated on a quadruped mobile manipulator. The interface achieves a positional RMSE of 59 mm relative to motion-capture ground truth, and the controller keeps the arm at least 18 cm from obstacles while the operator deliberately commands the arm into them by 6 cm. In an industrial valve manipulation and a pick-and-place task, the full framework succeeded in all trials, while ablating either the collision or the assistance module produced failures through complementary mechanisms, and autonomous execution succeeded in four of five trials per task.",
+      "authors": [
+        "Murilo Vinicius da Silva",
+        "Ricardo V. Godoy",
+        "Juliano Negri",
+        "Gustavo J. G. Lahr",
+        "Ranulfo Bezerra",
+        "Marcelo Becker"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.HC",
+        "eess.SY"
+      ],
+      "published": "2026-07-19T16:15:14+00:00",
+      "link": "https://arxiv.org/pdf/2607.17323v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "open-vocabulary shared autonomy with VLM for robotic manipulation",
+      "llm_evidence_cn": "使用视觉语言模型的开放词汇共享自主辅助机械臂操作",
+      "llm_evidence": "使用视觉语言模型的开放词汇共享自主辅助机械臂操作",
+      "canonical_evidence": "使用视觉语言模型的开放词汇共享自主辅助机械臂操作",
+      "llm_tldr_en": "Proposes a shared-autonomy framework using a vision-language model and video segmentation to assist teleoperated robotic manipulation via free-form text prompts.",
+      "llm_tldr_cn": "针对工业环境中遥操作机械臂精度不足的问题，提出了一种结合视觉语言模型和视频分割的共享自主框架。操作者通过自然语言指定目标，系统自动完成目标跟踪与辅助对齐。实验表明该方法无需校准即可提升操作效率。该工作展示了VLM在机器人操作辅助中的潜力。",
+      "llm_tldr": "针对工业环境中遥操作机械臂精度不足的问题，提出了一种结合视觉语言模型和视频分割的共享自主框架。操作者通过自然语言指定目标，系统自动完成目标跟踪与辅助对齐。实验表明该方法无需校准即可提升操作效率。该工作展示了VLM在机器人操作辅助中的潜力。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.19343v1",
+      "source": "arxiv",
+      "title": "Masked Visual Actions for Unified World Modeling",
+      "abstract": "Video models absorb rich priors over how the visual world moves, interacts, and responds to contact, making them promising substrates for robotic world modeling. The central challenge is how to communicate action to such models in a form aligned with the visual space in which they learned these interaction priors, yet still grounded in physical manipulation. We introduce Masked Visual Actions, a pixel-space control interface that expresses action as a partially revealed trajectory of an arbitrary entity in a video. Revealing robot motion makes the model act as a forward dynamics model that predicts the scene's response to low-level robot actions, while revealing desired object motion makes the same model recover robot behavior consistent with that outcome. Finetuned with only 15 hours of masked examples from real videos and simulation, a single checkpoint achieves strong visual fidelity and controllability across diverse scenes and multiple embodiments. In downstream manipulation settings, the model produces imagined rollouts whose outcomes correlate with real-world execution for policy evaluation, improves decision making by ranking candidate futures in model-based planning, and supports inverse modeling by synthesizing robot motion from desired object motion.",
+      "authors": [
+        "Hadi Alzayer",
+        "Wenlong Huang",
+        "Haonan Chen",
+        "Christopher Luey",
+        "Lvmin Zhang",
+        "Maneesh Agrawala",
+        "Gordon Wetzstein",
+        "Li Fei-Fei",
+        "Yilun Du",
+        "Jiajun Wu",
+        "Jia-Bin Huang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-07-21T17:59:11+00:00",
+      "link": "https://arxiv.org/pdf/2607.19343v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "pixel-space action interface for world modeling in VLA context",
+      "llm_evidence_cn": "像素空间动作接口，用于世界建模与VLA",
+      "llm_evidence": "像素空间动作接口，用于世界建模与VLA",
+      "canonical_evidence": "像素空间动作接口，用于世界建模与VLA",
+      "llm_tldr_en": "Masked Visual Actions enable video models to act as forward dynamics or recover robot behavior via pixel-space action representation, improving manipulation planning.",
+      "llm_tldr_cn": "视频模型蕴含丰富的交互先验，但如何将动作纳入其中是挑战。本文提出遮罩视觉动作，一种像素空间控制接口，通过部分揭示轨迹来表达动作。该接口可使视频模型作为前向动力学模型预测场景响应，或恢复目标导向的机器人行为。微调后在操作任务中提升了规划性能。",
+      "llm_tldr": "视频模型蕴含丰富的交互先验，但如何将动作纳入其中是挑战。本文提出遮罩视觉动作，一种像素空间控制接口，通过部分揭示轨迹来表达动作。该接口可使视频模型作为前向动力学模型预测场景响应，或恢复目标导向的机器人行为。微调后在操作任务中提升了规划性能。",
+      "llm_tags": [
+        "query:embodied-vla:composite"
+      ],
+      "matched_query_tag": "query:embodied-vla:composite",
+      "matched_query_text": "Papers central to 具身智能中VLA路径的机器人性能提升技术, especially work that connects or combines: vision language action model for embodied intelligence; advanced control methods for humanoid robots using VLA; innovative manipulation techniques for robotic arms with VLA; embodied intelligence research using vision language action models; language-conditioned robot control for humanoid and arm tasks; How to leverage vision language action models to improve humanoid robot performance; Innovative VLA techniques for robotic arm manipulation accuracy.",
+      "matched_requirement_id": "req-composite-embodied-vla",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.20033v2",
+      "source": "arxiv",
+      "title": "Robots Acquire Manipulation Skills in Seconds from a Single Human Video",
+      "abstract": "The ability to acquire skills rapidly and effortlessly while retaining those already mastered is essential for robots. However, current methods still rely on a cumbersome training-time loop that is costly and slow, while eroding skills already mastered. In this paper, we introduce HOST (Human-to-robot One-Shot Skill AcquisiTion), a framework that enables a robot to acquire skills in seconds from a single human video while retaining previously mastered skills. HOST resolves skill acquisition through a cascade of self-grounded prediction. It first estimates the robot's progress within the demonstrated task, then translates the upcoming progression into the robot's own future observations, and finally derives actions from these predicted observations. This cascade is trained on targets coupled to the video demonstration, obtained by mapping the robot trajectory and the video demonstration onto a shared task progress manifold, then redefining each target to align with the future progression of the video. HOST thereby enables the robot to actively follow the demonstrated procedure and adapt it to the robot's embodiment. HOST acquires novel skills at inference time from a single human video in an average of 29 seconds and achieves a 62% average success rate. It exceeds the zero-shot baseline by 45% while retaining previously mastered skills. HOST even exceeds the baseline fine-tuned on 50 robot demonstrations per task while requiring 50 times fewer demonstrations and acquiring each skill 507 times faster. Additional information about HOST is available on the project website.",
+      "authors": [
+        "Guangyan Chen",
+        "Meiling Wang",
+        "Te Cui",
+        "Zichen Zhou",
+        "Qi Shao",
+        "Shalfun Li",
+        "Hang Su",
+        "Roy Gan",
+        "Hao Wang",
+        "Mengyin Fu",
+        "Yi Yang",
+        "Yufeng Yue"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-22T11:20:05+00:00",
+      "link": "https://arxiv.org/pdf/2607.20033v2",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "rapid skill acquisition from single video, policy improvement",
+      "llm_evidence_cn": "从单个人类视频快速获取技能，策略改进",
+      "llm_evidence": "从单个人类视频快速获取技能，策略改进",
+      "canonical_evidence": "从单个人类视频快速获取技能，策略改进",
+      "llm_tldr_en": "HOST enables robots to acquire manipulation skills from a single human video in seconds via self-grounded prediction cascade, retaining previously mastered skills without retraining.",
+      "llm_tldr_cn": "现有机器人技能获取方法昂贵且慢，且会遗忘已学技能。本文提出HOST框架，通过自我锚定预测级联（进度估计、未来观测预测、动作推导），使机器人能从单个视频中秒级获取新技能并保留旧技能。实验证明该方法在多种操作任务上高效且可扩展。",
+      "llm_tldr": "现有机器人技能获取方法昂贵且慢，且会遗忘已学技能。本文提出HOST框架，通过自我锚定预测级联（进度估计、未来观测预测、动作推导），使机器人能从单个视频中秒级获取新技能并保留旧技能。实验证明该方法在多种操作任务上高效且可扩展。",
+      "llm_tags": [
+        "query:pi-robotics"
+      ],
+      "matched_query_tag": "query:pi-robotics",
+      "matched_query_text": "robot manipulation enhancement through policy",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.20207v1",
+      "source": "arxiv",
+      "title": "SeededGrasp: Language-Guided Grasping in Complex Scenes with Multiple Embodiments",
+      "abstract": "Practical robotic grasping in complex scenes requires both 3D spatial reasoning and alignment with task-specific requirements. Vision-language models (VLMs) offer a natural way to specify these requirements using language, but existing approaches either use a VLM to predict the grasp directly with limited spatial awareness, or train the VLM together with the grasping model, which requires significantly more data and compute. These limitations impede performance and have prevented scaling to multiple embodiments in complex scenes. We address this by proposing SeededGrasp, a novel data-efficient framework that enables a VLM to predict a seed point to be used as conditioning for a subsequent lightweight grasp-generation model. Our architecture decouples high-level semantic reasoning from low-level geometric execution, enabling multi-embodiment support while bypassing the need for expensive end-to-end training. To enable training such models, we release the first multi-embodiment tabletop grasping dataset comprising over 2.5M grasps in cluttered scenes. Experimental results demonstrate that our approach outperforms existing baselines, achieving 72% success in simulation and 78% in real-world grasping experiments. See our project site for data and code: https://uoft-isl.github.io/seeded-grasp/",
+      "authors": [
+        "Yang Xu",
+        "Gurpreet Singh Mukker",
+        "Raymond Wang",
+        "Jasper Gerigk",
+        "Maria Attarian",
+        "Igor Gilitschenski"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-07-22T14:27:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.20207v1",
+      "tags": [
+        "keyword:pi-robotics",
+        "query:pi-robotics"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Language-guided grasping using VLM for robot manipulation enhancement",
+      "llm_evidence_cn": "使用视觉语言模型进行语言引导抓取，增强机器人操作能力",
+      "llm_evidence": "使用视觉语言模型进行语言引导抓取，增强机器人操作能力",
+      "canonical_evidence": "使用视觉语言模型进行语言引导抓取，增强机器人操作能力",
+      "llm_tldr_en": "SeededGrasp uses a VLM to predict a seed point for a lightweight grasp generator, enabling data-efficient language-guided grasping across embodiments.",
+      "llm_tldr_cn": "现有视觉语言模型在机器人抓取中要么直接预测抓取缺乏空间意识，要么与抓取模型联合训练数据需求大。SeededGrasp提出一种数据高效框架，利用VLM预测种子点作为轻量抓取生成模型的条件，仅需少量语言标注数据即可扩展到多种机器人形态。实验证明该方法在复杂场景下显著提升了抓取成功率和语言对齐能力。",
+      "llm_tldr": "现有视觉语言模型在机器人抓取中要么直接预测抓取缺乏空间意识，要么与抓取模型联合训练数据需求大。SeededGrasp提出一种数据高效框架，利用VLM预测种子点作为轻量抓取生成模型的条件，仅需少量语言标注数据即可扩展到多种机器人形态。实验证明该方法在复杂场景下显著提升了抓取成功率和语言对齐能力。",
+      "llm_tags": [
+        "query:pi-robotics"
+      ],
+      "matched_query_tag": "query:pi-robotics",
+      "matched_query_text": "robot manipulation enhancement through policy",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
