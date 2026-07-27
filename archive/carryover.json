@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-26T20:53:01.476252+00:00",
-  "updated_date": "20260726",
+  "generated_at": "2026-07-27T20:37:12.058500+00:00",
+  "updated_date": "20260727",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,53 +480,9 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260726",
+      "updated_date": "20260727",
       "carryover_days": 9,
-      "items": [
-        {
-          "id": "2607.20912v1",
-          "source": "arxiv",
-          "title": "URF: A Unified Robot Control-Policy Framework for Stable Contact Aware Manipulation",
-          "abstract": "Learning-based manipulation policies usually predict robot actions from sensory observations and leave their execution to a separate low-level controller. In rigid contact, this separation can be problematic: the same motion to a virtual target or compliant motion command can lead to unstable contact, tracking error, excessive loading, or tool damage, depending on the low-level controller. In this paper, we propose a \\textit{Unified Robot Control-Policy Framework} (URF), which connects compliant action prediction with unified impedance-admittance control. Given multimodal observations, URF predicts a virtual target, a stiffness matrix, and an impedance-admittance switch ratio. The switch ratio determines when the controller should behave more like admittance control for accurate motion tracking and when it should move toward impedance control for safer rigid contact. Because demonstration data do not provide ground-truth environment stiffness, we construct switch-ratio labels from measured contact forces and use them to supervise controller-mode prediction. Across box-flipping and line-pressing tasks, URF achieves higher task success rates while reducing failure modes observed with admittance-only execution, including rapid force buildup, large force oscillations, tool breakage, and robot safety stops. These results suggest that contact-aware policies benefit from predicting not only compliant actions but also the controller behavior used to execute them. Project page: https://jiyou384.github.io/urf_project_page/",
-          "authors": [
-            "Jiyou Shin",
-            "Youngjin Seo",
-            "Jaeseog Won",
-            "Sungwon Seo",
-            "Hyunjun Kim",
-            "Seokmin Yoon",
-            "Tuan Luong",
-            "Hyungpil Moon"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-07-23T04:46:19+00:00",
-          "link": "https://arxiv.org/pdf/2607.20912v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "unified robot control-policy framework for stable manipulation",
-          "llm_evidence_cn": "统一的机器人控制策略框架用于稳定操作",
-          "llm_evidence": "统一的机器人控制策略框架用于稳定操作",
-          "canonical_evidence": "统一的机器人控制策略框架用于稳定操作",
-          "llm_tldr_en": "Proposes URF, a unified control-policy framework that connects compliant action prediction with impedance-admittance control, improving contact-aware manipulation stability.",
-          "llm_tldr_cn": "该论文针对学习型操作策略与底层控制器分离导致的刚性接触不稳定问题，提出了统一控制策略框架URF，通过联合预测虚拟目标、刚度矩阵和阻抗-导纳切换比例，实现动作预测与控制的深度融合。实验证明URF在各种接触任务中显著提高了稳定性和精度。",
-          "llm_tldr": "该论文针对学习型操作策略与底层控制器分离导致的刚性接触不稳定问题，提出了统一控制策略框架URF，通过联合预测虚拟目标、刚度矩阵和阻抗-导纳切换比例，实现动作预测与控制的深度融合。实验证明URF在各种接触任务中显著提高了稳定性和精度。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2607.20912v1",
-          "carry_days": 1
-        }
-      ]
+      "items": []
     }
   }
 }
