@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-27T20:37:12.058500+00:00",
-  "updated_date": "20260727",
+  "generated_at": "2026-07-28T20:05:20.345197+00:00",
+  "updated_date": "20260728",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,9 +480,50 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260727",
+      "updated_date": "20260728",
       "carryover_days": 9,
-      "items": []
+      "items": [
+        {
+          "id": "2607.24296v1",
+          "source": "arxiv",
+          "title": "PAC-DP: PAC-Bayesian Diffusion Policy Learning",
+          "abstract": "Diffusion Policies (DPs) are able to perform complex manipulation tasks. However, DPs are typically trained by minimizing a denoising objective, which provides limited control over generalization in the finite-data regimes common in robotics. In this letter, we propose PAC-DP, an approach that increases the performance of DPs in robotic manipulation tasks. By modeling the DP as a Bayesian neural network, and defining a PAC-Bayes generalization bound, we derive a novel training objective that augments the standard denoising loss with a Kullback-Leibler divergence regularizer between the posterior and prior parameter distributions. From the theoretical perspective, our approach provides a principled approach to regularize the training of DPs without significantly increasing the training time. From the practical point of view, experimental results demonstrate improved denoising performance, lower variational negative log-likelihood, and higher success rates across multiple robotic manipulation benchmarks. Crucially, the largest improvements are observed in low-data training regimes and complex tasks, establishing PAC-DP as a theoretically grounded framework for robot policy learning.",
+          "authors": [
+            "Mohammad Hasan Yeganegi",
+            "Dian Yu",
+            "Andrea Del Prete",
+            "Majid Khadiv",
+            "Matteo Saveriano"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-07-27T11:43:49+00:00",
+          "link": "https://arxiv.org/pdf/2607.24296v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "diffusion policy improvement via PAC-Bayes regularization",
+          "llm_evidence_cn": "通过PAC-Bayes正则化改进扩散策略",
+          "llm_evidence": "通过PAC-Bayes正则化改进扩散策略",
+          "canonical_evidence": "通过PAC-Bayes正则化改进扩散策略",
+          "llm_tldr_en": "PAC-DP improves diffusion policies for robotic manipulation by adding a PAC-Bayes generalization bound as a KL regularizer to the denoising objective, enhancing performance in finite-data regimes.",
+          "llm_tldr_cn": "扩散策略（DP）在复杂操作任务中表现优异，但其去噪训练目标在有限数据下泛化控制不足。本文提出PAC-DP，通过将扩散策略建模为贝叶斯神经网络，并定义PAC-Bayes泛化界，从而在标准去噪损失中引入KL散度正则化项。理论分析证明了该正则化的合理性，实验表明PAC-DP在机器人操作任务中显著提升了策略性能，尤其在数据有限时效果明显。",
+          "llm_tldr": "扩散策略（DP）在复杂操作任务中表现优异，但其去噪训练目标在有限数据下泛化控制不足。本文提出PAC-DP，通过将扩散策略建模为贝叶斯神经网络，并定义PAC-Bayes泛化界，从而在标准去噪损失中引入KL散度正则化项。理论分析证明了该正则化的合理性，实验表明PAC-DP在机器人操作任务中显著提升了策略性能，尤其在数据有限时效果明显。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "policy improvement for robotics performance",
+          "matched_requirement_id": "req-3",
+          "selection_source": "carryover_cache",
+          "paper_id": "2607.24296v1",
+          "carry_days": 1
+        }
+      ]
     }
   }
 }
