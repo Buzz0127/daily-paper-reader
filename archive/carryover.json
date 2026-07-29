@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-28T20:05:20.345197+00:00",
-  "updated_date": "20260728",
+  "generated_at": "2026-07-29T21:17:12.987762+00:00",
+  "updated_date": "20260729",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,7 +480,7 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260728",
+      "updated_date": "20260729",
       "carryover_days": 9,
       "items": [
         {
@@ -506,13 +506,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "diffusion policy improvement via PAC-Bayes regularization",
-          "llm_evidence_cn": "通过PAC-Bayes正则化改进扩散策略",
-          "llm_evidence": "通过PAC-Bayes正则化改进扩散策略",
-          "canonical_evidence": "通过PAC-Bayes正则化改进扩散策略",
-          "llm_tldr_en": "PAC-DP improves diffusion policies for robotic manipulation by adding a PAC-Bayes generalization bound as a KL regularizer to the denoising objective, enhancing performance in finite-data regimes.",
-          "llm_tldr_cn": "扩散策略（DP）在复杂操作任务中表现优异，但其去噪训练目标在有限数据下泛化控制不足。本文提出PAC-DP，通过将扩散策略建模为贝叶斯神经网络，并定义PAC-Bayes泛化界，从而在标准去噪损失中引入KL散度正则化项。理论分析证明了该正则化的合理性，实验表明PAC-DP在机器人操作任务中显著提升了策略性能，尤其在数据有限时效果明显。",
-          "llm_tldr": "扩散策略（DP）在复杂操作任务中表现优异，但其去噪训练目标在有限数据下泛化控制不足。本文提出PAC-DP，通过将扩散策略建模为贝叶斯神经网络，并定义PAC-Bayes泛化界，从而在标准去噪损失中引入KL散度正则化项。理论分析证明了该正则化的合理性，实验表明PAC-DP在机器人操作任务中显著提升了策略性能，尤其在数据有限时效果明显。",
+          "llm_evidence_en": "PAC-Bayesian diffusion policy improves robotic manipulation performance",
+          "llm_evidence_cn": "基于PAC贝叶斯的扩散策略提升机器人操作性能",
+          "llm_evidence": "基于PAC贝叶斯的扩散策略提升机器人操作性能",
+          "canonical_evidence": "基于PAC贝叶斯的扩散策略提升机器人操作性能",
+          "llm_tldr_en": "PAC-DP introduces a PAC-Bayes generalization bound to regularize diffusion policy training, improving performance in robotic manipulation tasks without extra data.",
+          "llm_tldr_cn": "针对扩散策略在有限数据下泛化不足的问题，提出了PAC-DP方法，通过将扩散策略建模为贝叶斯神经网络并推导PAC贝叶斯泛化界，在标准去噪损失中加入KL散度正则项。实验表明该方法能有效提升机器人操作任务的性能，为扩散策略的正则化训练提供了理论指导。",
+          "llm_tldr": "针对扩散策略在有限数据下泛化不足的问题，提出了PAC-DP方法，通过将扩散策略建模为贝叶斯神经网络并推导PAC贝叶斯泛化界，在标准去噪损失中加入KL散度正则项。实验表明该方法能有效提升机器人操作任务的性能，为扩散策略的正则化训练提供了理论指导。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -521,6 +521,87 @@
           "matched_requirement_id": "req-3",
           "selection_source": "carryover_cache",
           "paper_id": "2607.24296v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2607.25541v1",
+          "source": "arxiv",
+          "title": "P3: Probabilistic Policy Propagation for Stable VAE-Based Robot Learning",
+          "abstract": "Variational Autoencoders are widely used to encode high-dimensional and noisy observations in robotics. However, their stochastic latent creates a mismatch with Proximal Policy Optimization (PPO): an effective policy marginalizes over the latent distribution, whereas former implementations estimate its probability ratio and KL divergence using only one latent sample. We identify a fundamental but overlooked theoretical cause: naive single-sample approximations in stochastic latent space induce significant variance and bias in the surrogate loss. To address this, we introduce P^3 (Probabilistic Policy Propagation), a distribution-aware optimization framework for VAE-based policies. $P^3$ couples moment-based probabilistic method for stable and efficient learning with sampling-based calibration for robust policy behavior under latent uncertainty. In our experiments, P^3 boosts data efficiency from 64.6% to >96%, reduces convergence steps by >20%. Furthermore, P^3 is evaluated on challenging humanoid parkour tasks and shows an effective foundation for VAE-based PPO. Code is available at https://github.com/ylyem9x/P3_Open.",
+          "authors": [
+            "Liyun Yan",
+            "Jianming Ma",
+            "Yang Zhang",
+            "Shengcheng Fu",
+            "Zhanxiang Cao",
+            "Keqi Zhu",
+            "Yizhi Chen",
+            "Yue Gao"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-07-28T10:22:05+00:00",
+          "link": "https://arxiv.org/pdf/2607.25541v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Probabilistic Policy Propagation stabilizes VAE-based policy learning for robots",
+          "llm_evidence_cn": "概率策略传播稳定基于VAE的机器人策略学习",
+          "llm_evidence": "概率策略传播稳定基于VAE的机器人策略学习",
+          "canonical_evidence": "概率策略传播稳定基于VAE的机器人策略学习",
+          "llm_tldr_en": "P^3 fixes the mismatch between stochastic VAE latent and PPO by moment-based probabilistic propagation, achieving stable and efficient robot policy learning.",
+          "llm_tldr_cn": "针对变分自编码器（VAE）随机隐变量与近端策略优化（PPO）之间的不匹配问题——单样本近似导致高方差和偏差，提出了概率策略传播（P^3）框架。P^3采用基于矩的概率方法进行稳定高效的目标传播，在不显著增加计算量的情况下消除了近似误差。实验证明P^3在多种机器人任务中提升了策略学习的稳定性和最终性能，为结合VAE的策略优化提供了理论完善。",
+          "llm_tldr": "针对变分自编码器（VAE）随机隐变量与近端策略优化（PPO）之间的不匹配问题——单样本近似导致高方差和偏差，提出了概率策略传播（P^3）框架。P^3采用基于矩的概率方法进行稳定高效的目标传播，在不显著增加计算量的情况下消除了近似误差。实验证明P^3在多种机器人任务中提升了策略学习的稳定性和最终性能，为结合VAE的策略优化提供了理论完善。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "policy improvement for robotics performance",
+          "matched_requirement_id": "req-3",
+          "selection_source": "carryover_cache",
+          "paper_id": "2607.25541v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2607.26047v1",
+          "source": "arxiv",
+          "title": "S2A2: Audio-Visual Imitation Learning for Manipulation Tasks Using Acoustic Spatial Information",
+          "abstract": "Acoustic information provides rich cues about object location, material properties, and changes caused by contact or motion. This paper introduces a new set of acoustic-aware manipulation tasks for imitation learning, in which robots must use auditory cues to determine manipulation targets. These tasks require sound source localization and identification for active exploration in robotic manipulation. Also, we propose a multimodal imitation learning framework, Spatial-Spectral Audio Action (S2A2), that integrates visual features with acoustic spatial and acoustic signal information for the acoustic-aware manipulation tasks. We implemented S2A2 models that integrates policies such as ACT, Diffusion Policy, VQ-BeT, and $π_0$, into our framework. Simulation experiments showed that the proposed method is the most effective for tasks requiring both position and timbre. Furthermore, real-robot experiments confirm the applicability of the proposed tasks and framework to real-world manipulation.",
+          "authors": [
+            "Kaneyoshi Hiratsuka",
+            "Benjamin Yen",
+            "Ryosuke Kojima"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-07-28T17:56:07+00:00",
+          "link": "https://arxiv.org/pdf/2607.26047v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "audio-visual imitation learning for manipulation, explicitly integrates π0 policy",
+          "llm_evidence_cn": "视听模仿学习用于操作，明确集成了π0策略",
+          "llm_evidence": "视听模仿学习用于操作，明确集成了π0策略",
+          "canonical_evidence": "视听模仿学习用于操作，明确集成了π0策略",
+          "llm_tldr_en": "S2A2 integrates visual and acoustic spatial information for manipulation tasks, and implements policies including π0, improving performance in acoustic-aware scenarios.",
+          "llm_tldr_cn": "声学信息在操作中提供物体位置和材质线索，但现有方法未充分利用。S2A2提出一种融合视觉、声学空间和信号的多模态模仿学习框架。该框架集成了ACT、扩散策略、VQ-BeT和π0等策略，在声学感知操作任务中取得更好表现。这项工作扩展了π0策略的应用范围，验证了多模态输入对操作策略的重要性。",
+          "llm_tldr": "声学信息在操作中提供物体位置和材质线索，但现有方法未充分利用。S2A2提出一种融合视觉、声学空间和信号的多模态模仿学习框架。该框架集成了ACT、扩散策略、VQ-BeT和π0等策略，在声学感知操作任务中取得更好表现。这项工作扩展了π0策略的应用范围，验证了多模态输入对操作策略的重要性。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "pi0 policy robot performance",
+          "matched_requirement_id": "req-1",
+          "selection_source": "carryover_cache",
+          "paper_id": "2607.26047v1",
           "carry_days": 1
         }
       ]

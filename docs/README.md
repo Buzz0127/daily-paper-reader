@@ -6,71 +6,76 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-28
-- 运行时间：2026-07-28 20:10:22 UTC
+- 最新运行日期：2026-07-29
+- 运行时间：2026-07-29 21:23:25 UTC
 - 运行状态：成功
-- 本次总论文数：17
-- 精读区：6
+- 本次总论文数：18
+- 精读区：7
 - 速读区：11
 
 ### 今日简报（AI）
-今日聚焦人形机器人VLA闭环与专家混合模型，共收录17篇论文，精读6篇。最值得关注两篇高分研究：持续3D物体Token实现可验证操作（9.0分）和专家混合VLAs的涌现组合技能（9.0分）。建议重点关注VLA在真实场景中的闭环验证与组合泛化能力，可深入阅读精读论文。
-- 详情：[/202607/28/README](/202607/28/README)
+今日精选18篇论文，核心热点是视觉-语言-动作模型的对齐与通用机器人协调。
+最值得精读的两篇分别提出基于SAM3D的对象中心表示对齐（10/10）和物理代理解决编排鸿沟（9/10）。
+建议关注信号时序逻辑提升VLA动作精度、零售场景数据高效后训练以及混合专家模型涌现组合技能等速读方向。
+- 详情：[/202607/29/README](/202607/29/README)
 
 ### 精读区论文标签
-1. [Closing the Loop in Humanoid VLA: Persistent 3D Object Tokens for Verifiable Loco-Manipulation](/202607/28/2607.18016v1-closing-the-loop-in-humanoid-vla-persistent-3d-object-tokens-for-verifiable-loco-manipulation)  
+1. [SAM3D-Guided Object-Centric Representation Alignment for Vision-Language-Action Models](/202607/29/2607.25912v1-sam3d-guided-object-centric-representation-alignment-for-vision-language-action-models)  
+   标签：评分：10.0/10、query:pi-robotics
+   evidence：基于pi0的物体中心3D表示对齐，直接改进pi0策略
+2. [Addressing the Orchestration Gap in Generalist Robots via Physical Agency](/202607/29/2607.21725v1-addressing-the-orchestration-gap-in-generalist-robots-via-physical-agency)  
+   标签：评分：9.0/10、query:agent-build
+   evidence：将通用机器人分解为语言条件策略代理和高级编排器，符合AI代理架构
+3. [A Few Words Go a Long Way: Language Guided Robot Policy Synthesis](/202607/29/2607.23784v1-a-few-words-go-a-long-way-language-guided-robot-policy-synthesis)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：持久化物体标记用于人形机器人VLA移动操作
-2. [Emergent Compositional Skills in Mixture-of-Experts VLAs](/202607/28/2607.20771v1-emergent-compositional-skills-in-mixture-of-experts-vlas)  
+   evidence：利用LLM编程智能体进行语言引导的机器人策略合成
+4. [WorldDiT: A Unified Diffusion Architecture for World and Action Modeling](/202607/29/2607.23909v1-worlddit-a-unified-diffusion-architecture-for-world-and-action-modeling)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：混合专家VLA中的涌现组合技能
-3. [FutureRTC: Real-Time Robot Execution with Anticipatory-Conditioned Action Chunking](/202607/28/2607.24008v1-futurertc-real-time-robot-execution-with-anticipatory-conditioned-action-chunking)  
+   evidence：统一扩散变换器用于世界和动作建模，无需大型VLM主干
+5. [DeVA: Decoupled Video-Action Model with physical guidance for robot policy learning](/202607/29/2607.24159v1-deva-decoupled-video-action-model-with-physical-guidance-for-robot-policy-learning)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：异步VLA执行与预测状态校正
-4. [RynnBrain 1.1: Towards More Capable and Generalizable Embodied Foundation Model](/202607/28/2607.17977v1-rynnbrain-11-towards-more-capable-and-generalizable-embodied-foundation-model)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：具身基础模型集成VLA用于操作和感知
-5. [Closing the Loop in Humanoid VLA: Persistent 3D Object Tokens for Verifiable Loco-Manipulation](/202607/28/2607.18016v2-closing-the-loop-in-humanoid-vla-persistent-3d-object-tokens-for-verifiable-loco-manipulation)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：人形VLA中的持久3D对象令牌
-6. [Addressing the Orchestration Gap in Generalist Robots via Physical Agency](/202607/28/2607.21725v1-addressing-the-orchestration-gap-in-generalist-robots-via-physical-agency)  
-   标签：评分：8.0/10、query:agent-build
-   evidence：物理代理编排器分解策略和管理器
+   evidence：基于解耦视频-动作模型和物理引导的VLA机器人策略学习
+6. [τ: Learning Touch-Augmented Vision-Language-Action Models from Future Visual Supervision](/202607/29/2607.24485v1--learning-touch-augmented-vision-language-action-models-from-future-visual-supervision)  
+   标签：评分：9.0/10、query:embodied-vla
+   evidence：从未来视觉监督学习触觉增强VLA模型
+7. [$π\mathbf{R}^2$: Reactive Real-time Flow Policies](/202607/29/2607.26055v1-mathbfr2-reactive-real-time-flow-policies)  
+   标签：评分：9.0/10、query:pi-robotics
+   evidence：反应式实时流策略用于操作，直接针对机器人性能的策略提升
 
 ### 速读区论文标签
-1. [FM-VLA: Force-based Memory for Vision-Language-Action Models in Contact-Rich Manipulation](/202607/28/2607.18231v1-fm-vla-force-based-memory-for-vision-language-action-models-in-contact-rich-manipulation)  
+1. [STeP: Signal Temporal Logic for Precise Specifications for Action Generation with Vision Language Models](/202607/29/2607.18580v1-step-signal-temporal-logic-for-precise-specifications-for-action-generation-with-vision-language-models)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：带有力记忆的VLA模型提升接触丰富操作，直接相关于具身智能中的VLA
-2. [WorldScape Policy 2.0: Empowering Steerable World Action Modeling with Reasoning-Augmented Memory](/202607/28/2607.18840v1-worldscape-policy-20-empowering-steerable-world-action-modeling-with-reasoning-augmented-memory)  
+   evidence：使用信号时序逻辑增强VLA动作生成的层次化策略
+2. [Closing the Lab-to-Store Gap: A Data-Efficient Post-Training and Experience-Driven Learning VLA Framework for Retail Humanoids](/202607/29/2607.20345v1-closing-the-lab-to-store-gap-a-data-efficient-post-training-and-experience-driven-learning-vla-framework-for-retail-humanoids)  
+   标签：评分：8.0/10、query:embodied-vla
+   evidence：用于零售人形机器人性能提升的VLA框架
+3. [Emergent Compositional Skills in Mixture-of-Experts VLAs](/202607/29/2607.20771v1-emergent-compositional-skills-in-mixture-of-experts-vlas)  
+   标签：评分：8.0/10、query:embodied-vla
+   evidence：混合专家VLA中的涌现组合技能，提升模块化和可解释性
+4. [GuidedAttention: Interpretable and Correctable Visual Attention for OOD-Robust Robot Manipulation via Imitation Learning](/202607/29/2607.21049v2-guidedattention-interpretable-and-correctable-visual-attention-for-ood-robust-robot-manipulation-via-imitation-learning)  
    标签：评分：8.0/10、query:pi-robotics
-   evidence：具有推理增强记忆的世界动作模型用于策略改进
-3. [Closing the Lab-to-Store Gap: A Data-Efficient Post-Training and Experience-Driven Learning VLA Framework for Retail Humanoids](/202607/28/2607.20345v1-closing-the-lab-to-store-gap-a-data-efficient-post-training-and-experience-driven-learning-vla-framework-for-retail-humanoids)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：用于零售人形机器人的VLA框架
-4. [Emergent Compositional Skills in Mixture-of-Experts VLAs](/202607/28/2607.20771v2-emergent-compositional-skills-in-mixture-of-experts-vlas)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：混合专家VLA实现组合式机器人策略
-5. [RoboHarness: Memory-Driven Orchestration of Heterogeneous Robot Policies for Long-Horizon Planning](/202607/28/2607.18060v1-roboharness-memory-driven-orchestration-of-heterogeneous-robot-policies-for-long-horizon-planning)  
-   标签：评分：7.0/10、query:agent-build
-   evidence：编排异构机器人策略作为智能体技能的统一框架
-6. [Patch Policy: Efficient Embodied Control via Dense Visual Representations](/202607/28/2607.18236v1-patch-policy-efficient-embodied-control-via-dense-visual-representations)  
+   evidence：可解释可纠正的视觉注意力用于操作策略改进
+5. [Emergent Compositional Skills in Mixture-of-Experts VLAs](/202607/29/2607.20771v2-emergent-compositional-skills-in-mixture-of-experts-vlas)  
    标签：评分：7.0/10、query:embodied-vla
-   evidence：使用密集patch令牌的高效VLA风格策略，提升具身控制性能
-7. [Masked Visual Actions for Unified World Modeling](/202607/28/2607.19343v1-masked-visual-actions-for-unified-world-modeling)  
-   标签：评分：7.0/10、query:embodied-vla
-   evidence：掩码视觉动作作为像素空间控制接口用于机器人世界建模
-8. [Robots Acquire Manipulation Skills in Seconds from a Single Human Video](/202607/28/2607.20033v3-robots-acquire-manipulation-skills-in-seconds-from-a-single-human-video)  
+   evidence：使用混合专家模型的组合式VLA策略，推进具身VLA在机器人操作中的应用
+6. [GRACE: Gradient-Free Robot Action Generation via Combined Diffusion-MPPI Posterior Mean Estimation](/202607/29/2607.21661v1-grace-gradient-free-robot-action-generation-via-combined-diffusion-mppi-posterior-mean-estimation)  
    标签：评分：7.0/10、query:pi-robotics
-   evidence：从人类视频一次性技能获取用于操作
-9. [RoboInter1.5: A Holistic Intermediate Representation Suite for Embodied World Modeling and Robotic Manipulation](/202607/28/2607.18709v1-robointer15-a-holistic-intermediate-representation-suite-for-embodied-world-modeling-and-robotic-manipulation)  
+   evidence：无梯度引导扩散策略满足约束
+7. [$N_0$-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation](/202607/29/2607.23783v1-n0-twam-scaling-tactile-native-world-action-model-for-contact-rich-manipulation)  
+   标签：评分：7.0/10、query:embodied-vla
+   evidence：触觉原生世界动作模型，增强VLA的接触操作
+8. [FutureRTC: Real-Time Robot Execution with Anticipatory-Conditioned Action Chunking](/202607/29/2607.24008v1-futurertc-real-time-robot-execution-with-anticipatory-conditioned-action-chunking)  
+   标签：评分：7.0/10、query:pi-robotics
+   evidence：通过预期条件动作分块改进VLA策略的实时执行
+9. [RoboInter1.5: A Holistic Intermediate Representation Suite for Embodied World Modeling and Robotic Manipulation](/202607/29/2607.18709v1-robointer15-a-holistic-intermediate-representation-suite-for-embodied-world-modeling-and-robotic-manipulation)  
    标签：评分：6.0/10、query:embodied-vla
-   evidence：用于具身世界建模的中间表示
-10. [RoboInter1.5: A Holistic Intermediate Representation Suite for Embodied World Modeling and Robotic Manipulation](/202607/28/2607.18709v2-robointer15-a-holistic-intermediate-representation-suite-for-embodied-world-modeling-and-robotic-manipulation)  
+   evidence：面向具身世界建模和机器人操作的整体中间表示套件，支持VLA开发
+10. [RoboInter1.5: A Holistic Intermediate Representation Suite for Embodied World Modeling and Robotic Manipulation](/202607/29/2607.18709v2-robointer15-a-holistic-intermediate-representation-suite-for-embodied-world-modeling-and-robotic-manipulation)  
    标签：评分：6.0/10、query:embodied-vla
-   evidence：提供面向具身世界建模和机器人操作的中间表示，可用于VLA模型
-11. [AXIS: A Growable Community-Driven Data Engine for Scalable Robot Manipulation](/202607/28/2607.21588v1-axis-a-growable-community-driven-data-engine-for-scalable-robot-manipulation)  
-   标签：评分：6.0/10、query:pi-robotics
-   evidence：用于可扩展机器人策略学习的数据引擎
+   evidence：具身世界建模和操作的中间表示套件，支持VLA研究
+11. [Masked Visual Actions for Unified World Modeling](/202607/29/2607.19343v1-masked-visual-actions-for-unified-world-modeling)  
+   标签：评分：6.0/10、query:embodied-vla
+   evidence：掩码视觉动作用于统一世界建模，支持VLA兼容的世界模型
 
 
 <div class="dpr-home-promo-card">
