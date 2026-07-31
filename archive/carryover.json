@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-30T20:18:27.959973+00:00",
-  "updated_date": "20260730",
+  "generated_at": "2026-07-31T21:37:26.154305+00:00",
+  "updated_date": "20260731",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,7 +480,7 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260730",
+      "updated_date": "20260731",
       "carryover_days": 9,
       "items": [
         {
@@ -504,21 +504,237 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "policy improvement via flow-based RL for mobile manipulation",
-          "llm_evidence_cn": "通过基于流的强化学习进行策略改进，提升移动操作性能",
-          "llm_evidence": "通过基于流的强化学习进行策略改进，提升移动操作性能",
-          "canonical_evidence": "通过基于流的强化学习进行策略改进，提升移动操作性能",
-          "llm_tldr_en": "Proposes RLMM-Flow, combining flow-based policy pretraining with latent-space RL post-training to improve mobile manipulation beyond demonstration distribution.",
-          "llm_tldr_cn": "针对模仿学习无法超越演示分布的问题，提出RLMM-Flow框架，先通过流策略从专家演示中学习多模态全身运动先验，再在潜在空间进行强化学习后训练。实验表明该方法在移动操作任务中优于纯模仿策略，实现了更高质量的轨迹生成和任务完成。",
-          "llm_tldr": "针对模仿学习无法超越演示分布的问题，提出RLMM-Flow框架，先通过流策略从专家演示中学习多模态全身运动先验，再在潜在空间进行强化学习后训练。实验表明该方法在移动操作任务中优于纯模仿策略，实现了更高质量的轨迹生成和任务完成。",
+          "llm_evidence_en": "Flow-based mobile manipulation framework with latent-space RL post-training; improves whole-body manipulation policy beyond demonstrations.",
+          "llm_evidence_cn": "基于流的移动操纵框架结合潜在空间强化学习，超越示范分布提升操纵策略。",
+          "llm_evidence": "基于流的移动操纵框架结合潜在空间强化学习，超越示范分布提升操纵策略。",
+          "canonical_evidence": "基于流的移动操纵框架结合潜在空间强化学习，超越示范分布提升操纵策略。",
+          "llm_tldr_en": "RLMM-Flow combines flow-based generative policy pretraining with latent-space reinforcement learning post-training to improve whole-body mobile manipulation policies beyond the expert demonstration distribution.",
+          "llm_tldr_cn": "移动操纵需要生成满足多约束的全身动作块，而仅靠模仿学习无法超越示范分布提升策略质量。RLMM-Flow提出将专家流策略预训练与潜在空间强化学习后训练相结合，先从示范中学得多模态全身动作先验，再在流模型中通过RL提升策略。该方法面向移动操纵中的目标到达、避碰等联合约束问题。这一框架展示了流式生成策略与RL结合的潜力。",
+          "llm_tldr": "移动操纵需要生成满足多约束的全身动作块，而仅靠模仿学习无法超越示范分布提升策略质量。RLMM-Flow提出将专家流策略预训练与潜在空间强化学习后训练相结合，先从示范中学得多模态全身动作先验，再在流模型中通过RL提升策略。该方法面向移动操纵中的目标到达、避碰等联合约束问题。这一框架展示了流式生成策略与RL结合的潜力。",
           "llm_tags": [
             "query:pi-robotics"
           ],
           "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
           "selection_source": "carryover_cache",
           "paper_id": "2607.26460v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2607.28391v1",
+          "source": "arxiv",
+          "title": "TacWAM: Anchor-Guided World Action Model with Mechanics-Aware Tactile Prediction",
+          "abstract": "World Action Models (WAMs) combine future-state prediction with robot action generation, but existing approaches largely rely on visual futures. Visual prediction captures scene structure and object motion, yet provides limited supervision for force, deformation, shear, and slip during contact-rich manipulation. This creates two design requirements: tactile futures should carry meaningful physical information, and they should not become privileged cues for action generation. We present TacWAM, a mechanics-aware tactile WAM that addresses this challenge in three steps. First, a Spatially Aligned Fusion (SAF) Tactile Encoder maps tactile appearance, dense force fields, and deformation flow into a shared latent prediction space, with bilateral force and torque reconstruction preserving global contact information. Second, a tactile history encoder provides temporal context so future tactile prediction reflects how force and deformation change beyond the current tactile observation. Third, Anchor-Guided Tri-Modal (AGT) Attention separates current visual and tactile anchors, future prediction tokens, and action tokens, allowing future tactile states to supervise training without being directly read by the action branch. We evaluate TacWAM on four real-world contact-rich manipulation tasks covering fragile grasping, sustained surface contact, and dynamic in-hand manipulation. TacWAM achieves an average success rate of 75.0%, exceeding the strongest evaluated baseline by 37.5 percentage points. Staged ablations show consistent degradation when tactile history is removed and access to future prediction targets is relaxed. These results indicate that future tactile supervision can improve contact-aware action learning when combined with informative tactile representations and deployment-consistent information constraints.",
+          "authors": [
+            "Lei Jin",
+            "Yiding Ma",
+            "Xin Zhang",
+            "Chen Gao",
+            "Wei Wu",
+            "Yong Li"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-07-30T15:47:01+00:00",
+          "link": "https://arxiv.org/pdf/2607.28391v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "mechanics-aware tactile World Action Model improves robot action generation for contact-rich manipulation",
+          "llm_evidence_cn": "力学感知触觉世界动作模型提升接触丰富操作的机器人动作生成",
+          "llm_evidence": "力学感知触觉世界动作模型提升接触丰富操作的机器人动作生成",
+          "canonical_evidence": "力学感知触觉世界动作模型提升接触丰富操作的机器人动作生成",
+          "llm_tldr_en": "TacWAM introduces a mechanics-aware tactile World Action Model that encodes tactile appearance, force fields, and deformation flow to predict tactile futures, improving action generation for contact-rich manipulation without making tactile cues privileged.",
+          "llm_tldr_cn": "针对现有世界动作模型主要依赖视觉预测、难以监督接触丰富操作中力/形变/滑移等问题，提出TacWAM力学感知触觉世界动作模型。通过空间对齐融合触觉编码器将触觉外观、密集力场和变形流映射到共享潜空间，同时避免触觉成为动作生成的特权线索。实验表明TacWAM在接触丰富操作中能更有效地结合未来状态预测与动作生成。该工作为触觉驱动的机器人操作策略改进提供了新思路。",
+          "llm_tldr": "针对现有世界动作模型主要依赖视觉预测、难以监督接触丰富操作中力/形变/滑移等问题，提出TacWAM力学感知触觉世界动作模型。通过空间对齐融合触觉编码器将触觉外观、密集力场和变形流映射到共享潜空间，同时避免触觉成为动作生成的特权线索。实验表明TacWAM在接触丰富操作中能更有效地结合未来状态预测与动作生成。该工作为触觉驱动的机器人操作策略改进提供了新思路。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2607.28391v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2607.25895v1",
+          "source": "arxiv",
+          "title": "HiFi-UMI: Learning Deployable Manipulation Policies from High-Fidelity UMI Data Alone",
+          "abstract": "Learning deployable manipulation policies is bottlenecked by the scarcity of data that is both high-fidelity and scalable. Real-robot teleoperation is accurate but costly to scale; robot-free UMI capture scales readily, and current practice uses the resulting data mainly for pre-training, adding a small real-robot \"anchor\" at post-training. We ask whether raising the fidelity of robot-free UMI data, rather than shrinking the real-robot fraction, can remove that anchor. We present HiFi-UMI, a portable UMI data-production system co-designed for trajectory accuracy, inter-gripper relative pose, synchronization, and field of view: head-mounted offline stereo-inertial SLAM, native rather than reconstructed relative pose, a shared microsecond GPIO trigger, and two wide-angle cameras per hand covering ~200 degrees. It reaches 3 mm workspace-local end-effector accuracy without external tracking infrastructure. Using this corpus, we demonstrate zero-robot post-training: a policy post-trained solely on HiFi-UMI demonstrations deploys directly on a real robot and matches in-domain teleoperation across three backbones spanning the vision-language-action and world-action-model families, with success-rate differences of -2.5, +3.1, and -0.6 percentage points on StarVLA-QwenPI, OpenPI-pi_0.5, and LingBot-VA; the strongest policy reaches 85% on a precision insertion task, even though the teleoperation baseline is collected in the evaluation scene and no HiFi-UMI trajectory is. Pre-training on 4,000 hours from the same corpus lowers action error on ten unseen tasks by 41% and, on StarVLA-QwenPI, raises real-robot success by a further 18.1 percentage points. We open-source HiFi-UMI-2K, 2,000 hours of microsecond-synchronized, ultra-wide-FoV demonstrations, each automatically reconstructed and validated through simulation replay, as a large-scale, high-fidelity resource for the robot-learning community.",
+          "authors": [
+            "Simple AI",
+            ":",
+            "Yuteng Wei",
+            "Jinming Ma",
+            "Jiawei Wang",
+            "Weitao Zhou",
+            "Yushen Zuo",
+            "Ke Rui",
+            "Minglei Li",
+            "Jinhao Zhang",
+            "Zhikang Pan",
+            "Xiang Wang",
+            "Haoran Jia",
+            "Huan Du",
+            "Zicheng Zeng",
+            "Jun Ma",
+            "Guiyu Qin",
+            "Di Zhang",
+            "Xiaofei Li"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO",
+            "cs.CV",
+            "cs.LG"
+          ],
+          "published": "2026-07-28T15:52:02+00:00",
+          "link": "https://arxiv.org/pdf/2607.25895v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Learning deployable manipulation policies from high-fidelity robot-free data; directly improves robot manipulation through policy.",
+          "llm_evidence_cn": "通过高保真UMI数据学习可部署的操纵策略，直接以策略改进机器人操作。",
+          "llm_evidence": "通过高保真UMI数据学习可部署的操纵策略，直接以策略改进机器人操作。",
+          "canonical_evidence": "通过高保真UMI数据学习可部署的操纵策略，直接以策略改进机器人操作。",
+          "llm_tldr_en": "HiFi-UMI raises the fidelity of robot-free UMI data with careful co-design of trajectory accuracy, relative pose, and synchronization, enabling deployable manipulation policies without a real-robot anchor.",
+          "llm_tldr_cn": "机器人操纵策略的可部署性受限于既高保真又可扩展的数据获取。真实机器人遥操作准确但成本高，无机器人UMI数据易扩展但常只用于预训练。HiFi-UMI通过头戴式离线立体惯性SLAM、原生相对位姿和微秒级同步等手段提升UMI数据质量，使得仅用高保真数据即可学习可部署的操纵策略，无需真实机器人微调。这为大规模获取高质量操纵训练数据提供了新途径。",
+          "llm_tldr": "机器人操纵策略的可部署性受限于既高保真又可扩展的数据获取。真实机器人遥操作准确但成本高，无机器人UMI数据易扩展但常只用于预训练。HiFi-UMI通过头戴式离线立体惯性SLAM、原生相对位姿和微秒级同步等手段提升UMI数据质量，使得仅用高保真数据即可学习可部署的操纵策略，无需真实机器人微调。这为大规模获取高质量操纵训练数据提供了新途径。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2607.25895v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2607.26809v1",
+          "source": "arxiv",
+          "title": "Practice Makes Policies: Bootstrapping and Consolidating Robotic Capabilities from Zero Human Demonstrations",
+          "abstract": "General-purpose robotic manipulation requires robots to perform diverse tasks in open-world environments while improving their skills over time. Despite recent progress in robotic manipulation, existing systems still primarily acquire manipulation skills in a static manner, where capabilities are learned for specific tasks or settings rather than adaptively evolving through physical interaction. Resembling how repeated practice enables humans to develop muscle memory, advanced manipulation proficiency requires an autonomous capability evolution mechanism that allows robots to progressively transform interaction experiences into increasingly effective manipulation abilities. To this end, we propose HERO, a self-improving hierarchical embodied agent that enables autonomous capability evolution from zero human demonstrations. HERO organizes heuristic reasoning, exemplar reuse, and reflexive execution into a unified orchestration framework, allowing robots to autonomously bootstrap manipulation experience, rapidly accumulate reusable behaviors through experience transfer, and progressively consolidate recurring interactions into efficient closed-loop visuomotor policies. By tightly coupling autonomous data collection with task execution, HERO continuously expands and dynamically schedules manipulation capabilities according to different stages of experience accumulation and execution requirements. Extensive experiments demonstrate that HERO substantially reduces human intervention during robotic data collection while achieving robust manipulation across diverse tasks, providing a promising path toward self-improving robotic systems.",
+          "authors": [
+            "Jialiang Li",
+            "Yuhan Wang",
+            "Haojun Li",
+            "Gaojing Zhang",
+            "Yangtian Ye",
+            "Qipeng Liu",
+            "Haotian Liang",
+            "Wenzhao Lian"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-07-29T11:51:41+00:00",
+          "link": "https://arxiv.org/pdf/2607.26809v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Self-improving robotic manipulation policies with zero human demonstrations; directly relevant to enhancing manipulation through policy.",
+          "llm_evidence_cn": "零人工示范下自举与巩固机器人操作能力，直接涉及通过策略增强操作。",
+          "llm_evidence": "零人工示范下自举与巩固机器人操作能力，直接涉及通过策略增强操作。",
+          "canonical_evidence": "零人工示范下自举与巩固机器人操作能力，直接涉及通过策略增强操作。",
+          "llm_tldr_en": "HERO enables robots to autonomously evolve manipulation capabilities from zero human demonstrations, progressively converting interaction experience into more effective policies and consolidating skills over time.",
+          "llm_tldr_cn": "通用机器人操纵需要机器人能在开放环境中不断改进技能，而现有系统多以静态方式学习特定任务。该工作提出HERO，一种无需人工示范的自改进机制，使机器人通过自主练习逐步将交互经验转化为更有效的操纵能力。借鉴人类反复练习形成肌肉记忆的方式，HERO实现能力的自举与巩固。这为通用机器人操作能力的持续进化提供了新思路。",
+          "llm_tldr": "通用机器人操纵需要机器人能在开放环境中不断改进技能，而现有系统多以静态方式学习特定任务。该工作提出HERO，一种无需人工示范的自改进机制，使机器人通过自主练习逐步将交互经验转化为更有效的操纵能力。借鉴人类反复练习形成肌肉记忆的方式，HERO实现能力的自举与巩固。这为通用机器人操作能力的持续进化提供了新思路。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2607.26809v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2607.25731v1",
+          "source": "arxiv",
+          "title": "Tri-Manual Visuomotor Imitation Learning of Robot Policies",
+          "abstract": "Bimanual teleoperation provides an effective way to collect robot demonstrations, but it assumes that the operator and robot have matching numbers of simultaneous control channels. This assumption breaks for tri-manual systems: the robot can coordinate three arms concurrently, whereas a single operator can continuously control only two. Pairwise mode switching may therefore record otherwise independent motions sequentially, causing behaviour cloning to reproduce delays imposed by the interface rather than required by the task. We present TriManPolicy, a tri-manual imitation learning system that allows one operator to demonstrate behaviours for three arms. Its central component is Dependency-Aware Tri-Arm Scheduling (DATS). The key idea is to preserve the demonstrated arm motions while reconsidering when they occur. DATS retimes demonstrations offline by preserving local sensorimotor segments of fixed duration and repositioning them according to constraints on task order and arm usage that are reviewed by a human. The resulting data train a single synchronous policy for all three arms, while deployment requires neither the dependency graph nor the scheduler. Across six challenging tasks performed in the real world, policies trained on demonstrations retimed by DATS exhibit more efficient coordination while maintaining comparable observed task success. Offline analysis further shows that DATS changes the supervision across arms rather than merely removing idle periods.",
+          "authors": [
+            "James Zhao",
+            "Mingyuan Ba",
+            "Weiming Zhi"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-07-28T13:52:51+00:00",
+          "link": "https://arxiv.org/pdf/2607.25731v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Tri-manual visuomotor imitation learning for robot policy; enhances multi-arm manipulation through better policy learning.",
+          "llm_evidence_cn": "三臂视动模仿学习用于机器人策略，通过策略学习增强多臂操作。",
+          "llm_evidence": "三臂视动模仿学习用于机器人策略，通过策略学习增强多臂操作。",
+          "canonical_evidence": "三臂视动模仿学习用于机器人策略，通过策略学习增强多臂操作。",
+          "llm_tldr_en": "TriManPolicy enables one operator to teach three-arm robot behaviors via dependency-aware tri-arm scheduling, avoiding delays from pairwise mode switching and improving multi-arm imitation learning.",
+          "llm_tldr_cn": "双臂遥操作假设操作者与机器人通道数相同，但三臂机器人需要同时协调三臂而操作者只能连续控制两臂。TriManPolicy提出依赖感知三臂调度（DATS），通过保持演示中的任务依赖而非界面施加的延迟，使单个操作者能为三臂设备示教复杂行为。该方法缓解了行为克隆中由接口导致的伪延迟问题，提升多臂操纵策略的学习质量。这为多臂机器人模仿学习提供了新方案。",
+          "llm_tldr": "双臂遥操作假设操作者与机器人通道数相同，但三臂机器人需要同时协调三臂而操作者只能连续控制两臂。TriManPolicy提出依赖感知三臂调度（DATS），通过保持演示中的任务依赖而非界面施加的延迟，使单个操作者能为三臂设备示教复杂行为。该方法缓解了行为克隆中由接口导致的伪延迟问题，提升多臂操纵策略的学习质量。这为多臂机器人模仿学习提供了新方案。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2607.25731v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2607.26047v1",
+          "source": "arxiv",
+          "title": "S2A2: Audio-Visual Imitation Learning for Manipulation Tasks Using Acoustic Spatial Information",
+          "abstract": "Acoustic information provides rich cues about object location, material properties, and changes caused by contact or motion. This paper introduces a new set of acoustic-aware manipulation tasks for imitation learning, in which robots must use auditory cues to determine manipulation targets. These tasks require sound source localization and identification for active exploration in robotic manipulation. Also, we propose a multimodal imitation learning framework, Spatial-Spectral Audio Action (S2A2), that integrates visual features with acoustic spatial and acoustic signal information for the acoustic-aware manipulation tasks. We implemented S2A2 models that integrates policies such as ACT, Diffusion Policy, VQ-BeT, and $π_0$, into our framework. Simulation experiments showed that the proposed method is the most effective for tasks requiring both position and timbre. Furthermore, real-robot experiments confirm the applicability of the proposed tasks and framework to real-world manipulation.",
+          "authors": [
+            "Kaneyoshi Hiratsuka",
+            "Benjamin Yen",
+            "Ryosuke Kojima"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-07-28T17:56:07+00:00",
+          "link": "https://arxiv.org/pdf/2607.26047v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Integrates pi0 policy into S2A2 audio-visual imitation learning, enhancing manipulation performance with acoustic spatial information",
+          "llm_evidence_cn": "将pi0策略集成到S2A2多模态模仿学习框架，引入声学空间信息提升操作性能",
+          "llm_evidence": "将pi0策略集成到S2A2多模态模仿学习框架，引入声学空间信息提升操作性能",
+          "canonical_evidence": "将pi0策略集成到S2A2多模态模仿学习框架，引入声学空间信息提升操作性能",
+          "llm_tldr_en": "For acoustic-aware manipulation, the S2A2 framework fuses visual with acoustic spatial and spectral features and can be applied on top of ACT, Diffusion Policy, VQ-BeT, and pi0; adding pi0 into this multimodal imitation setup improves performance.",
+          "llm_tldr_cn": "机器人操作中声音能提供位置、材质与接触变化等丰富线索，但现有模仿学习策略主要依赖视觉。论文构造了需要声学感知的新操作任务，并提出S2A2框架，将视觉特征与声学空间和频谱特征融合。该框架可集成ACT、Diffusion Policy、VQ-BeT以及pi0等多种策略，在声学感知任务上显著提升操作表现。这为多模态操作策略尤其是pi0策略的性能增强提供了有效路径。",
+          "llm_tldr": "机器人操作中声音能提供位置、材质与接触变化等丰富线索，但现有模仿学习策略主要依赖视觉。论文构造了需要声学感知的新操作任务，并提出S2A2框架，将视觉特征与声学空间和频谱特征融合。该框架可集成ACT、Diffusion Policy、VQ-BeT以及pi0等多种策略，在声学感知任务上显著提升操作表现。这为多模态操作策略尤其是pi0策略的性能增强提供了有效路径。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "pi0 policy robot performance",
+          "matched_requirement_id": "req-1",
+          "selection_source": "carryover_cache",
+          "paper_id": "2607.26047v1",
           "carry_days": 1
         }
       ]
