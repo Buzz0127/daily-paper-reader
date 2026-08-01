@@ -6,76 +6,71 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-31
-- 运行时间：2026-07-31 21:45:59 UTC
+- 最新运行日期：2026-08-01
+- 运行时间：2026-08-01 19:57:46 UTC
 - 运行状态：成功
-- 本次总论文数：18
-- 精读区：7
+- 本次总论文数：17
+- 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日共读18篇，精读7篇、速读11篇，重点聚焦VLA与机器人交互。  
-最值得关注两篇9分论文：WCM世界认知模型用于泛化人机交互，以及运动感知向量量化框架提升VLA推理效率。  
-建议优先精读这两篇，并顺带速读混合专家VLA的组合技能涌现，理解泛化与效率的平衡。
-- 详情：[/202607/31/README](/202607/31/README)
+今日共读17篇论文，精读6篇、速读11篇，核心聚焦机器人策略学习与多模态动作建模；最值得关注的是两个高分工作：一是提出视觉-触觉-语言-动作统一模型（9.0），二是用物理引导解耦视频-动作策略（9.0）。下一步建议从“触觉+语言”融合建模和“物理先验+视频生成”两个方向深入，先精读这两篇原文，再扩展到速读中的语言引导与运动学感知方法。
+- 详情：[/202608/01/README](/202608/01/README)
 
 ### 精读区论文标签
-1. [WCM: World-Cognition Model for Generalizable Human-Robot Interaction](/202607/31/2607.22999v1-wcm-world-cognition-model-for-generalizable-human-robot-interaction)  
-   标签：评分：9.0/10、query:agent-build
-   evidence：具身智能体SLAK架构，包含感知、逻辑、动作、知识模块，阐释AI智能体组件作用
-2. [A Motion-Aware Vector Quantization Framework with Centroid Reuse for Efficient VLA Inference](/202607/31/2607.24148v1-a-motion-aware-vector-quantization-framework-with-centroid-reuse-for-efficient-vla-inference)  
+1. [$N_0$-VTLA: Scaling Vision-Tactile-Language-Action Model with Latent Tactile Tokens](/202608/01/2607.23782v1-n0-vtla-scaling-vision-tactile-language-action-model-with-latent-tactile-tokens)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：基于运动感知向量量化的VLA高效推理，面向具身智能
-3. [DeVA: Decoupled Video-Action Model with physical guidance for robot policy learning](/202607/31/2607.24159v1-deva-decoupled-video-action-model-with-physical-guidance-for-robot-policy-learning)  
+   evidence：视觉-触觉-语言-动作基础模型，面向接触丰富的操作与离线策略改进
+2. [DeVA: Decoupled Video-Action Model with physical guidance for robot policy learning](/202608/01/2607.24159v1-deva-decoupled-video-action-model-with-physical-guidance-for-robot-policy-learning)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：面向VLA机器人策略学习的解耦视频-动作模型与物理引导，是具身VLA路径的核心工作。
-4. [CoTinyVLA: Chain-of-Thought Distillation for a Sub-Billion-Parameter Vision-Language-Action Model](/202607/31/2607.25487v1-cotinyvla-chain-of-thought-distillation-for-a-sub-billion-parameter-vision-language-action-model)  
+   evidence：解耦视频-动作模型与物理引导，提升通用化视觉-语言-动作策略学习
+3. [τ: Learning Touch-Augmented Vision-Language-Action Models from Future Visual Supervision](/202608/01/2607.24485v1--learning-touch-augmented-vision-language-action-models-from-future-visual-supervision)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：亚十亿参数VLA模型通过思维链蒸馏提升鲁棒性，直接推动具身VLA性能进步
-5. [It's Not Just More Demos: Counterfactual Action Sensitivity Coverage for Data-Efficient Robust Robot Imitation](/202607/31/2607.27261v1-its-not-just-more-demos-counterfactual-action-sensitivity-coverage-for-data-efficient-robust-robot-imitation)  
+   evidence：面向机器人操作的触觉增强视觉-语言-动作模型，直接涉及具身VLA性能提升。
+4. [S2A2: Audio-Visual Imitation Learning for Manipulation Tasks Using Acoustic Spatial Information](/202608/01/2607.26047v1-s2a2-audio-visual-imitation-learning-for-manipulation-tasks-using-acoustic-spatial-information)  
    标签：评分：9.0/10、query:pi-robotics
-   evidence：基于反事实数据选择框架提升视觉运动模仿策略对视觉扰动的鲁棒性
-6. [RedFlow: Redirect Failure into Action-Level Corrections for Flow-matching VLA Policy](/202607/31/2607.27782v1-redflow-redirect-failure-into-action-level-corrections-for-flow-matching-vla-policy)  
-   标签：评分：9.0/10、query:pi-robotics
-   evidence：利用失败数据进行离线强化学习以改进flow-matching VLA策略
-7. [RoboBRIDGE: A Modular Framework for Bridging Policies to Robust Real-World Robotic Agents](/202607/31/2607.27881v1-robobridge-a-modular-framework-for-bridging-policies-to-robust-real-world-robotic-agents)  
+   evidence：集成π0等策略的视听操作学习框架
+5. [CheckVLA: Execution-Time Verification with Action-Conditioned World Model for Long-Horizon Mobile Manipulation](/202608/01/2607.26789v1-checkvla-execution-time-verification-with-action-conditioned-world-model-for-long-horizon-mobile-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：模块化编排框架将预训练VLA策略转化为稳健的真实世界机器人智能体
+   evidence：针对VLA策略的执行时验证，使用动作条件世界模型提高长时程机器人操作的可靠性。
+6. [FA-RDP: A Frequency-Adaptive Reactive Diffusion Policy for Contact-Rich Manipulation](/202608/01/2607.28596v1-fa-rdp-a-frequency-adaptive-reactive-diffusion-policy-for-contact-rich-manipulation)  
+   标签：评分：9.0/10、query:pi-robotics
+   evidence：频域自适应扩散策略平衡多模态与响应性，提升接触丰富操作性能
 
 ### 速读区论文标签
-1. [Emergent Compositional Skills in Mixture-of-Experts VLAs](/202607/31/2607.20771v1-emergent-compositional-skills-in-mixture-of-experts-vlas)  
+1. [A Few Words Go a Long Way: Language Guided Robot Policy Synthesis](/202608/01/2607.23784v1-a-few-words-go-a-long-way-language-guided-robot-policy-synthesis)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：通过专家混合动作头在VLA中无需预设层级即涌现组合机器人策略
-2. [Emergent Compositional Skills in Mixture-of-Experts VLAs](/202607/31/2607.20771v2-emergent-compositional-skills-in-mixture-of-experts-vlas)  
+   evidence：通过语言引导的模块化策略合成，弥补VLA黑箱策略的局限
+2. [WorldDiT: A Unified Diffusion Architecture for World and Action Modeling](/202608/01/2607.23909v1-worlddit-a-unified-diffusion-architecture-for-world-and-action-modeling)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：基于MoE动作头的VLA策略，用于机器人操作的组合技能
-3. [Addressing the Orchestration Gap in Generalist Robots via Physical Agency](/202607/31/2607.21725v1-addressing-the-orchestration-gap-in-generalist-robots-via-physical-agency)  
-   标签：评分：8.0/10、query:agent-build
-   evidence：将机器人分解为语言条件控制智能体和高层编排器，包含规划与恢复模块
-4. [$N_0$-VTLA: Scaling Vision-Tactile-Language-Action Model with Latent Tactile Tokens](/202607/31/2607.23782v1-n0-vtla-scaling-vision-tactile-language-action-model-with-latent-tactile-tokens)  
+   evidence：将动作生成与视觉世界建模耦合的统一扩散架构，无需大型预训练视觉语言模型动作骨干
+3. [KAI: A Kinematic-Aware Interface for Data-Efficient Articulated Object Manipulation](/202608/01/2607.24493v1-kai-a-kinematic-aware-interface-for-data-efficient-articulated-object-manipulation)  
+   标签：评分：8.0/10、query:pi-robotics
+   evidence：面向数据高效铰接物体操作的运动学感知接口，通过结构化策略先验增强机器人操作。
+4. [CoTinyVLA: Chain-of-Thought Distillation for a Sub-Billion-Parameter Vision-Language-Action Model](/202608/01/2607.25487v1-cotinyvla-chain-of-thought-distillation-for-a-sub-billion-parameter-vision-language-action-model)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：结合触觉token的视觉-触觉-语言-动作基础模型及离线策略改进
-5. [Embodying Multi-Hand Manipulation Policies by Searching the Assignment and Null Spaces](/202607/31/2607.22020v1-embodying-multi-hand-manipulation-policies-by-searching-the-assignment-and-null-spaces)  
+   evidence：通过思维链蒸馏构建小于10亿参数的VLA模型，提升机器人动作生成鲁棒性
+5. [The Curse of Precision: A Data Scaling Law for High-Precision Robotic Manipulation](/202608/01/2607.23108v1-the-curse-of-precision-a-data-scaling-law-for-high-precision-robotic-manipulation)  
    标签：评分：7.0/10、query:pi-robotics
-   evidence：面向多臂机器人的操作策略执行算法，通过搜索分配与零空间提升可行性与安全性
-6. [One Hand Watches The Other: Dynamic Multi-Agent Cooperation for Sample-Efficient Bimanual Manipulation in Dynamic Environments](/202607/31/2607.22119v1-one-hand-watches-the-other-dynamic-multi-agent-cooperation-for-sample-efficient-bimanual-manipulation-in-dynamic-environments)  
+   evidence：高精度模仿学习的数据规模定律
+6. [$N_0$-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation](/202608/01/2607.23783v1-n0-twam-scaling-tactile-native-world-action-model-for-contact-rich-manipulation)  
    标签：评分：7.0/10、query:pi-robotics
-   evidence：面向动态环境双臂操作策略的轻量框架DynaMAC，提升策略采样效率与泛化能力
-7. [$N_0$-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation](/202607/31/2607.23783v1-n0-twam-scaling-tactile-native-world-action-model-for-contact-rich-manipulation)  
-   标签：评分：7.0/10、query:embodied-vla
-   evidence：面向接触丰富操作的触觉原生世界-动作模型，预测未来视觉和接触
-8. [A Few Words Go a Long Way: Language Guided Robot Policy Synthesis](/202607/31/2607.23784v1-a-few-words-go-a-long-way-language-guided-robot-policy-synthesis)  
-   标签：评分：7.0/10、query:embodied-vla
-   evidence：利用LLM编码代理通过语言引导合成模块化机器人程序，为黑盒VLA策略提供可解释替代
-9. [Robostral Navigate](/202607/31/2607.20785v1-robostral-navigate)  
+   evidence：大规模触觉原生世界-动作模型用于接触丰富操作
+7. [ArmnetBench v0.1: Parallel Real-World Evaluation of Manipulation Policies on a Low-Cost Arm Farm](/202608/01/2607.24481v1-armnetbench-v01-parallel-real-world-evaluation-of-manipulation-policies-on-a-low-cost-arm-farm)  
+   标签：评分：7.0/10、query:pi-robotics
+   evidence：在低成本机械臂集群上并行评估操作策略的真实世界基准
+8. [Decompose and Reorganize: Planning with Primitives and Visuomotor Policies Learned from Demonstrations](/202608/01/2607.25397v1-decompose-and-reorganize-planning-with-primitives-and-visuomotor-policies-learned-from-demonstrations)  
+   标签：评分：7.0/10、query:pi-robotics
+   evidence：TAMP门控集成视运动策略的长时程操作框架
+9. [NEO: NeRF It Once, Edit It Many Times for Continuous Object Manipulation](/202608/01/2607.24538v1-neo-nerf-it-once-edit-it-many-times-for-continuous-object-manipulation)  
    标签：评分：6.0/10、query:embodied-vla
-   evidence：视觉语言模型用于跨本体单目RGB航点预测导航
-10. [Robostral Navigate](/202607/31/2607.20785v2-robostral-navigate)  
-   标签：评分：6.0/10、query:embodied-vla
-   evidence：面向导航的8B视觉语言模型，仅用单目RGB预测路点，增强跨机器人形态部署能力
-11. [Plug, Play, and Comply: A Modular Framework for Online Variable Impedance with Arbitrarily Oriented Compliance Axes](/202607/31/2607.22483v1-plug-play-and-comply-a-modular-framework-for-online-variable-impedance-with-arbitrarily-oriented-compliance-axes)  
+   evidence：语言引导的NeRF编辑框架用于机器人操作，可在执行前编辑未来场景状态
+10. [When Does Legacy Data Start to Help? Emergent Transfer in Cross-Configuration Robot Learning](/202608/01/2607.25593v1-when-does-legacy-data-start-to-help-emergent-transfer-in-cross-configuration-robot-learning)  
    标签：评分：6.0/10、query:pi-robotics
-   evidence：机器人无关的模块化阻抗控制框架，用于柔顺机械臂控制
+   evidence：跨配置机器人学习中旧数据的涌现迁移
+11. [Tri-Manual Visuomotor Imitation Learning of Robot Policies](/202608/01/2607.25731v1-tri-manual-visuomotor-imitation-learning-of-robot-policies)  
+   标签：评分：6.0/10、query:pi-robotics
+   evidence：面向三臂协调操作的模仿学习策略
 
 
 <div class="dpr-home-promo-card">
