@@ -6,73 +6,73 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-03
-- 运行时间：2026-08-03 21:33:48 UTC
+- 最新运行日期：2026-08-04
+- 运行时间：2026-08-04 20:21:40 UTC
 - 运行状态：成功
 - 本次总论文数：17
 - 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日共读17篇机器人学习论文，精读6篇、速读11篇，聚焦具身智能与多模态策略。  
-最值得关注的是精读榜首RoboBRIDGE（9.0分）提出的模块化策略迁移框架，以及N0-VTLA（8.0分）引入潜在触觉令牌的视觉-触觉-语言-动作模型，两者都在提升真实世界机器人的鲁棒性与多模态融合能力。  
-速读中DeVA、CoTinyVLA与TacWAM也值得一瞥，分别从物理引导去耦、轻量化知识蒸馏和力学感知触觉预测切入；若想入门，建议先从RoboBRIDGE的模块化思路看起。
-- 详情：[/202608/03/README](/202608/03/README)
+今日聚焦17篇机器人研究，精读6篇，重点突破单目几何引导的跨视角一致性与在线触觉预测，提升灵巧操作鲁棒性。  
+最值得看《OC-VLA++》（9.0）以几何先验强化视角鲁棒操控，以及《ReTouch》（9.0）通过在线触觉预测赋能接触丰富操作。  
+建议进一步关注RoboBRIDGE模块化衔接与CLIFT闭环微调，可加速仿真成果向真实机器人落地。
+- 详情：[/202608/04/README](/202608/04/README)
 
 ### 精读区论文标签
-1. [RoboBRIDGE: A Modular Framework for Bridging Policies to Robust Real-World Robotic Agents](/202608/03/2607.27881v1-robobridge-a-modular-framework-for-bridging-policies-to-robust-real-world-robotic-agents)  
+1. [OC-VLA++: Monocular Geometry-Guided Cross-View Consistency for Viewpoint-Robust Robotic Manipulation](/202608/04/2608.01066v1-oc-vla-monocular-geometry-guided-cross-view-consistency-for-viewpoint-robust-robotic-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：模块化框架将预训练VLA转变为稳健的真实世界机器人智能体
-2. [$N_0$-VTLA: Scaling Vision-Tactile-Language-Action Model with Latent Tactile Tokens](/202608/03/2607.23782v1-n0-vtla-scaling-vision-tactile-language-action-model-with-latent-tactile-tokens)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：融合触觉的VLA基础模型，支持精细操作与离线策略改进
-3. [A Few Words Go a Long Way: Language Guided Robot Policy Synthesis](/202608/03/2607.23784v1-a-few-words-go-a-long-way-language-guided-robot-policy-synthesis)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：基于LLM智能体的语言引导模块化机器人策略合成
-4. [WorldDiT: A Unified Diffusion Architecture for World and Action Modeling](/202608/03/2607.23909v2-worlddit-a-unified-diffusion-architecture-for-world-and-action-modeling)  
+   evidence：基于VLA的操作策略，通过跨视图一致性实现视点鲁棒；是具身VLA主题的核心。
+2. [ReTouch: Empowering Contact-Rich Dexterous Manipulation with Online-Refined Tactile Prediction](/202608/04/2608.01824v1-retouch-empowering-contact-rich-dexterous-manipulation-with-online-refined-tactile-prediction)  
+   标签：评分：9.0/10、query:pi-robotics
+   evidence：基于VLA和在线细化触觉预测实现灵巧操作
+3. [Learning Panorama-Aware VLA for Mobile Manipulation with Whole-Body Teleoperation](/202608/04/2608.02257v1-learning-panorama-aware-vla-for-mobile-manipulation-with-whole-body-teleoperation)  
+   标签：评分：9.0/10、query:embodied-vla
+   evidence：全景感知VLA策略与全身遥操作用于移动操作
+4. [DeVA: Decoupled Video-Action Model with physical guidance for robot policy learning](/202608/04/2607.24159v1-deva-decoupled-video-action-model-with-physical-guidance-for-robot-policy-learning)  
    标签：评分：8.0/10、query:pi-robotics
-   evidence：面向世界与动作建模的统一扩散Transformer策略
-5. [A Motion-Aware Vector Quantization Framework with Centroid Reuse for Efficient VLA Inference](/202608/03/2607.24148v1-a-motion-aware-vector-quantization-framework-with-centroid-reuse-for-efficient-vla-inference)  
+   evidence：解耦的视频-动作模型结合物理引导改进机器人策略学习
+5. [Cross-Embodiment Transfer via Behavior-Aligned Representations](/202608/04/2607.27549v1-cross-embodiment-transfer-via-behavior-aligned-representations)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：面向具身智能VLA模型的高效推理加速
-6. [Practice Makes Policies: Bootstrapping and Consolidating Robotic Capabilities from Zero Human Demonstrations](/202608/03/2607.26809v1-practice-makes-policies-bootstrapping-and-consolidating-robotic-capabilities-from-zero-human-demonstrations)  
-   标签：评分：8.0/10、query:pi-robotics
-   evidence：无人类示范的策略自提升，直接提升机器人操作性能
+   evidence：VLA模型中的行为对齐表示用于跨具身迁移
+6. [ActFovea: Runtime Safeguarding for VLA Policies via Spatiotemporal Visual-Action Consistency](/202608/04/2607.29169v1-actfovea-runtime-safeguarding-for-vla-policies-via-spatiotemporal-visual-action-consistency)  
+   标签：评分：8.0/10、query:embodied-vla
+   evidence：为VLA操作策略提供运行时保护
 
 ### 速读区论文标签
-1. [DeVA: Decoupled Video-Action Model with physical guidance for robot policy learning](/202608/03/2607.24159v1-deva-decoupled-video-action-model-with-physical-guidance-for-robot-policy-learning)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：分离式视频-动作模型用于语言指令下的机器人策略学习
-2. [CoTinyVLA: Chain-of-Thought Distillation for a Sub-Billion-Parameter Vision-Language-Action Model](/202608/03/2607.25487v1-cotinyvla-chain-of-thought-distillation-for-a-sub-billion-parameter-vision-language-action-model)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：通过思维链蒸馏提升VLA模型鲁棒性，适应嵌入式机器人场景
-3. [TacWAM: Anchor-Guided World Action Model with Mechanics-Aware Tactile Prediction](/202608/03/2607.28391v1-tacwam-anchor-guided-world-action-model-with-mechanics-aware-tactile-prediction)  
+1. [RoboBRIDGE: A Modular Framework for Bridging Policies to Robust Real-World Robotic Agents](/202608/04/2607.27881v1-robobridge-a-modular-framework-for-bridging-policies-to-robust-real-world-robotic-agents)  
    标签：评分：8.0/10、query:pi-robotics
-   evidence：利用触觉预测的世界动作模型增强接触丰富操作
-4. [ActFovea: Runtime Safeguarding for VLA Policies via Spatiotemporal Visual-Action Consistency](/202608/03/2607.29169v1-actfovea-runtime-safeguarding-for-vla-policies-via-spatiotemporal-visual-action-consistency)  
+   evidence：模块化框架将预训练VLA策略转化为鲁棒机器人智能体
+2. [CLIFT: Turning Gemini Robotics On-Device into Humanoid Specialists via Non-Invasive Closed-Loop Iterative Fine-Tuning](/202608/04/2607.29172v1-clift-turning-gemini-robotics-on-device-into-humanoid-specialists-via-non-invasive-closed-loop-iterative-fine-tuning)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：面向VLA策略的运行时守护机制，提升机器人操作鲁棒性
-5. [Temporal Policy: History-Initialized Action Generation for Robotic Learning from Demonstration](/202608/03/2607.29482v1-temporal-policy-history-initialized-action-generation-for-robotic-learning-from-demonstration)  
+   evidence：在闭源VLA模型上通过非侵入式闭环迭代微调提升人形任务性能。
+3. [SelfWAM: A Self-Grounded Unified World Action Model for Fast Robot Control](/202608/04/2608.00725v1-selfwam-a-self-grounded-unified-world-action-model-for-fast-robot-control)  
    标签：评分：8.0/10、query:pi-robotics
-   evidence：基于历史初始化的动作生成方法提升机器人策略性能
-6. [WorldDiT: A Unified Diffusion Architecture for World and Action Modeling](/202608/03/2607.23909v1-worlddit-a-unified-diffusion-architecture-for-world-and-action-modeling)  
-   标签：评分：7.0/10、query:pi-robotics
-   evidence：统一扩散Transformer联合动作生成与世界建模以提升策略性能
-7. [τ: Learning Touch-Augmented Vision-Language-Action Models from Future Visual Supervision](/202608/03/2607.24485v1--learning-touch-augmented-vision-language-action-models-from-future-visual-supervision)  
+   evidence：通过联合建模动作与未来观测改进机器人策略学习
+4. [DynamicWAM: Dual-Path Motion Conditioning for World-Action Models in Dynamic Manipulation](/202608/04/2608.00793v1-dynamicwam-dual-path-motion-conditioning-for-world-action-models-in-dynamic-manipulation)  
+   标签：评分：8.0/10、query:embodied-vla
+   evidence：用于动态操作的世界-行动模型双路径运动条件机制
+5. [DreamTrajectory: Trajectory-Guided Action Generation with World Model Alignment for Mobile Manipulation](/202608/04/2608.01381v1-dreamtrajectory-trajectory-guided-action-generation-with-world-model-alignment-for-mobile-manipulation)  
+   标签：评分：8.0/10、query:embodied-vla
+   evidence：轨迹引导的动作生成，解决VLA策略局限
+6. [Diagnosing Compositional Generalization in Sequential Robot Tasks](/202608/04/2607.29687v1-diagnosing-compositional-generalization-in-sequential-robot-tasks)  
    标签：评分：7.0/10、query:embodied-vla
-   evidence：从未来视觉监督中学习触觉增强表示并注入VLA模型
-8. [RLMM-Flow: A Flow-based Mobile Manipulation Framework with Latent-Space Reinforcement Learning](/202608/03/2607.26460v1-rlmm-flow-a-flow-based-mobile-manipulation-framework-with-latent-space-reinforcement-learning)  
+   evidence：语言条件顺序机器人策略的组合泛化诊断
+7. [DexMani: Human-Derived Manipulability Guidance for Dexterous Rotation](/202608/04/2608.00554v1-dexmani-human-derived-manipulability-guidance-for-dexterous-rotation)  
    标签：评分：7.0/10、query:pi-robotics
-   evidence：基于流的策略预训练与潜空间强化学习结合提升移动操作策略
-9. [Route by Kinematics, Act by Observation: Kinematics-Supervised Expert Routing in MoE-Augmented VLA](/202608/03/2607.26807v1-route-by-kinematics-act-by-observation-kinematics-supervised-expert-routing-in-moe-augmented-vla)  
+   evidence：来自人类演示的可操作性演化引导，改善灵巧旋转的接触决策。
+8. [Latency-Tolerant Cloud-Edge Collaborative Vision-Language-Action Models via Emergent Representational Specialization](/202608/04/2608.00569v1-latency-tolerant-cloud-edge-collaborative-vision-language-action-models-via-emergent-representational-specialization)  
    标签：评分：7.0/10、query:embodied-vla
-   evidence：运动学监督的专家路由用于MoE增强VLA策略
-10. [FloAff-Kitchen: Bridging Navigation and Manipulation via Canonical and Progressive Floor Affordance Learning](/202608/03/2607.24207v1-floaff-kitchen-bridging-navigation-and-manipulation-via-canonical-and-progressive-floor-affordance-learning)  
+   evidence：云边协同VLA通过表征专精提升移动机器人部署的延迟容忍能力。
+9. [AffordTrajDP: Dynamic Affordance-Guided Visuomotor Policy Learning for Robotic Manipulation](/202608/04/2608.01603v1-affordtrajdp-dynamic-affordance-guided-visuomotor-policy-learning-for-robotic-manipulation)  
+   标签：评分：7.0/10、query:pi-robotics
+   evidence：动态可负担性引导的操作策略学习
+10. [Developing Combined Manipulation and Locomotion Skills with Interaction Representation and Skill Composition](/202608/04/2608.00208v1-developing-combined-manipulation-and-locomotion-skills-with-interaction-representation-and-skill-composition)  
    标签：评分：6.0/10、query:pi-robotics
-   evidence：地面可供性预测以最大化下游操作成功率
-11. [CheckVLA: Execution-Time Verification with Action-Conditioned World Model for Long-Horizon Mobile Manipulation](/202608/03/2607.26789v1-checkvla-execution-time-verification-with-action-conditioned-world-model-for-long-horizon-mobile-manipulation)  
-   标签：评分：6.0/10、query:pi-robotics
-   evidence：用动作条件世界模型对VLA策略进行执行时验证
+   evidence：人形机器人上通过策略组合实现操作与运动技能；关注策略学习与组合。
+11. [Weights or Skills? A Survey of Robot-Learning Techniques: from Action-Predicting Weights to Robots that Write their Own Skills](/202608/04/2608.01851v1-weights-or-skills-a-survey-of-robot-learning-techniques-from-action-predicting-weights-to-robots-that-write-their-own-skills)  
+   标签：评分：6.0/10、query:embodied-vla
+   evidence：围绕VLA模型与自主编写技能的智能体两条路线进行系统综述。
 
 
 <div class="dpr-home-promo-card">

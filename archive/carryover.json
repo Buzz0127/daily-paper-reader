@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-03T21:29:11.813413+00:00",
-  "updated_date": "20260803",
+  "generated_at": "2026-08-04T20:12:51.237364+00:00",
+  "updated_date": "20260804",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,9 +480,105 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260803",
+      "updated_date": "20260804",
       "carryover_days": 9,
-      "items": []
+      "items": [
+        {
+          "id": "2608.01452v1",
+          "source": "arxiv",
+          "title": "DynamicManip: Enabling Dynamic Manipulation from a Single Static Demonstration",
+          "abstract": "Dynamic manipulation is a critical capability for robots operating in complex and dynamic environments, where robots must interact with objects that are moving or require rapid adjustments. However, learning models for dynamic manipulation tasks face two major challenges: (1) the combinatorial complexity of dynamic scenarios leads to substantial data requirements, and (2) rapid variations in dynamics require real-time and accurate policy execution. In this paper, we propose DynamicManip to address these challenges through an efficient data augmentation pipeline and a low-latency imitation policy. We first propose a static-to-dynamic augmentation pipeline that synthesizes diverse dynamic manipulation demonstrations from a single static demonstration. Second, we introduce a dynamic-aware adaptive policy that adjusts its inference frequency according to task dynamics, enabling responsive and effective dynamic manipulation. Third, we build a dynamic manipulation benchmark, which includes diverse dynamic tasks with an automatic evaluation system for scalable and consistent assessment. Extensive experiments in both simulation and the real world demonstrate that DynamicManip not only provides significant improvements in data efficiency but also achieves better performance in dynamic manipulation tasks, with a mean success rate 18.4 percentage points higher and policy-query latency 32.9% lower.",
+          "authors": [
+            "Haoran Liao",
+            "Pengyue Wang",
+            "Shuoyu Chen",
+            "Kehan Cheng",
+            "Xuhang Chen",
+            "Yuhao Lin",
+            "Mu Lin",
+            "Zhizhao Liang",
+            "Xiaoyi Fan",
+            "Chengyi Xing",
+            "Dan Niu",
+            "Yi-Lin Wei",
+            "Wei-Shi Zheng"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO",
+            "cs.CV",
+            "cs.LG"
+          ],
+          "published": "2026-08-02T19:23:54+00:00",
+          "link": "https://arxiv.org/pdf/2608.01452v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Static-to-dynamic augmentation and low-latency imitation policy for dynamic manipulation.",
+          "llm_evidence_cn": "静态到动态增强与低延迟模仿策略，用于动态操作学习。",
+          "llm_evidence": "静态到动态增强与低延迟模仿策略，用于动态操作学习。",
+          "canonical_evidence": "静态到动态增强与低延迟模仿策略，用于动态操作学习。",
+          "llm_tldr_en": "DynamicManip uses a static-to-dynamic augmentation pipeline to synthesize diverse dynamic demonstrations from a single static one, then trains a low-latency imitation policy, enabling efficient dynamic robot manipulation.",
+          "llm_tldr_cn": "针对动态操作中数据需求量大和实时执行困难的问题，论文提出DynamicManip框架，通过静态到动态的数据增强流水线，从单个静态演示合成多样化的动态操作演示，再训练低延迟模仿策略。该框架降低了对大规模动态演示数据的依赖，并通过低延迟策略满足快速变化的动态场景要求。实验表明，该方法仅凭一个静态演示就能学习有效的动态操作策略。这项工作的贡献在于为动态操作提供了一套数据高效且实时可行的模仿学习方案。",
+          "llm_tldr": "针对动态操作中数据需求量大和实时执行困难的问题，论文提出DynamicManip框架，通过静态到动态的数据增强流水线，从单个静态演示合成多样化的动态操作演示，再训练低延迟模仿策略。该框架降低了对大规模动态演示数据的依赖，并通过低延迟策略满足快速变化的动态场景要求。实验表明，该方法仅凭一个静态演示就能学习有效的动态操作策略。这项工作的贡献在于为动态操作提供了一套数据高效且实时可行的模仿学习方案。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.01452v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.02578v1",
+          "source": "arxiv",
+          "title": "CoWAM: Coordination Contracts for Selective Policy Intervention with WAMs",
+          "abstract": "World Action Models (WAMs) augment robot policies with action-conditioned predicted futures, but a plausible future alone does not justify changing the action that a bimanual policy would execute. We present CoWAM, a selective intervention layer that expresses synchronization, role compatibility, and collision convergence as coordination contracts. Each contract combines typed admissibility checks with event-conditioned verification and calibrated intervention gates. CoWAM preserves the nominal action unless an alternative satisfies every active obligation and provides a clear, low-risk improvement; when the nominal action is also inadmissible, it invokes a predefined abstention fallback. To separate selector quality from proposal quality, all methods operate on identical candidate pools and commit their decisions before shared oracle labeling. Across eight simulated bimanual tasks, CoWAM improves coordination-valid selection by 16.7 percentage points over the contract-only variant and raises closed-loop success by 9.6 percentage points over the strongest selective baseline, while keeping harmful interventions below 1%. Together, these results establish coordination contracts as an effective interface for conservative policy intervention with predicted world-action evidence across coordination-rich bimanual tasks.",
+          "authors": [
+            "Shuaijun Liu",
+            "Qifu Wen",
+            "Shuyang Hao",
+            "Qi Luo",
+            "Chenglong Zhang",
+            "Feiyang You",
+            "Chengyu Wu",
+            "Ningxin Su"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO",
+            "cs.AI",
+            "cs.LG"
+          ],
+          "published": "2026-08-03T17:51:58+00:00",
+          "link": "https://arxiv.org/pdf/2608.02578v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "selective policy intervention for bimanual robot manipulation using coordination contracts",
+          "llm_evidence_cn": "通过协调契约为双臂机器人操作提供选择性策略干预",
+          "llm_evidence": "通过协调契约为双臂机器人操作提供选择性策略干预",
+          "canonical_evidence": "通过协调契约为双臂机器人操作提供选择性策略干预",
+          "llm_tldr_en": "CoWAM selectively intervenes in bimanual WAM policies by expressing synchronization and collision convergence as contracts, improving action quality while preserving nominal behavior.",
+          "llm_tldr_cn": "仅凭合理的未来预测并不足以改变双臂策略的动作输出。CoWAM将同步、角色兼容和碰撞收敛表达为协调契约，结合类型化可接受性检查和事件条件验证来选择性干预。该方法在保持名义动作的同时，只在替代动作满足全部义务且低风险时才介入，为双臂操作提供了可靠的策略改进机制。",
+          "llm_tldr": "仅凭合理的未来预测并不足以改变双臂策略的动作输出。CoWAM将同步、角色兼容和碰撞收敛表达为协调契约，结合类型化可接受性检查和事件条件验证来选择性干预。该方法在保持名义动作的同时，只在替代动作满足全部义务且低风险时才介入，为双臂操作提供了可靠的策略改进机制。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.02578v1",
+          "carry_days": 1
+        }
+      ]
     }
   }
 }
