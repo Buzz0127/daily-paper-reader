@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-08T19:35:17.971919+00:00",
-  "updated_date": "20260808",
+  "generated_at": "2026-08-09T20:35:36.864283+00:00",
+  "updated_date": "20260809",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,49 +480,9 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260808",
+      "updated_date": "20260809",
       "carryover_days": 9,
       "items": [
-        {
-          "id": "2608.06210v1",
-          "source": "arxiv",
-          "title": "VIDP: Variable Impedance Diffusion Policy for Compliant Robot Manipulation from Diverse Demonstrations",
-          "abstract": "Contact-rich manipulation requires precise tracking and mechanical compliance, where variable impedance control can improve robustness in task success, whereas static compliance cannot adapt to varying contact constraints. Variable impedance skills can be learned from demonstrations, avoiding complex modeling, but compliance is a hidden variable in force-agnostic kinematic data. While existing methods infer compliance from trajectory variations, these variations may reflect geometric adaptation and not intentional compliance when subject to changing spatial layouts. Therefore, this letter introduces Variable Impedance Diffusion Policy (VIDP), an imitation learning-based variable impedance control framework leveraging a Task-Parameterized Directionality-Aware Mixture Model (TP-DAMM) to extract physically consistent trajectory distributions from diverse demonstrations. By mapping distributions to stiffness profiles, VIDP jointly predicts pose actions and task compliance without force sensors. Real-world experiments show that VIDP significantly outperforms fixed-impedance baselines in task success rate while reducing interaction forces with respect to high stiffness controllers and tracking errors with respect to low stiffness baselines.",
-          "authors": [
-            "Hisham Khalil",
-            "Neil Fernandes",
-            "Thomas M. Kwok",
-            "Hsiu-Chin Lin",
-            "Yue Hu"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-06T16:03:00+00:00",
-          "link": "https://arxiv.org/pdf/2608.06210v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "diffusion policy improving compliant manipulation with variable impedance",
-          "llm_evidence_cn": "通过扩散策略和可变阻抗提升柔顺操作性能",
-          "llm_evidence": "通过扩散策略和可变阻抗提升柔顺操作性能",
-          "canonical_evidence": "通过扩散策略和可变阻抗提升柔顺操作性能",
-          "llm_tldr_en": "Introduces VIDP, an imitation learning variable impedance diffusion policy for compliant contact-rich manipulation, learning variable impedance skills from diverse kinematic demonstrations to improve task robustness.",
-          "llm_tldr_cn": "针对接触丰富操作中静态柔顺无法适应变化接触约束的问题，提出基于模仿学习的可变阻抗扩散策略VIDP。该方法从多样的运动学演示中推断隐藏的柔顺变量，将可变阻抗技能编码进扩散策略，实现精确跟踪与机械柔顺的平衡。实验表明相较于静态顺应方法，VIDP在接触变化场景下显著提升任务成功率与鲁棒性。该工作为从无力的演示数据中学习可变阻抗控制提供了新框架。",
-          "llm_tldr": "针对接触丰富操作中静态柔顺无法适应变化接触约束的问题，提出基于模仿学习的可变阻抗扩散策略VIDP。该方法从多样的运动学演示中推断隐藏的柔顺变量，将可变阻抗技能编码进扩散策略，实现精确跟踪与机械柔顺的平衡。实验表明相较于静态顺应方法，VIDP在接触变化场景下显著提升任务成功率与鲁棒性。该工作为从无力的演示数据中学习可变阻抗控制提供了新框架。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.06210v1",
-          "carry_days": 1
-        },
         {
           "id": "2608.03701v1",
           "source": "arxiv",
@@ -552,13 +512,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "Lightweight world-action model for robotic manipulation with latent future reasoning, trainable on a single 24GB GPU",
-          "llm_evidence_cn": "面向机器人操作的轻量级潜在推理世界动作模型，单卡可训练",
-          "llm_evidence": "面向机器人操作的轻量级潜在推理世界动作模型，单卡可训练",
-          "canonical_evidence": "面向机器人操作的轻量级潜在推理世界动作模型，单卡可训练",
-          "llm_tldr_en": "LiLa-WAM is a lightweight world-action model that performs future reasoning in compact latent space and trains end-to-end on a single 24GB GPU, reducing computational overhead for robotic manipulation.",
-          "llm_tldr_cn": "现有世界动作模型计算开销大，像素空间方法浪费容量，潜在空间方法常需多阶段训练。LiLa-WAM在紧凑潜在空间中推理未来，并可在单块24GB GPU上端到端训练，大幅降低训练成本。该模型在保持世界建模能力的同时，为机器人操作提供轻量高效的策略学习方案。",
-          "llm_tldr": "现有世界动作模型计算开销大，像素空间方法浪费容量，潜在空间方法常需多阶段训练。LiLa-WAM在紧凑潜在空间中推理未来，并可在单块24GB GPU上端到端训练，大幅降低训练成本。该模型在保持世界建模能力的同时，为机器人操作提供轻量高效的策略学习方案。",
+          "llm_evidence_en": "Lightweight latent world-action model for robotic manipulation improving policy",
+          "llm_evidence_cn": "轻量级潜在世界行动模型用于机器人操作，改进策略",
+          "llm_evidence": "轻量级潜在世界行动模型用于机器人操作，改进策略",
+          "canonical_evidence": "轻量级潜在世界行动模型用于机器人操作，改进策略",
+          "llm_tldr_en": "Presents LiLa-WAM, a lightweight world-action model that reasons about future scenes in a compact latent space and can be trained end-to-end on a single 24GB GPU. It reduces computational overhead while enabling control policies to anticipate scene evolution.",
+          "llm_tldr_cn": "针对现有世界行动模型计算开销大、训练成本高的问题，提出LiLa-WAM。该方法在紧凑的潜在空间中进行未来推理，并采用端到端训练，单块24GB GPU即可完成。与像素空间或两阶段方法相比，它在保持性能的同时大幅降低资源需求，为机器人操作提供了轻量级的世界行动建模方案。",
+          "llm_tldr": "针对现有世界行动模型计算开销大、训练成本高的问题，提出LiLa-WAM。该方法在紧凑的潜在空间中进行未来推理，并采用端到端训练，单块24GB GPU即可完成。与像素空间或两阶段方法相比，它在保持性能的同时大幅降低资源需求，为机器人操作提供了轻量级的世界行动建模方案。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -570,46 +530,41 @@
           "carry_days": 1
         },
         {
-          "id": "2608.04404v1",
+          "id": "2608.03207v1",
           "source": "arxiv",
-          "title": "Faster-WAM: Efficient Inference-Time Future Conditioning for Robust World Action Models",
-          "abstract": "World Action Models (WAMs) improve robot manipulation by learning how the environment evolves beyond the current observation. However, existing approaches face a fundamental dilemma: Joint-WAMs preserve future-aware representations during inference but incur prohibitive computation costs, while efficient alternatives remove future modeling at inference time and may lose the robustness benefits of temporal reasoning. In this work, we revisit the role of future representations in WAMs and show that inference-time future conditioning is critical for generalization under distribution shifts. This observation motivates Faster-WAM, an efficient future-conditioning WAM that preserves future representations while avoiding expensive video-action interaction. Faster-WAM introduces a sparse future-conditioning framework that computes future representations once and selectively reuses them throughout action denoising. Specifically, we propose SparseMoT to replace ubiquitous layer-wise fusion with selective video-action interaction at a compact subset of network stages, and Interval KV-Fusion to aggregate multi-depth future representations without increasing attention complexity. Experiments demonstrate that Faster-WAM achieves a substantially better performance-efficiency trade-off than existing WAMs. On the out-of-distribution LIBERO-Plus benchmark, Faster-WAM improves success rate from 49.14% to 73.57% compared with Fast-WAM, while running 2.21$\\times$ faster than Joint-WAM. It further achieves state-of-the-art performance on LIBERO and RoboTwin 2.0, while demonstrating strong robustness in real-world manipulation.",
+          "title": "DRIFT: Derailing Denoising Trajectories of Flow-Matching VLAs with Adversarial Patch Attack",
+          "abstract": "Flow-matching vision-language-action (VLA) models such as pi0 generate robot actions by integrating a learned denoising velocity field, and have been reported to resist adversarial perturbations that readily fool autoregressive VLAs. We show that this robustness is largely illusory: it stems from prior attacks ignoring the multi-step denoising ODE. We introduce DRIFT (Denoising Redirection via Input perturbation of the Flow-matching Trajectory), a test-time universal adversarial patch placed on the robot's gripper that attacks the denoising velocity field of an off-the-shelf policy. Our central finding is counterintuitive: attacking only the first denoising step is both stronger and cheaper than attacking a wider window of steps, which we explain through a gradient conflict unique to input-space optimization and which is exactly opposite to the training-time backdoor regime. On pi0 and pi0.5 across four LIBERO suites, DRIFT breaks essentially all originally-solvable tasks with a small single patch, far exceeding action- and embedding-space attack baselines.",
           "authors": [
-            "Weiheng Zhao",
-            "Haoyi Jiang",
-            "Xin Shi",
-            "Liu Liu",
-            "Fan Huang",
-            "Zhizhong Su",
-            "Wei Sui",
-            "Xinggang Wang"
+            "Hoseong Tae",
+            "Jong-Seok Lee"
           ],
           "primary_category": "cs.CV",
           "categories": [
-            "cs.CV"
+            "cs.CV",
+            "cs.LG"
           ],
-          "published": "2026-08-05T03:18:58+00:00",
-          "link": "https://arxiv.org/pdf/2608.04404v1",
+          "published": "2026-08-04T06:47:26+00:00",
+          "link": "https://arxiv.org/pdf/2608.03207v1",
           "tags": [
             "keyword:pi-robotics",
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "Efficient inference-time future conditioning for robust world action models in robot manipulation",
-          "llm_evidence_cn": "高效推理时未来条件化，增强机器人操作世界动作模型的鲁棒性",
-          "llm_evidence": "高效推理时未来条件化，增强机器人操作世界动作模型的鲁棒性",
-          "canonical_evidence": "高效推理时未来条件化，增强机器人操作世界动作模型的鲁棒性",
-          "llm_tldr_en": "Faster-WAM shows inference-time future conditioning is critical for generalization under distribution shift and preserves future-aware representations without expensive video-action co-generation during deployment.",
-          "llm_tldr_cn": "世界动作模型通过预测环境演化来提升机器人操作，但联合未来建模推理成本高，而高效替代方案可能丢失时间推理带来的鲁棒性。Faster-WAM证明推理时未来条件化对分布偏移下的泛化至关重要，并提出高效未来条件化机制，在避免昂贵视频-动作联合生成的同时保留未来表征。以更低开销获得鲁棒操作性能。",
-          "llm_tldr": "世界动作模型通过预测环境演化来提升机器人操作，但联合未来建模推理成本高，而高效替代方案可能丢失时间推理带来的鲁棒性。Faster-WAM证明推理时未来条件化对分布偏移下的泛化至关重要，并提出高效未来条件化机制，在避免昂贵视频-动作联合生成的同时保留未来表征。以更低开销获得鲁棒操作性能。",
+          "llm_evidence_en": "Attacks pi0 flow-matching VLA and exposes robustness illusion, relevant to pi0 performance",
+          "llm_evidence_cn": "攻击pi0流匹配VLA并揭示鲁棒性假象，与pi0性能相关",
+          "llm_evidence": "攻击pi0流匹配VLA并揭示鲁棒性假象，与pi0性能相关",
+          "canonical_evidence": "攻击pi0流匹配VLA并揭示鲁棒性假象，与pi0性能相关",
+          "llm_tldr_en": "Introduces DRIFT, a universal adversarial patch that attacks the denoising velocity field of flow-matching VLA models like pi0. Shows that attacking only the first denoising step is stronger and cheaper, exposing that pi0's reported robustness is largely illusory.",
+          "llm_tldr_cn": "针对pi0这类流匹配VLA模型被报道能抵抗对抗攻击的现象，提出DRIFT攻击方法。该方法在机器人夹爪上放置一个通用的对抗补丁，直接攻击去噪速度场，并发现仅攻击第一步去噪就比攻击更宽窗口更高效。实验表明pi0等模型的鲁棒性在很大程度上是假象，为评估和提升机器人策略的鲁棒性提供了重要参考。",
+          "llm_tldr": "针对pi0这类流匹配VLA模型被报道能抵抗对抗攻击的现象，提出DRIFT攻击方法。该方法在机器人夹爪上放置一个通用的对抗补丁，直接攻击去噪速度场，并发现仅攻击第一步去噪就比攻击更宽窗口更高效。实验表明pi0等模型的鲁棒性在很大程度上是假象，为评估和提升机器人策略的鲁棒性提供了重要参考。",
           "llm_tags": [
             "query:pi-robotics"
           ],
           "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
+          "matched_query_text": "pi0 policy robot performance",
+          "matched_requirement_id": "req-1",
           "selection_source": "carryover_cache",
-          "paper_id": "2608.04404v1",
+          "paper_id": "2608.03207v1",
           "carry_days": 1
         }
       ]
