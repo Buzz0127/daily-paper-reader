@@ -6,87 +6,80 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-09
-- 运行时间：2026-08-09 20:42:16 UTC
+- 最新运行日期：2026-08-10
+- 运行时间：2026-08-10 20:38:50 UTC
 - 运行状态：成功
-- 本次总论文数：21
-- 精读区：10
+- 本次总论文数：20
+- 精读区：9
 - 速读区：11
 
 ### 今日简报（AI）
-今日聚焦视觉-语言-动作模型（VLA），精读10篇、速读11篇，核心围绕机器人操作与移动操作。
-
-最值得关注的是两篇9.0分精读：几何引导的跨视角一致性VLA（提升视角鲁棒操作）与全景感知VLA（结合全身遥操作实现移动操作）。
-
-建议下一步从单一操作场景转向移动+操作融合，并关注视角变化与延迟容忍等实际部署问题。
-- 详情：[/202608/09/README](/202608/09/README)
+今日20篇论文聚焦视觉-语言-动作（VLA）模型，精读9篇、速读11篇。最值得关注的两篇高分工作分别提出几何引导的跨视图一致性方法（OC-VLA++，9.0分）和揭示并缓解VLA模型的位置盲区问题（9.0分），均直指机器人操作的视角鲁棒性。建议普通读者优先追踪VLA在视角变化下的泛化能力，这是迈向实用化操作的关键瓶颈。
+- 详情：[/202608/10/README](/202608/10/README)
 
 ### 精读区论文标签
-1. [OC-VLA++: Monocular Geometry-Guided Cross-View Consistency for Viewpoint-Robust Robotic Manipulation](/202608/09/2608.01066v1-oc-vla-monocular-geometry-guided-cross-view-consistency-for-viewpoint-robust-robotic-manipulation)  
+1. [OC-VLA++: Monocular Geometry-Guided Cross-View Consistency for Viewpoint-Robust Robotic Manipulation](/202608/10/2608.01066v1-oc-vla-monocular-geometry-guided-cross-view-consistency-for-viewpoint-robust-robotic-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：OC-VLA++通过几何引导的跨视角一致性提升VLA视角鲁棒性
-2. [Learning Panorama-Aware VLA for Mobile Manipulation with Whole-Body Teleoperation](/202608/09/2608.02257v1-learning-panorama-aware-vla-for-mobile-manipulation-with-whole-body-teleoperation)  
+   evidence：利用跨视图一致性提升VLA操作的视角鲁棒性
+2. [Uncovering and Mitigating Positional Blind Spots in Vision-Language-Action Models](/202608/10/2608.01573v1-uncovering-and-mitigating-positional-blind-spots-in-vision-language-action-models)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：用于移动操作的VLA策略，结合全身遥操作与全景观测
-3. [ChainVLA: Chaining Vision-Language-Action Queries through a Unified Execution State for Long-Horizon Manipulation](/202608/09/2608.02326v2-chainvla-chaining-vision-language-action-queries-through-a-unified-execution-state-for-long-horizon-manipulation)  
+   evidence：发现并缓解视觉-语言-行动模型中的位置盲区
+3. [Look Where It Matters: Adaptive Visual Refinement for Vision-Language-Action Models](/202608/10/2608.02197v1-look-where-it-matters-adaptive-visual-refinement-for-vision-language-action-models)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：串联VLA查询实现长程操作
-4. [Track4Action: Distilling World-Centric 3D Tracker into Vision-Language-Action Policies](/202608/09/2608.03727v1-track4action-distilling-world-centric-3d-tracker-into-vision-language-action-policies)  
+   evidence：利用可学习注册令牌的自适应视觉精炼提升VLA空间精度
+4. [ChainVLA: Chaining Vision-Language-Action Queries through a Unified Execution State for Long-Horizon Manipulation](/202608/10/2608.02326v2-chainvla-chaining-vision-language-action-queries-through-a-unified-execution-state-for-long-horizon-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：将世界中心3D追踪蒸馏进VLA策略以提升动作正确性
-5. [CofactVLA: Deconfounding Vision-Language-Action Models via Counterfactual Intervention](/202608/09/2608.04396v1-cofactvla-deconfounding-vision-language-action-models-via-counterfactual-intervention)  
+   evidence：通过统一执行状态连接查询的VLA策略实现长时程操作
+5. [Track4Action: Distilling World-Centric 3D Tracker into Vision-Language-Action Policies](/202608/10/2608.03727v1-track4action-distilling-world-centric-3d-tracker-into-vision-language-action-policies)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：通过反事实干预实现VLA去混淆
-6. [BridgeVLA++: A Data-Efficient, Generalizable, and Memory-Augmented Vision-Language-Action Framework for 3D Manipulation](/202608/09/2608.05042v1-bridgevla-a-data-efficient-generalizable-and-memory-augmented-vision-language-action-framework-for-3d-manipulation)  
+   evidence：将世界中心3D跟踪器蒸馏到VLA策略中，提升操作能力
+6. [BridgeVLA++: A Data-Efficient, Generalizable, and Memory-Augmented Vision-Language-Action Framework for 3D Manipulation](/202608/10/2608.05042v1-bridgevla-a-data-efficient-generalizable-and-memory-augmented-vision-language-action-framework-for-3d-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：记忆增强VLA用于3D操作
-7. [World-to-Wrist: Task-Conditioned Future Wrist Modeling for Fine-Grained Robot Manipulation](/202608/09/2608.05369v1-world-to-wrist-task-conditioned-future-wrist-modeling-for-fine-grained-robot-manipulation)  
+   evidence：面向3D操作的数据高效、可泛化、记忆增强VLA框架。
+7. [World-to-Wrist: Task-Conditioned Future Wrist Modeling for Fine-Grained Robot Manipulation](/202608/10/2608.05369v1-world-to-wrist-task-conditioned-future-wrist-modeling-for-fine-grained-robot-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：提出带任务条件未来手腕建模的VLA模型以提升精细机器人操作
-8. [JoyAI-RA 0.5: Scaling Robot Manipulation Learning via Dual Action Alignment](/202608/09/2608.05674v1-joyai-ra-05-scaling-robot-manipulation-learning-via-dual-action-alignment)  
+   evidence：提出W2-VLA模型，通过任务条件化的未来手腕建模提升细粒度操纵性能，增强VLA路线能力
+8. [Beyond Flat Policies: Hierarchical Post-Training for Embodied Agents in Robotic Manipulation](/202608/10/2608.05999v1-beyond-flat-policies-hierarchical-post-training-for-embodied-agents-in-robotic-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：通用VLA框架跨异构数据扩展操作学习
-9. [SpaceVLA: Spatially Grounded VLA for Robotic Manipulation with User-Authored Grasp and Place Anchors](/202608/09/2608.05730v1-spacevla-spatially-grounded-vla-for-robotic-manipulation-with-user-authored-grasp-and-place-anchors)  
+   evidence：提出VLA模型的分层后训练框架，解决长程操作规划问题，直接提升VLA操纵性能
+9. [DyPES-VLA: Learning Shared Dynamics Priors and Embodiment-Specific Control for Cross-Embodiment Manipulation](/202608/10/2608.06374v1-dypes-vla-learning-shared-dynamics-priors-and-embodiment-specific-control-for-cross-embodiment-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：基于空间锚定的VLA提升机器人操作抓取精度
-10. [Beyond Flat Policies: Hierarchical Post-Training for Embodied Agents in Robotic Manipulation](/202608/09/2608.05999v1-beyond-flat-policies-hierarchical-post-training-for-embodied-agents-in-robotic-manipulation)  
-   标签：评分：9.0/10、query:embodied-vla
-   evidence：VLA策略的分层后训练
+   evidence：面向跨具身操作的VLA策略，学习共享动力学先验
 
 ### 速读区论文标签
-1. [Latency-Tolerant Cloud-Edge Collaborative Vision-Language-Action Models via Emergent Representational Specialization](/202608/09/2608.00569v1-latency-tolerant-cloud-edge-collaborative-vision-language-action-models-via-emergent-representational-specialization)  
+1. [RL Bootstrapping of OpenVLA-OFT for a Novel Robot Embodiment](/202608/10/2608.01013v1-rl-bootstrapping-of-openvla-oft-for-a-novel-robot-embodiment)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：云边协同VLA策略用于容忍延迟的移动机器人控制
-2. [DreamTrajectory: Trajectory-Guided Action Generation with World Model Alignment for Mobile Manipulation](/202608/09/2608.01381v1-dreamtrajectory-trajectory-guided-action-generation-with-world-model-alignment-for-mobile-manipulation)  
+   evidence：利用强化学习在零示范条件下引导OpenVLA-OFT适配新型机器人形态，提升VLA策略迁移与表现
+2. [DreamTrajectory: Trajectory-Guided Action Generation with World Model Alignment for Mobile Manipulation](/202608/10/2608.01381v1-dreamtrajectory-trajectory-guided-action-generation-with-world-model-alignment-for-mobile-manipulation)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：轨迹引导与世界模型对齐的VLA动作生成方法提升移动操作性能
-3. [Look Where It Matters: Adaptive Visual Refinement for Vision-Language-Action Models](/202608/09/2608.02197v1-look-where-it-matters-adaptive-visual-refinement-for-vision-language-action-models)  
+   evidence：面向VLA移动操作的轨迹引导动作生成与世界模型对齐，提升机器人性能。
+3. [Learning Panorama-Aware VLA for Mobile Manipulation with Whole-Body Teleoperation](/202608/10/2608.02257v1-learning-panorama-aware-vla-for-mobile-manipulation-with-whole-body-teleoperation)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：在VLA视觉编码器中插入可学习寄存器令牌，提升操作的空间精度
-4. [ChainVLA: Chaining Vision-Language-Action Queries through a Unified Execution State for Long-Horizon Manipulation](/202608/09/2608.02326v1-chainvla-chaining-vision-language-action-queries-through-a-unified-execution-state-for-long-horizon-manipulation)  
+   evidence：全景感知VLA与全身遥操作用于具身移动操作
+4. [ChainVLA: Chaining Vision-Language-Action Queries through a Unified Execution State for Long-Horizon Manipulation](/202608/10/2608.02326v1-chainvla-chaining-vision-language-action-queries-through-a-unified-execution-state-for-long-horizon-manipulation)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：通过统一执行状态链接多次查询的VLA策略，用于长时程操作
-5. [EmbodiedVAE: Disentangled Video VAE for Efficient and Controllable Embodied Manipulation](/202608/09/2608.02990v1-embodiedvae-disentangled-video-vae-for-efficient-and-controllable-embodied-manipulation)  
+   evidence：通过统一执行状态串联VLA查询，提升长时程操作能力。
+5. [Weights or Skills? A Survey of Robot-Learning Techniques: from Action-Predicting Weights to Robots that Write their Own Skills](/202608/10/2608.01851v1-weights-or-skills-a-survey-of-robot-learning-techniques-from-action-predicting-weights-to-robots-that-write-their-own-skills)  
    标签：评分：7.0/10、query:embodied-vla
-   evidence：EmbodiedVAE为具身操作世界模型提供紧凑可控的视频潜表征
-6. [RoboReact: Agentic Skill Distillation from Generated Egocentric Videos for Generalizable Whole-Body Manipulation](/202608/09/2608.03387v1-roboreact-agentic-skill-distillation-from-generated-egocentric-videos-for-generalizable-whole-body-manipulation)  
+   evidence：从VLA权重与代码策略技能两个维度梳理机器人学习方法，与具身智能VLA主题高度相关
+6. [EmbodiedVAE: Disentangled Video VAE for Efficient and Controllable Embodied Manipulation](/202608/10/2608.02990v1-embodiedvae-disentangled-video-vae-for-efficient-and-controllable-embodied-manipulation)  
    标签：评分：7.0/10、query:embodied-vla
-   evidence：从生成视频进行智能体技能蒸馏提升全身人形机器人操作能力
-7. [Faster-WAM: Efficient Inference-Time Future Conditioning for Robust World Action Models](/202608/09/2608.04404v1-faster-wam-efficient-inference-time-future-conditioning-for-robust-world-action-models)  
-   标签：评分：7.0/10、query:pi-robotics
-   evidence：通过高效推理时未来条件化改进世界动作模型，提升机器人操作鲁棒性
-8. [ARGUS: Aligning Robot Scene Geometry Under Shifting Views with Large 3D Vision Models](/202608/09/2608.05579v1-argus-aligning-robot-scene-geometry-under-shifting-views-with-large-3d-vision-models)  
+   evidence：面向具身操作世界模型的视频VAE
+7. [RoboReact: Agentic Skill Distillation from Generated Egocentric Videos for Generalizable Whole-Body Manipulation](/202608/10/2608.03387v1-roboreact-agentic-skill-distillation-from-generated-egocentric-videos-for-generalizable-whole-body-manipulation)  
    标签：评分：7.0/10、query:embodied-vla
-   evidence：视角对齐提升操作策略泛化
-9. [Towards General Language-Conditioned Latent Safety Filters](/202608/09/2608.00315v1-towards-general-language-conditioned-latent-safety-filters)  
-   标签：评分：6.0/10、query:embodied-vla
-   evidence：面向VLA机器人策略的语言条件安全过滤
-10. [Action Chunk Scheduling for Batched Robot Policy Serving](/202608/09/2608.00337v1-action-chunk-scheduling-for-batched-robot-policy-serving)  
-   标签：评分：6.0/10、query:embodied-vla
-   evidence：面向VLA策略的服务调度系统，通过动作块调度提升多机器人部署性能
-11. [Rapid Embodiment Adaptation for Quadrupedal Locomotion](/202608/09/2608.01506v2-rapid-embodiment-adaptation-for-quadrupedal-locomotion)  
+   evidence：从生成的第一视角视频蒸馏全身操作技能，推进具身智能策略学习。
+8. [RoboReact: Agentic Skill Distillation from Generated Egocentric Videos for Generalizable Whole-Body Manipulation](/202608/10/2608.03387v2-roboreact-agentic-skill-distillation-from-generated-egocentric-videos-for-generalizable-whole-body-manipulation)  
+   标签：评分：7.0/10、query:embodied-vla
+   evidence：利用生成模型从第一人称视频合成全身人形操作技能，推动具身智能与人形机器人操控。
+9. [Rapid Embodiment Adaptation for Quadrupedal Locomotion](/202608/10/2608.01506v1-rapid-embodiment-adaptation-for-quadrupedal-locomotion)  
    标签：评分：6.0/10、query:pi-robotics
-   evidence：在线本体适应提升策略对硬件变化的鲁棒性
+   evidence：在线本体适应提升硬件变化下的策略鲁棒性
+10. [GraspMeanFlow: SE(3)-Equivariant MeanFlow for Few-Step 6-DoF Grasp Generation](/202608/10/2608.03295v1-graspmeanflow-se3-equivariant-meanflow-for-few-step-6-dof-grasp-generation)  
+   标签：评分：6.0/10、query:pi-robotics
+   evidence：少步等变抓取生成以提升操作速度
+11. [GeniWorld: A Generalizable Interactive World Model for Robotic Manipulation via Visual Actions](/202608/10/2608.06332v1-geniworld-a-generalizable-interactive-world-model-for-robotic-manipulation-via-visual-actions)  
+   标签：评分：6.0/10、query:pi-robotics
+   evidence：利用视觉动作的交互式世界模型提升操作策略泛化能力
 
 
 <div class="dpr-home-promo-card">
