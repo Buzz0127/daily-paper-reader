@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-10T20:33:44.547783+00:00",
-  "updated_date": "20260810",
+  "generated_at": "2026-08-11T19:50:50.225310+00:00",
+  "updated_date": "20260811",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,7 +480,7 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260810",
+      "updated_date": "20260811",
       "carryover_days": 9,
       "items": [
         {
@@ -527,45 +527,7 @@
           "matched_requirement_id": "req-4",
           "selection_source": "carryover_cache",
           "paper_id": "2608.03701v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.03207v1",
-          "source": "arxiv",
-          "title": "DRIFT: Derailing Denoising Trajectories of Flow-Matching VLAs with Adversarial Patch Attack",
-          "abstract": "Flow-matching vision-language-action (VLA) models such as pi0 generate robot actions by integrating a learned denoising velocity field, and have been reported to resist adversarial perturbations that readily fool autoregressive VLAs. We show that this robustness is largely illusory: it stems from prior attacks ignoring the multi-step denoising ODE. We introduce DRIFT (Denoising Redirection via Input perturbation of the Flow-matching Trajectory), a test-time universal adversarial patch placed on the robot's gripper that attacks the denoising velocity field of an off-the-shelf policy. Our central finding is counterintuitive: attacking only the first denoising step is both stronger and cheaper than attacking a wider window of steps, which we explain through a gradient conflict unique to input-space optimization and which is exactly opposite to the training-time backdoor regime. On pi0 and pi0.5 across four LIBERO suites, DRIFT breaks essentially all originally-solvable tasks with a small single patch, far exceeding action- and embedding-space attack baselines.",
-          "authors": [
-            "Hoseong Tae",
-            "Jong-Seok Lee"
-          ],
-          "primary_category": "cs.CV",
-          "categories": [
-            "cs.CV",
-            "cs.LG"
-          ],
-          "published": "2026-08-04T06:47:26+00:00",
-          "link": "https://arxiv.org/pdf/2608.03207v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "adversarial attack on pi0 flow-matching VLA reveals policy performance vulnerabilities",
-          "llm_evidence_cn": "对pi0流匹配VLA的对抗攻击揭示策略性能漏洞",
-          "llm_evidence": "对pi0流匹配VLA的对抗攻击揭示策略性能漏洞",
-          "canonical_evidence": "对pi0流匹配VLA的对抗攻击揭示策略性能漏洞",
-          "llm_tldr_en": "Shows adversarial robustness of flow-matching VLAs like pi0 is illusory. DRIFT attacks the first denoising step via a universal patch on the robot gripper, redirecting the velocity field more efficiently and effectively than wider-window attacks, exposing vulnerabilities.",
-          "llm_tldr_cn": "针对pi0等流匹配VLA被认为天然抵抗对抗扰动的问题，指出先前攻击忽略多步去噪ODE导致鲁棒性评估失真。提出DRIFT方法，在机器人夹爪上放置测试时通用对抗补丁，仅攻击去噪速度场的第一步即可高效重定向策略动作。实验表明攻击第一步比攻击更宽窗口更强且成本更低，显著降低策略成功率，揭示这类策略的鲁棒性漏洞，为VLA安全评估与防御提供了新方法。",
-          "llm_tldr": "针对pi0等流匹配VLA被认为天然抵抗对抗扰动的问题，指出先前攻击忽略多步去噪ODE导致鲁棒性评估失真。提出DRIFT方法，在机器人夹爪上放置测试时通用对抗补丁，仅攻击去噪速度场的第一步即可高效重定向策略动作。实验表明攻击第一步比攻击更宽窗口更强且成本更低，显著降低策略成功率，揭示这类策略的鲁棒性漏洞，为VLA安全评估与防御提供了新方法。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "pi0 policy robot performance",
-          "matched_requirement_id": "req-1",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.03207v1",
-          "carry_days": 1
+          "carry_days": 2
         },
         {
           "id": "2608.06210v1",
@@ -590,13 +552,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "Variable impedance diffusion policy for compliant robot manipulation, a direct policy method to improve manipulation performance.",
-          "llm_evidence_cn": "面向柔顺机器人操作的变阻抗扩散策略，是直接提升操作性能的策略方法。",
-          "llm_evidence": "面向柔顺机器人操作的变阻抗扩散策略，是直接提升操作性能的策略方法。",
-          "canonical_evidence": "面向柔顺机器人操作的变阻抗扩散策略，是直接提升操作性能的策略方法。",
-          "llm_tldr_en": "VIDP introduces an imitation-learning-based variable impedance diffusion policy that infers impedance from diverse kinematic demonstrations, enabling compliant and robust contact-rich manipulation where static compliance fails. It addresses hidden compliance in force-agnostic data and improves task success under varying contact constraints.",
-          "llm_tldr_cn": "接触丰富的操作任务需要精确跟踪与机械柔顺，而静态柔顺难以适应变化的接触约束。本文提出变阻抗扩散策略VIDP，从受力无关的运动示范中推断隐含的阻抗行为，避免复杂建模。实验表明该方法能够适应不同空间布局下的接触变化，提升任务成功率。这为从演示中学习可变阻抗控制、增强机器人操作鲁棒性提供了新思路。",
-          "llm_tldr": "接触丰富的操作任务需要精确跟踪与机械柔顺，而静态柔顺难以适应变化的接触约束。本文提出变阻抗扩散策略VIDP，从受力无关的运动示范中推断隐含的阻抗行为，避免复杂建模。实验表明该方法能够适应不同空间布局下的接触变化，提升任务成功率。这为从演示中学习可变阻抗控制、增强机器人操作鲁棒性提供了新思路。",
+          "llm_evidence_en": "Variable impedance diffusion policy for compliant manipulation improves policy compliance and robustness",
+          "llm_evidence_cn": "变阻抗扩散策略提升柔性操作的顺应性与鲁棒性",
+          "llm_evidence": "变阻抗扩散策略提升柔性操作的顺应性与鲁棒性",
+          "canonical_evidence": "变阻抗扩散策略提升柔性操作的顺应性与鲁棒性",
+          "llm_tldr_en": "VIDP is an imitation learning framework that infers variable impedance from diverse kinematic demonstrations, enabling diffusion policies to achieve compliant and robust contact-rich manipulation while avoiding the ambiguity of geometry-only compliance inference.",
+          "llm_tldr_cn": "变阻抗控制能提升接触丰富操作的鲁棒性，但顺应性在无力的运动学数据中是隐藏变量，且轨迹变化可能只是几何适应。作者提出VIDP，一个基于模仿学习的变阻抗控制框架，从多样化示范中推断出意图性顺应策略。该方法在真实操作任务中展现出比静态顺应策略更高的成功率与适应性。该工作为从示教中学习柔性操作技能提供了可靠方案。",
+          "llm_tldr": "变阻抗控制能提升接触丰富操作的鲁棒性，但顺应性在无力的运动学数据中是隐藏变量，且轨迹变化可能只是几何适应。作者提出VIDP，一个基于模仿学习的变阻抗控制框架，从多样化示范中推断出意图性顺应策略。该方法在真实操作任务中展现出比静态顺应策略更高的成功率与适应性。该工作为从示教中学习柔性操作技能提供了可靠方案。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -605,6 +567,128 @@
           "matched_requirement_id": "req-4",
           "selection_source": "carryover_cache",
           "paper_id": "2608.06210v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.08558v1",
+          "source": "arxiv",
+          "title": "Vid2WAM: Distilling Video Diffusion Priors into World Action Models",
+          "abstract": "World Action Models (WAMs) improve robot policy learning by jointly modeling future visual dynamics and actions. However, their scalability and generalization remain constrained by their reliance on costly expert demonstrations. We challenge this by asking whether future supervision for WAMs must originate from target-task expert trajectories. In this paper, we propose Vid2WAM, an offline distillation framework that transfers visual diffusion priors from a large video foundation model into a compact WAM student. Given an observation and language instruction, Vid2WAM distills supervision through two complementary channels: task-conditioned future rollouts directly supervise the student's future prediction branch, while an inverse dynamics model recovers embodiment-specific pseudo-actions for action learning. To robustly integrate synthetic and real supervision, we introduce source-aware residual action adaptation that learns source-specific corrections around a shared action backbone and mitigates interference from noisy pseudo-actions. During inference, both the video teacher and inverse dynamics model are discarded, leaving only the WAM student for efficient deployment. Simulation and real-world experiments demonstrate that Vid2WAM improves novel-task generalization and data efficiency under limited expert demonstrations while preserving low-latency inference.",
+          "authors": [
+            "Chenhao Qiu",
+            "Ruixiang Wang",
+            "Runyi Zhao",
+            "Sixu Lin",
+            "Songen Gu",
+            "Shufeng Nan",
+            "Guiliang Liu",
+            "Kui Jia",
+            "Yanwei Fu",
+            "Simo Wu"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-08-09T08:02:49+00:00",
+          "link": "https://arxiv.org/pdf/2608.08558v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "distills video diffusion priors into world action models to improve policy learning for manipulation",
+          "llm_evidence_cn": "将视频扩散先验蒸馏进世界行动模型，改进操作策略学习",
+          "llm_evidence": "将视频扩散先验蒸馏进世界行动模型，改进操作策略学习",
+          "canonical_evidence": "将视频扩散先验蒸馏进世界行动模型，改进操作策略学习",
+          "llm_tldr_en": "Vid2WAM distills visual diffusion priors from a video foundation model into a compact World Action Model, providing future prediction and inverse-dynamics supervision that improve robot policy learning without expert demonstrations.",
+          "llm_tldr_cn": "针对世界行动模型依赖昂贵专家演示、扩展性受限的问题，提出Vid2WAM离线蒸馏框架，将视频基础模型的视觉扩散先验蒸馏到紧凑的世界行动模型学生网络中。通过任务条件未来滚动和逆动力学模型监督未来预测分支与动作分支。实验证明该方法无需目标任务的专家轨迹即可提升策略学习的扩展性和泛化能力。为降低VLA/策略学习数据成本提供新思路。",
+          "llm_tldr": "针对世界行动模型依赖昂贵专家演示、扩展性受限的问题，提出Vid2WAM离线蒸馏框架，将视频基础模型的视觉扩散先验蒸馏到紧凑的世界行动模型学生网络中。通过任务条件未来滚动和逆动力学模型监督未来预测分支与动作分支。实验证明该方法无需目标任务的专家轨迹即可提升策略学习的扩展性和泛化能力。为降低VLA/策略学习数据成本提供新思路。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "policy improvement for robotics performance",
+          "matched_requirement_id": "req-3",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.08558v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.08749v1",
+          "source": "arxiv",
+          "title": "OnEvoMemory: Evolving Memory through Online Robot Rollouts for Pretrained Robot Policies",
+          "abstract": "Long-horizon robot manipulation requires policies to track completed subtasks and critical interaction events. However, existing memory mechanisms heavily rely on external models or predefined update rules. To address this, we propose OnEvoMemory, a value-guided memory module for pretrained robot policies. It maintains recent context, high-value experiences, and salient transitions, while learning which experiences should be retained from trajectory outcomes. Offline demonstrations initialize the memory prior, whereas successful and unsuccessful online rollouts refine memory selection, helping the policy recognize task-stage transitions and avoid repeating completed subtasks. Experiments on long-horizon manipulation benchmarks show that OnEvoMemory improves the performance of the base VLA policy through both offline initialization and online memory evolution.",
+          "authors": [
+            "Zhongxi Chen",
+            "Shenqi Zong"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-08-09T14:53:19+00:00",
+          "link": "https://arxiv.org/pdf/2608.08749v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Value-guided evolving memory improves long-horizon manipulation policy performance through online rollouts",
+          "llm_evidence_cn": "价值引导的演化记忆通过在线回滚提升长时程操作策略性能",
+          "llm_evidence": "价值引导的演化记忆通过在线回滚提升长时程操作策略性能",
+          "canonical_evidence": "价值引导的演化记忆通过在线回滚提升长时程操作策略性能",
+          "llm_tldr_en": "OnEvoMemory introduces a value-guided memory module for pretrained robot policies that learns from online rollouts which experiences to retain, helping long-horizon manipulation policies track task stage transitions and avoid repeating completed subtasks.",
+          "llm_tldr_cn": "长时程操作需要策略追踪已完成子任务和关键交互事件，但现有记忆机制依赖外部模型或预定规则。作者提出OnEvoMemory，一种价值引导的记忆模块，通过离线示范初始化记忆先验，再利用成功与失败的在线回滚精细选择保留内容。实验显示该方法在长时程操作基准上帮助策略更准确识别任务阶段转换并避免重复动作。该工作为预训练策略提供了可演化的外部记忆增强手段。",
+          "llm_tldr": "长时程操作需要策略追踪已完成子任务和关键交互事件，但现有记忆机制依赖外部模型或预定规则。作者提出OnEvoMemory，一种价值引导的记忆模块，通过离线示范初始化记忆先验，再利用成功与失败的在线回滚精细选择保留内容。实验显示该方法在长时程操作基准上帮助策略更准确识别任务阶段转换并避免重复动作。该工作为预训练策略提供了可演化的外部记忆增强手段。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.08749v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.09138v1",
+          "source": "arxiv",
+          "title": "SpeedTuning: Speeding Up Policy Execution with Lightweight Reinforcement Learning",
+          "abstract": "While learned robotic policies hold promise for advancing generalizable manipulation, their practical deployment is often hindered by suboptimal execution speeds. Imitation learning policies are inherently limited by hardware constraints and the speed of the operator during data collection. In addition, there are no established methods for accelerating policies learned via imitation, and the empirical relationship between execution speed and task success remains underexplored. To address these issues, we introduce SpeedTuning, a reinforcement learning framework specifically designed to enhance the speed of manipulation policies. SpeedTuning learns to predict the optimal execution speed for actions, thereby complementing a base policy without necessitating additional data collection. We provide empirical evidence that SpeedTuning achieves substantial improvements in execution speed, exceeding 2.4x speed-up, while preserving an adequate success rate compared to both the original task policy and straightforward speed-up methods such as linear interpolation at a fixed speed. We evaluate our approach across a diverse set of dynamic and precise tasks, including pouring, throwing, and picking, demonstrating its effectiveness and robustness in enhancing real-world robotic manipulation.",
+          "authors": [
+            "David D. Yuan",
+            "Tony Z. Zhao",
+            "Kaylee Burns",
+            "Chelsea Finn"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "published": "2026-08-10T05:31:41+00:00",
+          "link": "https://arxiv.org/pdf/2608.09138v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "lightweight RL framework to accelerate manipulation policy execution speed",
+          "llm_evidence_cn": "轻量强化学习框架加速操作策略执行速度",
+          "llm_evidence": "轻量强化学习框架加速操作策略执行速度",
+          "canonical_evidence": "轻量强化学习框架加速操作策略执行速度",
+          "llm_tldr_en": "SpeedTuning accelerates learned manipulation policies by using reinforcement learning to predict optimal action execution speed, complementing base policies and improving task efficiency without sacrificing success.",
+          "llm_tldr_cn": "模仿学习的机器人策略常因受演示速度和硬件限制而执行缓慢。SpeedTuning提出轻量强化学习框架，专门学习预测动作的最优执行速度，作为基础策略的补充。实验表明该方法能显著加快策略执行而不降低任务成功率，并揭示了速度与成功率之间的平衡关系，为实际机器人系统提升效率提供了简洁有效的方案。",
+          "llm_tldr": "模仿学习的机器人策略常因受演示速度和硬件限制而执行缓慢。SpeedTuning提出轻量强化学习框架，专门学习预测动作的最优执行速度，作为基础策略的补充。实验表明该方法能显著加快策略执行而不降低任务成功率，并揭示了速度与成功率之间的平衡关系，为实际机器人系统提升效率提供了简洁有效的方案。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "policy improvement for robotics performance",
+          "matched_requirement_id": "req-3",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.09138v1",
           "carry_days": 1
         }
       ]
