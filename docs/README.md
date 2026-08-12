@@ -6,82 +6,86 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-11
-- 运行时间：2026-08-11 19:56:29 UTC
+- 最新运行日期：2026-08-12
+- 运行时间：2026-08-12 21:04:41 UTC
 - 运行状态：成功
-- 本次总论文数：20
-- 精读区：9
+- 本次总论文数：22
+- 精读区：11
 - 速读区：11
 
 ### 今日简报（AI）
-今日20篇论文聚焦视觉-语言-动作模型（VLA），精读重点在于长程操作与3D感知追踪的突破。  
-最值得关注：《ChainVLA》以统一执行状态链式处理长程任务，《Track4Action》将世界级3D追踪能力融入策略，双双获9分高分。  
-建议关注速读中位置盲点、全景感知与语义重绑定三篇8分工作，它们分别补足VLA的稳健性与泛化短板。
-- 详情：[/202608/11/README](/202608/11/README)
+今日22篇论文聚焦视觉-语言-动作模型，精读11篇核心突破。最值得关注：世界中心3D跟踪蒸馏（Track4Action）与反事实干预解耦（CofactVLA）双9.0高分。下一步可深入速读中鲁棒微调与世界动作模型，补足实际部署短板。
+- 详情：[/202608/12/README](/202608/12/README)
 
 ### 精读区论文标签
-1. [ChainVLA: Chaining Vision-Language-Action Queries through a Unified Execution State for Long-Horizon Manipulation](/202608/11/2608.02326v2-chainvla-chaining-vision-language-action-queries-through-a-unified-execution-state-for-long-horizon-manipulation)  
+1. [Track4Action: Distilling World-Centric 3D Tracker into Vision-Language-Action Policies](/202608/12/2608.03727v1-track4action-distilling-world-centric-3d-tracker-into-vision-language-action-policies)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：通过统一执行状态改进VLA策略以支持长时程操作
-2. [Track4Action: Distilling World-Centric 3D Tracker into Vision-Language-Action Policies](/202608/11/2608.03727v1-track4action-distilling-world-centric-3d-tracker-into-vision-language-action-policies)  
+   evidence：将世界中心3D跟踪器蒸馏进视觉-语言-动作策略
+2. [CofactVLA: Deconfounding Vision-Language-Action Models via Counterfactual Intervention](/202608/12/2608.04396v1-cofactvla-deconfounding-vision-language-action-models-via-counterfactual-intervention)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：将3D追踪器特征蒸馏入VLA策略以改进动作生成
-3. [CofactVLA: Deconfounding Vision-Language-Action Models via Counterfactual Intervention](/202608/11/2608.04396v1-cofactvla-deconfounding-vision-language-action-models-via-counterfactual-intervention)  
+   evidence：为VLA操纵策略进行因果去混淆
+3. [BridgeVLA++: A Data-Efficient, Generalizable, and Memory-Augmented Vision-Language-Action Framework for 3D Manipulation](/202608/12/2608.05042v1-bridgevla-a-data-efficient-generalizable-and-memory-augmented-vision-language-action-framework-for-3d-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：基于反事实干预的VLA解混杂框架，提升语言条件操作
-4. [BridgeVLA++: A Data-Efficient, Generalizable, and Memory-Augmented Vision-Language-Action Framework for 3D Manipulation](/202608/11/2608.05042v1-bridgevla-a-data-efficient-generalizable-and-memory-augmented-vision-language-action-framework-for-3d-manipulation)  
+   evidence：面向3D操作的数据高效、可泛化、记忆增强的VLA框架
+4. [World-to-Wrist: Task-Conditioned Future Wrist Modeling for Fine-Grained Robot Manipulation](/202608/12/2608.05369v1-world-to-wrist-task-conditioned-future-wrist-modeling-for-fine-grained-robot-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：面向三维操作的数据高效、可泛化且记忆增强的VLA框架
-5. [World-to-Wrist: Task-Conditioned Future Wrist Modeling for Fine-Grained Robot Manipulation](/202608/11/2608.05369v1-world-to-wrist-task-conditioned-future-wrist-modeling-for-fine-grained-robot-manipulation)  
+   evidence：面向细粒度机器人操作的VLA模型，引入任务条件化未来腕部建模
+5. [SpaceVLA: Spatially Grounded VLA for Robotic Manipulation with User-Authored Grasp and Place Anchors](/202608/12/2608.05730v1-spacevla-spatially-grounded-vla-for-robotic-manipulation-with-user-authored-grasp-and-place-anchors)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：任务条件化未来手腕建模提升精细操作
-6. [Beyond Flat Policies: Hierarchical Post-Training for Embodied Agents in Robotic Manipulation](/202608/11/2608.05999v1-beyond-flat-policies-hierarchical-post-training-for-embodied-agents-in-robotic-manipulation)  
+   evidence：空间接地的VLA模型提升机器人操作精度
+6. [Beyond Flat Policies: Hierarchical Post-Training for Embodied Agents in Robotic Manipulation](/202608/12/2608.05999v1-beyond-flat-policies-hierarchical-post-training-for-embodied-agents-in-robotic-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：分层后训练框架提升VLA策略的长时程操作性能
-7. [DyPES-VLA: Learning Shared Dynamics Priors and Embodiment-Specific Control for Cross-Embodiment Manipulation](/202608/11/2608.06374v1-dypes-vla-learning-shared-dynamics-priors-and-embodiment-specific-control-for-cross-embodiment-manipulation)  
+   evidence：VLA策略的分层后训练提升长程操作能力
+7. [DyPES-VLA: Learning Shared Dynamics Priors and Embodiment-Specific Control for Cross-Embodiment Manipulation](/202608/12/2608.06374v1-dypes-vla-learning-shared-dynamics-priors-and-embodiment-specific-control-for-cross-embodiment-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：跨本体VLA学习共享动力学先验与特定本体控制
-8. [GWM-VLA: Geometry-Aware Latent World Modeling for Vision-Language-Action Learning](/202608/11/2608.07619v1-gwm-vla-geometry-aware-latent-world-modeling-for-vision-language-action-learning)  
+   evidence：跨本体VLA学习共享动力学先验与本体特定控制，用于操作任务
+8. [$ω$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation](/202608/12/2608.06375v1--0-a-latent-predictive-world-action-model-for-concurrent-humanoid-loco-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：几何感知潜在世界建模提升VLA学习的鲁棒性和操作性能
-9. [Efficient Real-World Online Reinforcement Learning for Robot Manipulation via Centralized Training and Critic Decomposition](/202608/11/2608.09762v1-efficient-real-world-online-reinforcement-learning-for-robot-manipulation-via-centralized-training-and-critic-decomposition)  
-   标签：评分：9.0/10、query:pi-robotics
-   evidence：结合集中训练与奖励分解的真实世界在线强化学习框架提升机械臂操作策略
+   evidence：面向语言条件人形移动-操作的潜在预测全身世界动作模型
+9. [$ω$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation](/202608/12/2608.06375v2--0-a-latent-predictive-world-action-model-for-concurrent-humanoid-loco-manipulation)  
+   标签：评分：9.0/10、query:embodied-vla
+   evidence：面向人形并发移动-操作的语言条件全身世界动作模型
+10. [GWM-VLA: Geometry-Aware Latent World Modeling for Vision-Language-Action Learning](/202608/12/2608.07619v1-gwm-vla-geometry-aware-latent-world-modeling-for-vision-language-action-learning)  
+   标签：评分：9.0/10、query:embodied-vla
+   evidence：几何感知潜在世界建模提升VLA在视觉变化下的鲁棒性
+11. [Skills in Weights, Memory in Code: Hybrid Learning for Memory-Dependent Robot Manipulation](/202608/12/2608.09410v1-skills-in-weights-memory-in-code-hybrid-learning-for-memory-dependent-robot-manipulation)  
+   标签：评分：9.0/10、query:embodied-vla
+   evidence：结合编码智能体的VLA记忆依赖操作混合学习
 
 ### 速读区论文标签
-1. [Uncovering and Mitigating Positional Blind Spots in Vision-Language-Action Models](/202608/11/2608.01573v1-uncovering-and-mitigating-positional-blind-spots-in-vision-language-action-models)  
+1. [Structure-Aware Robust Fine-Tuning: Defending Vision-Language-Action Robots Against Physical Attention Hijacking](/202608/12/2608.03231v1-structure-aware-robust-fine-tuning-defending-vision-language-action-robots-against-physical-attention-hijacking)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：VLA模型在机器人操作中的鲁棒性改进，缓解位置盲区以提升性能
-2. [Learning Panorama-Aware VLA for Mobile Manipulation with Whole-Body Teleoperation](/202608/11/2608.02257v1-learning-panorama-aware-vla-for-mobile-manipulation-with-whole-body-teleoperation)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：全景感知VLA策略提升移动操作性能
-3. [Grounded Semantic Re-Binding for Robust Instruction Generalization in Vision-Language-Action Models](/202608/11/2608.02497v1-grounded-semantic-re-binding-for-robust-instruction-generalization-in-vision-language-action-models)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：通过语义再绑定提升VLA指令泛化能力，增强操作策略鲁棒性
-4. [DRIFT: Derailing Denoising Trajectories of Flow-Matching VLAs with Adversarial Patch Attack](/202608/11/2608.03207v1-drift-derailing-denoising-trajectories-of-flow-matching-vlas-with-adversarial-patch-attack)  
+   evidence：结构感知鲁棒微调防御VLA机器人免受物理注意力劫持攻击
+2. [LiLa-WAM: Lightweight Latent Reasoning World-Action Model for Robotic Manipulation](/202608/12/2608.03701v1-lila-wam-lightweight-latent-reasoning-world-action-model-for-robotic-manipulation)  
    标签：评分：8.0/10、query:pi-robotics
-   evidence：对pi0流匹配VLA的对抗攻击揭示策略性能漏洞
-5. [Ego2Robot: Scalable Robot Data Synthesis from Egocentric Human Data](/202608/11/2608.02580v1-ego2robot-scalable-robot-data-synthesis-from-egocentric-human-data)  
+   evidence：面向机器人操作策略增强的轻量级潜在世界动作模型
+3. [JoyAI-RA 0.5: Scaling Robot Manipulation Learning via Dual Action Alignment](/202608/12/2608.05674v1-joyai-ra-05-scaling-robot-manipulation-learning-via-dual-action-alignment)  
+   标签：评分：8.0/10、query:embodied-vla
+   evidence：通过双重动作对齐扩展操作学习的VLA/WLA框架
+4. [Multi-modal Interactive Control of Robotic Arm based on Offline Large Language Models](/202608/12/2608.08183v1-multi-modal-interactive-control-of-robotic-arm-based-on-offline-large-language-models)  
+   标签：评分：8.0/10、query:embodied-vla
+   evidence：基于离线大语言模型的机械臂语言条件控制
+5. [EmbodiedVAE: Disentangled Video VAE for Efficient and Controllable Embodied Manipulation](/202608/12/2608.02990v1-embodiedvae-disentangled-video-vae-for-efficient-and-controllable-embodied-manipulation)  
    标签：评分：7.0/10、query:embodied-vla
-   evidence：从第一视角视频合成机器人训练数据的可扩展流水线，服务于VLA预训练
-6. [EmbodiedVAE: Disentangled Video VAE for Efficient and Controllable Embodied Manipulation](/202608/11/2608.02990v1-embodiedvae-disentangled-video-vae-for-efficient-and-controllable-embodied-manipulation)  
+   evidence：用于具身操作世界模型的解耦视频VAE
+6. [ARGUS: Aligning Robot Scene Geometry Under Shifting Views with Large 3D Vision Models](/202608/12/2608.05579v1-argus-aligning-robot-scene-geometry-under-shifting-views-with-large-3d-vision-models)  
+   标签：评分：7.0/10、query:pi-robotics
+   evidence：通过观测预处理对齐任意相机视角以增强操作策略泛化
+7. [VIDP: Variable Impedance Diffusion Policy for Compliant Robot Manipulation from Diverse Demonstrations](/202608/12/2608.06210v1-vidp-variable-impedance-diffusion-policy-for-compliant-robot-manipulation-from-diverse-demonstrations)  
+   标签：评分：7.0/10、query:pi-robotics
+   evidence：基于变阻抗扩散策略的柔顺机器人操作
+8. [Capek 0.5: An Execution-Centric Vision-Language Model for Embodied Intelligence](/202608/12/2608.06756v1-capek-05-an-execution-centric-vision-language-model-for-embodied-intelligence)  
    标签：评分：7.0/10、query:embodied-vla
-   evidence：解耦视频VAE提供紧凑可控潜表征，改善具身操作世界模型
-7. [Structure-Aware Robust Fine-Tuning: Defending Vision-Language-Action Robots Against Physical Attention Hijacking](/202608/11/2608.03231v1-structure-aware-robust-fine-tuning-defending-vision-language-action-robots-against-physical-attention-hijacking)  
-   标签：评分：7.0/10、query:embodied-vla
-   evidence：通过结构感知鲁棒微调防御物理对抗补丁，提升VLA机器人的可靠性
-8. [RoboReact: Agentic Skill Distillation from Generated Egocentric Videos for Generalizable Whole-Body Manipulation](/202608/11/2608.03387v2-roboreact-agentic-skill-distillation-from-generated-egocentric-videos-for-generalizable-whole-body-manipulation)  
-   标签：评分：7.0/10、query:embodied-vla
-   evidence：从第一视角视频生成全身人形操作技能，提升泛化性
-9. [Weights or Skills? A Survey of Robot-Learning Techniques: from Action-Predicting Weights to Robots that Write their Own Skills](/202608/11/2608.01851v1-weights-or-skills-a-survey-of-robot-learning-techniques-from-action-predicting-weights-to-robots-that-write-their-own-skills)  
-   标签：评分：6.0/10、query:embodied-vla
-   evidence：机器人学习技术综述涵盖VLA模型与自改进技能策略
-10. [RoboReact: Agentic Skill Distillation from Generated Egocentric Videos for Generalizable Whole-Body Manipulation](/202608/11/2608.03387v1-roboreact-agentic-skill-distillation-from-generated-egocentric-videos-for-generalizable-whole-body-manipulation)  
-   标签：评分：6.0/10、query:embodied-vla
-   evidence：面向人形机器人全身操作技能合成，支撑通用策略
-11. [Multi-modal Interactive Control of Robotic Arm based on Offline Large Language Models](/202608/11/2608.08183v1-multi-modal-interactive-control-of-robotic-arm-based-on-offline-large-language-models)  
-   标签：评分：6.0/10、query:embodied-vla
-   evidence：基于离线大语言模型的机械臂语言条件交互控制
+   evidence：以执行为中心的具身视觉语言模型能力组织
+9. [RoboReact: Agentic Skill Distillation from Generated Egocentric Videos for Generalizable Whole-Body Manipulation](/202608/12/2608.03387v1-roboreact-agentic-skill-distillation-from-generated-egocentric-videos-for-generalizable-whole-body-manipulation)  
+   标签：评分：6.0/10、query:pi-robotics
+   evidence：通过生成式技能蒸馏提升全身操作策略泛化
+10. [Is Forward Prediction Enough? Physical State Grounding for JEPA World Models](/202608/12/2608.06799v1-is-forward-prediction-enough-physical-state-grounding-for-jepa-world-models)  
+   标签：评分：6.0/10、query:pi-robotics
+   evidence：通过物理状态锚定世界模型提升下游策略性能
+11. [Decoupling Intention from Trajectory: A Representational Deduction Framework for World Action Models](/202608/12/2608.06994v1-decoupling-intention-from-trajectory-a-representational-deduction-framework-for-world-action-models)  
+   标签：评分：6.0/10、query:pi-robotics
+   evidence：通过解耦意图与轨迹提升世界动作模型的行动生成能力
 
 
 <div class="dpr-home-promo-card">
