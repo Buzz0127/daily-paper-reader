@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-13T20:20:40.627314+00:00",
-  "updated_date": "20260813",
+  "generated_at": "2026-08-14T19:47:02.219689+00:00",
+  "updated_date": "20260814",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,94 +480,9 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260813",
+      "updated_date": "20260814",
       "carryover_days": 9,
       "items": [
-        {
-          "id": "2608.08558v1",
-          "source": "arxiv",
-          "title": "Vid2WAM: Distilling Video Diffusion Priors into World Action Models",
-          "abstract": "World Action Models (WAMs) improve robot policy learning by jointly modeling future visual dynamics and actions. However, their scalability and generalization remain constrained by their reliance on costly expert demonstrations. We challenge this by asking whether future supervision for WAMs must originate from target-task expert trajectories. In this paper, we propose Vid2WAM, an offline distillation framework that transfers visual diffusion priors from a large video foundation model into a compact WAM student. Given an observation and language instruction, Vid2WAM distills supervision through two complementary channels: task-conditioned future rollouts directly supervise the student's future prediction branch, while an inverse dynamics model recovers embodiment-specific pseudo-actions for action learning. To robustly integrate synthetic and real supervision, we introduce source-aware residual action adaptation that learns source-specific corrections around a shared action backbone and mitigates interference from noisy pseudo-actions. During inference, both the video teacher and inverse dynamics model are discarded, leaving only the WAM student for efficient deployment. Simulation and real-world experiments demonstrate that Vid2WAM improves novel-task generalization and data efficiency under limited expert demonstrations while preserving low-latency inference.",
-          "authors": [
-            "Chenhao Qiu",
-            "Ruixiang Wang",
-            "Runyi Zhao",
-            "Sixu Lin",
-            "Songen Gu",
-            "Shufeng Nan",
-            "Guiliang Liu",
-            "Kui Jia",
-            "Yanwei Fu",
-            "Simo Wu"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-09T08:02:49+00:00",
-          "link": "https://arxiv.org/pdf/2608.08558v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Distills video diffusion priors into world action models to improve robot policy learning",
-          "llm_evidence_cn": "将视频扩散先验蒸馏进世界行动模型以提升机器人策略学习",
-          "llm_evidence": "将视频扩散先验蒸馏进世界行动模型以提升机器人策略学习",
-          "canonical_evidence": "将视频扩散先验蒸馏进世界行动模型以提升机器人策略学习",
-          "llm_tldr_en": "Vid2WAM transfers visual diffusion priors from a video foundation model into a compact WAM student via future rollouts and inverse dynamics, improving robot policy learning without target expert trajectories.",
-          "llm_tldr_cn": "世界行动模型通过联合建模未来视觉动态与动作来提升机器人策略学习，但依赖昂贵的专家示范，可扩展性受限。本文提出Vid2WAM离线蒸馏框架，将大型视频基础模型的视觉扩散先验迁移到紧凑的WAM学生模型。通过任务条件未来推演和逆动力学两条通道提供监督，降低了对目标任务专家轨迹的依赖。实验表明该方法能有效提升策略学习性能，为机器人策略学习提供数据高效的分布式训练途径。",
-          "llm_tldr": "世界行动模型通过联合建模未来视觉动态与动作来提升机器人策略学习，但依赖昂贵的专家示范，可扩展性受限。本文提出Vid2WAM离线蒸馏框架，将大型视频基础模型的视觉扩散先验迁移到紧凑的WAM学生模型。通过任务条件未来推演和逆动力学两条通道提供监督，降低了对目标任务专家轨迹的依赖。实验表明该方法能有效提升策略学习性能，为机器人策略学习提供数据高效的分布式训练途径。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.08558v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.09138v1",
-          "source": "arxiv",
-          "title": "SpeedTuning: Speeding Up Policy Execution with Lightweight Reinforcement Learning",
-          "abstract": "While learned robotic policies hold promise for advancing generalizable manipulation, their practical deployment is often hindered by suboptimal execution speeds. Imitation learning policies are inherently limited by hardware constraints and the speed of the operator during data collection. In addition, there are no established methods for accelerating policies learned via imitation, and the empirical relationship between execution speed and task success remains underexplored. To address these issues, we introduce SpeedTuning, a reinforcement learning framework specifically designed to enhance the speed of manipulation policies. SpeedTuning learns to predict the optimal execution speed for actions, thereby complementing a base policy without necessitating additional data collection. We provide empirical evidence that SpeedTuning achieves substantial improvements in execution speed, exceeding 2.4x speed-up, while preserving an adequate success rate compared to both the original task policy and straightforward speed-up methods such as linear interpolation at a fixed speed. We evaluate our approach across a diverse set of dynamic and precise tasks, including pouring, throwing, and picking, demonstrating its effectiveness and robustness in enhancing real-world robotic manipulation.",
-          "authors": [
-            "David D. Yuan",
-            "Tony Z. Zhao",
-            "Kaylee Burns",
-            "Chelsea Finn"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.AI"
-          ],
-          "published": "2026-08-10T05:31:41+00:00",
-          "link": "https://arxiv.org/pdf/2608.09138v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "RL framework to speed up manipulation policy execution",
-          "llm_evidence_cn": "通过强化学习加速操作策略执行",
-          "llm_evidence": "通过强化学习加速操作策略执行",
-          "canonical_evidence": "通过强化学习加速操作策略执行",
-          "llm_tldr_en": "SpeedTuning uses lightweight reinforcement learning to predict optimal execution speed for manipulation policies, accelerating imitation-learned policies without hurting task success.",
-          "llm_tldr_cn": "学习型操作策略常因执行速度受限于操作者采集速度而部署缓慢。SpeedTuning提出轻量强化学习框架，学习预测每个动作的最优执行速度，作为基础操纵策略的补充，从而在不牺牲任务成功率的条件下显著提升策略执行速度，并探讨了执行速度与任务成功率的关系。",
-          "llm_tldr": "学习型操作策略常因执行速度受限于操作者采集速度而部署缓慢。SpeedTuning提出轻量强化学习框架，学习预测每个动作的最优执行速度，作为基础操纵策略的补充，从而在不牺牲任务成功率的条件下显著提升策略执行速度，并探讨了执行速度与任务成功率的关系。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.09138v1",
-          "carry_days": 1
-        },
         {
           "id": "2608.09138v2",
           "source": "arxiv",
@@ -591,13 +506,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "policy execution acceleration for manipulation",
-          "llm_evidence_cn": "加速操作策略的执行速度",
-          "llm_evidence": "加速操作策略的执行速度",
-          "canonical_evidence": "加速操作策略的执行速度",
-          "llm_tldr_en": "Introduces SpeedTuning, a lightweight RL framework that predicts optimal execution speed for actions to accelerate learned manipulation policies, addressing suboptimal execution speeds of imitation policies.",
-          "llm_tldr_cn": "针对学得操作策略执行速度受限、影像实际部署的问题，该文提出SpeedTuning，用轻量强化学习预测动作的最佳执行速度，从而在不改变基础策略的前提下提高执行速度。实验表明该方法能有效加速策略执行并保持任务成功率，为机器人策略的实用部署提供了新手段。",
-          "llm_tldr": "针对学得操作策略执行速度受限、影像实际部署的问题，该文提出SpeedTuning，用轻量强化学习预测动作的最佳执行速度，从而在不改变基础策略的前提下提高执行速度。实验表明该方法能有效加速策略执行并保持任务成功率，为机器人策略的实用部署提供了新手段。",
+          "llm_evidence_en": "policy execution speed optimization via reinforcement learning",
+          "llm_evidence_cn": "通过强化学习优化策略执行速度",
+          "llm_evidence": "通过强化学习优化策略执行速度",
+          "canonical_evidence": "通过强化学习优化策略执行速度",
+          "llm_tldr_en": "SpeedTuning uses lightweight RL to predict optimal action execution speed for learned manipulation policies, improving deployment speed without altering the base policy.",
+          "llm_tldr_cn": "学习型机器人策略在实际部署中常受限于执行速度，模仿学习受硬件和示教速度影响，且缺乏加速策略执行的有效手段。本文提出SpeedTuning框架，利用轻量强化学习学习预测每个动作的最优执行速度，从而在不改变基底策略的前提下补充基础策略，提升执行效率。实验证明该方法能有效加快操作策略速度并提升任务成功率，为机械臂操作策略的快速部署提供通用方案。",
+          "llm_tldr": "学习型机器人策略在实际部署中常受限于执行速度，模仿学习受硬件和示教速度影响，且缺乏加速策略执行的有效手段。本文提出SpeedTuning框架，利用轻量强化学习学习预测每个动作的最优执行速度，从而在不改变基底策略的前提下补充基础策略，提升执行效率。实验证明该方法能有效加快操作策略速度并提升任务成功率，为机械臂操作策略的快速部署提供通用方案。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -635,13 +550,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "skill abstraction and transfer to improve policy learning",
-          "llm_evidence_cn": "通过技能抽象与迁移提升策略学习",
-          "llm_evidence": "通过技能抽象与迁移提升策略学习",
-          "canonical_evidence": "通过技能抽象与迁移提升策略学习",
-          "llm_tldr_en": "Introduces BooST, a two-stage skill transfer method that bridges high-level semantic intent and low-level motion dynamics to provide strong priors for policy learning, improving sample efficiency and generalization in robot learning.",
-          "llm_tldr_cn": "针对现有技能抽象方法难以同时捕捉高层语义意图与低层运动动态、导致下游策略学习需要大量领域内数据的问题，该文提出BooST两阶段框架，显式桥接'做什么'与'怎么做'，为策略学习提供更强的先验。实验表明该方法能够显著提升样本效率和跨任务跨域泛化能力，为机器人技能的高效迁移提供新思路。",
-          "llm_tldr": "针对现有技能抽象方法难以同时捕捉高层语义意图与低层运动动态、导致下游策略学习需要大量领域内数据的问题，该文提出BooST两阶段框架，显式桥接'做什么'与'怎么做'，为策略学习提供更强的先验。实验表明该方法能够显著提升样本效率和跨任务跨域泛化能力，为机器人技能的高效迁移提供新思路。",
+          "llm_evidence_en": "skill abstraction bridging semantics and motions for efficient policy learning and transfer",
+          "llm_evidence_cn": "结合语义与运动的高效技能迁移方法，提升策略学习的样本效率与泛化",
+          "llm_evidence": "结合语义与运动的高效技能迁移方法，提升策略学习的样本效率与泛化",
+          "canonical_evidence": "结合语义与运动的高效技能迁移方法，提升策略学习的样本效率与泛化",
+          "llm_tldr_en": "BooST is a two-stage skill transfer method that captures both semantic intent and motion dynamics, yielding strong priors for policy learning and improving sample efficiency in real robot deployment.",
+          "llm_tldr_cn": "机器人技能迁移常因只捕捉语义意图或运动动力学而无法提供强策略先验，导致下游适应需要大量数据。BooST通过两阶段方法同时建模任务的“做什么”与“怎么做”，将高层语义与低层运动结合，学习可复用且鲁棒的运动技能。实验显示BooST在多种任务与域间迁移中提升样本效率和泛化能力，并在真实机器人上验证了实用性。",
+          "llm_tldr": "机器人技能迁移常因只捕捉语义意图或运动动力学而无法提供强策略先验，导致下游适应需要大量数据。BooST通过两阶段方法同时建模任务的“做什么”与“怎么做”，将高层语义与低层运动结合，学习可复用且鲁棒的运动技能。实验显示BooST在多种任务与域间迁移中提升样本效率和泛化能力，并在真实机器人上验证了实用性。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -650,50 +565,6 @@
           "matched_requirement_id": "req-3",
           "selection_source": "carryover_cache",
           "paper_id": "2608.10600v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.10780v1",
-          "source": "arxiv",
-          "title": "JEPA-WAM: Stage-Level Joint-Embedding Prediction for World-Action Models in Robot Manipulation",
-          "abstract": "Generalist robot policies aim to map multimodal observations and linguistic task instructions to actions across diverse tasks. However, existing methods typically represent the future as a fixed, short video-action chunk. This short-term future captures local scene evolution for action execution, but it does not explicitly describe the stage-level future that specifies how a task should progress from its current stage to the next. We therefore distinguish two complementary futures for robot manipulation: a short-term physical future to capture local scene evolution and a stage-level semantic future to represent task progress. We introduce JEPA-WAM, which augments a Motus-based World Action Model (WAM) with Stage-JEPA, a goal-conditioned Joint-Embedding Predictive Architecture (JEPA) predictor. Given the current observation and task instruction, Stage-JEPA uses a frozen V-JEPA2 encoder to extract the current-state representation and predicts the latent target of the next inferred stage. Across 50 RoboTwin 2.0 tasks in clean and randomized environments, JEPA-WAM achieves 90.25% overall success and reduces the mean number of execution steps in successful rollouts by 5.97% relative to the strongest baseline.",
-          "authors": [
-            "Xiao Liu",
-            "Yuguang Yang",
-            "Xi Wang",
-            "Kai Jiang",
-            "Cheng Chi",
-            "Yong Xu",
-            "Wenchao Ding",
-            "Yilun Chen",
-            "Yan Wang"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-11T10:33:12+00:00",
-          "link": "https://arxiv.org/pdf/2608.10780v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "world action model improves robot manipulation policy",
-          "llm_evidence_cn": "通过世界动作模型提升机器人操作策略",
-          "llm_evidence": "通过世界动作模型提升机器人操作策略",
-          "canonical_evidence": "通过世界动作模型提升机器人操作策略",
-          "llm_tldr_en": "JEPA-WAM proposes stage-level joint-embedding prediction to augment a world action model, capturing both short-term physical and stage-level semantic futures for more generalizable robot manipulation policies.",
-          "llm_tldr_cn": "现有通用机器人策略只将未来表示为固定的短视频动作块，难以刻画任务从当前阶段到下一阶段的进展。JEPA-WAM在基于Motus的世界动作模型中加入阶段级联合嵌入预测（Stage-JEPA），显式建模阶段语义未来，从而提升机器人操作策略的泛化与长程任务表现。该工作为通用操作策略提供了更丰富的未来表征。",
-          "llm_tldr": "现有通用机器人策略只将未来表示为固定的短视频动作块，难以刻画任务从当前阶段到下一阶段的进展。JEPA-WAM在基于Motus的世界动作模型中加入阶段级联合嵌入预测（Stage-JEPA），显式建模阶段语义未来，从而提升机器人操作策略的泛化与长程任务表现。该工作为通用操作策略提供了更丰富的未来表征。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.10780v1",
           "carry_days": 1
         },
         {
@@ -721,13 +592,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "adapting generalist robot policies with minimal data for task learning",
-          "llm_evidence_cn": "以最少数据自适应预训练通用机器人策略",
-          "llm_evidence": "以最少数据自适应预训练通用机器人策略",
-          "canonical_evidence": "以最少数据自适应预训练通用机器人策略",
-          "llm_tldr_en": "MiDAS studies minimal-data adaptation where pre-trained robot policies learn new tasks from one demonstration plus online interaction, proposing a simple offline method that enables fast task adaptation.",
-          "llm_tldr_cn": "机器人学习的核心目标是从任务特定数据转向通过自主交互持续改进，但当前策略从零探索难以成功。该文研究最小数据自适应：预训练策略仅需一个示范，再结合自主在线交互学习新任务。作者构建MiDAS，一个简单的离线方法，在接近实际的设定中验证了算法组成。结果表明极少量人类指导即可启动自主改进，为通用机器人策略的持续学习和部署提供了可行路线。",
-          "llm_tldr": "机器人学习的核心目标是从任务特定数据转向通过自主交互持续改进，但当前策略从零探索难以成功。该文研究最小数据自适应：预训练策略仅需一个示范，再结合自主在线交互学习新任务。作者构建MiDAS，一个简单的离线方法，在接近实际的设定中验证了算法组成。结果表明极少量人类指导即可启动自主改进，为通用机器人策略的持续学习和部署提供了可行路线。",
+          "llm_evidence_en": "Adapting generalist robot policies from one demonstration plus autonomous online interaction",
+          "llm_evidence_cn": "面向通用机器人策略的最小数据适配与在线交互改进",
+          "llm_evidence": "面向通用机器人策略的最小数据适配与在线交互改进",
+          "canonical_evidence": "面向通用机器人策略的最小数据适配与在线交互改进",
+          "llm_tldr_en": "MiDAS studies minimal-data adaptation where a pre-trained generalist policy learns a new task from as little as one demonstration plus autonomous online interaction, bootstrapping autonomous robot improvement.",
+          "llm_tldr_cn": "从零开始的全自主机器人学习仍因稀疏奖励和弱探索而困难。本文研究最小数据适配：预训练机器人策略仅需一条演示加上自主在线交互即可学习新任务，作为全自主改进的近似途径。作者构建MiDAS，一种简单的离线到在线适应方法，验证了极少人工引导能启动自主在线学习并提升策略表现，为通用机器人策略的高效持续改进提供了可行方案。",
+          "llm_tldr": "从零开始的全自主机器人学习仍因稀疏奖励和弱探索而困难。本文研究最小数据适配：预训练机器人策略仅需一条演示加上自主在线交互即可学习新任务，作为全自主改进的近似途径。作者构建MiDAS，一种简单的离线到在线适应方法，验证了极少人工引导能启动自主在线学习并提升策略表现，为通用机器人策略的高效持续改进提供了可行方案。",
           "llm_tags": [
             "query:pi-robotics"
           ],
