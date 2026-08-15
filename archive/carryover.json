@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-14T19:47:02.219689+00:00",
-  "updated_date": "20260814",
+  "generated_at": "2026-08-15T19:45:15.229861+00:00",
+  "updated_date": "20260815",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,49 +480,9 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260814",
+      "updated_date": "20260815",
       "carryover_days": 9,
       "items": [
-        {
-          "id": "2608.09138v2",
-          "source": "arxiv",
-          "title": "SpeedTuning: Speeding Up Policy Execution with Lightweight Reinforcement Learning",
-          "abstract": "While learned robotic policies hold promise for advancing generalizable manipulation, their practical deployment is often hindered by suboptimal execution speeds. Imitation learning policies are inherently limited by hardware constraints and the speed of the operator during data collection. In addition, there are no established methods for accelerating policies learned via imitation, and the empirical relationship between execution speed and task success remains underexplored. To address these issues, we introduce SpeedTuning, a reinforcement learning framework specifically designed to enhance the speed of manipulation policies. SpeedTuning learns to predict the optimal execution speed for actions, thereby complementing a base policy without necessitating additional data collection. We provide empirical evidence that SpeedTuning achieves substantial improvements in execution speed, exceeding 2.4x speed-up, while preserving an adequate success rate compared to both the original task policy and straightforward speed-up methods such as linear interpolation at a fixed speed. We evaluate our approach across a diverse set of dynamic and precise tasks, including pouring, throwing, and picking, demonstrating its effectiveness and robustness in enhancing real-world robotic manipulation. Videos and code are available at https://daivdyuan.github.io/speed-tuning/",
-          "authors": [
-            "David D. Yuan",
-            "Tony Z. Zhao",
-            "Kaylee Burns",
-            "Chelsea Finn"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.AI"
-          ],
-          "published": "2026-08-10T05:31:41+00:00",
-          "link": "https://arxiv.org/pdf/2608.09138v2",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "policy execution speed optimization via reinforcement learning",
-          "llm_evidence_cn": "通过强化学习优化策略执行速度",
-          "llm_evidence": "通过强化学习优化策略执行速度",
-          "canonical_evidence": "通过强化学习优化策略执行速度",
-          "llm_tldr_en": "SpeedTuning uses lightweight RL to predict optimal action execution speed for learned manipulation policies, improving deployment speed without altering the base policy.",
-          "llm_tldr_cn": "学习型机器人策略在实际部署中常受限于执行速度，模仿学习受硬件和示教速度影响，且缺乏加速策略执行的有效手段。本文提出SpeedTuning框架，利用轻量强化学习学习预测每个动作的最优执行速度，从而在不改变基底策略的前提下补充基础策略，提升执行效率。实验证明该方法能有效加快操作策略速度并提升任务成功率，为机械臂操作策略的快速部署提供通用方案。",
-          "llm_tldr": "学习型机器人策略在实际部署中常受限于执行速度，模仿学习受硬件和示教速度影响，且缺乏加速策略执行的有效手段。本文提出SpeedTuning框架，利用轻量强化学习学习预测每个动作的最优执行速度，从而在不改变基底策略的前提下补充基础策略，提升执行效率。实验证明该方法能有效加快操作策略速度并提升任务成功率，为机械臂操作策略的快速部署提供通用方案。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.09138v2",
-          "carry_days": 1
-        },
         {
           "id": "2608.10600v1",
           "source": "arxiv",
@@ -550,13 +510,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "skill abstraction bridging semantics and motions for efficient policy learning and transfer",
-          "llm_evidence_cn": "结合语义与运动的高效技能迁移方法，提升策略学习的样本效率与泛化",
-          "llm_evidence": "结合语义与运动的高效技能迁移方法，提升策略学习的样本效率与泛化",
-          "canonical_evidence": "结合语义与运动的高效技能迁移方法，提升策略学习的样本效率与泛化",
-          "llm_tldr_en": "BooST is a two-stage skill transfer method that captures both semantic intent and motion dynamics, yielding strong priors for policy learning and improving sample efficiency in real robot deployment.",
-          "llm_tldr_cn": "机器人技能迁移常因只捕捉语义意图或运动动力学而无法提供强策略先验，导致下游适应需要大量数据。BooST通过两阶段方法同时建模任务的“做什么”与“怎么做”，将高层语义与低层运动结合，学习可复用且鲁棒的运动技能。实验显示BooST在多种任务与域间迁移中提升样本效率和泛化能力，并在真实机器人上验证了实用性。",
-          "llm_tldr": "机器人技能迁移常因只捕捉语义意图或运动动力学而无法提供强策略先验，导致下游适应需要大量数据。BooST通过两阶段方法同时建模任务的“做什么”与“怎么做”，将高层语义与低层运动结合，学习可复用且鲁棒的运动技能。实验显示BooST在多种任务与域间迁移中提升样本效率和泛化能力，并在真实机器人上验证了实用性。",
+          "llm_evidence_en": "BooST improves policy learning by bridging semantic intent and motion dynamics for efficient skill transfer",
+          "llm_evidence_cn": "BooST桥接语义意图与运动动力学，实现高效技能迁移，改进策略学习",
+          "llm_evidence": "BooST桥接语义意图与运动动力学，实现高效技能迁移，改进策略学习",
+          "canonical_evidence": "BooST桥接语义意图与运动动力学，实现高效技能迁移，改进策略学习",
+          "llm_tldr_en": "BooST learns two-stage skill abstractions capturing high-level semantics and low-level motions, improving sample efficiency and generalization for downstream policy adaptation.",
+          "llm_tldr_cn": "技能迁移需要同时捕获高级语义意图和低级运动动力学，现有方法往往只覆盖其一，导致下游策略需大量域内数据。BooST提出两阶段技能抽象，先提取语义化技能，再补充运动细节，从而生成更完整的技能先验。实验证明它能在少样本条件下高效迁移到新任务与新域，显著提升策略学习的泛化能力。",
+          "llm_tldr": "技能迁移需要同时捕获高级语义意图和低级运动动力学，现有方法往往只覆盖其一，导致下游策略需大量域内数据。BooST提出两阶段技能抽象，先提取语义化技能，再补充运动细节，从而生成更完整的技能先验。实验证明它能在少样本条件下高效迁移到新任务与新域，显著提升策略学习的泛化能力。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -592,13 +552,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "Adapting generalist robot policies from one demonstration plus autonomous online interaction",
-          "llm_evidence_cn": "面向通用机器人策略的最小数据适配与在线交互改进",
-          "llm_evidence": "面向通用机器人策略的最小数据适配与在线交互改进",
-          "canonical_evidence": "面向通用机器人策略的最小数据适配与在线交互改进",
-          "llm_tldr_en": "MiDAS studies minimal-data adaptation where a pre-trained generalist policy learns a new task from as little as one demonstration plus autonomous online interaction, bootstrapping autonomous robot improvement.",
-          "llm_tldr_cn": "从零开始的全自主机器人学习仍因稀疏奖励和弱探索而困难。本文研究最小数据适配：预训练机器人策略仅需一条演示加上自主在线交互即可学习新任务，作为全自主改进的近似途径。作者构建MiDAS，一种简单的离线到在线适应方法，验证了极少人工引导能启动自主在线学习并提升策略表现，为通用机器人策略的高效持续改进提供了可行方案。",
-          "llm_tldr": "从零开始的全自主机器人学习仍因稀疏奖励和弱探索而困难。本文研究最小数据适配：预训练机器人策略仅需一条演示加上自主在线交互即可学习新任务，作为全自主改进的近似途径。作者构建MiDAS，一种简单的离线到在线适应方法，验证了极少人工引导能启动自主在线学习并提升策略表现，为通用机器人策略的高效持续改进提供了可行方案。",
+          "llm_evidence_en": "Adapts pretrained generalist robot policies to new tasks with minimal demonstrations, improving policy sample efficiency",
+          "llm_evidence_cn": "用极少演示和在线交互适配通用机器人策略，提升策略学习效率",
+          "llm_evidence": "用极少演示和在线交互适配通用机器人策略，提升策略学习效率",
+          "canonical_evidence": "用极少演示和在线交互适配通用机器人策略，提升策略学习效率",
+          "llm_tldr_en": "MiDAS studies minimal-data adaptation, bootstrapping autonomous learning from one demonstration to adapt generalist policies to new tasks.",
+          "llm_tldr_cn": "通用机器人策略希望脱离任务专属数据收集，但完全自主探索在稀疏奖励下难以习得行为。MiDAS研究最小数据适配：给定一条演示后，策略通过自主在线交互学习新任务。实验表明，配合合适的离线初始化与探索策略，单条演示即可引导自主改进，为通用机器人策略的自适应提升提供了可行范式。",
+          "llm_tldr": "通用机器人策略希望脱离任务专属数据收集，但完全自主探索在稀疏奖励下难以习得行为。MiDAS研究最小数据适配：给定一条演示后，策略通过自主在线交互学习新任务。实验表明，配合合适的离线初始化与探索策略，单条演示即可引导自主改进，为通用机器人策略的自适应提升提供了可行范式。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -607,6 +567,128 @@
           "matched_requirement_id": "req-3",
           "selection_source": "carryover_cache",
           "paper_id": "2608.11363v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.11204v1",
+          "source": "arxiv",
+          "title": "Surgical WAM: A World-Action Model for Data-Efficient Surgical Robot Learning",
+          "abstract": "Learning reliable surgical manipulation policies is bottlenecked by the scarcity of action-labeled demonstrations: teleoperated surgical robot (e.g., dVRK) trajectories with synchronized kinematics are costly to collect, while surgical tasks demand precise contact handling, long-horizon reasoning, and bimanual coordination. Endoscopic video is comparatively inexpensive and abundant relative to synchronized video--kinematics trajectories, and a natural way to exploit it is to learn world models of surgical scenes. However, existing surgical world models use video primarily for simulation or policy evaluation, and rarely translate the learned dynamics into closed-loop control. This gap raises our central question: under a fixed budget of action-labeled demonstrations, does action-free video pretraining improve closed-loop surgical manipulation? To answer it, we introduce the Surgical World-Action Model (Surgical WAM), a unified generative model built on Cosmos Policy that jointly predicts future endoscopic observations and executable surgical robot action chunks. Surgical WAM first learns surgical visual dynamics from action-free video and is then fine-tuned on the fixed action-labeled budget; at deployment, it acts as a closed-loop, receding-horizon controller that executes a short prefix of each predicted action chunk and replans from the resulting observation. On a suite of four simulated surgical manipulation tasks, video pretraining improves the average success rate from 63.5% to 77.8%, including an absolute gain of 20 percentage points on PegTransfer, with the largest improvements on contact-rich and bimanual tasks. These results demonstrate that action-free video provides transferable visual dynamics priors for learning surgical robot control with limited action supervision, positioning data-efficient video pretraining as a practical path toward scaling up surgical robot learning.",
+          "authors": [
+            "Wenrui Bao",
+            "Tianyun Jiang",
+            "Zhiben Chen",
+            "Ser-Nam Lim",
+            "Peter D. Peng",
+            "Yuzhang Shang"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO",
+            "cs.AI",
+            "cs.CV"
+          ],
+          "published": "2026-08-11T17:59:13+00:00",
+          "link": "https://arxiv.org/pdf/2608.11204v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "World-action model for data-efficient surgical manipulation policy learning; enhances robot manipulation via policy",
+          "llm_evidence_cn": "世界动作模型提升手术机器人操作策略的数据效率与性能",
+          "llm_evidence": "世界动作模型提升手术机器人操作策略的数据效率与性能",
+          "canonical_evidence": "世界动作模型提升手术机器人操作策略的数据效率与性能",
+          "llm_tldr_en": "Surgical WAM uses abundant endoscopic video to learn surgical scene dynamics and turn them into closed-loop control, tackling action-labeled data scarcity for data-efficient surgical robot policy learning.",
+          "llm_tldr_cn": "手术操作策略学习受限于带动作标签的演示数据稀缺，而内窥镜视频相对丰富。Surgical WAM提出利用视频学习手术场景动力学，并将其用于闭环控制，而不是仅做仿真或评估。在固定动作标注预算下，该方法显著提升了数据效率和操作性能，展示了世界模型在数据稀缺机器人操作学习中的潜力。",
+          "llm_tldr": "手术操作策略学习受限于带动作标签的演示数据稀缺，而内窥镜视频相对丰富。Surgical WAM提出利用视频学习手术场景动力学，并将其用于闭环控制，而不是仅做仿真或评估。在固定动作标注预算下，该方法显著提升了数据效率和操作性能，展示了世界模型在数据稀缺机器人操作学习中的潜力。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.11204v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.13438v1",
+          "source": "arxiv",
+          "title": "ContactGuard: Pre-Contact Execution Monitoring with Action-Conditioned Latent World Models",
+          "abstract": "Contact-rich manipulation failures are often detected only after the robot has committed to contact. This is especially limiting in wrist-camera setups: close gripper--object views help observe contact, but a poor approach may already push, miss, slip, or disturb the object before conventional detectors react. We introduce \\emph{ContactGuard}, a pre-contact execution monitor for chunked visuomotor policies. Given the policy's planned action chunk, ContactGuard predicts its short-horizon consequence in latent visual space and aborts if the predicted future latent indicates likely failure. Its latent world model is trained from unlabelled robot trajectories to predict compact multi-view visual embeddings under planned actions, avoiding pixel-level video prediction. A lightweight failure probe is then trained from a small labelled set of pre-contact clips. At deployment, ContactGuard anchors prediction before an imminent contact event, rolls the model forward under the policy's own actions, and verifies the predicted post-contact latent. Across real-world contact-rich manipulation tasks, ContactGuard predicts failure more accurately than direct and corrupted-action ablations, and transfers to live robot as a pre-contact abort signal without modifying the underlying policy.",
+          "authors": [
+            "Gehan Zheng",
+            "Matthew Johnson-Roberson",
+            "Weiming Zhi"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO",
+            "cs.AI",
+            "cs.CV"
+          ],
+          "published": "2026-08-13T16:25:54+00:00",
+          "link": "https://arxiv.org/pdf/2608.13438v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "pre-contact monitoring of chunked visuomotor policies to improve manipulation",
+          "llm_evidence_cn": "对分块视觉运动策略进行接触前监控以提升操作表现",
+          "llm_evidence": "对分块视觉运动策略进行接触前监控以提升操作表现",
+          "canonical_evidence": "对分块视觉运动策略进行接触前监控以提升操作表现",
+          "llm_tldr_en": "ContactGuard predicts the short-horizon consequence of a visuomotor policy's planned action chunk with a latent world model and aborts before failure contact, improving manipulation success.",
+          "llm_tldr_cn": "接触富集操作中，机器人往往在发生接触后才意识到失败，此时物体可能已被推离或破坏。为了提前规避风险，本文提出ContactGuard，利用动作条件下的潜在世界模型预测策略动作块的短期视觉后果，若预测到失败便中止执行。该监控模型无需标注轨迹即可训练。实验证明其在接近阶段就能识别失败风险，减少错误接触并提高操作成功率。这种接触前监控思路为策略执行安全提供了有效补充。",
+          "llm_tldr": "接触富集操作中，机器人往往在发生接触后才意识到失败，此时物体可能已被推离或破坏。为了提前规避风险，本文提出ContactGuard，利用动作条件下的潜在世界模型预测策略动作块的短期视觉后果，若预测到失败便中止执行。该监控模型无需标注轨迹即可训练。实验证明其在接近阶段就能识别失败风险，减少错误接触并提高操作成功率。这种接触前监控思路为策略执行安全提供了有效补充。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.13438v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.13362v1",
+          "source": "arxiv",
+          "title": "NestDex: Nested Policy Learning with Copilot Assisted Teleoperation for Dexterous Manipulation",
+          "abstract": "Dexterous manipulation promises substantially richer robot interaction with the physical world, but learning these behaviours remains constrained by the difficulty of collecting consistent, complete-task demonstrations. Unlike parallel-jaw manipulation, dexterous tasks require the operator to coordinate arm motion with precise, contact-rich finger behaviour throughout the task. We introduce NestDex, a nested policy-learning framework that reduces this burden by using learned hand skills to assist demonstration collection. The operator controls the arm and regulates the active hand skill through a single-DoF clutch, rather than directly specifying the full finger trajectory. The inner hand policy adapts its motion from the latest proprioceptive history, while a vision-language selector activates the appropriate skill for each task stage. The resulting demonstrations train a separate outer visuomotor policy that controls both the arm and hand without the inner policies at deployment. A hand-action variational autoencoder provides compact hand-action targets while retaining arm commands in joint space. Across real-world dexterous manipulation experiments, NestDex improves demonstration reliability and efficiency, and the resulting empirical evaluations support effective autonomous policy learning. Video Demo are available at project website https://aus.bot/research/nestdex.",
+          "authors": [
+            "James Zhao",
+            "Jinhe Tang",
+            "Mingyuan Ba",
+            "Weiming Zhi"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-08-13T15:25:39+00:00",
+          "link": "https://arxiv.org/pdf/2608.13362v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Nested policy learning with copilot-assisted teleoperation enhances dexterous manipulation by reducing demonstration burden and improving policy learning.",
+          "llm_evidence_cn": "嵌套策略学习结合副驾驶辅助遥操作降低了灵巧操作的演示采集负担，提升了策略学习效果。",
+          "llm_evidence": "嵌套策略学习结合副驾驶辅助遥操作降低了灵巧操作的演示采集负担，提升了策略学习效果。",
+          "canonical_evidence": "嵌套策略学习结合副驾驶辅助遥操作降低了灵巧操作的演示采集负担，提升了策略学习效果。",
+          "llm_tldr_en": "Presents NestDex, a nested policy learning framework that uses learned hand skills and single-DoF clutch teleoperation to reduce demonstration burden for dexterous manipulation.",
+          "llm_tldr_cn": "灵巧操作要求手臂运动与精细手指动作协调，现有方法难以采集完整一致的演示数据。论文提出NestDex嵌套策略学习框架，用已学手部技能辅助采集演示：操作者控制手臂并通过单自由度离合器调节手部技能，而非直接控制完整手指轨迹。内层手部策略从最新演示中自适应调整动作。实验表明该方法显著降低灵巧操作演示采集难度，提升策略学习效果。",
+          "llm_tldr": "灵巧操作要求手臂运动与精细手指动作协调，现有方法难以采集完整一致的演示数据。论文提出NestDex嵌套策略学习框架，用已学手部技能辅助采集演示：操作者控制手臂并通过单自由度离合器调节手部技能，而非直接控制完整手指轨迹。内层手部策略从最新演示中自适应调整动作。实验表明该方法显著降低灵巧操作演示采集难度，提升策略学习效果。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.13362v1",
           "carry_days": 1
         }
       ]

@@ -6,79 +6,71 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-08-14
-- 运行时间：2026-08-14 19:51:35 UTC
+- 最新运行日期：2026-08-15
+- 运行时间：2026-08-15 19:54:14 UTC
 - 运行状态：成功
-- 本次总论文数：19
-- 精读区：8
+- 本次总论文数：17
+- 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日19篇机器人学习论文中，精读聚焦两手抓：任务条件手腕建模与空间锚定VLA，双双斩获9分高分。  
-最值得关注的是细粒度操作中的“未来手腕预测”与“用户指定抓取/放置锚点”两大方向，均显著提升操控精度与可解释性。  
-建议普通读者优先追这两篇精读论文，速读中的跨本体控制与人形全身操作也可作为拓展参考。
-- 详情：[/202608/14/README](/202608/14/README)
+今日精读6篇、速读11篇，聚焦具身智能与机器人操作前沿；其中GWM-VLA与SLIM-0.5B获9.0分，引领几何感知世界模型与动作预测新方向。最值得关注：世界模型正结合视觉-语言-动作学习，并走向极简高效（0.5B参数）。建议下一步可优先深入对比这两篇方法在真实操作中的泛化能力。
+- 详情：[/202608/15/README](/202608/15/README)
 
 ### 精读区论文标签
-1. [World-to-Wrist: Task-Conditioned Future Wrist Modeling for Fine-Grained Robot Manipulation](/202608/14/2608.05369v1-world-to-wrist-task-conditioned-future-wrist-modeling-for-fine-grained-robot-manipulation)  
+1. [GWM-VLA: Geometry-Aware Latent World Modeling for Vision-Language-Action Learning](/202608/15/2608.07619v1-gwm-vla-geometry-aware-latent-world-modeling-for-vision-language-action-learning)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：面向精细机器人操作的VLA模型，通过任务条件化未来腕部建模提升操作性能
-2. [SpaceVLA: Spatially Grounded VLA for Robotic Manipulation with User-Authored Grasp and Place Anchors](/202608/14/2608.05730v1-spacevla-spatially-grounded-vla-for-robotic-manipulation-with-user-authored-grasp-and-place-anchors)  
+   evidence：几何感知潜在世界建模提升VLA机器人操作鲁棒性
+2. [SLIM-0.5B: Learning Action-Grounded Predictive Latents for Robot Manipulation](/202608/15/2608.09771v1-slim-05b-learning-action-grounded-predictive-latents-for-robot-manipulation)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：用户指定抓取与放置锚点的空间接地VLA机器人操作
-3. [SkillMemo: Expert-guided Skill Memory Framework for Compositional Embodied Manipulation](/202608/14/2608.05970v1-skillmemo-expert-guided-skill-memory-framework-for-compositional-embodied-manipulation)  
+   evidence：面向操作的紧致VLA类策略
+3. [G0.5: One Autoregressive Stream for Robot Reasoning and Action](/202608/15/2608.11739v1-g05-one-autoregressive-stream-for-robot-reasoning-and-action)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：面向VLA机器人操作模型组合泛化的技能记忆框架
-4. [Beyond Flat Policies: Hierarchical Post-Training for Embodied Agents in Robotic Manipulation](/202608/14/2608.05999v1-beyond-flat-policies-hierarchical-post-training-for-embodied-agents-in-robotic-manipulation)  
+   evidence：统一推理与动作的自回归VLA模型
+4. [Policy-Induced Hand Priors in Humanoid Dual-Arm Manipulation: Diagnosing and Mitigating Initial-Pose Dependence](/202608/15/2608.11769v1-policy-induced-hand-priors-in-humanoid-dual-arm-manipulation-diagnosing-and-mitigating-initial-pose-dependence)  
    标签：评分：9.0/10、query:embodied-vla
-   evidence：面向机器人操作具身智能体的层次化后训练方法
-5. [$ω$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation](/202608/14/2608.06375v1--0-a-latent-predictive-world-action-model-for-concurrent-humanoid-loco-manipulation)  
-   标签：评分：9.0/10、query:embodied-vla
-   evidence：语言条件的人形机器人全身世界动作模型，直接预测动作潜变量
-6. [GWM-VLA: Geometry-Aware Latent World Modeling for Vision-Language-Action Learning](/202608/14/2608.07619v1-gwm-vla-geometry-aware-latent-world-modeling-for-vision-language-action-learning)  
-   标签：评分：9.0/10、query:embodied-vla
-   evidence：面向视觉-语言-动作学习的几何感知潜在世界建模
-7. [Vid2WAM: Distilling Video Diffusion Priors into World Action Models](/202608/14/2608.08558v1-vid2wam-distilling-video-diffusion-priors-into-world-action-models)  
-   标签：评分：9.0/10、query:embodied-vla
-   evidence：将视频扩散先验蒸馏到世界行动模型以改进机器人策略学习
-8. [JEPA-WAM: Stage-Level Joint-Embedding Prediction for World-Action Models in Robot Manipulation](/202608/14/2608.10780v2-jepa-wam-stage-level-joint-embedding-prediction-for-world-action-models-in-robot-manipulation)  
-   标签：评分：9.0/10、query:embodied-vla
-   evidence：面向语言条件VLA操作策略改进，通过阶段级未来预测提升机械臂操作性能。
+   evidence：面向人形双臂操作的VLA策略分析
+5. [Capek 0.5: An Execution-Centric Vision-Language Model for Embodied Intelligence](/202608/15/2608.06756v1-capek-05-an-execution-centric-vision-language-model-for-embodied-intelligence)  
+   标签：评分：8.0/10、query:embodied-vla
+   evidence：面向具身智能的执行中心视觉语言模型
+6. [Self-Evolving Embodied Agents via Skill-Harness Evolution](/202608/15/2608.11350v1-self-evolving-embodied-agents-via-skill-harness-evolution)  
+   标签：评分：8.0/10、query:agent-build
+   evidence：将智能体系统分解为组件并演化它们以提升性能
 
 ### 速读区论文标签
-1. [JoyAI-RA 0.5: Scaling Robot Manipulation Learning via Dual Action Alignment](/202608/14/2608.05674v1-joyai-ra-05-scaling-robot-manipulation-learning-via-dual-action-alignment)  
+1. [Vid2WAM: Distilling Video Diffusion Priors into World Action Models](/202608/15/2608.08558v1-vid2wam-distilling-video-diffusion-priors-into-world-action-models)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：双动作对齐的视觉-语言-世界-动作框架，用于扩展机器人操作学习
-2. [DyPES-VLA: Learning Shared Dynamics Priors and Embodiment-Specific Control for Cross-Embodiment Manipulation](/202608/14/2608.06374v1-dypes-vla-learning-shared-dynamics-priors-and-embodiment-specific-control-for-cross-embodiment-manipulation)  
+   evidence：结合语言指令将视频扩散先验蒸馏到世界动作模型以改进策略学习
+2. [Trajectory Divergence Horizon Decision for Reliable Dual-Arm Surgical Subtask Manipulation](/202608/15/2608.09125v1-trajectory-divergence-horizon-decision-for-reliable-dual-arm-surgical-subtask-manipulation)  
    标签：评分：8.0/10、query:embodied-vla
-   evidence：跨本体VLA学习共享动力学先验与本体特定控制，用于操纵任务
-3. [$ω$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation](/202608/14/2608.06375v2--0-a-latent-predictive-world-action-model-for-concurrent-humanoid-loco-manipulation)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：面向人形移动操纵的潜空间预测全身世界动作模型
-4. [Capek 0.5: An Execution-Centric Vision-Language Model for Embodied Intelligence](/202608/14/2608.06756v1-capek-05-an-execution-centric-vision-language-model-for-embodied-intelligence)  
-   标签：评分：8.0/10、query:embodied-vla
-   evidence：面向具身智能的以执行为中心的视觉语言模型，关注VLA能力整合
-5. [Auditing Instruction-Trajectory Mismatches in Multimodal Robot Demonstrations](/202608/14/2608.07895v1-auditing-instruction-trajectory-mismatches-in-multimodal-robot-demonstrations)  
+   evidence：面向双臂手术操作，提出轨迹发散时域决策以提升VLA策略可靠性
+3. [SpeedTuning: Speeding Up Policy Execution with Lightweight Reinforcement Learning](/202608/15/2608.09138v2-speedtuning-speeding-up-policy-execution-with-lightweight-reinforcement-learning)  
+   标签：评分：8.0/10、query:pi-robotics
+   evidence：SpeedTuning利用轻量级强化学习加速操作策略执行，通过策略速度优化增强机器人操作。
+4. [Skills in Weights, Memory in Code: Hybrid Learning for Memory-Dependent Robot Manipulation](/202608/15/2608.09410v1-skills-in-weights-memory-in-code-hybrid-learning-for-memory-dependent-robot-manipulation)  
+   标签：评分：8.0/10、query:pi-robotics
+   evidence：结合编码智能体引导马尔可夫VLA的记忆依赖操作混合学习框架
+5. [Multi-modal Interactive Control of Robotic Arm based on Offline Large Language Models](/202608/15/2608.08183v1-multi-modal-interactive-control-of-robotic-arm-based-on-offline-large-language-models)  
    标签：评分：7.0/10、query:embodied-vla
-   evidence：审计VLA示范数据中的指令-轨迹不匹配以改善语言-行为映射
-6. [SpeedTuning: Speeding Up Policy Execution with Lightweight Reinforcement Learning](/202608/14/2608.09138v1-speedtuning-speeding-up-policy-execution-with-lightweight-reinforcement-learning)  
+   evidence：基于离线大语言模型的多模态机械臂控制，语言条件具身智能
+6. [Discovering Diverse Planning Policies for Multimodal Embodied Agents with Quality-Diversity Optimization](/202608/15/2608.08523v1-discovering-diverse-planning-policies-for-multimodal-embodied-agents-with-quality-diversity-optimization)  
    标签：评分：7.0/10、query:pi-robotics
-   evidence：轻量强化学习框架加速已学习操纵策略的执行速度
-7. [Learning Loco-Manipulation From SMPC Demonstrations With Sparse Offline-to-Online RL](/202608/14/2608.12063v1-learning-loco-manipulation-from-smpc-demonstrations-with-sparse-offline-to-online-rl)  
+   evidence：通过质量-多样性优化发现多样化规划策略以避免具身智能体执行停滞，直接提升策略执行性能。
+7. [RoboSynChallenge: Mastering Real-World Dexterity via Generalizing Synthesized Manipulation Skills](/202608/15/2608.12416v1-robosynchallenge-mastering-real-world-dexterity-via-generalizing-synthesized-manipulation-skills)  
    标签：评分：7.0/10、query:pi-robotics
-   evidence：利用SMPC示范的稀疏离线到在线强化学习用于全身操控，提升机器人策略
-8. [S2-HWM: Sparse Event-Structured Hierarchical World Model for Long-Horizon Surgical Robot Manipulation](/202608/14/2608.13103v1-s2-hwm-sparse-event-structured-hierarchical-world-model-for-long-horizon-surgical-robot-manipulation)  
+   evidence：通过合成数据实现机器人操作策略泛化
+8. [Attention from Action, for Action: Emergent Visual Bottlenecks for Policy Learning](/202608/15/2608.13422v1-attention-from-action-for-action-emergent-visual-bottlenecks-for-policy-learning)  
    标签：评分：7.0/10、query:pi-robotics
-   evidence：面向长时程手术机器人操作的稀疏事件层次世界模型
-9. [LyEvO: Lyapunov-Guided Evolutionary Optimization for Safe and Robust Sim-to-Real Policy Learning](/202608/14/2608.06481v1-lyevo-lyapunov-guided-evolutionary-optimization-for-safe-and-robust-sim-to-real-policy-learning)  
+   evidence：面向策略学习的视觉瓶颈方法提升机器人操作性能
+9. [C2Dex: Contact-Consistent Reconstruction and Retargeting for Dexterous Manipulation from Monocular Video](/202608/15/2608.07045v1-c2dex-contact-consistent-reconstruction-and-retargeting-for-dexterous-manipulation-from-monocular-video)  
    标签：评分：6.0/10、query:pi-robotics
-   evidence：面向机器人策略的仿真到真实迁移，用优化和验证提升策略安全性与鲁棒性。
-10. [RynnValue: Scaling Robotic Value Foundation Models with Temporal Distance](/202608/14/2608.09853v1-rynnvalue-scaling-robotic-value-foundation-models-with-temporal-distance)  
-   标签：评分：6.0/10、query:pi-robotics
-   evidence：利用时间距离扩展机器人价值基础模型以改进策略学习
-11. [XPolicyLab: A Unified Standard and Open Ecosystem for Robot Policy Evaluation and Deployment](/202608/14/2608.09892v1-xpolicylab-a-unified-standard-and-open-ecosystem-for-robot-policy-evaluation-and-deployment)  
-   标签：评分：6.0/10、query:pi-robotics
-   evidence：面向机器人策略评估与部署的统一标准与开放生态
+   evidence：基于视频的演示生成以支持灵巧操作策略学习
+10. [Auditing Instruction-Trajectory Mismatches in Multimodal Robot Demonstrations](/202608/15/2608.07895v1-auditing-instruction-trajectory-mismatches-in-multimodal-robot-demonstrations)  
+   标签：评分：6.0/10、query:embodied-vla
+   evidence：面向VLA策略多模态演示数据指令-轨迹错配的无训练审计框架
+11. [RoboSeg: Online Part-Level Semantic Reconstruction for Robotic Manipulation via a Single Eye-in-Hand Camera](/202608/15/2608.09778v1-roboseg-online-part-level-semantic-reconstruction-for-robotic-manipulation-via-a-single-eye-in-hand-camera)  
+   标签：评分：6.0/10、query:embodied-vla
+   evidence：利用VLM功能零件发现与语义重建提升机器人操作感知，支持VLA式具身操作流程。
 
 
 <div class="dpr-home-promo-card">

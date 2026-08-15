@@ -1,0 +1,3116 @@
+Vid2WAM: Distilling Video Diffusion Priors into World Action Models
+Chenhao Qiu1∗, Ruixiang Wang2∗†, Runyi Zhao2∗, Sixu Lin2, Songen Gu1,
+Shufeng Nan1, Guiliang Liu2, Kui Jia2, Yanwei Fu1,3, Simo Wu1‡
+1Fudan University
+2The Chinese University of Hong Kong, Shenzhen
+3Shanghai Innovation Institute
+Abstract
+World Action Models (WAMs) improve robot policy learning
+by jointly modeling future visual dynamics and actions. How-
+ever, their scalability and generalization remain constrained
+by their reliance on costly expert demonstrations. We chal-
+lenge this by asking whether future supervision for WAMs
+must originate from target-task expert trajectories. In this pa-
+per, we propose Vid2WAM, an offline distillation framework
+that transfers visual diffusion priors from a large video foun-
+dation model into a compact WAM student. Given an obser-
+vation and language instruction, Vid2WAM distills supervi-
+sion through two complementary channels: task-conditioned
+future rollouts directly supervise the student’s future pre-
+diction branch, while an inverse dynamics model recovers
+embodiment-specific pseudo-actions for action learning. To
+robustly integrate synthetic and real supervision, we introduce
+source-aware residual action adaptation that learns source-
+specific corrections around a shared action backbone and mit-
+igates interference from noisy pseudo-actions. During infer-
+ence, both the video teacher and inverse dynamics model are
+discarded, leaving only the WAM student for efficient deploy-
+ment. Simulation and real-world experiments demonstrate that
+Vid2WAM improves novel-task generalization and data effi-
+ciency under limited expert demonstrations while preserving
+low-latency inference.
+Introduction
+Building robot policies that generalize across tasks, objects,
+and environments remains a central goal of embodied intel-
+ligence. Recent progress has followed two complementary
+directions. Vision–language–action (VLA) models leverage
+Internet-scale vision–language pretraining to transfer broad
+semantic and linguistic knowledge into control (Zitkovich
+et al. 2023; Kim et al. 2025; Black et al. 2024). Meanwhile,
+video-based policies and World Action Models (WAMs) in-
+corporate future prediction into policy learning, providing
+spatiotemporal supervision over motion, interaction, and task
+progression beyond static semantic supervision and instan-
+taneous action labels (Du et al. 2023; Wu et al. 2024; Hu
+et al. 2025; Xu et al. 2025; Kim et al. 2026a; Ye et al. 2026).
+A key advantage of WAMs stems from their future-
+predictive supervision. Rather than learning only from action
+labels, they are optimized to anticipate future visual dynam-
+ics, providing dense temporal learning signals that improve
+action representations even when explicit future rollouts are
+∗These authors contributed equally.
+†Project lead.
+‡Corresponding author.
+Video Model
+IDM
+(a) Video Gen. + IDM
+Video branch｜Action branch    
+Video 
+Teacher
+IDM
+DISTILL
+Future branch｜Action branch    
+(b) World Action Model (WAM)
+(c) Vid2WAM (Ours)
+teacher-free fast inference
+Figure 1: Left: Comparison of video-based robot policy
+paradigms. (a) Video generation plus IDM performs costly
+online rollout and action recovery. (b) WAM jointly learns
+future prediction and action generation from real video–
+action trajectories. (c) Vid2WAM distills teacher-generated
+futures and IDM pseudo-actions into a compact WAM for
+teacher-free inference. Top right: Vid2WAM consistently
+improves novel-task success rates over Fast-WAM. Bottom
+right: Vid2WAM achieves the highest novel-task success
+rate while retaining low inference latency.
+not required during deployment (Li et al. 2025; Xu et al. 2025;
+Yuan et al. 2026). However, most existing WAMs implicitly
+share one assumption: future supervision must be observed
+in task-specific expert demonstrations. Both future visual
+targets and action labels are obtained from paired robot tra-
+jectories collected through simulated data collection or tele-
+operation. Thus, the predictive capability of WAMs remains
+closely tied to scale, diversity, and cost of robot demonstra-
+tions, making it difficult to generalize beyond distributions
+covered by recorded target-task trajectories.
+We thus argue that the assumption above is unnecessarily
+restrictive. Recent video foundation models have acquired
+remarkably rich knowledge of object motion, human-object
+interactions, and long-horizon visual dynamics. After adap-
+tation with limited embodiment-specific data, they can be
+queried with diverse initial observations and language in-
+structions to synthesize task-conditioned rollouts for new
+tasks and environments (Jang et al. 2025; Wang et al. 2026).
+Unlike expert demonstration collection, this process does not
+require a complete target-task trajectory, allowing the con-
+arXiv:2608.08558v1  [cs.RO]  9 Aug 2026
+
+
+ditioning distribution to be expanded using simulator snap-
+shots, inexpensive real-world observations, or controllable
+image synthesis. An inverse dynamics model (IDM) can fur-
+ther recover embodiment-specific pseudo-actions from the
+generated rollouts (Jang et al. 2025; Ye et al. 2025). How-
+ever, treating these rollouts only as pseudo-labeled action
+data creates an information bottleneck: the teacher’s predic-
+tive knowledge is compressed through an imperfect action-
+recovery model, while the generated futures themselves are
+discarded as direct supervision. Moreover, ambiguous transi-
+tions, generation artifacts, and physically inconsistent motion
+can induce systematic errors in the recovered actions (Wang
+et al. 2026). These limitations motivate transferring the gen-
+erated rollouts through complementary visual and action
+channels.
+This paper presents Vid2WAM, a framework for distilling
+a large video foundation model into an efficient WAM stu-
+dent. Given an initial observation and language instruction,
+an embodiment-adapted teacher generates a future rollout.
+We decode this rollout into pixels and re-encode it into the
+student’s latent space, providing representation-compatible
+supervision for the future prediction branch. In parallel, an
+IDM recovers embodiment-specific pseudo-actions that su-
+pervise action learning. To mitigate the interference from
+pseudo-action noise, we further introduce source-aware
+residual action adapters, which provide source-specific
+residual corrections around a shared action backbone. At in-
+ference time, the video teacher and IDM are removed, leaving
+only the compact WAM student for direct action generation.
+Our contributions are threefold. First, we rethink the
+source of future supervision for World Action Models
+and formulate a video-foundation-model-to-WAM distilla-
+tion framework, using generated futures from video foun-
+dation models as direct supervision beyond recorded target-
+task expert trajectories. Second, we introduce a dual-channel,
+source-aware transfer strategy that jointly distills future
+visual dynamics and IDM-inferred actions, with residual
+adapters reducing interference from noisy pseudo-actions.
+Third, we demonstrate in simulation and real-world exper-
+iments that Vid2WAM improves expert-demonstration effi-
+ciency and novel-task generalization, while retaining efficient
+student-only inference.
+Related Work
+World Models for Robot Control. Video models provide
+broad priors over motion, interaction, and temporal task
+structure. One line of work uses these priors explicitly at
+deployment, generating visual subgoals or future rollouts
+and converting them into actions through inverse dynamics,
+goal-conditioned control, motion tracking, or test-time ac-
+tion selection (Du et al. 2023, 2024; Zhou et al. 2024; Liang
+et al. 2025; Collins et al. 2025; Zhou et al. 2026). Although
+effective for generalization, this paradigm incurs generation
+latency and exposes control to rollout errors. A related line
+of work jointly models future observations and robot actions,
+using future prediction to provide temporally structured su-
+pervision for policy learning (Wu et al. 2024; Cheang et al.
+2024; Hu et al. 2025; Li et al. 2025; Zhu et al. 2025). Fast-
+WAM shows that video co-training can remain beneficial
+even when future generation is removed at inference (Yuan
+et al. 2026), while Efficient-WAM reduces cost of retaining
+future imagination (Li et al. 2026). These methods neverthe-
+less derive both future and action supervision primarily from
+recorded robot trajectories. Vid2WAM instead decouples fu-
+ture supervision from target-task expert demonstrations by
+leveraging a video foundation model as an offline generator of
+task-conditioned futures, which are distilled into a compact
+WAM without requiring video generation at deployment.
+Video-Generated Supervision for Robot Learning. Early
+generative augmentation methods edit objects, backgrounds,
+and other visual factors in recorded demonstrations while
+reusing their actions
+(Chen et al. 2023; Yu et al. 2023).
+More recent work also synthesizes or edits initial observa-
+tions, expanding the states from which robot experience can
+be generated (Kim et al. 2026b). DreamGen provides the
+closest data-centric pipeline: it adapts a video model to a
+target embodiment, generates task-conditioned rollouts, and
+recovers pseudo-actions using an inverse dynamics or latent
+action model (Jang et al. 2025; Ye et al. 2025). In these
+pipelines, generated frames and recovered actions form syn-
+thetic demonstrations, but the generated futures do not di-
+rectly supervise a student’s future-prediction objective. This
+action-only transfer creates an information bottleneck, com-
+pressing rich predictive knowledge into imperfect pseudo-
+labels before it reaches the student policy. Prior work miti-
+gates this issue by improving the executability of generated
+videos (Wang et al. 2026) or by avoiding synthetic action
+supervision and routing geometric targets to the visual back-
+bone (Chen et al. 2026). Vid2WAM instead treats each gen-
+erated rollout as dual supervision: future dynamics directly
+supervise world modeling, while IDM-derived actions pro-
+vide embodiment-specific action grounding through source-
+aware residual adaptation.
+Distilling Foundation-Model Priors into Robot Policies.
+Knowledge distillation transfers capabilities from a large
+teacher into a smaller student (Hinton, Vinyals, and Dean
+2015), and subsequent work has extended this principle from
+output imitation to teacher-generated data and intermedi-
+ate supervision (Hsieh et al. 2023; Mukherjee et al. 2023;
+Li et al. 2023). In robotics, prior methods distill planner-
+generated experience or foundation-model representations
+into deployable policies
+(Ha, Florence, and Song 2023;
+Shang et al. 2024). More closely related, S-VAM self-distills
+multi-step generated videos into one-step geometric and se-
+mantic foresight, while PFD distills action corrections in-
+duced by privileged recorded futures (Yan et al. 2026; Fang,
+Chen, and Cai 2026). CKT-WAM transfers intermediate con-
+text between heterogeneous WAMs, whereas Efficient-WAM
+compresses the computation required for future imagination
+(Jiang et al. 2026; Li et al. 2026). Vid2WAM addresses a
+different transfer setting. Rather than distilling predictions
+between robot policies or WAMs, it treats a video foundation
+model as an external source of future supervision. Each gen-
+erated rollout provides complementary supervision for both
+future prediction and action learning, after which the video
+teacher and inverse dynamics model are discarded, leaving
+only the compact WAM student for deployment.
+
+
+Method
+Problem Formulation and Overview
+Given a current vi-
+sual observation o0, proprioceptive state e0, and language
+instruction ℓ, we aim to learn a policy that predicts an ex-
+ecutable action chunk a1:H. Following the World Action
+Model (WAM) paradigm, the student is jointly trained on
+an action predictor and an auxiliary future-video predictor
+through a shared video-action representation.
+As illustrated in Fig. 2, Vid2WAM transfers the predictive
+prior of a large video teacher into the student using both real
+demonstrations and offline teacher-generated rollouts. Real
+demonstrations provide expert actions and observed future-
+video supervision, whereas teacher rollouts provide gener-
+ated future-video latents and IDM-derived pseudo-actions.
+The video teacher and IDM are used only offline; at deploy-
+ment, the teacher, IDM, auxiliary future-video prediction
+head, and pseudo-source adapters are discarded, leaving the
+student WAM to efficiently generate action chunks from the
+current policy condition.
+Teacher-Derived Distillation Targets
+We convert the video teacher’s generative prior into two com-
+plementary forms of student-compatible supervision: future-
+video latent targets and IDM-derived pseudo-action targets.
+Video teacher adaptation.
+We instantiate the video
+teacher Tψ with a large pretrained video diffusion model
+and fine-tune it using only a limited set of demonstration
+videos. This lightweight adaptation specializes the teacher
+to the robot’s appearance and embodiment-specific physi-
+cal constraints, while preserving the motion-prediction and
+instruction-following capabilities inherited from large-scale
+pretraining. Consequently, a small amount of in-domain
+demonstration data is sufficient to elicit robot-aware roll-
+out generation. Given an initial observation o0 and language
+instruction ℓ, the adapted teacher generates
+ˆv1:T = Tψ(o0, ℓ).
+(1)
+After adaptation, the teacher is frozen and used exclusively
+for offline rollout generation.
+Inverse dynamics model training.
+We train an inverse
+dynamics model (IDM) to recover robot motion from visual
+trajectories:
+(ˆa1:H, ˆe1:H) = IDM(ˆv1:T ),
+(2)
+where ˆa1:H and ˆe1:H denote the predicted action chunk and
+robot state sequence respectively. The IDM is supervised
+using action-labeled robot trajectories, but does not require
+language instructions or task-specific semantic annotations.
+It can therefore be trained using task-agnostic interaction data
+collected with the same robot embodiment and compatible
+observation setup, without requiring expert demonstrations
+for the target tasks. Once trained, the IDM is frozen and used
+only as a labeler for teacher-generated rollouts.
+Pseudo-data generation and labeling.
+Vid2WAM keeps
+the real demonstration set fixed and collects an additional
+pool of initial states. The frozen video teacher produces vi-
+sual rollouts from these initial states, which are re-encoded
+by the student VAE into student-space future latents ˆz1:T .
+The IDM then recovers the corresponding pseudo-action
+chunks ˆa1:H and robot state sequences ˆe1:H from the gen-
+erated rollouts. The resulting tuples (o0, ℓ, ˆz1:T , ˆa1:H, ˆe1:H)
+are stored in an offline distillation buffer. The future latents
+supervise the student video branch, while the IDM-derived
+labels ground the generated motion in the robot action space.
+Source-Aware Student Training
+Vid2WAM jointly trains the student on real demonstrations
+and offline teacher-generated pseudo rollouts. Both domains
+share the video and action backbones.
+Source-specific residual adaptation.
+Directly mixing ex-
+pert actions with IDM-recovered pseudo-actions can in-
+troduce interference because the latter contain errors from
+video generation and inverse dynamics. We therefore place
+lightweight residual adapters before and after the shared ac-
+tion backbone, with separate parameters for the real and
+pseudo domains. For an action token x from domain d ∈
+{real, pseudo}, an adapter computes
+Adad(x) = x + αW d
+upσ
+ W d
+down LN(x)
+
+,
+(3)
+where W d
+down and W d
+up form a bottleneck projection, σ is a
+nonlinear activation, and α controls the residual contribution.
+We initialize W d
+up to zero, so each adapter initially imple-
+ments an identity mapping. The shared representation there-
+fore remains the default path, while the residual branches
+provide source-dependent corrections. Only the real-domain
+adapter is retained at inference time.
+Training objective.
+We use the flow-matching objective
+for action chunks and future-video latents (Lipman et al.
+2022). Let y denote either target, we sample Gaussian noise
+ϵ ∼N(0, I) and t ∈(0, 1), and construct
+yt = (1 −t)y + tϵ.
+(4)
+For each domain d, the model predicts the corresponding
+velocity field with flow-matching loss
+LFM(y, d) = Ey,ϵ,t
+h
+∥fθ(yt, t, c; d) −(ϵ −y)∥2
+2
+i
+.
+(5)
+We group the four training terms into real- and pseudo-
+domain objectives:
+Lreal = LFM(a, real) + βLFM(z, real),
+Lpseudo = LFM(ˆa, pseudo) + βLFM(ˆz, pseudo),
+(6)
+where (a, z) are the action and future-video targets from
+real demonstrations, while (ˆa, ˆz) are the corresponding tar-
+gets from teacher-generated distillation buffers. The com-
+plete training objective is
+L = λrealLreal + λpseudoLpseudo,
+(7)
+where β balances action and video supervision, and λreal
+and λpseudo balance the two training domains.
+
+
+Training 
+Teacher Video 
+Model
+IDM
+“Language 
+Instruction”
+Student Video 
+Model
+Action Model
+adapter
+VAE Encoder
+Action Encoder
+Text Encoder
+Inference
+VAE Encoder
+Student Video 
+Model
+Action Model
+or
+adapter
+Generated Frame
+Action Chunk
+Action Chunk
+Pesudo Action 
+Action Token
+Noise Token
+Trainable
+Frozen
+Teacher Vid. Token
+Video Token
+Current Frame Future Frames
+Future Frames
+Current Frame
+Figure 2: Overview of Vid2WAM. Vid2WAM distills future prediction priors from a pretrained video diffusion model into a
+compact World Action Model (WAM). During training, the teacher generates future videos and IDM-derived pseudo actions
+supervise the student WAM, while only the student is used for deployment. At inference, a single current-frame pass through
+the shared video backbone produces latent world features for direct action prediction.
+Experiments
+We investigate four questions: (1) how well existing pre-
+trained VLA and WAM policies transfer to novel tasks; (2)
+whether Vid2WAM improves performance on such tasks
+without target-task expert trajectories; (3) whether it im-
+proves task success and perturbation robustness under a fixed,
+limited budget of real demonstrations; and (4) how its super-
+vision signals and source-aware components contribute to
+these gains. We conduct experiments on RoboTwin 2.0 (Chen
+et al. 2025b), LIBERO (Liu et al. 2023), LIBERO-Plus (Fei
+et al. 2025), and a real-world bimanual platform.
+Experimental Setup
+Simulation Benchmarks.
+For RoboTwin 2.0, we evaluate
+bimanual manipulation for 50 tasks under both clean and ran-
+domized conditions, with 100 trials per task for every policy.
+For LIBERO, we use the Spatial, Object, Goal and Long
+suites, each with 10 tasks and evaluate for 50 trials per task.
+LIBERO-Plus stresses robustness by applying perturbations
+to LIBERO tasks along seven factors: camera, robot initial
+state, language, lighting, background, sensor noise, and lay-
+out. We use the protocol with trials on 500 variants per suite,
+uniformly covering all perturbations.
+Real-World Setup.
+Our real-world platform consists of
+two AgileX Piper arms, one overhead Intel RealSense D435
+camera, and two wrist-mounted D435 cameras. The policy
+takes all three views, arm joint angles and gripper states as
+input and predicts joint-action chunks for both arms. We eval-
+uate six seen tasks and three held-out novel tasks spanning
+household and scientific manipulation. Each seen task pro-
+vides 60 real trajectories collected with variations in object
+placement, lighting, and distractors. Each held-out task pro-
+vides no real trajectory and only two true initial observations,
+one on clean environment with only task-specific objects and
+one on randomized setup with distractors. We then use GPT-
+Image-2 to generate 60 diverse initial-state images from the
+real observations for conditioning the video teacher. Because
+the generated images lack multi-view alignment, pseudo su-
+pervision for held-out tasks is generated from the overhead
+view only; the complete policy retains multi-view input when
+real multi-view observations are available. Detailed descrip-
+tions of real-world setup are provided in Appendix C.
+Evaluation Regimes.
+Standard manipulation benchmarks
+typically train policies with expert trajectories from every
+evaluation task and test them under limited variations in
+object configurations. Such protocols primarily measure in-
+distribution execution and may conflate task generalization
+with interpolation around task-specific demonstrations. To
+more directly evaluate data efficiency and novel-task gener-
+alization, we consider two complementary regimes. In the
+low-data regime, each task provides only 10 expert trajec-
+tories, with Vid2WAM receiving an equal number of offline
+teacher-generated trajectories. In the novel-task regime, we
+withhold all expert trajectories from selected target tasks:
+baselines are directly transferred from the remaining tasks,
+whereas Vid2WAM uses only target-task instructions and
+initial observations to generate pseudo supervision. Neither
+the video teacher nor the IDM is trained on target-task trajec-
+tories. These regimes respectively evaluate policy learning
+under scarce real demonstrations and adaptation to novel
+tasks without target-task expert supervision.
+
+
+Figure 3: Qualitative future-video predictions for novel tasks. For each task, Fast-WAM (top) and Vid2WAM (bottom) receive
+the same initial observation and language instruction; frames progress from left to right. Fast-WAM often fails to predict coherent
+task progression, whereas Vid2WAM predicts future motions that more consistently reach the instructed outcome.
+0
+.2
+.4
+.6
+.8
+1.0
+Success rate
+Clean
+0.500.55
+0.04
+0.18
+0.01
+0.71 0.73
+0.97
+0.29
+0.62
+Click
+alarm
+Open
+laptop
+Bread
+basket
+Container
+plate
+Object
+stand
+0
+.2
+.4
+.6
+.8
+1.0
+Success rate
+Randomized
+0.44
+0.81
+0.03
+0.14
+0.00
+0.66 0.61
+0.90
+0.34
+0.63
+Click
+alarm
+Open
+laptop
+Bread
+basket
+Container
+plate
+Object
+stand
+Fast-WAM
+Vid2WAM(Ours)
+Figure 4: Success rates on representative novel RoboTwin tasks. Vid2WAM consistently outperforms Fast-WAM under clean
+and randomized evaluation.
+Baselines.
+We compare with π0.5 (Physical Intelligence
+et al. 2025), Motus (Bi et al. 2025), and Fast-WAM (Yuan
+et al. 2026). π0.5 and Motus assess whether broad robot-
+data pretraining alone enables direct transfer to the evaluated
+tasks. Fast-WAM serves as the closest architectural baseline,
+isolating the effect of our teacher-derived future supervision
+and source-aware adaptation. Under each evaluation regime,
+all methods receive the same downstream real action-labeled
+demonstrations.
+Implementation Details.
+We initialize our video teacher
+from the LVP checkpoint (Chen et al. 2025a), a Wan2.1-14B
+model (Wan et al. 2025) pretrained on robot manipulation
+data, and further fine-tune it on our training set. Generated
+frames are encoded by the student VAE so that the teacher-
+generated targets and student predictions lie in the same latent
+space. The IDM uses a ResNet-50 backbone (He et al. 2016)
+with action and proprioception prediction heads. To reduce
+the influence of long-horizon generation errors, pseudo su-
+pervision in simulation experiments is restricted to the first
+eight seconds of each generated rollout. For real-world novel-
+task pseudo data, the spatial video loss is computed only over
+the valid overhead-view region, while pseudo-action supervi-
+sion remains unchanged. Complete training schedules, IDM
+validation results, multi-view input layouts, and spatial and
+Method
+Low-data
+Novel regime Novel subset
+Clean Rand. Clean Rand. Clean Rand.
+π0.5
+48.7
+42.8
+67.9
+66.5
+46.5
+46.3
+Motus
+49.9
+43.6
+75.1
+76.3
+48.9
+51.5
+Fast-WAM
+52.1
+39.1
+75.7
+74.7
+45.0
+42.8
+Ours
+55.4
+45.4
+78.3
+78.5
+54.7
+55.3
+Table 1: Overall success rates (%) on RoboTwin 2.0. Novel
+regime averages over 35 seen and 15 unseen tasks, while
+Novel subset reports the average over 15 unseen tasks only.
+temporal masking details are provided in Appendix A& C.
+Simulation Results
+RoboTwin 2.0.
+Table 1 reports results under clean and ran-
+domized conditions on RoboTwin 2.0, including averages
+over all 50 tasks and over the 15 novel tasks in the novel
+regime. The results reveal that both pretrained VLA poli-
+cies and WAMs struggle to transfer to novel tasks, with all
+baselines dropping substantially on the 15-task novel subset.
+This degradation is particularly pronounced for Fast-WAM,
+whose success rate decreases from 75.7% to 45.0% under
+clean evaluation and from 74.7% to 42.8% under randomiza-
+
+
+Figure 5: Vid2WAM real-world executions for representative seen and novel tasks. Frames progress left to right.
+Regime
+Model
+Suite
+Perturbation
+Overall
+Spatial
+Object
+Goal
+Long
+Cam.
+Robot
+Lang.
+Light
+BG
+Noise
+Layout
+Low-data
+Motus
+34.2
+35.4
+29.4
+12.4
+2.5
+29.5
+53.3
+38.1
+31.0
+6.0
+38.2
+27.9
+Fast-WAM
+39.8
+54.0
+14.6
+25.8
+8.5
+22.5
+49.5
+57.8
+32.1
+23.3
+45.6
+33.6
+Ours
+50.0
+55.0
+27.8
+23.0
+8.2
+31.2
+57.9
+71.6
+36.8
+23.7
+48.8
+39.0
+Novel
+Motus
+52.2
+44.0
+31.8
+39.6
+4.7
+51.6
+66.3
+63.8
+46.2
+18.7
+47.7
+41.9
+Fast-WAM
+48.0
+59.6
+37.0
+38.6
+24.1
+42.5
+64.2
+67.2
+39.0
+34.6
+52.7
+45.8
+Ours
+52.4
+60.2
+41.4
+38.6
+28.5
+42.8
+67.7
+67.5
+39.7
+42.4
+51.6
+48.1
+Table 2: Average task success rates (%) on LIBERO-Plus under the low-data and novel regimes, evaluated across four suites and
+seven perturbation types.
+Method/Regime
+Spatial
+Object
+Goal
+Long
+Avg.
+Low-data
+π0.5
+91.2
+95.6
+84.4
+76.4
+86.9
+Motus
+93.0
+94.4
+85.0
+78.4
+87.7
+Fast-WAM
+89.6
+97.8
+82.8
+78.8
+87.3
+Ours
+93.0
+98.6
+87.6
+79.4
+89.7
+Novel
+π0.5
+77.2
+80.2
+78.4
+75.8
+77.9
+Motus
+77.4
+72.2
+68.8
+69.8
+72.1
+Fast-WAM
+76.8
+79.0
+77.8
+73.0
+76.7
+Ours
+79.4
+79.4
+79.2
+75.2
+78.3
+Table 3: Average task success rates (%) across the four
+LIBERO suites under the low-data and novel regimes.
+tion. By distilling the pretrained video teacher’s predictive
+prior, Vid2WAM improves novel-subset success to 54.7%
+and 55.3%, outperforming Fast-WAM by 9.7 and 12.5 points.
+Vid2WAM also achieves the best performance in the low-data
+regime, demonstrating consistent benefits for both novel-task
+transfer and learning from limited real demonstrations.
+Figure 4 presents representative novel tasks for which
+Vid2WAM clearly improves over Fast-WAM. The teacher-
+generated future trajectories provide useful information
+about task completion and guide the policy toward the in-
+tended outcome. Figure 3 further compares the predicted
+future videos produced from identical initial observations
+and language instructions. Fast-WAM often stops after an
+intermediate interaction or loses visual coherence, while
+Vid2WAM continues toward the requested placement. The
+difference becomes most visible after the policy has com-
+pleted an opening or grasping step, suggesting that the dis-
+tilled future information supports longer-horizon task pro-
+gression.
+LIBERO and LIBERO-Plus.
+Table 3 reports results on
+LIBERO under both the low-data and novel regimes. In the
+low-data regime, Vid2WAM achieves an average success rate
+of 89.7%, obtaining the best or tied-best result on every suite.
+In the novel regime, it also achieves the highest average suc-
+cess rate among the four evaluated methods. These results
+show that Vid2WAM improves performance both when ex-
+pert demonstrations are limited and when no real trajectories
+are available for the target tasks.
+Table 2 further evaluates robustness under the perturba-
+tions introduced by LIBERO-Plus. Vid2WAM achieves the
+highest overall performance on both regimes, with partic-
+ularly clear gains under robot-state, language, and lighting
+perturbations on the low-data regime. We further evaluate
+whether the novel regime results depend on the selected tar-
+get tasks. We consider three LIBERO or LIBERO-Plus splits
+that withhold novel task IDs 0/1, 3/6, or 8/9 from each suite,
+where the 8/9 split corresponds to the settings in Table 2 and
+Table 3. Results in Appendix B show that Vid2WAM al-
+ways achieves a higher average success rate than Fast-WAM
+on all three splits in both benchmarks. Results in Appendix
+B also evaluate only the novel tasks from these LIBERO
+and LIBERO-Plus splits, and Vid2WAM again outperforms
+Fast-WAM on every split, showing that the aggregate im-
+
+
+Regime Task
+π0.5 Motus Fast-WAM Ours
+Seen
+Click Bell
+30%
+70%
+20%
+65%
+Item Handover
+25%
+60%
+25%
+60%
+Carry Basket
+45%
+45%
+20%
+50%
+Open Pan Place
+5%
+40%
+10%
+40%
+Open Drawer Place 60%
+55%
+30%
+65%
+Insert Test Tube
+15%
+0%
+10%
+25%
+Novel
+Pick Test Tube
+0%
+10%
+5%
+30%
+Take Tissue
+0%
+0%
+5%
+15%
+Tomato Basket
+0%
+20%
+25%
+30%
+Table 4: Real-world bimanual task success rates.
+provements result from better adaptation to novel tasks rather
+than the selection of some specific tasks.
+Real-World Experiments
+We evaluate real-world performance on nine contact-rich ma-
+nipulation tasks, covering both seen and novel settings. Seen
+tasks include Click Bell, Item Handover, Carry Basket, Open
+Pan Place, Open Drawer Place and Insert Test Tube. They
+use real trajectories during training. Novel tasks include Pick
+Test Tube, Take Tissue and Tomato Basket. They are designed
+to test behavior-level or object-level novelty, requiring novel
+manipulation actions or new objects that are absent from the
+real expert trajectories. These tasks use initial observations
+(true and synthetic) and teacher-generated supervision rather
+than real demonstrations. Detailed real-world task descrip-
+tions are provided in Appendix C.
+Table 4 reports success rates on 20 real-robot trials for all
+models on each task. Among all tasks, Vid2WAM achieves
+the best or competitive performance across the four models.
+Figure 5 further visualizes representative real-world execu-
+tions of Vid2WAM on seen and novel tasks. In the novel
+task, the robot can extract a deformable tissue or pull out
+a transparent test tube despite having no real action-labeled
+trajectories.
+Ablation Studies
+Table 5 evaluates on different variants of our Vid2WAM un-
+der LIBERO low-data regime. Dual Action DiT variant uses
+separate action DiTs for ground-truth and teacher-generated
+samples while sharing the video DiT; No Adapter mixes both
+sources in shared action and video DiTs. Pseudo Action Only
+retains Vid2WAM’s synthetic rollouts and adapters but re-
+moves the latent-video objective, while Future Latent Only
+removes pseudo-action supervision and uses only future la-
+tents for distillation.
+Results show that among the dual-channel variants, inde-
+pendent action DiTs outperform fully shared training, while
+the full adapter design (Ours) performs best on average. Fu-
+ture Latent Only outperforms Pseudo Action Only by 1.8
+points on average and Fast-WAM by 0.9 points, showing that
+future latents provide a useful guidance signal. Its lower av-
+erage than our full Vid2WAM further suggests that pseudo
+actions provide complementary supervision.
+We additionally evaluate an online Teacher Policy that
+Method
+Spatial Object Goal Long Avg.
+Fast-WAM
+89.6
+97.8
+82.8
+78.8
+87.3
+Ours
+93.0
+98.6
+87.6
+79.4
+89.7
+Dual Action DiT
+92.2
+97.8
+85.8
+80.6
+89.1
+No Adapter
+93.8
+97.6
+84.2
+78.4
+88.5
+Pseudo Action Only
+90.4
+96.0
+85.0
+74.0
+86.4
+Future Latent Only
+92.8
+98.2
+86.4
+75.2
+88.2
+Teacher Policy
+76.0
+85.2
+65.6
+58.2
+71.3
+Table 5: Ablation study on LIBERO benchmark (low-data
+regime).
+Method
+Params
+Mean
+Std.
+Min
+Max
+Fast-WAM
+5B
+209.1
+4.7
+204.8
+220.2
+Ours
+5B
+212.5
+11.7
+199.0
+227.8
+Teacher Policy
+14B 4894.5 106.6 4785.8 4998.9
+π0.5
+3.3B
+76.7
+0.4
+76.2
+77.6
+Motus
+8B 2414.9
+22.8 2380.0 2456.3
+Table 6: Inference latency (ms) on a single RTX 4090 GPU.
+composes the video teacher and IDM at inference time with-
+out student distillation. It underperforms Fast-WAM and all
+distilled variants, showing that the gains come from offline
+future supervision combined with ground-truth action an-
+choring rather than a stronger online teacher controller. This
+result is also consistent with generation and IDM errors accu-
+mulating under task execution. Together with the No Adapter
+ablation, it suggests that source-dependent residual correc-
+tions can mitigate the influence of noisy pseudo-actions.
+Inference Latency Analysis
+Table 6 reports chunk-level inference latency on a single
+RTX 4090 GPU, excluding cold-start costs. Results show that
+our Vid2WAM approximately matches Fast-WAM in latency,
+and is substantially faster than Motus and the Teacher Policy,
+though slower than π0.5.
+Conclusion
+We present Vid2WAM, a framework for transferring the pre-
+dictive diffusion priors of a large video model into a compact
+world-action policy. By using teacher-generated futures and
+IDM-inferred actions as offline supervision, Vid2WAM en-
+ables the student to acquire behavioral knowledge beyond the
+available expert trajectories, while source-aware adaptation
+limits the impact of noisy synthetic action labels. Across sim-
+ulation and real-world manipulation, Vid2WAM improves
+data efficiency and generalization to novel tasks without
+introducing teacher inference at deployment. Our findings
+support a broader paradigm in which large pretrained models
+serve as offline knowledge sources for efficient robot policies.
+Video generators, VLMs, and other multimodal foundation
+models could supervise compact policies through predicted
+subgoals, future representations, or action-conditioned out-
+comes, offering a scalable path for transferring their predic-
+tive capabilities to efficient robot policies.
+
+
+References
+Bi, H.; Tan, H.; Xie, S.; Wang, Z.; Huang, S.; Liu, H.; Zhao,
+R.; Feng, Y.; Xiang, C.; Rong, Y.; Zhao, H.; Liu, H.; Su, Z.;
+Ma, L.; Su, H.; and Zhu, J. 2025. Motus: A Unified Latent
+Action World Model. arXiv:2512.13030.
+Black, K.; Brown, N.; Driess, D.; Esmail, A.; Equi, M.; Finn,
+C.; Fusai, N.; Groom, L.; Hausman, K.; Ichter, B.; Jakubczak,
+S.; Jones, T.; Ke, L.; Levine, S.; Li-Bell, A.; Mothukuri,
+M.; Nair, S.; Pertsch, K.; Shi, L. X.; Tanner, J.; Vuong, Q.;
+Walling, A.; Wang, H.; and Zhilinsky, U. 2024. π0: A Vision-
+Language-Action Flow Model for General Robot Control.
+arXiv:2410.24164.
+Cheang, C.-L.; Chen, G.; Jing, Y.; Kong, T.; Li, H.; Li,
+Y.; Liu, Y.; Wu, H.; Xu, J.; Yang, Y.; Zhang, H.; and
+Zhu, M. 2024. GR-2: A Generative Video-Language-Action
+Model with Web-Scale Knowledge for Robot Manipulation.
+arXiv:2410.06158.
+Chen, B.; Martí Monsó, D.; Du, Y.; Simchowitz, M.; Tedrake,
+R.; and Sitzmann, V. 2024. Diffusion forcing: Next-token
+prediction meets full-sequence diffusion. Advances in Neural
+Information Processing Systems, 37: 24081–24125.
+Chen, B.; Zhang, T.; Geng, H.; Zhang, C.; Li, P.; Song, K.;
+Freeman, W. T.; Malik, J.; Abbeel, P.; Tedrake, R.; et al.
+2025a. Large video planner enables generalizable robot con-
+trol. arXiv preprint arXiv:2512.15840.
+Chen, D.; Chen, Y.; Huang, Q.; Cao, Z.; Gao, C.; and
+Shou, M. Z. 2026. Supervise What Survives: Geometry-
+Guided VLA Adaptation from Synthetic Robot Videos.
+arXiv:2606.24448.
+Chen, T.; Chen, Z.; Chen, B.; Cai, Z.; Liu, Y.; Li, Z.; Liang,
+Q.; Lin, X.; Ge, Y.; Gu, Z.; Deng, W.; Guo, Y.; Nian, T.; Xie,
+X.; Chen, Q.; Su, K.; Xu, T.; Liu, G.; Hu, M.; Gao, H.-a.;
+Wang, K.; Liang, Z.; Qin, Y.; Yang, X.; Luo, P.; and Mu,
+Y. 2025b. RoboTwin 2.0: A Scalable Data Generator and
+Benchmark with Strong Domain Randomization for Robust
+Bimanual Robotic Manipulation. arXiv:2506.18088.
+Chen, Z.; Kiami, S.; Gupta, A.; and Kumar, V. 2023.
+GenAug: Retargeting Behaviors to Unseen Situations via
+Generative Augmentation. arXiv:2302.06671.
+Collins, J. A.; Cheng, L.; Aneja, K.; Wilcox, A.; Joffe, B.;
+and Garg, A. 2025. AMPLIFY: Actionless Motion Priors for
+Robot Learning from Videos. arXiv:2506.14198.
+Du, Y.; Yang, M.; Dai, B.; Dai, H.; Nachum, O.; Tenenbaum,
+J. B.; Schuurmans, D.; and Abbeel, P. 2023. Learning Univer-
+sal Policies via Text-Guided Video Generation. In Advances
+in Neural Information Processing Systems, volume 36, 9156–
+9172.
+Du, Y.; Yang, M.; Florence, P.; Xia, F.; Wahid, A.; Ichter, B.;
+Sermanet, P.; Yu, T.; Abbeel, P.; Tenenbaum, J. B.; Kaelbling,
+L. P.; Zeng, A.; and Tompson, J. 2024. Video Language Plan-
+ning. In The Twelfth International Conference on Learning
+Representations.
+Fang, P.; Chen, H.; and Cai, X. 2026. Privileged Foresight
+Distillation: Zero-Cost Future Correction for World Action
+Models. arXiv:2604.25859.
+Fei, S.; Wang, S.; Shi, J.; Dai, Z.; Cai, J.; Qian, P.; Ji, L.; He,
+X.; Zhang, S.; Fei, Z.; Fu, J.; Gong, J.; and Qiu, X. 2025.
+LIBERO-Plus: In-depth Robustness Analysis of Vision-
+Language-Action Models. arXiv preprint arXiv:2510.13626.
+Ha, H.; Florence, P.; and Song, S. 2023. Scaling Up and
+Distilling Down: Language-Guided Robot Skill Acquisition.
+In Proceedings of the 2023 Conference on Robot Learning.
+He, K.; Zhang, X.; Ren, S.; and Sun, J. 2016. Deep Residual
+Learning for Image Recognition. In Proceedings of the IEEE
+Conference on Computer Vision and Pattern Recognition,
+770–778.
+Hinton, G.; Vinyals, O.; and Dean, J. 2015. Distilling the
+Knowledge in a Neural Network. arXiv:1503.02531.
+Hsieh, C.-Y.; Li, C.-L.; Yeh, C.-k.; Nakhost, H.; Fujii, Y.;
+Ratner, A.; Krishna, R.; Lee, C.-Y.; and Pfister, T. 2023. Dis-
+tilling Step-by-Step! Outperforming Larger Language Mod-
+els with Less Training Data and Smaller Model Sizes. In
+Findings of the Association for Computational Linguistics:
+ACL 2023, 8003–8017. Toronto, Canada: Association for
+Computational Linguistics.
+Hu, Y.; Guo, Y.; Wang, P.; Chen, X.; Wang, Y.-J.; Zhang,
+J.; Sreenath, K.; Lu, C.; and Chen, J. 2025. Video Predic-
+tion Policy: A Generalist Robot Policy with Predictive Visual
+Representations. In Proceedings of the 42nd International
+Conference on Machine Learning, volume 267 of Proceed-
+ings of Machine Learning Research, 24328–24346. PMLR.
+Jang, J.; Ye, S.; Lin, Z.; Xiang, J.; Bjorck, J.; Fang, Y.; Hu, F.;
+Huang, S.; Kundalia, K.; Lin, Y.-C.; Magne, L.; Mandlekar,
+A.; Narayan, A.; Tan, Y. L.; Wang, G.; Wang, J.; Wang, Q.;
+Xu, Y.; Zeng, X.; Zheng, K.; Zheng, R.; Liu, M.-Y.; Zettle-
+moyer, L.; Fox, D.; Kautz, J.; Reed, S.; Zhu, Y.; and Fan, L.
+2025. DreamGen: Unlocking Generalization in Robot Learn-
+ing through Video World Models. In Proceedings of the 9th
+Conference on Robot Learning, volume 305 of Proceedings
+of Machine Learning Research, 5170–5194. PMLR.
+Jiang, Y.; Guo, Y.; Yang, H.; Lei, G.; Chen, N.; Zhang, Y.;
+Yan, S.; Lin, B.; Gao, F.; and Qi, B. 2026. CKT-WAM:
+Parameter-Efficient Context Knowledge Transfer Between
+World Action Models. arXiv:2605.06247.
+Kim, M. J.; Gao, Y.; Lin, T.-Y.; Lin, Y.-C.; Ge, Y.; Lam, G.;
+Liang, P.; Song, S.; Liu, M.-Y.; Finn, C.; and Gu, J. 2026a.
+Cosmos Policy: Fine-Tuning Video Models for Visuomotor
+Control and Planning. In The Fourteenth International Con-
+ference on Learning Representations.
+Kim, M. J.; Pertsch, K.; Karamcheti, S.; Xiao, T.; Balakr-
+ishna, A.; Nair, S.; Rafailov, R.; Foster, E. P.; Sanketi, P. R.;
+Vuong, Q.; Kollar, T.; Burchfiel, B.; Tedrake, R.; Sadigh, D.;
+Levine, S.; Liang, P.; and Finn, C. 2025. OpenVLA: An
+Open-Source Vision-Language-Action Model. In Proceed-
+ings of the 8th Conference on Robot Learning, volume 270
+of Proceedings of Machine Learning Research, 2679–2713.
+PMLR.
+Kim, S.; Jang, S.; Yoon, B.; Kim, D.; Won, J.; and
+Shin, J. 2026b.
+RoboCurate: Harnessing Diversity with
+Action-Verified Neural Trajectory for Robot Learning.
+arXiv:2602.18742.
+
+
+Li, D.; Ling, H.; Kar, A.; Acuna, D.; Kim, S. W.; Kreis,
+K.; Torralba, A.; and Fidler, S. 2023. DreamTeacher: Pre-
+training Image Backbones with Deep Generative Models. In
+Proceedings of the IEEE/CVF International Conference on
+Computer Vision, 16698–16708.
+Li, J.; Guo, T.; Ye, Y.; Zhang, R.; Chi, X.; Sun, Q.; Li, Y.;
+Lou, Y.; Huang, Y.; Lu, Z.; Guo, M.; and Zhang, S. 2026.
+Efficient-WAM: A 1B-Parameter World-Action Model with
+Low-Cost Future Imagination. arXiv:2606.10040.
+Li, S.; Gao, Y.; Sadigh, D.; and Song, S. 2025. Unified Video
+Action Model. arXiv:2503.00200.
+Liang, J.; Liu, R.; Ozguroglu, E.; Sudhakar, S.; Dave, A.;
+Tokmakov, P.; Song, S.; and Vondrick, C. 2025. Dreamitate:
+Real-World Visuomotor Policy Learning via Video Genera-
+tion. In Proceedings of The 8th Conference on Robot Learn-
+ing, volume 270 of Proceedings of Machine Learning Re-
+search, 3943–3960. PMLR.
+Lipman, Y.; Chen, R. T.; Ben-Hamu, H.; Nickel, M.; and
+Le, M. 2022. Flow matching for generative modeling. In
+The eleventh international conference on learning represen-
+tations.
+Liu, B.; Zhu, Y.; Gao, C.; Feng, Y.; Liu, Q.; Zhu, Y.; and
+Stone, P. 2023. LIBERO: Benchmarking Knowledge Trans-
+fer for Lifelong Robot Learning.
+In Advances in Neural
+Information Processing Systems, volume 36.
+Mukherjee, S.; Mitra, A.; Jawahar, G.; Agarwal, S.;
+Palangi, H.; and Awadallah, A. 2023.
+Orca: Progres-
+sive Learning from Complex Explanation Traces of GPT-4.
+arXiv:2306.02707.
+Physical Intelligence; Black, K.; Brown, N.; Darpinian, J.;
+Dhabalia, K.; Driess, D.; Esmail, A.; Equi, M.; Finn, C.;
+Fusai, N.; Galliker, M. Y.; Ghosh, D.; Groom, L.; Hausman,
+K.; Ichter, B.; Jakubczak, S.; Jones, T.; Ke, L.; LeBlanc, D.;
+Levine, S.; Li-Bell, A.; Mothukuri, M.; Nair, S.; Pertsch,
+K.; Ren, A. Z.; Shi, L. X.; Smith, L.; Springenberg, J. T.;
+Stachowicz, K.; Tanner, J.; Vuong, Q.; Walke, H.; Walling,
+A.; Wang, H.; Yu, L.; and Zhilinsky, U. 2025. π0.5: A Vision-
+Language-Action Model with Open-World Generalization.
+arXiv:2504.16054.
+Shang, J.; Schmeckpeper, K.; May, B. B.; Minniti, M. V.; Ke-
+lestemur, T.; Watkins, D.; and Herlant, L. 2024. Theia: Dis-
+tilling Diverse Vision Foundation Models for Robot Learn-
+ing. In 8th Annual Conference on Robot Learning.
+Wan, T.; Wang, A.; Ai, B.; Wen, B.; Mao, C.; Xie, C.-W.;
+Chen, D.; Yu, F.; Zhao, H.; Yang, J.; et al. 2025. Wan: Open
+and advanced large-scale video generative models. arXiv
+preprint arXiv:2503.20314.
+Wang, R.; Liu, Q.; Deng, Y.; Liu, G.; Liu, Z.; and Jia, K. 2026.
+EVA: Aligning Video World Models with Executable Robot
+Actions via Inverse Dynamics Rewards. arXiv:2603.17808.
+Wu, H.; Jing, Y.; Cheang, C.; Chen, G.; Xu, J.; Li, X.; Liu,
+M.; Li, H.; and Kong, T. 2024.
+Unleashing Large-Scale
+Video Generative Pre-Training for Visual Robot Manipula-
+tion. In The Twelfth International Conference on Learning
+Representations.
+Xu, H.; Ding, J.; Xu, J.; Wang, R.; Chen, J.; Mai, J.; Fu,
+Y.; Ghanem, B.; Xu, F.; and Elhoseiny, M. 2025. Diffusion-
+Based Imaginative Coordination for Bimanual Manipulation.
+In Proceedings of the IEEE/CVF International Conference
+on Computer Vision, 11469–11479.
+Yan, H.; Zhong, Z.; Zhu, J.; He, J.; Yuan, W.; Song, W.;
+Gong, X.; Cai, Y.; Zhao, G.; Yan, X.; Liu, B.; Chen,
+Y.-C.; and Li, H. 2026.
+S-VAM: Shortcut Video-Action
+Model by Self-Distilling Geometric and Semantic Foresight.
+arXiv:2603.16195.
+Ye, S.; Ge, Y.; Zheng, K.; Gao, S.; Yu, S.; Kurian, G.;
+Indupuru, S.; Tan, Y. L.; Zhu, C.; Xiang, J.; Malik, A.; Lee,
+K.; Liang, W.; Ranawaka, N.; Gu, J.; Xu, Y.; Wang, G.;
+Hu, F.; Narayan, A.; Bjorck, J.; Wang, J.; Kim, G.; Niu, D.;
+Zheng, R.; Xie, Y.; Wu, J.; Wang, Q.; Julian, R.; Xu, D.; Du,
+Y.; Chebotar, Y.; Reed, S.; Kautz, J.; Zhu, Y.; Fan, L.; and
+Jang, J. 2026. World Action Models are Zero-shot Policies.
+arXiv:2602.15922.
+Ye, S.; Jang, J.; Jeon, B.; Joo, S.; Yang, J.; Peng, B.; Man-
+dlekar, A.; Tan, R.; Chao, Y.-W.; Lin, B. Y.; Liden, L.; Lee,
+K.; Gao, J.; Zettlemoyer, L.; Fox, D.; and Seo, M. 2025.
+Latent Action Pretraining from Videos. In The Thirteenth
+International Conference on Learning Representations.
+Yu, T.; Xiao, T.; Stone, A.; Tompson, J.; Brohan, A.; Wang,
+S.; Singh, J.; Tan, C.; M, D.; Peralta, J.; Ichter, B.; Hausman,
+K.; and Xia, F. 2023. Scaling Robot Learning with Semanti-
+cally Imagined Experience. In Robotics: Science and Systems
+XIX.
+Yuan, T.; Dong, Z.; Liu, Y.; and Zhao, H. 2026. Fast-WAM:
+Do World Action Models Need Test-Time Future Imagina-
+tion? arXiv:2603.16666.
+Zhou, P.; Chen, S.; Chen, D.; Wang, J.; Jin, R.; Zhu, B.; Pan,
+Y.; Gu, S.; Wang, K.; Nan, S.; Qiu, X.; Qiu, C.; Yang, P.;
+Cai, Y.; Gao, J.; Li, Y.; Fu, Y.; Yue, X.; Chen, Z.; and Luo,
+J. 2026. τ0-WM: A Unified Video-Action World Model for
+Robotic Manipulation. arXiv:2606.01027.
+Zhou, S.; Du, Y.; Chen, J.; Li, Y.; Yeung, D.-Y.; and Gan, C.
+2024. RoboDreamer: Learning Compositional World Models
+for Robot Imagination. arXiv:2404.12377.
+Zhu, C.; Yu, R.; Feng, S.; Burchfiel, B.; Shah, P.; and Gupta,
+A. 2025. Unified World Models: Coupling Video and Ac-
+tion Diffusion for Pretraining on Large Robotic Datasets.
+arXiv:2504.02792.
+Zitkovich, B.; Yu, T.; Xu, S.; Xu, P.; Xiao, T.; Xia, F.; Wu, J.;
+Wohlhart, P.; Welker, S.; Wahid, A.; Vuong, Q.; Vanhoucke,
+V.; Tran, H.; Soricut, R.; Singh, A.; Singh, J.; Sermanet,
+P.; Sanketi, P. R.; Salazar, G.; Ryoo, M. S.; Reymann, K.;
+Rao, K.; Pertsch, K.; Mordatch, I.; Michalewski, H.; Lu,
+Y.; Levine, S.; Lee, L.; Lee, T.-W. E.; Leal, I.; Kuang, Y.;
+Kalashnikov, D.; Julian, R.; Joshi, N. J.; Irpan, A.; Ichter,
+B.; Hsu, J.; Herzog, A.; Hausman, K.; Gopalakrishnan, K.;
+Fu, C.; Florence, P.; Finn, C.; Dubey, K. A.; Driess, D.;
+Ding, T.; Choromanski, K. M.; Chen, X.; Chebotar, Y.; Car-
+bajal, J.; Brown, N.; Brohan, A.; Arenas, M. G.; and Han, K.
+2023. RT-2: Vision-Language-Action Models Transfer Web
+Knowledge to Robotic Control.
+In Conference on Robot
+Learning, 2165–2183.
+
+
+A
+Implementation Details
+For all models including video teacher, IDM and Vid2WAM,
+on LIBERO and LIBERO-Plus, the head and wrist camera
+views are resized to 224 × 224 and concatenated horizon-
+tally into a 224 × 448 frame. For RoboTwin 2.0, the top head
+camera is resized to 256×320, while the two wrist views are
+resized to 128 × 160, concatenated horizontally, and placed
+below to form a 384 × 320 canvas. For real-world experi-
+ments, the video teacher generates overhead-view rollouts at
+its native 480 × 640 resolution. For student training, these
+frames are resized to occupy the upper 224 × 448 region of
+a 448×448 composite, while the two unavailable 224×224
+wrist-view slots in the lower half are black-padded. For real
+multi-view samples, the true wrist views occupy these lower
+slots.
+Teacher and Inverse Dynamics Model Training
+Video teacher training.
+The teacher is an image-to-video
+diffusion model initialized from the Large Video Planner
+checkpoint (Chen et al. 2025a), which adopts the Wan2.1-
+I2V-14B architecture (Wan et al. 2025). We fine-tune the
+diffusion transformer while keeping the UMT5 text encoder,
+CLIP image encoder, and video VAE frozen. All video teach-
+ers are trained for around 500 epochs. Each training sample
+consists of 49 video frames, which are encoded into 16-
+channel latent representations using the frozen Wan VAE.
+Given a clean video latent z, Gaussian noise ϵ ∼N(0, I),
+and t ∼U(0, 1), we apply the time shift
+τ =
+st
+1 + (s −1)t,
+s = 3,
+(S1)
+and construct
+zτ = (1 −τ)z + τϵ.
+(S2)
+The teacher predicts the flow target v⋆= ϵ −z and is opti-
+mized with
+Lteacher = Ez,ϵ,t
+h
+∥vΘ(zτ, τ, c) −(ϵ −z)∥2
+2
+i
+,
+(S3)
+where c contains the language embedding and first-frame
+image condition. We additionally use diffusion forcing (Chen
+et al. 2024) during training. In particular, one or two latent
+history frames are sampled with probabilities 0.9 and 0.1,
+respectively, and the history is kept clean with probability
+0.7.
+Inverse dynamics model.
+The inverse dynamics model
+(IDM) maps a short video window to the action at its cen-
+ter frame. Given three observations separated by a domain-
+dependent stride δ, it predicts
+bat = qψ (It−δ, It, It+δ) .
+(S4)
+We use an ImageNet-pretrained ResNet-50 (He et al. 2016)
+whose first convolution is expanded from three to nine input
+channels to jointly process the three RGB frames. The pre-
+trained convolutional filters are repeated across the temporal
+dimension and divided by three. The final ResNet feature
+map is passed through a learnable spatial-softmax layer and
+a lightweight MLP action head.
+Hyperparameter
+Value
+Initialization
+Wan2.1-I2V-14B-480P with
+LVP 14B weights
+Layers
+40
+Hidden dimension
+5120
+Feed-forward dimension
+13824
+Attention heads
+40
+Training frames
+49
+VAE latent channels
+16
+VAE temporal/spatial stride
+4 × 8 × 8
+Continuous-time shift
+3.0
+Training-time scale
+1000
+Optimizer
+AdamW
+Learning rate
+8 × 10−6
+AdamW betas
+(0.9, 0.95)
+Weight decay
+5 × 10−2
+Warm-up steps
+100
+Batch size
+4
+Gradient accumulation
+4
+Numerical precision
+BF16
+Maximum text length
+512
+Table S1: Shared hyperparameters used to fine-tune the video
+teacher.
+Hyperparameter
+Value
+Visual backbone
+ResNet-50
+Number of input frames
+3
+Input channels
+9
+Feature pooling
+Spatial softmax
+Hidden activation
+GELU
+Dropout
+0.1
+Training loss
+Smooth L1
+Optimizer
+AdamW
+Learning rate
+3 × 10−4
+AdamW betas
+(0.9, 0.999)
+Weight decay
+10−2
+Training iterations
+200,000
+Batch size
+32
+Learning-rate schedule
+Cosine
+Warm-up iterations
+5,000
+Final learning-rate ratio
+0
+Numerical precision
+BF16
+Table S2: Shared training hyperparameters for the action
+IDM.
+The action mean µa and standard deviation σa are com-
+puted from the training split. The IDM is trained with a
+Smooth L1 loss in the normalized action space:
+LIDM = E
+
+SmoothL1
+bat −µa
+σa
+, at −µa
+σa
+
+.
+(S5)
+The prediction is converted back to the original action space
+during inference.
+IDM training and validation.
+For LIBERO/LIBERO-
+Plus, RoboTwin and real-world, we train separate ResNet-
+50 IDMs for action and proprioceptive-state targets. Each
+IDM is trained for 200,000 steps using compatible action-
+labeled trajectories; withheld-task trajectories are excluded.
+
+
+Domain
+Resolution FPS Frames Steps Language CFG History CFG
+LIBERO
+224 × 448
+15
+49
+40
+3.0
+1.0
+RoboTwin
+384 × 320
+15
+49
+40
+3.0
+1.0
+Real-world 480 × 640
+10
+49
+40
+3.0
+2.0
+Table S3: Domain-specific video-teacher rollout configura-
+tions used for constructing the pseudo-data buffers.
+Dataset
+IDM Target Val Loss ↓Val Acc ↑Val L1 ↓
+LIBERO / LIBERO-Plus Action
+0.0054
+85.8%
+0.0112
+LIBERO / LIBERO-Plus State
+0.0000
+100.0%
+0.0020
+RoboTwin
+Action
+0.0009
+81.9%
+0.0100
+RoboTwin
+State
+0.0008
+83.1%
+0.0095
+Real-world
+Action
+0.0002
+98.1%
+0.0044
+Real-world
+State
+0.0002
+98.6%
+0.0043
+Table S4: Best validation performance of the trained IDM
+models.
+The frozen IDMs then label pseudo-actions from teacher-
+generated videos.
+For validation, we randomly partition the frame-level sam-
+ples with size N. The validation-set size is
+Nval = min (⌊0.05N⌋, 2000) ,
+(S6)
+with at least one validation sample. Target normalization
+statistics are computed exclusively from the resulting train-
+ing split. We evaluate the IDM every 5,000 optimization steps
+and retain the checkpoint with the lowest validation Smooth
+L1 loss. We further define validation accuracy as the pro-
+portion of samples for which all predicted dimensions fall
+within their corresponding absolute-error tolerances:
+ValAcc = 1
+N
+N
+X
+i=1
+I
+
+
+D
+\
+j=1
+{|ˆyi,j −yi,j| < τj}
+
+,
+(S7)
+where N is the number of validation samples, D is the tar-
+get dimensionality, ˆyi,j and yi,j denote the prediction and
+ground-truth value for dimension j of sample i respectively,
+and τj = 0.05 for every dimension. Consequently, a sample
+is counted as correct only if every predicted dimension satis-
+fies the tolerance. The rules are identical for action and state
+IDM training.
+Table S4 reports validation results for all IDMs, with all
+models achieving higher than 80% accuracy, especially both
+real-world heads exceeding 98% accuracy.
+Pseudo-data construction.
+After training, the video
+teacher and IDM are used only as offline data generators.
+Table S3 lists the rollout parameters used to construct each
+distillation buffer. Rollout generation takes only the source
+episode’s first visual observation together with the language
+instruction, after which the future observations are synthe-
+sized by the video teacher and the pseudo actions are recov-
+ered by the IDM.
+Because the Wan2.1 teacher VAE uses 16 latent channels
+while the Vid2WAM VAE uses 48, teacher rollouts are de-
+coded to RGB and re-encoded by the frozen student VAE
+before storage.
+The 49 frames in Table S3 denote one generation chunk,
+not a complete pseudo-rollout. Successive chunks are as-
+sembled into longer videos before the simulation cutoff and
+pseudo-data construction.
+Teacher-generated rollout examples.
+Figure S1 shows
+representative teacher rollouts across LIBERO, RoboTwin,
+and real-world settings. The examples cover both low-data
+and novel-task regimes, as well as clean and randomized
+real-world initial states.
+Across the six examples, the teacher predicts task-relevant
+object motion and multi-step manipulation progress while
+maintaining the scene context needed for the instruction. The
+novel-task and randomized examples further illustrate useful
+future-progress cues for held-out instructions and perturbed
+initial states.
+Data Budget and Model Exposure
+Table S5 reports the data budget. For all experiment setups,
+the video teachers and IDMs are fine-tuned on its regime-
+specific dataset: the low-data regime uses corresponding ex-
+pert demonstrations, while the novel regime excludes held-
+out-task trajectories.
+Vid2WAM Training Details
+Model and distillation training details.
+Table S6 sum-
+marizes the model architecture and training hyperparameters
+used by Vid2WAM. Each iteration processes one real batch
+and one pseudo batch before a single parameter update. Thus,
+the reported global batch size of 128 per domain denotes 128
+real and 128 pseudo samples per update.
+For LIBERO/LIBERO-Plus and real-world, we trained
+Vid2WAM for 10 epochs, while for RoboTwin 2.0, we trained
+for 5 epochs.
+Details on ablation variants.
+Details on the Vid2WAM-
+based ablation variants discussed in the main paper are
+shown in Table S7. All Vid2WAM-based variants share the
+same teacher and IDM models and corresponding distillation
+buffers. Training hyperparameters also remain the same.
+For the Teacher Policy described in the main paper, we also
+use the same teacher and IDM models as Vid2WAM across
+all regimes and benchmarks. This policy uses the teacher to
+generate task rollouts and the IDM to infer action trajectories
+for direct execution.
+B
+Sensitivity to Novel-Task Selection
+The split reported in the main paper withholds task IDs
+8/9 from every LIBERO and LIBERO-Plus suite; we ad-
+ditionally evaluate 0/1 and 3/6. Tables S11 and S10 report
+full-benchmark performance, whereas Tables S12 and S13
+evaluate only the withheld tasks.
+Task-ID Mapping
+Task IDs are suite-local, and LIBERO-Plus uses the same
+mapping as LIBERO. Tables S8 and S9 list the task-ID map-
+pings for all four suites. A split withholds corresponding
+tasks with specified IDs within each suite.
+
+
+Figure S1: Representative teacher-generated rollouts across LIBERO, RoboTwin, and real-world settings. Each row presents six
+temporally ordered keyframes conditioned on the displayed language instruction. The simulation examples include low-data and
+novel-task regimes, while the real-world examples cover clean and randomized initial states.
+From Table S11 and Table S10, Vid2WAM improves the
+average LIBERO and LIBERO-Plus success rate for all three
+splits, which shows that Vid2WAM’s enhancement over Fast-
+WAM on the novel regime does not depend on the selected
+target tasks.
+Withheld-Task Results
+Tables S12 and S13 isolate the withheld target tasks in
+LIBERO and LIBERO-Plus rather than averaging over the
+full benchmark suites.
+
+
+Benchmark/regime
+Tasks
+Expert trajectories (seen tasks only)
+Teacher rollouts
+Held-out-task exposure
+Seen
+Novel
+Teacher
+IDM
+LIBERO low-data
+40
+0
+400 (10 per task)
+400
+/
+/
+LIBERO novel
+32
+8
+1,366
+312
+No
+No
+RoboTwin low-data
+50
+0
+1000 (10 clean + 10 randomized per task)
+1000
+/
+/
+RoboTwin novel
+35
+15
+19250 (50 clean +500 randomized per seen-task)
+8250
+No
+No
+Real-world
+6
+3
+360 (60 per seen-task)
+180
+No
+No
+Table S5: All data budgets and exposures. “Teacher exposure” and “IDM exposure” indicate whether the corresponding model
+was trained on trajectories from the evaluated held-out target tasks; this is distinct from using a trajectory’s first frame to seed a
+rollout.
+Hyperparameter
+Value
+Video backbone initialization
+Wan2.2-TI2V-5B
+Number of transformer layers
+30
+Number of attention heads
+24
+Attention head dimension
+128
+Video hidden dimension
+3072
+Video FFN dimension
+14336
+Action hidden dimension D
+1024
+Action FFN dimension
+4096
+Text embedding dimension
+4096
+Maximum text length
+128
+Video patch size
+(1, 2, 2)
+Bottleneck dimension Dr
+128
+Adapter activation
+GELU
+Adapter dropout
+0.0
+Adapter residual scale α
+1.0
+Up-projection initialization
+Zero
+Flow-matching training steps
+1000
+Video noise-schedule shift
+5.0
+Action noise-schedule shift
+5.0
+Balance coefficient β
+1.0
+λreal
+1.0
+λpseudo
+0.25
+Global batch per domain
+128
+Gradient accumulation
+1
+Learning rate
+LIBERO/RoboTwin: 1 × 10−4;
+real-world: 5 × 10−5
+LR schedule
+Cosine
+Warmup ratio
+5%
+Minimum LR ratio
+0.01
+Optimizer
+AdamW
+AdamW β1, β2
+(0.9, 0.95)
+Weight decay
+0.01
+Maximum gradient norm
+1.0
+Numerical precision
+BF16
+Table S6: Model and action-adapter hyperparameters in
+Vid2WAM.
+Novel IDs Method
+Spatial Object Goal Long Avg.
+0/1
+Fast-WAM
+29.0
+1.0
+0.0
+0.0
+7.5
+Vid2WAM
+90.0
+63.0
+0.0
+0.0
+38.3
+3/6
+Fast-WAM
+0.0
+0.0
+0.0
+0.0
+0.0
+Vid2WAM
+1.0
+26.0
+1.0
+0.0
+7.0
+8/9
+Fast-WAM
+0.0
+0.0
+0.0
+0.0
+0.0
+Vid2WAM
+2.0
+2.0
+4.0
+1.0
+2.3
+Table S12: Success rates (%) evaluated only on the withheld
+LIBERO target tasks. Each split removes the listed two task
+IDs from every suite.
+Results show that Vid2WAM improves average withheld-
+target success for all three splits on both benchmarks. The
+"zero to one" improvements on most suites indicate that our
+distillation framework can adjust the task execution process
+correctly. Low absolute success on several Goal and Long
+targets nevertheless shows that adaptation without target-task
+action trajectories remains somewhat difficult.
+
+
+Variant
+Structural or objective change
+Training-time
+parameter change
+Inference path
+Vid2WAM
+(default)
+Shared video expert and shared ActionDiT;
+separate input/output adapters for both
+domains.
+around +1M
+Shared ActionDiT with the real-domain
+adapters.
+Dual Action DiT
+Shared video expert, but independent real
+and pseudo Action DiTs.
+around +1B
+Real ActionDiT only
+No Adapter
+One shared video expert and one shared
+Action DiT, with no domain-specific adapter
+modules. Both domains update the same
+path.
+0
+The shared Action DiT path.
+Pseudo-Action
+Only
+Discard the future latent flow-matching loss.
+Same as Vid2WAM
+Same as Vid2WAM
+Future-Latent Only
+Discard the pseudo-action flow-matching
+loss.
+Same as Vid2WAM
+Same as Vid2WAM
+Table S7: Exact implementation of the distillation ablations.
+ID LIBERO-Spatial instruction
+ID LIBERO-Object instruction
+0
+pick up the black bowl between the plate and the ramekin and
+place it on the plate
+0
+pick up the alphabet soup and place it in the basket
+1
+pick up the black bowl from table center and place it on the plate
+1
+pick up the bbq sauce and place it in the basket
+2
+pick up the black bowl in the top drawer of the wooden cabinet
+and place it on the plate
+2
+pick up the butter and place it in the basket
+3
+pick up the black bowl next to the cookie box and place it on the
+plate
+3
+pick up the chocolate pudding and place it in the basket
+4
+pick up the black bowl next to the plate and place it on the plate
+4
+pick up the cream cheese and place it in the basket
+5
+pick up the black bowl next to the ramekin and place it on the
+plate
+5
+pick up the ketchup and place it in the basket
+6
+pick up the black bowl on the cookie box and place it on the plate
+6
+pick up the milk and place it in the basket
+7
+pick up the black bowl on the ramekin and place it on the plate
+7
+pick up the orange juice and place it in the basket
+8
+pick up the black bowl on the stove and place it on the plate
+8
+pick up the salad dressing and place it in the basket
+9
+pick up the black bowl on the wooden cabinet and place it on the
+plate
+9
+pick up the tomato sauce and place it in the basket
+Table S8: Suite-local LIBERO-Spatial and LIBERO-Object task-ID mappings, shared by LIBERO and LIBERO-Plus.
+ID LIBERO-Goal instruction
+ID LIBERO-Long instruction
+0
+open the middle drawer of the cabinet
+0
+turn on the stove and put the moka pot on it
+1
+open the top drawer and put the bowl inside
+1
+put the black bowl in the bottom drawer of the cabinet and close it
+2
+push the plate to the front of the stove
+2
+put the yellow and white mug in the microwave and close it
+3
+put the bowl on the plate
+3
+put both moka pots on the stove
+4
+put the bowl on the stove
+4
+put both the alphabet soup and the cream cheese box in the basket
+5
+put the bowl on top of the cabinet
+5
+put both the alphabet soup and the tomato sauce in the basket
+6
+put the cream cheese in the bowl
+6
+put both the cream cheese box and the butter in the basket
+7
+put the wine bottle on the rack
+7
+put the white mug on the left plate and put the yellow and white
+mug on the right plate
+8
+put the wine bottle on top of the cabinet
+8
+put the white mug on the plate and put the chocolate pudding to
+the right of the plate
+9
+turn on the stove
+9
+pick up the book and place it in the back compartment of the
+caddy
+Table S9: Suite-local LIBERO-Goal and LIBERO-Long task-ID mappings, shared by LIBERO and LIBERO-Plus.
+C
+Real-World Experiment Details
+Figure S2 illustrates the real-world platform used for data col-
+lection and evaluation. A camera-equipped dual-arm robot
+is operated through the paired teleoperation interface. The
+top-down camera, studio lighting, and reconfigurable table-
+top provide controlled variation in viewpoint, illumination,
+texture, object layout, and task composition.
+
+
+Novel IDs Model
+Suite
+Perturbation
+Overall
+Spatial
+Object
+Goal
+Long
+Cam. Robot Lang. Light
+BG
+Noise
+Layout
+0/1
+Fast-WAM
+58.4
+61.2
+39.4
+37.4
+28.2
+36.1
+60.0
+70.5
+54.5
+39.6
+58.7
+49.1
+Vid2WAM
+60.2
+63.2
+37.2
+39.8
+24.8
+40.0
+66.3
+76.5
+48.4
+40.6
+58.7
+50.1
+3/6
+Fast-WAM
+40.6
+56.6
+30.2
+36.4
+13.2
+37.5
+52.3
+64.2
+43.0
+32.9
+48.4
+41.0
+Vid2WAM
+45.0
+53.6
+40.2
+35.0
+15.1
+38.3
+63.2
+70.9
+40.1
+31.8
+49.8
+43.5
+8/9
+Fast-WAM
+48.0
+59.6
+37.0
+38.6
+24.1
+42.5
+64.2
+67.2
+39.0
+34.6
+52.7
+45.8
+Vid2WAM
+52.4
+60.2
+41.4
+38.6
+28.5
+42.8
+67.7
+67.5
+39.7
+42.4
+51.6
+48.1
+Table S10: Sensitivity to novel-task selection on LIBERO-Plus. Each split treats the listed two task IDs in every suite as novel;
+8/9 is the main novel setting reported in the main paper. Best results within each split are bolded.
+Novel IDs Method
+Spatial Object Goal Long Avg.
+0/1
+Fast-WAM
+82.4
+79.8
+76.4
+75.6
+78.6
+Vid2WAM
+94.2
+92.6
+76.2
+71.8
+83.7
+3/6
+Fast-WAM
+73.0
+79.2
+77.6
+76.4
+76.6
+Vid2WAM
+75.6
+84.4
+76.2
+74.2
+77.6
+8/9
+Fast-WAM
+76.8
+79.0
+77.8
+73.0
+76.7
+Vid2WAM
+79.4
+79.4
+79.2
+75.2
+78.3
+Table S11: Sensitivity to novel-task selection on LIBERO.
+Best results within each split are bolded.
+Novel IDs Method
+Spatial Object Goal Long Avg.
+0/1
+Fast-WAM
+51.0
+1.0
+0.0
+0.0
+13.0
+Vid2WAM
+69.0
+34.0
+0.0
+0.0
+25.8
+3/6
+Fast-WAM
+0.0
+0.0
+1.0
+0.0
+0.3
+Vid2WAM
+2.0
+9.0
+2.0
+0.0
+3.3
+8/9
+Fast-WAM
+1.0
+2.0
+1.0
+0.0
+1.0
+Vid2WAM
+2.0
+12.0
+5.0
+0.0
+4.8
+Table S13: Success rates (%) evaluated only on the withheld
+LIBERO-Plus target tasks. Each split removes the listed two
+task IDs from every suite.
+Detailed Task Description
+The evaluation includes six seen tasks with expert trajectories
+and three novel tasks trained only from true or synthetic
+initial observations, language instructions, and offline teacher
+supervision. The novel tasks introduce behaviors or object–
+action compositions absent from the labeled trajectories.
+Seen tasks.
+• Click Bell: the right gripper closes and presses a tabletop
+bell.
+• Item Handover: the right arm lifts a pen upright, transfers
+it to the left arm, and the left arm drops it into a pen holder.
+• Carry Basket: the left arm places a milk carton into a
+basket, after which the right arm lifts and relocates the
+basket by its handle.
+• Open Pan Place: the left arm opens the pan lid, the right
+arm places a carrot inside, and the left arm closes the lid.
+• Open Drawer Place: the right arm opens a handled
+drawer while the left arm places a tomato inside.
+• Insert Test Tube: the arms hand over a transparent test
+tube before vertically inserting it into a rack.
+Novel tasks.
+• Pick Test Tube: the right arm grasps a test tube already
+inserted in the rack and pulls it out.
+• Take Tissue: the right arm pinches and extracts a tissue
+from a soft tissue pack.
+• Tomato Basket: the left arm picks up a tomato and place
+it into the basket.
+Initial-State Augmentation
+As shown in Figure S3, for each novel task, GPT-Image-
+2 generates 30 synthetic images from a collected overhead
+observation in clean setting with only task-specific objects,
+and 30 images from an observation with different distractors.
+The generatedimages vary objectplacement andillumination
+without requiring additional real frames.
+Spatial and Temporal Masking
+Synthesis is restricted to the overhead view because indepen-
+dently generated views do not reliably preserve cross-view
+alignment. To fit the model, the generated image occupies the
+upper camera slot, while unavailable wrist-camera regions
+are zero-filled, and a spatial latent mask limits pseudo-video
+loss to the valid region. Ground-truth multi-view and action
+supervision remain unmasked.
+Spatial masking.
+In the single-view construction, the over-
+head image is resized to the top 224 × 448 region of a
+448 × 448 composite image, while the bottom 224 × 448
+
+
+Figure S2: Real-world bimanual platform, including the teleoperation interface, camera-equipped dual-arm robot, top-down
+camera, studio lighting, and reconfigurable tabletop with task objects.
+Figure S3: Real-world initial-state augmentation with GPT-Image-2. In each row, the collected overhead observation (left) is
+edited into a new conditioning image (right). The top example changes object placement, while the bottom example changes
+both object placement and illumination.
+
+
+region is a black placeholder. The student VAE has a spatial
+downsampling factor of 16, so this image is represented on a
+28×28 latent grid. Consequently, latent rows h ∈[0, 14) and
+all columns w ∈[0, 28) are valid, whereas rows h ∈[14, 28)
+are ignored. Multi-view samples that do not contain an ex-
+plicit spatial mask are assigned an all-one mask and therefore
+retain the original full-image loss.
+Temporal masking.
+Video clips are padded to a fixed
+training length before VAE encoding. Because the student
+VAE downsamples time by a factor of four, frame-level
+padding flags are converted into a latent-time validity mask.
+A latent step is ignored only when all contributing video
+frames are padding, and the video loss is averaged over the
+remaining valid latent steps. The first frame, which provides
+the image condition, is handled separately. This temporal
+masking is the same for single-view and multi-view sam-
+ples; single-view pseudo videos additionally use the spatial
+mask described above. Action chunks are fitted to the stu-
+dent horizon, with padded action positions excluded from
+supervision.
+Rollout-duration cutoff.
+Simulation pseudo-rollouts are
+truncated to the first 8 seconds of video before constructing
+pseudo-data to mitigate long-horizon generation errors. Real-
+world pseudo-rollouts use all frames from the 20-second
+generated video and do not apply this temporal cutoff, which
+improves real-world task success rates. This duration cutoff
+is separate from the padding-based temporal mask above.
+D
+Full RoboTwin Task-Level Results
+Tables S14 and S15 expand the main paper’s aggregate
+RoboTwin results to all 50 tasks under clean and random-
+ized evaluation settings. Vid2WAM achieves the best perfor-
+mance on low-data and novel regimes under both evaluation
+conditions. Table S15 also marks the 15 withheld target tasks
+in bold. Vid2WAM leads both full-benchmark and novel-
+subset aggregates under clean and randomized settings, with
+larger gains on the novel subset.
+
+
+Task
+Vid2WAM
+Fast-WAM
+π0.5
+Motus
+Clean
+Random
+Clean
+Random
+Clean
+Random
+Clean
+Random
+adjust_bottle
+0.95
+0.90
+0.99
+0.86
+0.94
+0.88
+0.85
+0.87
+beat_block_hammer
+0.84
+0.66
+0.69
+0.52
+0.75
+0.64
+0.48
+0.29
+blocks_ranking_rgb
+0.42
+0.16
+0.39
+0.13
+0.13
+0.15
+0.27
+0.16
+blocks_ranking_size
+0.34
+0.11
+0.16
+0.08
+0.10
+0.09
+0.19
+0.17
+click_alarmclock
+0.82
+0.69
+0.78
+0.51
+0.79
+0.84
+0.93
+0.94
+click_bell
+0.96
+0.84
+0.95
+0.85
+0.92
+0.94
+0.97
+0.88
+dump_bin_bigbin
+0.90
+0.77
+0.88
+0.74
+0.69
+0.47
+0.62
+0.51
+grab_roller
+0.99
+0.91
+0.99
+0.89
+0.92
+0.74
+0.98
+0.73
+handover_block
+0.30
+0.20
+0.13
+0.05
+0.05
+0.04
+0.09
+0.02
+handover_mic
+0.96
+0.63
+0.95
+0.62
+0.32
+0.20
+0.46
+0.44
+lift_pot
+0.14
+0.17
+0.18
+0.20
+0.59
+0.39
+0.14
+0.09
+move_can_pot
+0.49
+0.45
+0.57
+0.33
+0.60
+0.41
+0.08
+0.25
+move_playingcard_away
+0.78
+0.68
+0.73
+0.59
+0.81
+0.86
+0.92
+0.87
+move_stapler_pad
+0.03
+0.02
+0.01
+0.00
+0.18
+0.11
+0.08
+0.04
+hanging_mug
+0.07
+0.11
+0.09
+0.10
+0.02
+0.03
+0.17
+0.06
+open_laptop
+0.82
+0.69
+0.84
+0.63
+0.71
+0.72
+0.70
+0.72
+open_microwave
+0.30
+0.18
+0.24
+0.18
+0.05
+0.09
+0.57
+0.40
+pick_diverse_bottles
+0.25
+0.11
+0.20
+0.03
+0.44
+0.23
+0.45
+0.33
+pick_dual_bottles
+0.29
+0.15
+0.25
+0.12
+0.59
+0.51
+0.58
+0.38
+place_a2b_left
+0.30
+0.26
+0.24
+0.09
+0.49
+0.42
+0.77
+0.60
+place_a2b_right
+0.34
+0.33
+0.21
+0.14
+0.45
+0.37
+0.77
+0.57
+place_bread_basket
+0.70
+0.56
+0.60
+0.51
+0.61
+0.58
+0.54
+0.54
+place_bread_skillet
+0.45
+0.29
+0.55
+0.23
+0.36
+0.24
+0.57
+0.44
+place_can_basket
+0.68
+0.52
+0.79
+0.51
+0.62
+0.54
+0.29
+0.32
+place_cans_plasticbox
+0.88
+0.69
+0.88
+0.69
+0.52
+0.42
+0.28
+0.18
+place_container_plate
+0.96
+0.92
+0.98
+0.87
+0.95
+0.82
+0.91
+0.79
+place_dual_shoes
+0.15
+0.11
+0.22
+0.13
+0.12
+0.06
+0.19
+0.02
+place_empty_cup
+0.82
+0.64
+0.69
+0.48
+0.77
+0.80
+0.88
+0.86
+place_fan
+0.18
+0.13
+0.30
+0.13
+0.08
+0.14
+0.18
+0.15
+place_burger_fries
+0.84
+0.77
+0.79
+0.69
+0.81
+0.82
+0.57
+0.58
+place_mouse_pad
+0.18
+0.07
+0.09
+0.03
+0.28
+0.14
+0.18
+0.29
+place_object_basket
+0.70
+0.59
+0.72
+0.69
+0.31
+0.17
+0.59
+0.61
+place_object_scale
+0.36
+0.28
+0.24
+0.13
+0.45
+0.42
+0.49
+0.35
+place_object_stand
+0.88
+0.80
+0.81
+0.52
+0.75
+0.61
+0.60
+0.56
+place_phone_stand
+0.60
+0.60
+0.51
+0.36
+0.47
+0.47
+0.38
+0.20
+move_pillbottle_pad
+0.37
+0.22
+0.31
+0.20
+0.54
+0.58
+0.36
+0.15
+place_shoe
+0.37
+0.21
+0.37
+0.34
+0.24
+0.21
+0.57
+0.61
+press_stapler
+0.92
+0.81
+0.87
+0.68
+0.80
+0.71
+1.00
+0.91
+put_bottles_dustbin
+0.13
+0.15
+0.08
+0.04
+0.03
+0.01
+0.07
+0.00
+put_object_cabinet
+0.34
+0.22
+0.29
+0.20
+0.09
+0.06
+0.10
+0.19
+rotate_qrcode
+0.53
+0.33
+0.54
+0.22
+0.32
+0.21
+0.24
+0.22
+scan_object
+0.31
+0.21
+0.26
+0.24
+0.28
+0.25
+0.59
+0.49
+shake_bottle
+1.00
+1.00
+1.00
+0.98
+0.96
+0.97
+0.94
+0.94
+shake_bottle_horizontally
+1.00
+1.00
+1.00
+0.97
+0.97
+0.97
+0.93
+0.91
+stack_blocks_three
+0.30
+0.18
+0.18
+0.10
+0.05
+0.07
+0.00
+0.03
+stack_blocks_two
+0.66
+0.54
+0.68
+0.43
+0.60
+0.42
+0.70
+0.54
+stack_bowls_three
+0.62
+0.54
+0.55
+0.39
+0.27
+0.13
+0.31
+0.22
+stack_bowls_two
+0.89
+0.85
+0.81
+0.69
+0.73
+0.71
+0.79
+0.80
+stamp_seal
+0.35
+0.25
+0.25
+0.16
+0.41
+0.43
+0.10
+0.09
+turn_switch
+0.22
+0.18
+0.24
+0.26
+0.40
+0.31
+0.54
+0.49
+Overall
+0.5536
+0.4536
+0.5214
+0.3906
+0.4866
+0.4280
+0.4992
+0.4360
+Table S14: Success rates on the RoboTwin benchmark (low-data regime).
+
+
+Task
+Vid2WAM
+Fast-WAM
+π0.5
+Motus
+Clean
+Random
+Clean
+Random
+Clean
+Random
+Clean
+Random
+adjust_bottle
+1.00
+1.00
+1.00
+0.99
+0.99
+0.98
+1.00
+1.00
+beat_block_hammer
+0.99
+0.96
+1.00
+0.99
+0.89
+0.89
+0.83
+0.85
+blocks_ranking_rgb
+0.08
+0.02
+0.06
+0.08
+0.03
+0.04
+0.04
+0.08
+blocks_ranking_size
+0.83
+0.84
+0.85
+0.82
+0.69
+0.42
+0.79
+0.87
+click_alarmclock
+0.55
+0.81
+0.50
+0.44
+0.58
+0.53
+0.49
+0.79
+click_bell
+1.00
+1.00
+1.00
+1.00
+0.91
+0.79
+1.00
+1.00
+dump_bin_bigbin
+0.98
+0.94
+0.98
+0.93
+0.88
+0.89
+0.94
+0.94
+grab_roller
+1.00
+1.00
+1.00
+1.00
+1.00
+1.00
+0.99
+0.99
+handover_block
+0.95
+0.86
+0.95
+0.85
+0.78
+0.72
+0.92
+0.89
+handover_mic
+1.00
+1.00
+0.99
+0.99
+0.97
+0.83
+1.00
+1.00
+lift_pot
+0.98
+0.99
+0.99
+1.00
+0.80
+0.86
+0.97
+0.96
+move_can_pot
+0.94
+0.98
+0.98
+0.99
+0.48
+0.56
+0.93
+0.97
+move_playingcard_away
+0.04
+0.02
+0.11
+0.00
+0.08
+0.08
+0.06
+0.01
+move_stapler_pad
+0.72
+0.73
+0.67
+0.65
+0.63
+0.55
+0.77
+0.71
+hanging_mug
+0.66
+0.51
+0.49
+0.47
+0.08
+0.12
+0.51
+0.44
+open_laptop
+0.18
+0.14
+0.04
+0.03
+0.12
+0.14
+0.11
+0.10
+open_microwave
+0.47
+0.48
+0.55
+0.55
+0.53
+0.65
+0.77
+0.72
+pick_diverse_bottles
+0.68
+0.76
+0.78
+0.86
+0.74
+0.66
+0.48
+0.61
+pick_dual_bottles
+0.72
+0.76
+0.99
+0.91
+0.79
+0.81
+0.65
+0.72
+place_a2b_left
+0.96
+0.93
+0.94
+0.94
+0.90
+0.87
+0.94
+0.92
+place_a2b_right
+0.10
+0.17
+0.03
+0.10
+0.16
+0.15
+0.15
+0.15
+place_bread_basket
+0.71
+0.66
+0.01
+0.00
+0.19
+0.21
+0.29
+0.23
+place_bread_skillet
+0.96
+0.85
+0.95
+0.95
+0.78
+0.79
+0.89
+0.87
+place_can_basket
+0.67
+0.70
+0.71
+0.58
+0.74
+0.73
+0.64
+0.72
+place_cans_plasticbox
+0.99
+0.98
+0.98
+0.96
+0.82
+0.75
+0.98
+0.97
+place_container_plate
+0.97
+0.90
+0.73
+0.61
+0.81
+0.86
+0.95
+0.92
+place_dual_shoes
+0.88
+0.93
+0.92
+0.91
+0.68
+0.71
+0.81
+0.85
+place_empty_cup
+1.00
+1.00
+0.99
+1.00
+1.00
+1.00
+1.00
+1.00
+place_fan
+0.97
+0.96
+0.97
+0.95
+0.83
+0.85
+0.97
+0.94
+place_burger_fries
+0.17
+0.17
+0.02
+0.00
+0.03
+0.02
+0.16
+0.21
+place_mouse_pad
+0.90
+0.86
+0.94
+0.93
+0.67
+0.74
+0.89
+0.92
+place_object_basket
+0.74
+0.86
+0.81
+0.81
+0.78
+0.82
+0.90
+0.91
+place_object_scale
+0.90
+0.94
+0.89
+0.96
+0.77
+0.75
+0.92
+0.93
+place_object_stand
+0.62
+0.63
+0.29
+0.34
+0.24
+0.22
+0.41
+0.52
+place_phone_stand
+0.98
+0.99
+0.98
+0.99
+0.83
+0.87
+0.89
+0.90
+move_pillbottle_pad
+0.11
+0.05
+0.01
+0.01
+0.18
+0.15
+0.05
+0.04
+place_shoe
+0.94
+1.00
+0.97
+0.99
+0.93
+0.94
+0.98
+0.99
+press_stapler
+0.99
+1.00
+1.00
+0.97
+0.94
+0.93
+1.00
+1.00
+put_bottles_dustbin
+0.83
+0.93
+0.80
+0.89
+0.49
+0.42
+0.56
+0.72
+put_object_cabinet
+0.93
+0.91
+0.94
+0.91
+0.76
+0.77
+0.88
+0.86
+rotate_qrcode
+0.93
+0.85
+0.96
+0.90
+0.81
+0.84
+0.89
+0.85
+scan_object
+0.94
+0.89
+0.91
+0.95
+0.73
+0.64
+0.82
+0.91
+shake_bottle
+1.00
+1.00
+1.00
+0.99
+0.99
+0.97
+1.00
+1.00
+shake_bottle_horizontally
+1.00
+0.99
+1.00
+0.99
+1.00
+1.00
+1.00
+1.00
+stack_blocks_three
+0.97
+0.95
+0.96
+0.96
+0.86
+0.84
+0.94
+0.91
+stack_blocks_two
+1.00
+1.00
+1.00
+0.97
+0.97
+0.98
+1.00
+1.00
+stack_bowls_three
+0.81
+0.82
+0.77
+0.80
+0.84
+0.66
+0.83
+0.74
+stack_bowls_two
+0.96
+0.97
+0.96
+0.97
+0.86
+0.82
+0.98
+0.96
+stamp_seal
+0.77
+0.86
+0.84
+0.77
+0.71
+0.73
+0.71
+0.65
+turn_switch
+0.68
+0.69
+0.65
+0.72
+0.69
+0.69
+0.86
+0.90
+Overall
+0.7830
+0.7848
+0.7572
+0.7474
+0.6792
+0.6648
+0.7508
+0.7628
+Novel subset
+0.5467
+0.5527
+0.4500
+0.4280
+0.4653
+0.4627
+0.4893
+0.5153
+Table S15: Success rates on the RoboTwin benchmark (novel regime). Novel target tasks are marked in bold.
