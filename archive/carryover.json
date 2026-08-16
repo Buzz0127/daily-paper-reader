@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-15T19:45:15.229861+00:00",
-  "updated_date": "20260815",
+  "generated_at": "2026-08-16T18:57:18.160698+00:00",
+  "updated_date": "20260816",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,138 +480,9 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260815",
+      "updated_date": "20260816",
       "carryover_days": 9,
       "items": [
-        {
-          "id": "2608.10600v1",
-          "source": "arxiv",
-          "title": "BooST: Bridging Semantics and Motions for Efficient Skill Transfer",
-          "abstract": "Skill abstraction---the process of learning reusable and temporally extended behaviors---has emerged as a key paradigm for improving sample efficiency and generalization in robot learning. For efficient skill transfer to real robots, learned skills must generalize across tasks and domains, remain robust to visual and dynamic perturbations, and be efficient enough for practical deployment. However, existing methods typically satisfy only a subset of these properties, as they capture either high-level semantic intent (what) or low-level motion dynamics (how). This incomplete skill transfer yields weak priors for policy learning, thereby demanding substantial in-domain data for downstream adaptation. To address these challenges, we introduce BooST, a two-stage framework that explicitly bridges semantics and motions to satisfy all three desiderata. BooST first leverages a cross-modal VQ-VAE to capture both semantic intent and motion dynamics, yielding a unified skill representation. It then distills this representation into a lightweight policy for efficient downstream adaptation to new tasks. Extensive experiments across simulation and real-robot settings demonstrate that BooST achieves superior few-shot adaptation, cross-domain skill transfer, and robustness to dynamic visual distractors, while maintaining a lightweight yet expressive design suitable for real-world deployment.",
-          "authors": [
-            "Jusuk Lee",
-            "Daesol Cho",
-            "Jonghun Shin",
-            "Seungyeon Yoo",
-            "Jonghae Park",
-            "Taekbeom Lee",
-            "H. Jin Kim"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.CV",
-            "cs.LG"
-          ],
-          "published": "2026-08-11T07:35:12+00:00",
-          "link": "https://arxiv.org/pdf/2608.10600v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "BooST improves policy learning by bridging semantic intent and motion dynamics for efficient skill transfer",
-          "llm_evidence_cn": "BooST桥接语义意图与运动动力学，实现高效技能迁移，改进策略学习",
-          "llm_evidence": "BooST桥接语义意图与运动动力学，实现高效技能迁移，改进策略学习",
-          "canonical_evidence": "BooST桥接语义意图与运动动力学，实现高效技能迁移，改进策略学习",
-          "llm_tldr_en": "BooST learns two-stage skill abstractions capturing high-level semantics and low-level motions, improving sample efficiency and generalization for downstream policy adaptation.",
-          "llm_tldr_cn": "技能迁移需要同时捕获高级语义意图和低级运动动力学，现有方法往往只覆盖其一，导致下游策略需大量域内数据。BooST提出两阶段技能抽象，先提取语义化技能，再补充运动细节，从而生成更完整的技能先验。实验证明它能在少样本条件下高效迁移到新任务与新域，显著提升策略学习的泛化能力。",
-          "llm_tldr": "技能迁移需要同时捕获高级语义意图和低级运动动力学，现有方法往往只覆盖其一，导致下游策略需大量域内数据。BooST提出两阶段技能抽象，先提取语义化技能，再补充运动细节，从而生成更完整的技能先验。实验证明它能在少样本条件下高效迁移到新任务与新域，显著提升策略学习的泛化能力。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.10600v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.11363v1",
-          "source": "arxiv",
-          "title": "Adaptation of Generalist Robot Policies with Minimal Data",
-          "abstract": "A central goal in robot learning is to move beyond task-specific human data collection toward robots that improve through autonomous interaction. Yet fully autonomous learning remains difficult with current policies: sparse rewards and weak zero-shot exploration make it unlikely that a robot will discover successful behavior from scratch. We study minimal-data adaptation, a regime in which a pre-trained robot policy must learn a new task from as little as one demonstration followed by autonomous online interaction. This setting serves as the closest tractable proxy for fully autonomous improvement, allowing us to study whether minimal human guidance can bootstrap autonomous learning and what algorithmic ingredients make it feasible. We build MiDAS, a simple offline-to-online RL recipe that first anchors a pre-trained VLA to the target task with behavior cloning on single/few demonstrations, then improves it through value-based online RL on a residual policy parameterization. Across LIBERO and RoboCasa, MiDAS recovers strong task performance from as little as one demonstration, substantially outperforming baselines and generalizing beyond demonstrated conditions. We further evaluate MiDAS on a bimanual YAM platform. Starting from a fragile low-success policy obtained from a single demonstration, MiDAS improves its robustness and learns new successful behaviors over ~6 hours of online interaction. To the best of our knowledge, this is the first demonstration of reliable robot policy adaptation from a single task demonstration.",
-          "authors": [
-            "Shreyas Kowshik",
-            "Sreyas Venkataraman",
-            "Leo Wang",
-            "Niharika Pant",
-            "Max Simchowitz",
-            "Aviral Kumar"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.LG"
-          ],
-          "published": "2026-08-11T19:15:26+00:00",
-          "link": "https://arxiv.org/pdf/2608.11363v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Adapts pretrained generalist robot policies to new tasks with minimal demonstrations, improving policy sample efficiency",
-          "llm_evidence_cn": "用极少演示和在线交互适配通用机器人策略，提升策略学习效率",
-          "llm_evidence": "用极少演示和在线交互适配通用机器人策略，提升策略学习效率",
-          "canonical_evidence": "用极少演示和在线交互适配通用机器人策略，提升策略学习效率",
-          "llm_tldr_en": "MiDAS studies minimal-data adaptation, bootstrapping autonomous learning from one demonstration to adapt generalist policies to new tasks.",
-          "llm_tldr_cn": "通用机器人策略希望脱离任务专属数据收集，但完全自主探索在稀疏奖励下难以习得行为。MiDAS研究最小数据适配：给定一条演示后，策略通过自主在线交互学习新任务。实验表明，配合合适的离线初始化与探索策略，单条演示即可引导自主改进，为通用机器人策略的自适应提升提供了可行范式。",
-          "llm_tldr": "通用机器人策略希望脱离任务专属数据收集，但完全自主探索在稀疏奖励下难以习得行为。MiDAS研究最小数据适配：给定一条演示后，策略通过自主在线交互学习新任务。实验表明，配合合适的离线初始化与探索策略，单条演示即可引导自主改进，为通用机器人策略的自适应提升提供了可行范式。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.11363v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.11204v1",
-          "source": "arxiv",
-          "title": "Surgical WAM: A World-Action Model for Data-Efficient Surgical Robot Learning",
-          "abstract": "Learning reliable surgical manipulation policies is bottlenecked by the scarcity of action-labeled demonstrations: teleoperated surgical robot (e.g., dVRK) trajectories with synchronized kinematics are costly to collect, while surgical tasks demand precise contact handling, long-horizon reasoning, and bimanual coordination. Endoscopic video is comparatively inexpensive and abundant relative to synchronized video--kinematics trajectories, and a natural way to exploit it is to learn world models of surgical scenes. However, existing surgical world models use video primarily for simulation or policy evaluation, and rarely translate the learned dynamics into closed-loop control. This gap raises our central question: under a fixed budget of action-labeled demonstrations, does action-free video pretraining improve closed-loop surgical manipulation? To answer it, we introduce the Surgical World-Action Model (Surgical WAM), a unified generative model built on Cosmos Policy that jointly predicts future endoscopic observations and executable surgical robot action chunks. Surgical WAM first learns surgical visual dynamics from action-free video and is then fine-tuned on the fixed action-labeled budget; at deployment, it acts as a closed-loop, receding-horizon controller that executes a short prefix of each predicted action chunk and replans from the resulting observation. On a suite of four simulated surgical manipulation tasks, video pretraining improves the average success rate from 63.5% to 77.8%, including an absolute gain of 20 percentage points on PegTransfer, with the largest improvements on contact-rich and bimanual tasks. These results demonstrate that action-free video provides transferable visual dynamics priors for learning surgical robot control with limited action supervision, positioning data-efficient video pretraining as a practical path toward scaling up surgical robot learning.",
-          "authors": [
-            "Wenrui Bao",
-            "Tianyun Jiang",
-            "Zhiben Chen",
-            "Ser-Nam Lim",
-            "Peter D. Peng",
-            "Yuzhang Shang"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.AI",
-            "cs.CV"
-          ],
-          "published": "2026-08-11T17:59:13+00:00",
-          "link": "https://arxiv.org/pdf/2608.11204v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "World-action model for data-efficient surgical manipulation policy learning; enhances robot manipulation via policy",
-          "llm_evidence_cn": "世界动作模型提升手术机器人操作策略的数据效率与性能",
-          "llm_evidence": "世界动作模型提升手术机器人操作策略的数据效率与性能",
-          "canonical_evidence": "世界动作模型提升手术机器人操作策略的数据效率与性能",
-          "llm_tldr_en": "Surgical WAM uses abundant endoscopic video to learn surgical scene dynamics and turn them into closed-loop control, tackling action-labeled data scarcity for data-efficient surgical robot policy learning.",
-          "llm_tldr_cn": "手术操作策略学习受限于带动作标签的演示数据稀缺，而内窥镜视频相对丰富。Surgical WAM提出利用视频学习手术场景动力学，并将其用于闭环控制，而不是仅做仿真或评估。在固定动作标注预算下，该方法显著提升了数据效率和操作性能，展示了世界模型在数据稀缺机器人操作学习中的潜力。",
-          "llm_tldr": "手术操作策略学习受限于带动作标签的演示数据稀缺，而内窥镜视频相对丰富。Surgical WAM提出利用视频学习手术场景动力学，并将其用于闭环控制，而不是仅做仿真或评估。在固定动作标注预算下，该方法显著提升了数据效率和操作性能，展示了世界模型在数据稀缺机器人操作学习中的潜力。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.11204v1",
-          "carry_days": 1
-        },
         {
           "id": "2608.13438v1",
           "source": "arxiv",
@@ -635,13 +506,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "pre-contact monitoring of chunked visuomotor policies to improve manipulation",
-          "llm_evidence_cn": "对分块视觉运动策略进行接触前监控以提升操作表现",
-          "llm_evidence": "对分块视觉运动策略进行接触前监控以提升操作表现",
-          "canonical_evidence": "对分块视觉运动策略进行接触前监控以提升操作表现",
-          "llm_tldr_en": "ContactGuard predicts the short-horizon consequence of a visuomotor policy's planned action chunk with a latent world model and aborts before failure contact, improving manipulation success.",
-          "llm_tldr_cn": "接触富集操作中，机器人往往在发生接触后才意识到失败，此时物体可能已被推离或破坏。为了提前规避风险，本文提出ContactGuard，利用动作条件下的潜在世界模型预测策略动作块的短期视觉后果，若预测到失败便中止执行。该监控模型无需标注轨迹即可训练。实验证明其在接近阶段就能识别失败风险，减少错误接触并提高操作成功率。这种接触前监控思路为策略执行安全提供了有效补充。",
-          "llm_tldr": "接触富集操作中，机器人往往在发生接触后才意识到失败，此时物体可能已被推离或破坏。为了提前规避风险，本文提出ContactGuard，利用动作条件下的潜在世界模型预测策略动作块的短期视觉后果，若预测到失败便中止执行。该监控模型无需标注轨迹即可训练。实验证明其在接近阶段就能识别失败风险，减少错误接触并提高操作成功率。这种接触前监控思路为策略执行安全提供了有效补充。",
+          "llm_evidence_en": "Pre-contact execution monitor for chunked visuomotor policies using latent world models to prevent manipulation failures",
+          "llm_evidence_cn": "利用潜在世界模型对分块视觉运动策略进行接触前执行监控，预防操作失败",
+          "llm_evidence": "利用潜在世界模型对分块视觉运动策略进行接触前执行监控，预防操作失败",
+          "canonical_evidence": "利用潜在世界模型对分块视觉运动策略进行接触前执行监控，预防操作失败",
+          "llm_tldr_en": "ContactGuard predicts short-horizon consequences of chunked visuomotor policy actions in latent visual space and aborts before contact if failure is likely, improving reliability of contact-rich manipulation with wrist cameras.",
+          "llm_tldr_cn": "针对接触丰富的机器人操作中只能在接触后才发现失败的问题，提出ContactGuard接触前执行监控器。它利用未经标注的机器人轨迹训练潜在世界模型，预测分块视觉运动策略计划动作的短期后果，并在潜在失败发生前中止执行。实验在腕部相机设置下减少了推滑、扰动等失误，并无需额外真值标注。该方法为提升操作策略的鲁棒性提供了有效的安全监测机制。",
+          "llm_tldr": "针对接触丰富的机器人操作中只能在接触后才发现失败的问题，提出ContactGuard接触前执行监控器。它利用未经标注的机器人轨迹训练潜在世界模型，预测分块视觉运动策略计划动作的短期后果，并在潜在失败发生前中止执行。实验在腕部相机设置下减少了推滑、扰动等失误，并无需额外真值标注。该方法为提升操作策略的鲁棒性提供了有效的安全监测机制。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -674,13 +545,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "Nested policy learning with copilot-assisted teleoperation enhances dexterous manipulation by reducing demonstration burden and improving policy learning.",
-          "llm_evidence_cn": "嵌套策略学习结合副驾驶辅助遥操作降低了灵巧操作的演示采集负担，提升了策略学习效果。",
-          "llm_evidence": "嵌套策略学习结合副驾驶辅助遥操作降低了灵巧操作的演示采集负担，提升了策略学习效果。",
-          "canonical_evidence": "嵌套策略学习结合副驾驶辅助遥操作降低了灵巧操作的演示采集负担，提升了策略学习效果。",
-          "llm_tldr_en": "Presents NestDex, a nested policy learning framework that uses learned hand skills and single-DoF clutch teleoperation to reduce demonstration burden for dexterous manipulation.",
-          "llm_tldr_cn": "灵巧操作要求手臂运动与精细手指动作协调，现有方法难以采集完整一致的演示数据。论文提出NestDex嵌套策略学习框架，用已学手部技能辅助采集演示：操作者控制手臂并通过单自由度离合器调节手部技能，而非直接控制完整手指轨迹。内层手部策略从最新演示中自适应调整动作。实验表明该方法显著降低灵巧操作演示采集难度，提升策略学习效果。",
-          "llm_tldr": "灵巧操作要求手臂运动与精细手指动作协调，现有方法难以采集完整一致的演示数据。论文提出NestDex嵌套策略学习框架，用已学手部技能辅助采集演示：操作者控制手臂并通过单自由度离合器调节手部技能，而非直接控制完整手指轨迹。内层手部策略从最新演示中自适应调整动作。实验表明该方法显著降低灵巧操作演示采集难度，提升策略学习效果。",
+          "llm_evidence_en": "Nested policy learning with copilot teleoperation for dexterous manipulation, improving policy collection and performance",
+          "llm_evidence_cn": "通过嵌套策略学习与副驾驶遥操作降低灵巧操作数据采集难度并提升策略性能",
+          "llm_evidence": "通过嵌套策略学习与副驾驶遥操作降低灵巧操作数据采集难度并提升策略性能",
+          "canonical_evidence": "通过嵌套策略学习与副驾驶遥操作降低灵巧操作数据采集难度并提升策略性能",
+          "llm_tldr_en": "NestDex uses a nested policy-learning framework where an inner hand policy assists demonstration collection via a single-DoF clutch, reducing the burden of full finger trajectory specification for dexterous manipulation.",
+          "llm_tldr_cn": "针对灵巧操作中收集一致完整演示困难的问题，提出NestDex嵌套策略学习框架。操作者通过单自由度离合器控制机械臂并调节手部技能，由内层手部策略自适应生成精细手指动作，从而降低演示负担并提升数据质量。实验表明，该方法能更高效地收集完整任务演示，并训练出性能更好的灵巧操作策略。这为接触丰富的灵巧操作学习提供了一个实用的数据与策略联合优化框架。",
+          "llm_tldr": "针对灵巧操作中收集一致完整演示困难的问题，提出NestDex嵌套策略学习框架。操作者通过单自由度离合器控制机械臂并调节手部技能，由内层手部策略自适应生成精细手指动作，从而降低演示负担并提升数据质量。实验表明，该方法能更高效地收集完整任务演示，并训练出性能更好的灵巧操作策略。这为接触丰富的灵巧操作学习提供了一个实用的数据与策略联合优化框架。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -689,6 +560,50 @@
           "matched_requirement_id": "req-4",
           "selection_source": "carryover_cache",
           "paper_id": "2608.13362v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.10780v2",
+          "source": "arxiv",
+          "title": "JEPA-WAM: Stage-Level Joint-Embedding Prediction for World-Action Models in Robot Manipulation",
+          "abstract": "Generalist robot policies aim to map multimodal observations and linguistic task instructions to actions across diverse tasks. However, existing methods typically represent the future as a fixed, short video-action chunk. This short-term future captures local scene evolution for action execution, but it does not explicitly describe the stage-level future that specifies how a task should progress from its current stage to the next. We therefore distinguish two complementary futures for robot manipulation: a short-term physical future to capture local scene evolution and a stage-level semantic future to represent task progress. We introduce JEPA-WAM, which augments a Motus-based World Action Model (WAM) with Stage-JEPA, a goal-conditioned Joint-Embedding Predictive Architecture (JEPA) predictor. Given the current observation and task instruction, Stage-JEPA uses a frozen V-JEPA2 encoder to extract the current-state representation and predicts the latent target of the next inferred stage. Across 50 RoboTwin 2.0 tasks in clean and randomized environments, JEPA-WAM achieves 90.25% overall success and reduces the mean number of execution steps in successful rollouts by 5.97% relative to the strongest baseline.",
+          "authors": [
+            "Xiao Liu",
+            "Yuguang Yang",
+            "Xi Wang",
+            "Kai Jiang",
+            "Cheng Chi",
+            "Yong Xu",
+            "Wenchao Ding",
+            "Yilun Chen",
+            "Yan Wang"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-08-11T10:33:12+00:00",
+          "link": "https://arxiv.org/pdf/2608.10780v2",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Stage-level joint-embedding prediction augments world-action models with semantic future for manipulation",
+          "llm_evidence_cn": "用阶段级联合嵌入预测为世界动作模型补充语义未来以改善操作",
+          "llm_evidence": "用阶段级联合嵌入预测为世界动作模型补充语义未来以改善操作",
+          "canonical_evidence": "用阶段级联合嵌入预测为世界动作模型补充语义未来以改善操作",
+          "llm_tldr_en": "Introduces JEPA-WAM, which augments a Motus-based World Action Model with Stage-JEPA to predict a stage-level semantic future alongside the short-term physical future, improving long-horizon manipulation.",
+          "llm_tldr_cn": "本文指出现有通用机器人策略通常只预测固定的短视频-动作块，无法显式刻画从当前阶段到下一阶段的语义进展，提出JEPA-WAM：在Motus世界动作模型基础上引入Stage-JEPA，联合预测短期物理未来与阶段级语义未来。该方法使策略更好地理解任务进度，在长程机械臂操作任务中提升了语义一致性与成功率，对pi0类世界模型策略具有直接参考价值。",
+          "llm_tldr": "本文指出现有通用机器人策略通常只预测固定的短视频-动作块，无法显式刻画从当前阶段到下一阶段的语义进展，提出JEPA-WAM：在Motus世界动作模型基础上引入Stage-JEPA，联合预测短期物理未来与阶段级语义未来。该方法使策略更好地理解任务进度，在长程机械臂操作任务中提升了语义一致性与成功率，对pi0类世界模型策略具有直接参考价值。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.10780v2",
           "carry_days": 1
         }
       ]
