@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-16T18:57:18.160698+00:00",
-  "updated_date": "20260816",
+  "generated_at": "2026-08-17T20:31:47.058160+00:00",
+  "updated_date": "20260817",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,133 +480,9 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260816",
+      "updated_date": "20260817",
       "carryover_days": 9,
-      "items": [
-        {
-          "id": "2608.13438v1",
-          "source": "arxiv",
-          "title": "ContactGuard: Pre-Contact Execution Monitoring with Action-Conditioned Latent World Models",
-          "abstract": "Contact-rich manipulation failures are often detected only after the robot has committed to contact. This is especially limiting in wrist-camera setups: close gripper--object views help observe contact, but a poor approach may already push, miss, slip, or disturb the object before conventional detectors react. We introduce \\emph{ContactGuard}, a pre-contact execution monitor for chunked visuomotor policies. Given the policy's planned action chunk, ContactGuard predicts its short-horizon consequence in latent visual space and aborts if the predicted future latent indicates likely failure. Its latent world model is trained from unlabelled robot trajectories to predict compact multi-view visual embeddings under planned actions, avoiding pixel-level video prediction. A lightweight failure probe is then trained from a small labelled set of pre-contact clips. At deployment, ContactGuard anchors prediction before an imminent contact event, rolls the model forward under the policy's own actions, and verifies the predicted post-contact latent. Across real-world contact-rich manipulation tasks, ContactGuard predicts failure more accurately than direct and corrupted-action ablations, and transfers to live robot as a pre-contact abort signal without modifying the underlying policy.",
-          "authors": [
-            "Gehan Zheng",
-            "Matthew Johnson-Roberson",
-            "Weiming Zhi"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO",
-            "cs.AI",
-            "cs.CV"
-          ],
-          "published": "2026-08-13T16:25:54+00:00",
-          "link": "https://arxiv.org/pdf/2608.13438v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Pre-contact execution monitor for chunked visuomotor policies using latent world models to prevent manipulation failures",
-          "llm_evidence_cn": "利用潜在世界模型对分块视觉运动策略进行接触前执行监控，预防操作失败",
-          "llm_evidence": "利用潜在世界模型对分块视觉运动策略进行接触前执行监控，预防操作失败",
-          "canonical_evidence": "利用潜在世界模型对分块视觉运动策略进行接触前执行监控，预防操作失败",
-          "llm_tldr_en": "ContactGuard predicts short-horizon consequences of chunked visuomotor policy actions in latent visual space and aborts before contact if failure is likely, improving reliability of contact-rich manipulation with wrist cameras.",
-          "llm_tldr_cn": "针对接触丰富的机器人操作中只能在接触后才发现失败的问题，提出ContactGuard接触前执行监控器。它利用未经标注的机器人轨迹训练潜在世界模型，预测分块视觉运动策略计划动作的短期后果，并在潜在失败发生前中止执行。实验在腕部相机设置下减少了推滑、扰动等失误，并无需额外真值标注。该方法为提升操作策略的鲁棒性提供了有效的安全监测机制。",
-          "llm_tldr": "针对接触丰富的机器人操作中只能在接触后才发现失败的问题，提出ContactGuard接触前执行监控器。它利用未经标注的机器人轨迹训练潜在世界模型，预测分块视觉运动策略计划动作的短期后果，并在潜在失败发生前中止执行。实验在腕部相机设置下减少了推滑、扰动等失误，并无需额外真值标注。该方法为提升操作策略的鲁棒性提供了有效的安全监测机制。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.13438v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.13362v1",
-          "source": "arxiv",
-          "title": "NestDex: Nested Policy Learning with Copilot Assisted Teleoperation for Dexterous Manipulation",
-          "abstract": "Dexterous manipulation promises substantially richer robot interaction with the physical world, but learning these behaviours remains constrained by the difficulty of collecting consistent, complete-task demonstrations. Unlike parallel-jaw manipulation, dexterous tasks require the operator to coordinate arm motion with precise, contact-rich finger behaviour throughout the task. We introduce NestDex, a nested policy-learning framework that reduces this burden by using learned hand skills to assist demonstration collection. The operator controls the arm and regulates the active hand skill through a single-DoF clutch, rather than directly specifying the full finger trajectory. The inner hand policy adapts its motion from the latest proprioceptive history, while a vision-language selector activates the appropriate skill for each task stage. The resulting demonstrations train a separate outer visuomotor policy that controls both the arm and hand without the inner policies at deployment. A hand-action variational autoencoder provides compact hand-action targets while retaining arm commands in joint space. Across real-world dexterous manipulation experiments, NestDex improves demonstration reliability and efficiency, and the resulting empirical evaluations support effective autonomous policy learning. Video Demo are available at project website https://aus.bot/research/nestdex.",
-          "authors": [
-            "James Zhao",
-            "Jinhe Tang",
-            "Mingyuan Ba",
-            "Weiming Zhi"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-13T15:25:39+00:00",
-          "link": "https://arxiv.org/pdf/2608.13362v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Nested policy learning with copilot teleoperation for dexterous manipulation, improving policy collection and performance",
-          "llm_evidence_cn": "通过嵌套策略学习与副驾驶遥操作降低灵巧操作数据采集难度并提升策略性能",
-          "llm_evidence": "通过嵌套策略学习与副驾驶遥操作降低灵巧操作数据采集难度并提升策略性能",
-          "canonical_evidence": "通过嵌套策略学习与副驾驶遥操作降低灵巧操作数据采集难度并提升策略性能",
-          "llm_tldr_en": "NestDex uses a nested policy-learning framework where an inner hand policy assists demonstration collection via a single-DoF clutch, reducing the burden of full finger trajectory specification for dexterous manipulation.",
-          "llm_tldr_cn": "针对灵巧操作中收集一致完整演示困难的问题，提出NestDex嵌套策略学习框架。操作者通过单自由度离合器控制机械臂并调节手部技能，由内层手部策略自适应生成精细手指动作，从而降低演示负担并提升数据质量。实验表明，该方法能更高效地收集完整任务演示，并训练出性能更好的灵巧操作策略。这为接触丰富的灵巧操作学习提供了一个实用的数据与策略联合优化框架。",
-          "llm_tldr": "针对灵巧操作中收集一致完整演示困难的问题，提出NestDex嵌套策略学习框架。操作者通过单自由度离合器控制机械臂并调节手部技能，由内层手部策略自适应生成精细手指动作，从而降低演示负担并提升数据质量。实验表明，该方法能更高效地收集完整任务演示，并训练出性能更好的灵巧操作策略。这为接触丰富的灵巧操作学习提供了一个实用的数据与策略联合优化框架。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.13362v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.10780v2",
-          "source": "arxiv",
-          "title": "JEPA-WAM: Stage-Level Joint-Embedding Prediction for World-Action Models in Robot Manipulation",
-          "abstract": "Generalist robot policies aim to map multimodal observations and linguistic task instructions to actions across diverse tasks. However, existing methods typically represent the future as a fixed, short video-action chunk. This short-term future captures local scene evolution for action execution, but it does not explicitly describe the stage-level future that specifies how a task should progress from its current stage to the next. We therefore distinguish two complementary futures for robot manipulation: a short-term physical future to capture local scene evolution and a stage-level semantic future to represent task progress. We introduce JEPA-WAM, which augments a Motus-based World Action Model (WAM) with Stage-JEPA, a goal-conditioned Joint-Embedding Predictive Architecture (JEPA) predictor. Given the current observation and task instruction, Stage-JEPA uses a frozen V-JEPA2 encoder to extract the current-state representation and predicts the latent target of the next inferred stage. Across 50 RoboTwin 2.0 tasks in clean and randomized environments, JEPA-WAM achieves 90.25% overall success and reduces the mean number of execution steps in successful rollouts by 5.97% relative to the strongest baseline.",
-          "authors": [
-            "Xiao Liu",
-            "Yuguang Yang",
-            "Xi Wang",
-            "Kai Jiang",
-            "Cheng Chi",
-            "Yong Xu",
-            "Wenchao Ding",
-            "Yilun Chen",
-            "Yan Wang"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-11T10:33:12+00:00",
-          "link": "https://arxiv.org/pdf/2608.10780v2",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "Stage-level joint-embedding prediction augments world-action models with semantic future for manipulation",
-          "llm_evidence_cn": "用阶段级联合嵌入预测为世界动作模型补充语义未来以改善操作",
-          "llm_evidence": "用阶段级联合嵌入预测为世界动作模型补充语义未来以改善操作",
-          "canonical_evidence": "用阶段级联合嵌入预测为世界动作模型补充语义未来以改善操作",
-          "llm_tldr_en": "Introduces JEPA-WAM, which augments a Motus-based World Action Model with Stage-JEPA to predict a stage-level semantic future alongside the short-term physical future, improving long-horizon manipulation.",
-          "llm_tldr_cn": "本文指出现有通用机器人策略通常只预测固定的短视频-动作块，无法显式刻画从当前阶段到下一阶段的语义进展，提出JEPA-WAM：在Motus世界动作模型基础上引入Stage-JEPA，联合预测短期物理未来与阶段级语义未来。该方法使策略更好地理解任务进度，在长程机械臂操作任务中提升了语义一致性与成功率，对pi0类世界模型策略具有直接参考价值。",
-          "llm_tldr": "本文指出现有通用机器人策略通常只预测固定的短视频-动作块，无法显式刻画从当前阶段到下一阶段的语义进展，提出JEPA-WAM：在Motus世界动作模型基础上引入Stage-JEPA，联合预测短期物理未来与阶段级语义未来。该方法使策略更好地理解任务进度，在长程机械臂操作任务中提升了语义一致性与成功率，对pi0类世界模型策略具有直接参考价值。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.10780v2",
-          "carry_days": 1
-        }
-      ]
+      "items": []
     }
   }
 }
