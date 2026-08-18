@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-17T20:31:47.058160+00:00",
-  "updated_date": "20260817",
+  "generated_at": "2026-08-18T19:25:35.405441+00:00",
+  "updated_date": "20260818",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,9 +480,96 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260817",
+      "updated_date": "20260818",
       "carryover_days": 9,
-      "items": []
+      "items": [
+        {
+          "id": "2608.16153v1",
+          "source": "arxiv",
+          "title": "Unified Condition-Action Modeling for Accurate One-Step Action Generation",
+          "abstract": "Robot manipulation requires policies that are both accurate and efficient, as robot control must respond to changing observations under tight latency constraints. Recent diffusion and flow policies are promising, but they often treat conditions as auxiliary signals rather than jointly evolving them with action trajectories. We find that this limitation can be effectively mitigated by a \\textbf{simple yet effective unified condition-action modeling design} that represents conditions and actions in a shared token space, allowing a compact model to achieve high performance while improving both inference speed and accuracy. Therefore, we propose UCA-Flow, a unified condition-action modeling framework for accurate one-step action generation. Our method unifies observation conditions, timestep conditions, interval conditions, and action tokens into a single sequence, and processes them with a Unified Condition-Action Transformer for joint condition-action representation learning. As a result, condition representations are dynamically reconstructed according to the current generation stage, highlighting information most relevant for action refinement. Furthermore, we introduce an improved dual-pass supervision scheme over $u$ and $v$ for stronger optimization of unified condition-action modeling. UCA-Flow improves the average success rate by 9.3 percentage points over the strongest baseline, while achieving $45.6\\times$ and $33.4\\times$ speedups over DP3 and Simple DP3, and remaining $4.3\\times$ and $2.3\\times$ faster than one-step FlowPolicy and MP1, respectively.",
+          "authors": [
+            "Xinyu Zhou",
+            "Zikun Cai",
+            "Kuangji Zuo",
+            "Gen Li",
+            "Boyu Ma",
+            "Yanshuo Lu",
+            "Yutong Song",
+            "Mingqi Yuan",
+            "Jiayu Chen",
+            "Jianfei Yang"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-08-17T06:14:16+00:00",
+          "link": "https://arxiv.org/pdf/2608.16153v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Unified condition-action modeling for accurate one-step action generation in robot manipulation",
+          "llm_evidence_cn": "统一条件-动作建模实现机器人操作中高效准确的一步动作生成",
+          "llm_evidence": "统一条件-动作建模实现机器人操作中高效准确的一步动作生成",
+          "canonical_evidence": "统一条件-动作建模实现机器人操作中高效准确的一步动作生成",
+          "llm_tldr_en": "Presents UCA-Flow, a unified condition-action modeling framework that represents conditions and actions in a shared token space for accurate one-step action generation, improving inference speed and accuracy.",
+          "llm_tldr_cn": "机器人操作要求策略既准确又高效，而现有扩散和流策略常常将条件作为辅助信号而不是与动作轨迹联合演化。UCA-Flow将条件和动作表示在共享token空间中联合建模，使紧凑模型在提升推理速度的同时实现高精度的一步动作生成。实验表明该框架在准确性和效率上均优于现有方法，为实时机器人操作提供了高效的策略建模思路。",
+          "llm_tldr": "机器人操作要求策略既准确又高效，而现有扩散和流策略常常将条件作为辅助信号而不是与动作轨迹联合演化。UCA-Flow将条件和动作表示在共享token空间中联合建模，使紧凑模型在提升推理速度的同时实现高精度的一步动作生成。实验表明该框架在准确性和效率上均优于现有方法，为实时机器人操作提供了高效的策略建模思路。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.16153v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.15938v1",
+          "source": "arxiv",
+          "title": "Revisiting Open-Loop Execution in Robotics: Toward Reactive, Higher-Performing Policies",
+          "abstract": "Action chunking --- the practice of predicting a sequence of actions and executing a prefix open-loop --- has emerged as a key enabler of recent progress in imitation learning for robotic manipulation. However, executing long open-loop prefixes reduces reactivity, limiting policies' ability to correct for errors. Further, the mechanisms underlying these performance benefits remain poorly understood: prior works cite mitigating compounding errors, absorbing inference latency, or smoothing motions, but provide limited controlled evidence or guidance for preserving reactivity. In this work, we argue that long open-loop execution primarily helps short-context policies imitate \"non-Markovian demonstrations\". Across four simulation and two real-world tasks, we show that expert non-Markovianity strongly shapes the relationship between task success and open-loop execution horizon. Further, we investigate the impact of compounding errors --- the prevailing explanation for long open-loop execution in prior work --- and find that while they matter, expert non-Markovianity has a much stronger impact in our experimental setting. Finally, we show that when policies are provided with a sufficiently long context, open-loop execution is no longer beneficial and the most reactive, closed-loop policies perform best. While imitation learning has seen great success using long open-loop execution, our findings motivate long-context, reactive policies as a more principled and performant paradigm.",
+          "authors": [
+            "Michael Zeng",
+            "Abhinav Agarwal",
+            "Ajay Bati",
+            "Brian Lee",
+            "Siddharth Ancha",
+            "Russ Tedrake"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-08-16T21:49:07+00:00",
+          "link": "https://arxiv.org/pdf/2608.15938v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Analysis and guidance on action chunking for reactive higher-performing robotic manipulation policies",
+          "llm_evidence_cn": "针对动作分块的分析与指导，实现更具反应性且更高性能的机器人操作策略",
+          "llm_evidence": "针对动作分块的分析与指导，实现更具反应性且更高性能的机器人操作策略",
+          "canonical_evidence": "针对动作分块的分析与指导，实现更具反应性且更高性能的机器人操作策略",
+          "llm_tldr_en": "Investigates why action chunking improves imitation-learned manipulation policies, argues long open-loop execution helps imitate non-Markovian demonstrations, and proposes guidance for preserving reactivity.",
+          "llm_tldr_cn": "动作分块是近期模仿学习机器人操作取得成功的关键，但长开环执行会降低反应性并限制纠错能力。本文通过四个仿真和两个真实机器人实验论证，长开环执行主要帮助短上下文策略模仿非马尔可夫演示，而非此前认为的误差抑制或延迟隐藏。研究为在保持反应性的同时设计更高性能的操作策略提供了机理分析和实用指导。",
+          "llm_tldr": "动作分块是近期模仿学习机器人操作取得成功的关键，但长开环执行会降低反应性并限制纠错能力。本文通过四个仿真和两个真实机器人实验论证，长开环执行主要帮助短上下文策略模仿非马尔可夫演示，而非此前认为的误差抑制或延迟隐藏。研究为在保持反应性的同时设计更高性能的操作策略提供了机理分析和实用指导。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "robot manipulation enhancement through policy",
+          "matched_requirement_id": "req-4",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.15938v1",
+          "carry_days": 1
+        }
+      ]
     }
   }
 }
