@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-18T19:25:35.405441+00:00",
-  "updated_date": "20260818",
+  "generated_at": "2026-08-19T19:28:07.735497+00:00",
+  "updated_date": "20260819",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,7 +480,7 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260818",
+      "updated_date": "20260819",
       "carryover_days": 9,
       "items": [
         {
@@ -511,62 +511,142 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "Unified condition-action modeling for accurate one-step action generation in robot manipulation",
-          "llm_evidence_cn": "统一条件-动作建模实现机器人操作中高效准确的一步动作生成",
-          "llm_evidence": "统一条件-动作建模实现机器人操作中高效准确的一步动作生成",
-          "canonical_evidence": "统一条件-动作建模实现机器人操作中高效准确的一步动作生成",
-          "llm_tldr_en": "Presents UCA-Flow, a unified condition-action modeling framework that represents conditions and actions in a shared token space for accurate one-step action generation, improving inference speed and accuracy.",
-          "llm_tldr_cn": "机器人操作要求策略既准确又高效，而现有扩散和流策略常常将条件作为辅助信号而不是与动作轨迹联合演化。UCA-Flow将条件和动作表示在共享token空间中联合建模，使紧凑模型在提升推理速度的同时实现高精度的一步动作生成。实验表明该框架在准确性和效率上均优于现有方法，为实时机器人操作提供了高效的策略建模思路。",
-          "llm_tldr": "机器人操作要求策略既准确又高效，而现有扩散和流策略常常将条件作为辅助信号而不是与动作轨迹联合演化。UCA-Flow将条件和动作表示在共享token空间中联合建模，使紧凑模型在提升推理速度的同时实现高精度的一步动作生成。实验表明该框架在准确性和效率上均优于现有方法，为实时机器人操作提供了高效的策略建模思路。",
+          "llm_evidence_en": "Unified condition-action modeling enables accurate one-step action generation for robot manipulation",
+          "llm_evidence_cn": "统一条件-动作建模实现机器人操作的精确一步动作生成",
+          "llm_evidence": "统一条件-动作建模实现机器人操作的精确一步动作生成",
+          "canonical_evidence": "统一条件-动作建模实现机器人操作的精确一步动作生成",
+          "llm_tldr_en": "UCA-Flow proposes a unified condition-action modeling framework that represents conditions and actions in a shared token space, enabling compact models to achieve high-performance one-step action generation with improved speed and accuracy.",
+          "llm_tldr_cn": "扩散策略和流策略通常将条件视为辅助信号，导致生成动作不够精准且推理较慢。UCA-Flow提出统一条件-动作建模，将条件与动作表示在共享词元空间协同演化，从而在保持紧凑模型的同时提升推理速度与动作精度。实验表明该方法能实现高精度的一步动作生成，满足机器人控制的低延迟需求。这为高效操作策略设计提供了新范式。",
+          "llm_tldr": "扩散策略和流策略通常将条件视为辅助信号，导致生成动作不够精准且推理较慢。UCA-Flow提出统一条件-动作建模，将条件与动作表示在共享词元空间协同演化，从而在保持紧凑模型的同时提升推理速度与动作精度。实验表明该方法能实现高精度的一步动作生成，满足机器人控制的低延迟需求。这为高效操作策略设计提供了新范式。",
           "llm_tags": [
             "query:pi-robotics"
           ],
           "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
+          "matched_query_text": "policy improvement for robotics performance",
+          "matched_requirement_id": "req-3",
           "selection_source": "carryover_cache",
           "paper_id": "2608.16153v1",
           "carry_days": 1
         },
         {
-          "id": "2608.15938v1",
+          "id": "2608.16715v1",
           "source": "arxiv",
-          "title": "Revisiting Open-Loop Execution in Robotics: Toward Reactive, Higher-Performing Policies",
-          "abstract": "Action chunking --- the practice of predicting a sequence of actions and executing a prefix open-loop --- has emerged as a key enabler of recent progress in imitation learning for robotic manipulation. However, executing long open-loop prefixes reduces reactivity, limiting policies' ability to correct for errors. Further, the mechanisms underlying these performance benefits remain poorly understood: prior works cite mitigating compounding errors, absorbing inference latency, or smoothing motions, but provide limited controlled evidence or guidance for preserving reactivity. In this work, we argue that long open-loop execution primarily helps short-context policies imitate \"non-Markovian demonstrations\". Across four simulation and two real-world tasks, we show that expert non-Markovianity strongly shapes the relationship between task success and open-loop execution horizon. Further, we investigate the impact of compounding errors --- the prevailing explanation for long open-loop execution in prior work --- and find that while they matter, expert non-Markovianity has a much stronger impact in our experimental setting. Finally, we show that when policies are provided with a sufficiently long context, open-loop execution is no longer beneficial and the most reactive, closed-loop policies perform best. While imitation learning has seen great success using long open-loop execution, our findings motivate long-context, reactive policies as a more principled and performant paradigm.",
+          "title": "MatchingPolicy: Correspondence-Aware Policy Enables Cross-Object In-Context Learning",
+          "abstract": "In-context imitation learning enables few-shot policy generalization but struggles to maintain performance on unseen objects and novel scenarios. To address this, we introduce MatchingPolicy, a correspondence-driven framework that explicitly decouples demonstration-to-scene matching from policy learning. Central to our method is a correspondence-aware diffusion policy that conditions robotic actions directly on dense semantic correspondences. This architectural separation resolves the inherent conflict between correspondence identification and action adaptation, enabling robust out-of-distribution transfer. Our framework integrates vision foundation models with a novel two-stage matching algorithm to dynamically establish reliable correspondences. Extensive evaluations on RLBench and real-world manipulation tasks confirm that MatchingPolicy achieves superior few-shot performance, generalizing reliably across unseen object instances and semantic categories.",
           "authors": [
-            "Michael Zeng",
-            "Abhinav Agarwal",
-            "Ajay Bati",
-            "Brian Lee",
-            "Siddharth Ancha",
-            "Russ Tedrake"
+            "Qijin She",
+            "Hanyang Yu",
+            "Zeming Li",
+            "Ping Tan"
           ],
           "primary_category": "cs.RO",
           "categories": [
             "cs.RO"
           ],
-          "published": "2026-08-16T21:49:07+00:00",
-          "link": "https://arxiv.org/pdf/2608.15938v1",
+          "published": "2026-08-17T15:29:58+00:00",
+          "link": "https://arxiv.org/pdf/2608.16715v1",
           "tags": [
             "keyword:pi-robotics",
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "Analysis and guidance on action chunking for reactive higher-performing robotic manipulation policies",
-          "llm_evidence_cn": "针对动作分块的分析与指导，实现更具反应性且更高性能的机器人操作策略",
-          "llm_evidence": "针对动作分块的分析与指导，实现更具反应性且更高性能的机器人操作策略",
-          "canonical_evidence": "针对动作分块的分析与指导，实现更具反应性且更高性能的机器人操作策略",
-          "llm_tldr_en": "Investigates why action chunking improves imitation-learned manipulation policies, argues long open-loop execution helps imitate non-Markovian demonstrations, and proposes guidance for preserving reactivity.",
-          "llm_tldr_cn": "动作分块是近期模仿学习机器人操作取得成功的关键，但长开环执行会降低反应性并限制纠错能力。本文通过四个仿真和两个真实机器人实验论证，长开环执行主要帮助短上下文策略模仿非马尔可夫演示，而非此前认为的误差抑制或延迟隐藏。研究为在保持反应性的同时设计更高性能的操作策略提供了机理分析和实用指导。",
-          "llm_tldr": "动作分块是近期模仿学习机器人操作取得成功的关键，但长开环执行会降低反应性并限制纠错能力。本文通过四个仿真和两个真实机器人实验论证，长开环执行主要帮助短上下文策略模仿非马尔可夫演示，而非此前认为的误差抑制或延迟隐藏。研究为在保持反应性的同时设计更高性能的操作策略提供了机理分析和实用指导。",
+          "llm_evidence_en": "Correspondence-aware diffusion policy improves robot manipulation generalization",
+          "llm_evidence_cn": "对应感知扩散策略提升机器人操作泛化性能",
+          "llm_evidence": "对应感知扩散策略提升机器人操作泛化性能",
+          "canonical_evidence": "对应感知扩散策略提升机器人操作泛化性能",
+          "llm_tldr_en": "MatchingPolicy is a correspondence-driven framework that decouples demonstration-to-scene matching from policy learning, using a correspondence-aware diffusion policy for robust cross-object in-context imitation learning.",
+          "llm_tldr_cn": "上下文模仿学习在未见物体和新场景上性能下降，是机器人操作泛化的关键难题。MatchingPolicy提出对应感知策略框架，将演示到场景的对应匹配与策略学习解耦，并利用稠密语义对应关系直接条件化扩散策略。由于对应识别与动作适应的冲突被消除，该方法在跨物体分布外转移中表现鲁棒。实验表明MatchingPolicy显著提升了少样本操作策略的泛化能力。",
+          "llm_tldr": "上下文模仿学习在未见物体和新场景上性能下降，是机器人操作泛化的关键难题。MatchingPolicy提出对应感知策略框架，将演示到场景的对应匹配与策略学习解耦，并利用稠密语义对应关系直接条件化扩散策略。由于对应识别与动作适应的冲突被消除，该方法在跨物体分布外转移中表现鲁棒。实验表明MatchingPolicy显著提升了少样本操作策略的泛化能力。",
           "llm_tags": [
             "query:pi-robotics"
           ],
           "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
+          "matched_query_text": "policy improvement for robotics performance",
+          "matched_requirement_id": "req-3",
           "selection_source": "carryover_cache",
-          "paper_id": "2608.15938v1",
+          "paper_id": "2608.16715v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.17320v1",
+          "source": "arxiv",
+          "title": "Robust Brachiation on a Life-Sized Dual-Arm Robot Using Waypoint-Guided Reinforcement Learning",
+          "abstract": "Brachiation is a form of locomotion in which primates move primarily using their arms, enabling traversal in environments without footholds. However, this motion requires highly coordinated whole-body movement and precise timing control for bar grasping and release. As a result, achieving robust behavior on life-sized robotic platforms remains challenging. In this study, we present a reinforcement learning-based method to realize brachiation on a life-sized dual-arm robot. The core of the proposed approach is Waypoint-Guided Reinforcement Learning (WGRL), a learning framework for inducing non-linear and complex motions. For high-difficulty tasks where imitation learning data are unavailable, WGRL guides behavior acquisition by sparsely specifying waypoints for the end-effector trajectory, while whole-body motion is generated through reinforcement learning. In addition, by integrating the waypoint-following guidance with rewards based on task success and mechanical energy, and training in an environment designed for Sim-to-Real transfer, the proposed method achieves both forward progression and motion stability. The acquired behavior is evaluated through Sim-to-Sim experiments under monkey-bar environments with geometric variations and hardware experiments, confirming robust brachiation including failure recovery behavior. This study provides effective learning design guidelines for realizing arm-based locomotion on life-sized robotic hardware and expanding the traversable workspace of robots.",
+          "authors": [
+            "Ayumu Iwata",
+            "Kento Kawaharazuka",
+            "Keita Yoneda",
+            "Takahiro Hattori",
+            "Kei Okada"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-08-18T03:24:50+00:00",
+          "link": "https://arxiv.org/pdf/2608.17320v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Waypoint-guided RL policy improves robust brachiation on a life-sized robot, matching policy improvement for robotics performance.",
+          "llm_evidence_cn": "航点引导强化学习提升机器人臂杆运动鲁棒性，符合基于策略改进提升机器人性能。",
+          "llm_evidence": "航点引导强化学习提升机器人臂杆运动鲁棒性，符合基于策略改进提升机器人性能。",
+          "canonical_evidence": "航点引导强化学习提升机器人臂杆运动鲁棒性，符合基于策略改进提升机器人性能。",
+          "llm_tldr_en": "Presents Waypoint-Guided Reinforcement Learning (WGRL) for robust brachiation on a life-sized dual-arm robot; the framework induces non-linear complex motions without imitation data, achieving coordinated whole-body control and precise bar-grasping timing.",
+          "llm_tldr_cn": "针对类人尺码双机械臂机器人难以通过强化学习实现稳健荡绳运动的问题，提出航点引导强化学习框架WGRL，在缺少示教数据时以航点序列引导复杂非线性行为的习得，实现全身协调与抓杆/释放的精确时序控制。实验表明该方法能够在实体机器人上产生鲁棒行为，为通过策略学习提升复杂机器人运动性能提供了有效途径。",
+          "llm_tldr": "针对类人尺码双机械臂机器人难以通过强化学习实现稳健荡绳运动的问题，提出航点引导强化学习框架WGRL，在缺少示教数据时以航点序列引导复杂非线性行为的习得，实现全身协调与抓杆/释放的精确时序控制。实验表明该方法能够在实体机器人上产生鲁棒行为，为通过策略学习提升复杂机器人运动性能提供了有效途径。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "policy improvement for robotics performance",
+          "matched_requirement_id": "req-3",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.17320v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.17027v1",
+          "source": "arxiv",
+          "title": "FetchMan: Learning Visual Humanoid Loco-Manipulation Policies from Simulated Experiences",
+          "abstract": "Visual loco-manipulation policies that can generalize to novel scenes and objects have long been a goal of robotics research. However, today's data-hungry algorithms make collecting sufficient demonstrations a struggle for tabletop manipulation, and even more so for humanoids that must also walk and balance. Learning from simulated data and transferring that behavior to the real world, as is commonly done in locomotion, sidesteps this struggle, so we replicate that recipe for loco-manipulation. In doing so, we find that cloning synthetic demonstrations results in a low performance ceiling no matter the amount of training data. Reinforcement learning breaks through it, and refining the cloned policy with Flow-GRPO on a single sparse reward yields performance that synthetic behavior cloning cannot match. Together, these stages form our end-to-end sim-to-real pipeline spanning more than 150,000 scenes, which we use to train FetchMan. We evaluate it on FetchMan-Bench, a simulation benchmark we release, and deploy it zero-shot on a real Unitree G1, where our single-object reach-and-pick policy walks to and grasps a target across unseen scenes at 73.3% success. Finally, we extend this recipe to multi-object training, a first step toward loco-manipulation generalist policies at this data scale.",
+          "authors": [
+            "Omar Rayyan",
+            "Zhi Li",
+            "Max Argus",
+            "Yuxin Jiang",
+            "Chang Yu",
+            "Chenfanfu Jiang",
+            "Yuchen Cui"
+          ],
+          "primary_category": "cs.RO",
+          "categories": [
+            "cs.RO"
+          ],
+          "published": "2026-08-17T18:24:41+00:00",
+          "link": "https://arxiv.org/pdf/2608.17027v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "policy improvement via RL refinement for humanoid robot performance",
+          "llm_evidence_cn": "通过强化学习细化策略以提升人形机器人性能",
+          "llm_evidence": "通过强化学习细化策略以提升人形机器人性能",
+          "canonical_evidence": "通过强化学习细化策略以提升人形机器人性能",
+          "llm_tldr_en": "Learning visual humanoid loco-manipulation from simulated data, showing cloning saturates while RL refinement with Flow-GRPO boosts performance and transferability without huge real-world demonstration costs.",
+          "llm_tldr_cn": "人形机器人移动操作需要大量演示数据，直接克隆仿真演示的性能上限较低。本文提出从仿真经验学习视觉策略，并利用Flow-GRPO强化学习细化克隆策略，突破性能瓶颈。实验表明该方法能有效提升人形机器人移动操作的性能并实现仿真到真实的迁移，为节省真实数据的策略改进提供了可行路径。",
+          "llm_tldr": "人形机器人移动操作需要大量演示数据，直接克隆仿真演示的性能上限较低。本文提出从仿真经验学习视觉策略，并利用Flow-GRPO强化学习细化克隆策略，突破性能瓶颈。实验表明该方法能有效提升人形机器人移动操作的性能并实现仿真到真实的迁移，为节省真实数据的策略改进提供了可行路径。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "policy improvement for robotics performance",
+          "matched_requirement_id": "req-3",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.17027v1",
           "carry_days": 1
         }
       ]
