@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-20T20:13:58.848513+00:00",
-  "updated_date": "20260820",
+  "generated_at": "2026-08-21T20:28:15.365156+00:00",
+  "updated_date": "20260821",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,175 +480,9 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260820",
+      "updated_date": "20260821",
       "carryover_days": 9,
       "items": [
-        {
-          "id": "2608.16153v1",
-          "source": "arxiv",
-          "title": "Unified Condition-Action Modeling for Accurate One-Step Action Generation",
-          "abstract": "Robot manipulation requires policies that are both accurate and efficient, as robot control must respond to changing observations under tight latency constraints. Recent diffusion and flow policies are promising, but they often treat conditions as auxiliary signals rather than jointly evolving them with action trajectories. We find that this limitation can be effectively mitigated by a \\textbf{simple yet effective unified condition-action modeling design} that represents conditions and actions in a shared token space, allowing a compact model to achieve high performance while improving both inference speed and accuracy. Therefore, we propose UCA-Flow, a unified condition-action modeling framework for accurate one-step action generation. Our method unifies observation conditions, timestep conditions, interval conditions, and action tokens into a single sequence, and processes them with a Unified Condition-Action Transformer for joint condition-action representation learning. As a result, condition representations are dynamically reconstructed according to the current generation stage, highlighting information most relevant for action refinement. Furthermore, we introduce an improved dual-pass supervision scheme over $u$ and $v$ for stronger optimization of unified condition-action modeling. UCA-Flow improves the average success rate by 9.3 percentage points over the strongest baseline, while achieving $45.6\\times$ and $33.4\\times$ speedups over DP3 and Simple DP3, and remaining $4.3\\times$ and $2.3\\times$ faster than one-step FlowPolicy and MP1, respectively.",
-          "authors": [
-            "Xinyu Zhou",
-            "Zikun Cai",
-            "Kuangji Zuo",
-            "Gen Li",
-            "Boyu Ma",
-            "Yanshuo Lu",
-            "Yutong Song",
-            "Mingqi Yuan",
-            "Jiayu Chen",
-            "Jianfei Yang"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-17T06:14:16+00:00",
-          "link": "https://arxiv.org/pdf/2608.16153v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "unified condition-action modeling for accurate one-step action generation in robot manipulation",
-          "llm_evidence_cn": "统一条件-动作建模，实现准确的单步动作生成以改善机器人操作",
-          "llm_evidence": "统一条件-动作建模，实现准确的单步动作生成以改善机器人操作",
-          "canonical_evidence": "统一条件-动作建模，实现准确的单步动作生成以改善机器人操作",
-          "llm_tldr_en": "UCA-Flow models conditions and actions in a shared token space, improving diffusion/flow policies' accuracy and speed for one-step action generation in robot manipulation.",
-          "llm_tldr_cn": "扩散/流策略通常将条件视为辅助信号，而非与动作联合演化，这限制了一步步生成时的准确与效率。本文提出UCA-Flow，将条件与动作表示到共享词元空间，在紧凑模型上同时提升推理速度与精度，实现可满足低时延控制需求的一步动作生成。",
-          "llm_tldr": "扩散/流策略通常将条件视为辅助信号，而非与动作联合演化，这限制了一步步生成时的准确与效率。本文提出UCA-Flow，将条件与动作表示到共享词元空间，在紧凑模型上同时提升推理速度与精度，实现可满足低时延控制需求的一步动作生成。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.16153v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.16715v1",
-          "source": "arxiv",
-          "title": "MatchingPolicy: Correspondence-Aware Policy Enables Cross-Object In-Context Learning",
-          "abstract": "In-context imitation learning enables few-shot policy generalization but struggles to maintain performance on unseen objects and novel scenarios. To address this, we introduce MatchingPolicy, a correspondence-driven framework that explicitly decouples demonstration-to-scene matching from policy learning. Central to our method is a correspondence-aware diffusion policy that conditions robotic actions directly on dense semantic correspondences. This architectural separation resolves the inherent conflict between correspondence identification and action adaptation, enabling robust out-of-distribution transfer. Our framework integrates vision foundation models with a novel two-stage matching algorithm to dynamically establish reliable correspondences. Extensive evaluations on RLBench and real-world manipulation tasks confirm that MatchingPolicy achieves superior few-shot performance, generalizing reliably across unseen object instances and semantic categories.",
-          "authors": [
-            "Qijin She",
-            "Hanyang Yu",
-            "Zeming Li",
-            "Ping Tan"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-17T15:29:58+00:00",
-          "link": "https://arxiv.org/pdf/2608.16715v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "correspondence-aware diffusion policy for robotic manipulation, improving policy generalization",
-          "llm_evidence_cn": "提出对应感知的扩散策略以提升机器人操作策略的泛化性能",
-          "llm_evidence": "提出对应感知的扩散策略以提升机器人操作策略的泛化性能",
-          "canonical_evidence": "提出对应感知的扩散策略以提升机器人操作策略的泛化性能",
-          "llm_tldr_en": "Proposes MatchingPolicy, a correspondence-aware diffusion policy that separates matching from action adaptation, improving cross-object in-context imitation for robotic manipulation.",
-          "llm_tldr_cn": "针对上下文模仿学习在未见物体和新场景上泛化不足的问题，提出MatchingPolicy框架，将演示到场景的匹配与策略学习显式解耦，并采用对应感知的扩散策略来直接利用稠密语义对应关系生成动作。其两阶段匹配算法结合视觉基础模型，能够动态建立可靠对应关系。实验表明该方法在分布外迁移和跨物体操作上表现稳健，为机器人操作策略的泛化提供了新的思路。",
-          "llm_tldr": "针对上下文模仿学习在未见物体和新场景上泛化不足的问题，提出MatchingPolicy框架，将演示到场景的匹配与策略学习显式解耦，并采用对应感知的扩散策略来直接利用稠密语义对应关系生成动作。其两阶段匹配算法结合视觉基础模型，能够动态建立可靠对应关系。实验表明该方法在分布外迁移和跨物体操作上表现稳健，为机器人操作策略的泛化提供了新的思路。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.16715v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.17717v1",
-          "source": "arxiv",
-          "title": "CompCPZ: Preserving Multi-Modal Intent in Language-Guided Robot Manipulation",
-          "abstract": "A robot asked to \"place the cup near the red plate or the blue plate\" may reach the centroid between them and appear geometrically successful, while satisfying neither disjunct of the instruction. This silent semantic failure exposes a structural limitation of language-conditioned robot policies: representations that collapse a disjunctive instruction into a single connected set cannot preserve all feasible modes, and planners that commit to one action degrade under run-time mode uncertainty. We address this limitation with CompCPZ, a sound algebraic layer that language-conditioned learning systems wrap to recover multi-modal disjunctive representation, recursively composing per-primitive constrained polynomial zonotope enclosures along the language parse tree with distribution-free conformal coverage and sub-millisecond runtime. On a closed-loop ManiSkill3 tabletop-manipulation benchmark, CompCPZ outperforms convex set baselines, multi-peak decoders, and a zero-shot vision-language-action model (1,900/1,918 paired wins, p << 10^(-30)); the same compiler also transfers without retuning to planar real-robot trials on a Unitree Go2 quadruped under motion capture. These results suggest that compositional language grounding should be evaluated not only by reaching a decoded target, but by whether the represented feasibility set preserves the connected-component structure of the user's intent.",
-          "authors": [
-            "Zhen Zhang",
-            "Ahmad Hafez",
-            "Peng Xie",
-            "Yanliang Huang",
-            "Wenyuan Wu",
-            "Amr Alanwar"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-18T12:42:26+00:00",
-          "link": "https://arxiv.org/pdf/2608.17717v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "language-conditioned policy layer preserving disjunctive intent for robot manipulation",
-          "llm_evidence_cn": "面向语言引导机器人操作的多模态意图保持策略层",
-          "llm_evidence": "面向语言引导机器人操作的多模态意图保持策略层",
-          "canonical_evidence": "面向语言引导机器人操作的多模态意图保持策略层",
-          "llm_tldr_en": "CompCPZ addresses disjunctive language instructions that collapse into a single connected set, using constrained polynomial zonotope enclosures to preserve multi-modal intent and reduce silent semantic failures.",
-          "llm_tldr_cn": "语言引导的机器人操作策略常将析取式指令压成单一连通集合，导致语义失败。本文提出CompCPZ，一种基于约束多项式zonotope的代数层，递归组合原语包围盒，保持多模态析取表示，并支持运行时模式不确定性下的规划，提升指令满足率。该工作在语言条件策略语义保持方面具有通用价值。",
-          "llm_tldr": "语言引导的机器人操作策略常将析取式指令压成单一连通集合，导致语义失败。本文提出CompCPZ，一种基于约束多项式zonotope的代数层，递归组合原语包围盒，保持多模态析取表示，并支持运行时模式不确定性下的规划，提升指令满足率。该工作在语言条件策略语义保持方面具有通用价值。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "robot manipulation enhancement through policy",
-          "matched_requirement_id": "req-4",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.17717v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.18787v1",
-          "source": "arxiv",
-          "title": "Dream2Reward: Transition-Alignment Reward Models from Positive Demonstrations for Robotic Manipulation",
-          "abstract": "Learning robotic policies requires dense rewards that remain informative when behavior departs from successful demonstrations. Progress-based rewards estimate how far an observation has advanced along a nominal successful trajectory, but may remain high after an incorrect transition. We introduce Dream2Reward, which learns a language-conditioned successful latent transition field from positive demonstrations. Given the visual history up to a transition start, the model predicts the latent displacement associated with successful execution and scores the observed displacement through signed directional and symmetric magnitude agreement. This transition-level comparison penalizes wrong-direction, overshooting, and stagnant motion even when the resulting observation appears to show progress. Dream2Reward requires no failure annotations, progress labels, or synthetic negatives, and produces a dense causal reward. Across mechanism diagnostics and shared-trajectory evaluations, it provides stronger success-failure separation and more informative feedback on low-quality behavior than progress-based alternatives. Across online and offline policy learning, the same frozen reward model reduces reward hacking and supports stronger downstream performance, including in real-robot manipulation. These results show that comparing realized motion with predicted successful change provides an effective way to convert positive demonstrations into dense rewards for robot learning.",
-          "authors": [
-            "Haoyu Zhang",
-            "Zecui Zeng",
-            "Bin Wang",
-            "Lusong Li",
-            "Liang Lin",
-            "Long Cheng"
-          ],
-          "primary_category": "cs.RO",
-          "categories": [
-            "cs.RO"
-          ],
-          "published": "2026-08-19T10:44:20+00:00",
-          "link": "https://arxiv.org/pdf/2608.18787v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "transition-alignment reward model from demonstrations for policy improvement in manipulation",
-          "llm_evidence_cn": "基于示范的转换对齐奖励模型，用于策略改善",
-          "llm_evidence": "基于示范的转换对齐奖励模型，用于策略改善",
-          "canonical_evidence": "基于示范的转换对齐奖励模型，用于策略改善",
-          "llm_tldr_en": "Dream2Reward learns a language-conditioned successful latent transition field from positive demonstrations, scoring transitions with directional and magnitude agreement to provide dense rewards for robotic policy learning.",
-          "llm_tldr_cn": "机器人的策略学习常需密集奖励，但基于进度的奖励在错误转换后仍可能偏高。本文提出Dream2Reward，从正样本演示学习语言条件下的成功潜转移场，通过有向与对称幅度一致性评分观测转移，惩罚方向错误、超调与停滞。该方法在演示偏离时仍能提供可靠奖励，提升策略训练效率。",
-          "llm_tldr": "机器人的策略学习常需密集奖励，但基于进度的奖励在错误转换后仍可能偏高。本文提出Dream2Reward，从正样本演示学习语言条件下的成功潜转移场，通过有向与对称幅度一致性评分观测转移，惩罚方向错误、超调与停滞。该方法在演示偏离时仍能提供可靠奖励，提升策略训练效率。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.18787v1",
-          "carry_days": 1
-        },
         {
           "id": "2608.19182v1",
           "source": "arxiv",
@@ -678,13 +512,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "RL pretraining and post-training framework for dexterous policies across embodiments",
-          "llm_evidence_cn": "利用RL预训练与后训练加速灵巧策略习得，提升机器人操作性能",
-          "llm_evidence": "利用RL预训练与后训练加速灵巧策略习得，提升机器人操作性能",
-          "canonical_evidence": "利用RL预训练与后训练加速灵巧策略习得，提升机器人操作性能",
-          "llm_tldr_en": "ADEPT uses large-scale RL pretraining on object reposing and post-training as a prior to learn long-horizon dexterous skills from raw visuo-tactile perception, enabling sim-to-real transfer and avoiding relearning basic skills.",
-          "llm_tldr_cn": "高自由度灵巧机器人从零学习长程任务非常困难，且每个新任务都要重复学习相同技能。ADEPT提出大规模强化学习框架，先在通用物体重排任务上预训练灵巧策略，再将其作为先验对下游策略进行后训练。该方法使多指机器人能从原始视觉-触觉感知解决长程任务，并预训练策略可零样本完成重排阶段，同时支持sim-to-real迁移。这为灵巧操作提供了可复用的预训练先验，大幅降低新任务学习成本。",
-          "llm_tldr": "高自由度灵巧机器人从零学习长程任务非常困难，且每个新任务都要重复学习相同技能。ADEPT提出大规模强化学习框架，先在通用物体重排任务上预训练灵巧策略，再将其作为先验对下游策略进行后训练。该方法使多指机器人能从原始视觉-触觉感知解决长程任务，并预训练策略可零样本完成重排阶段，同时支持sim-to-real迁移。这为灵巧操作提供了可复用的预训练先验，大幅降低新任务学习成本。",
+          "llm_evidence_en": "pretrain and post-train policy RL framework for dexterous manipulation",
+          "llm_evidence_cn": "用于灵巧操作的预训练-后训练强化学习框架",
+          "llm_evidence": "用于灵巧操作的预训练-后训练强化学习框架",
+          "canonical_evidence": "用于灵巧操作的预训练-后训练强化学习框架",
+          "llm_tldr_en": "ADEPT is a large-scale RL framework that pretrains a dexterous policy on generic object reposing and post-trains downstream policies on raw visuo-tactile perception, enabling sim-to-real transferable dexterity across high-DoF embodiments.",
+          "llm_tldr_cn": "多指机器人灵巧操作通常需要针对每个新任务从头学习，效率低下且难以发现难学行为。ADEPT提出先在通用物体重摆放任务上预训练灵巧策略，再以下游策略作为先验进行后训练，从而复用技能并支持原始视觉-触觉感知输入。该框架能够在高自由度机器人上实现可迁移到真实世界的灵巧操作，并避免重复学习相同技能。",
+          "llm_tldr": "多指机器人灵巧操作通常需要针对每个新任务从头学习，效率低下且难以发现难学行为。ADEPT提出先在通用物体重摆放任务上预训练灵巧策略，再以下游策略作为先验进行后训练，从而复用技能并支持原始视觉-触觉感知输入。该框架能够在高自由度机器人上实现可迁移到真实世界的灵巧操作，并避免重复学习相同技能。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -693,6 +527,48 @@
           "matched_requirement_id": "req-3",
           "selection_source": "carryover_cache",
           "paper_id": "2608.19182v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2608.20208v1",
+          "source": "arxiv",
+          "title": "RoMAN-Flow: Taming Autoregressive Normalizing Flows for Offline Reinforcement Learning in Robotic Manipulation",
+          "abstract": "Offline reinforcement learning improves robotic policies using previously collected data without further environment interaction. Yet prevalent diffusion- and flow-matching robot policies lack tractable likelihoods, limiting their use in likelihood-based offline RL post-training. AR-NFs offer both expressive action modeling and exact likelihood evaluation, but their sequential sampling incurs substantial sampling overhead during policy optimization and deployment. We present RoMAN-Flow (Robotic Manipulation with Autoregressive Normalizing Flows), an offline reinforcement learning framework that makes AR-NF policies practical for robotic manipulation by addressing this sampling bottleneck in both stages. During policy optimization, RoMAN-Flow employs a sampling-free, advantage-weighted likelihood objective that assigns higher likelihood to high-advantage actions from the offline dataset without sampling from the autoregressive policy. For efficient deployment, it distills the optimized autoregressive policy into a one-step action generator, enabling low-latency action prediction. Experiments across multiple simulated manipulation benchmarks and real-world robotic platforms demonstrate that RoMAN-Flow achieves competitive policy performance while substantially reducing inference latency. Code is available at https://github.com/konnyaku28/RoMAN-Flow.",
+          "authors": [
+            "Shaoxuan Wang",
+            "Guangting Zheng",
+            "Rui Huang",
+            "Zhipeng Tang",
+            "Sha Zhang",
+            "Jiajun Deng",
+            "Yanyong Zhang"
+          ],
+          "primary_category": "cs.CV",
+          "categories": [
+            "cs.CV"
+          ],
+          "published": "2026-08-20T16:07:56+00:00",
+          "link": "https://arxiv.org/pdf/2608.20208v1",
+          "tags": [
+            "keyword:pi-robotics",
+            "query:pi-robotics"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "makes autoregressive normalizing flow policies practical for offline RL in robotic manipulation",
+          "llm_evidence_cn": "使自回归归一化流策略在机器人操作的离线RL中变得实用",
+          "llm_evidence": "使自回归归一化流策略在机器人操作的离线RL中变得实用",
+          "canonical_evidence": "使自回归归一化流策略在机器人操作的离线RL中变得实用",
+          "llm_tldr_en": "RoMAN-Flow makes autoregressive normalizing flow policies practical for offline RL in robotic manipulation by addressing sampling overhead during policy optimization and deployment, enabling expressive action modeling with exact likelihoods.",
+          "llm_tldr_cn": "针对扩散和流匹配策略缺乏可计算似然而难以用于离线RL后训练的问题，本文提出RoMAN-Flow框架，将自回归归一化流策略应用于机器人操作，并解决其顺序采样带来的开销。该方法同时优化策略优化和部署阶段的采样效率，使模型兼具表达力与精确似然计算能力。实验表明其能有效利用离线数据进行策略改进，为机器人操作中的策略性能提升提供了实用路径。",
+          "llm_tldr": "针对扩散和流匹配策略缺乏可计算似然而难以用于离线RL后训练的问题，本文提出RoMAN-Flow框架，将自回归归一化流策略应用于机器人操作，并解决其顺序采样带来的开销。该方法同时优化策略优化和部署阶段的采样效率，使模型兼具表达力与精确似然计算能力。实验表明其能有效利用离线数据进行策略改进，为机器人操作中的策略性能提升提供了实用路径。",
+          "llm_tags": [
+            "query:pi-robotics"
+          ],
+          "matched_query_tag": "query:pi-robotics",
+          "matched_query_text": "policy improvement for robotics performance",
+          "matched_requirement_id": "req-3",
+          "selection_source": "carryover_cache",
+          "paper_id": "2608.20208v1",
           "carry_days": 1
         }
       ]
