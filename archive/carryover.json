@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-21T20:28:15.365156+00:00",
-  "updated_date": "20260821",
+  "generated_at": "2026-08-22T19:40:24.272351+00:00",
+  "updated_date": "20260822",
   "carryover_days": 9,
   "tag_states": {
     "embodied-vla": {
@@ -480,7 +480,7 @@
       "items": []
     },
     "pi-robotics": {
-      "updated_date": "20260821",
+      "updated_date": "20260822",
       "carryover_days": 9,
       "items": [
         {
@@ -512,13 +512,13 @@
             "query:pi-robotics"
           ],
           "llm_score": 8.0,
-          "llm_evidence_en": "pretrain and post-train policy RL framework for dexterous manipulation",
-          "llm_evidence_cn": "用于灵巧操作的预训练-后训练强化学习框架",
-          "llm_evidence": "用于灵巧操作的预训练-后训练强化学习框架",
-          "canonical_evidence": "用于灵巧操作的预训练-后训练强化学习框架",
-          "llm_tldr_en": "ADEPT is a large-scale RL framework that pretrains a dexterous policy on generic object reposing and post-trains downstream policies on raw visuo-tactile perception, enabling sim-to-real transferable dexterity across high-DoF embodiments.",
-          "llm_tldr_cn": "多指机器人灵巧操作通常需要针对每个新任务从头学习，效率低下且难以发现难学行为。ADEPT提出先在通用物体重摆放任务上预训练灵巧策略，再以下游策略作为先验进行后训练，从而复用技能并支持原始视觉-触觉感知输入。该框架能够在高自由度机器人上实现可迁移到真实世界的灵巧操作，并避免重复学习相同技能。",
-          "llm_tldr": "多指机器人灵巧操作通常需要针对每个新任务从头学习，效率低下且难以发现难学行为。ADEPT提出先在通用物体重摆放任务上预训练灵巧策略，再以下游策略作为先验进行后训练，从而复用技能并支持原始视觉-触觉感知输入。该框架能够在高自由度机器人上实现可迁移到真实世界的灵巧操作，并避免重复学习相同技能。",
+          "llm_evidence_en": "pre-training and post-training RL framework for learning transferable dexterous policies",
+          "llm_evidence_cn": "通过预训练与后训练学习可迁移灵巧策略的RL框架",
+          "llm_evidence": "通过预训练与后训练学习可迁移灵巧策略的RL框架",
+          "canonical_evidence": "通过预训练与后训练学习可迁移灵巧策略的RL框架",
+          "llm_tldr_en": "ADEPT pretrains a dexterous policy on object reposing with raw visuo-tactile perception, then post-trains downstream policies, enabling sim-to-real transferable dexterity across high-DoF robots.",
+          "llm_tldr_cn": "该论文提出ADEPT，一种面向高自由度机器人灵巧操作的大规模强化学习框架，旨在学习可模拟到真实迁移的灵活技能。它先在通用物体重定位任务上预训练灵巧策略，再通过后训练将所学先验迁移到下游任务，避免对新任务从零开始学习。预训练策略可以零样本覆盖下游任务的重定位阶段，简化后续RL微调难度。实验表明ADEPT有助于多功能手型机器人学习难以从零发现的新行为。该工作展示了预训练+后训练范式在灵巧操作中的潜力。",
+          "llm_tldr": "该论文提出ADEPT，一种面向高自由度机器人灵巧操作的大规模强化学习框架，旨在学习可模拟到真实迁移的灵活技能。它先在通用物体重定位任务上预训练灵巧策略，再通过后训练将所学先验迁移到下游任务，避免对新任务从零开始学习。预训练策略可以零样本覆盖下游任务的重定位阶段，简化后续RL微调难度。实验表明ADEPT有助于多功能手型机器人学习难以从零发现的新行为。该工作展示了预训练+后训练范式在灵巧操作中的潜力。",
           "llm_tags": [
             "query:pi-robotics"
           ],
@@ -527,48 +527,6 @@
           "matched_requirement_id": "req-3",
           "selection_source": "carryover_cache",
           "paper_id": "2608.19182v1",
-          "carry_days": 1
-        },
-        {
-          "id": "2608.20208v1",
-          "source": "arxiv",
-          "title": "RoMAN-Flow: Taming Autoregressive Normalizing Flows for Offline Reinforcement Learning in Robotic Manipulation",
-          "abstract": "Offline reinforcement learning improves robotic policies using previously collected data without further environment interaction. Yet prevalent diffusion- and flow-matching robot policies lack tractable likelihoods, limiting their use in likelihood-based offline RL post-training. AR-NFs offer both expressive action modeling and exact likelihood evaluation, but their sequential sampling incurs substantial sampling overhead during policy optimization and deployment. We present RoMAN-Flow (Robotic Manipulation with Autoregressive Normalizing Flows), an offline reinforcement learning framework that makes AR-NF policies practical for robotic manipulation by addressing this sampling bottleneck in both stages. During policy optimization, RoMAN-Flow employs a sampling-free, advantage-weighted likelihood objective that assigns higher likelihood to high-advantage actions from the offline dataset without sampling from the autoregressive policy. For efficient deployment, it distills the optimized autoregressive policy into a one-step action generator, enabling low-latency action prediction. Experiments across multiple simulated manipulation benchmarks and real-world robotic platforms demonstrate that RoMAN-Flow achieves competitive policy performance while substantially reducing inference latency. Code is available at https://github.com/konnyaku28/RoMAN-Flow.",
-          "authors": [
-            "Shaoxuan Wang",
-            "Guangting Zheng",
-            "Rui Huang",
-            "Zhipeng Tang",
-            "Sha Zhang",
-            "Jiajun Deng",
-            "Yanyong Zhang"
-          ],
-          "primary_category": "cs.CV",
-          "categories": [
-            "cs.CV"
-          ],
-          "published": "2026-08-20T16:07:56+00:00",
-          "link": "https://arxiv.org/pdf/2608.20208v1",
-          "tags": [
-            "keyword:pi-robotics",
-            "query:pi-robotics"
-          ],
-          "llm_score": 8.0,
-          "llm_evidence_en": "makes autoregressive normalizing flow policies practical for offline RL in robotic manipulation",
-          "llm_evidence_cn": "使自回归归一化流策略在机器人操作的离线RL中变得实用",
-          "llm_evidence": "使自回归归一化流策略在机器人操作的离线RL中变得实用",
-          "canonical_evidence": "使自回归归一化流策略在机器人操作的离线RL中变得实用",
-          "llm_tldr_en": "RoMAN-Flow makes autoregressive normalizing flow policies practical for offline RL in robotic manipulation by addressing sampling overhead during policy optimization and deployment, enabling expressive action modeling with exact likelihoods.",
-          "llm_tldr_cn": "针对扩散和流匹配策略缺乏可计算似然而难以用于离线RL后训练的问题，本文提出RoMAN-Flow框架，将自回归归一化流策略应用于机器人操作，并解决其顺序采样带来的开销。该方法同时优化策略优化和部署阶段的采样效率，使模型兼具表达力与精确似然计算能力。实验表明其能有效利用离线数据进行策略改进，为机器人操作中的策略性能提升提供了实用路径。",
-          "llm_tldr": "针对扩散和流匹配策略缺乏可计算似然而难以用于离线RL后训练的问题，本文提出RoMAN-Flow框架，将自回归归一化流策略应用于机器人操作，并解决其顺序采样带来的开销。该方法同时优化策略优化和部署阶段的采样效率，使模型兼具表达力与精确似然计算能力。实验表明其能有效利用离线数据进行策略改进，为机器人操作中的策略性能提升提供了实用路径。",
-          "llm_tags": [
-            "query:pi-robotics"
-          ],
-          "matched_query_tag": "query:pi-robotics",
-          "matched_query_text": "policy improvement for robotics performance",
-          "matched_requirement_id": "req-3",
-          "selection_source": "carryover_cache",
-          "paper_id": "2608.20208v1",
           "carry_days": 1
         }
       ]
