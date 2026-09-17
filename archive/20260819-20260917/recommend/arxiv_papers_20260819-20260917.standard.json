@@ -1,0 +1,1421 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-09-17T05:07:55.248475+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 54,
+    "deep_cap": 6,
+    "deep_selected": 21,
+    "quick_candidates": 53,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2608.22067v1",
+      "source": "arxiv",
+      "title": "Inferring Action from Future Latent State for Robotic Manipulation",
+      "abstract": "World-Action Models (WAMs) build robot control on video-generation backbones, which jointly predict dense future visual trajectories and robot actions. We argue that video generation is an unnecessary intermediate objective for world-action modeling. For robotic manipulation, the goal of a world model is not to reproduce how the world looks at every intermediate moment, but to predict the state that the world will reach after an action is executed. The intermediate frames only describe the visual transition between physical states, which consumes substantial model capacity and computation, but do not directly specify the physical outcome that the robot action is intended to produce. In this paper, we propose DELE-w0.5, which infers robot actions from predicted future states without relying on video generation. Concretely, DELE-w0.5 infers the action sequence from its corresponding compact future latent state. The future latent state captures the action-relevant physical outcome of robot interaction and serves as an explicit bridge between world modeling and action generation. The core design principle of DELE-w0.5 is to model how the physical world changes under robot actions, rather than how its visual appearance evolves frame by frame. This formulation removes the high-dimensional visual redundancy introduced by dense video representations, and it therefore enables cheaper training and low-latency inference. Across 480 real-robot trials on four long-horizon manipulation tasks, our DELE-w0.5 achieves the best performance among all compared policies, attaining 62.5 overall full-task success and 81.3 macro ordered-stage progress, outperforming the strongest baseline by 47.5 and 30.7 percentage points, respectively.",
+      "authors": [
+        "Fenghao Lei",
+        "Zhixiong Huang",
+        "Long Yang",
+        "Jiabao Chen",
+        "Jie Cheng",
+        "Peilin Huang",
+        "Han Fu",
+        "Zhuo Li",
+        "Xiaoxue Ren"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-08-22T18:17:36+00:00",
+      "link": "https://arxiv.org/pdf/2608.22067v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "world-action model infers robot actions from future latent state for manipulation",
+      "llm_evidence_cn": "世界-动作模型从未来潜在状态推断机器人操作动作",
+      "llm_evidence": "世界-动作模型从未来潜在状态推断机器人操作动作",
+      "canonical_evidence": "世界-动作模型从未来潜在状态推断机器人操作动作",
+      "llm_tldr_en": "World-action models build on video generation, an unnecessary and costly intermediate objective. DELE-w0.5 infers robot actions directly from predicted future latent states, skipping dense frame prediction for more efficient manipulation world modeling.",
+      "llm_tldr_cn": "现有世界-动作模型以视频生成为主干，需预测稠密的未来视觉轨迹与动作，计算开销大，而中间帧并不直接对应动作的物理结果。作者认为视频生成对世界-动作建模是多余目标，提出DELE-w0.5，直接从预测的未来潜在状态推断机器人动作，只关注动作执行后世界将到达的状态。该工作为机器人操作的世界建模提供了更精简高效的建模范式。",
+      "llm_tldr": "现有世界-动作模型以视频生成为主干，需预测稠密的未来视觉轨迹与动作，计算开销大，而中间帧并不直接对应动作的物理结果。作者认为视频生成对世界-动作建模是多余目标，提出DELE-w0.5，直接从预测的未来潜在状态推断机器人动作，只关注动作执行后世界将到达的状态。该工作为机器人操作的世界建模提供了更精简高效的建模范式。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.22067v2",
+      "source": "arxiv",
+      "title": "Inferring Action from Future Latent State for Robotic Manipulation",
+      "abstract": "World-Action Models (WAMs) build robot control on video-generation backbones, which jointly predict dense future visual trajectories and robot actions. We argue that video generation is an unnecessary intermediate objective for world-action modeling. For robotic manipulation, the goal of a world model is not to reproduce how the world looks at every intermediate moment, but to predict the state that the world will reach after an action is executed. The intermediate frames only describe the visual transition between physical states, which consumes substantial model capacity and computation, but do not directly specify the physical outcome that the robot action is intended to produce. In this paper, we propose DELE-w0.5, which infers robot actions from predicted future states without relying on video generation. Concretely, DELE-w0.5 infers the action sequence from its corresponding compact future latent state. The future latent state captures the action-relevant physical outcome of robot interaction and serves as an explicit bridge between world modeling and action generation. The core design principle of DELE-w0.5 is to model how the physical world changes under robot actions, rather than how its visual appearance evolves frame by frame. This formulation removes the high-dimensional visual redundancy introduced by dense video representations, and it therefore enables cheaper training and low-latency inference. Across 480 real-robot trials on four long-horizon manipulation tasks, our DELE-w0.5 achieves the best performance among all compared policies, attaining 62.5 overall full-task success and 81.3 macro ordered-stage progress, outperforming the strongest baseline by 47.5 and 30.7 percentage points, respectively.",
+      "authors": [
+        "Fenghao Lei",
+        "Zhixiong Huang",
+        "Long Yang",
+        "Jiabao Chen",
+        "Peilin Huang",
+        "Han Fu",
+        "Zhuo Li",
+        "Xiaoxue Ren"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-08-22T18:17:36+00:00",
+      "link": "https://arxiv.org/pdf/2608.22067v2",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "world-action model infers robot actions from future latent state for manipulation",
+      "llm_evidence_cn": "世界-动作模型从未来潜在状态推断机器人操作动作",
+      "llm_evidence": "世界-动作模型从未来潜在状态推断机器人操作动作",
+      "canonical_evidence": "世界-动作模型从未来潜在状态推断机器人操作动作",
+      "llm_tldr_en": "World-action models build on video generation, an unnecessary and costly intermediate objective. DELE-w0.5 infers robot actions directly from predicted future latent states, skipping dense frame prediction for more efficient manipulation world modeling.",
+      "llm_tldr_cn": "现有世界-动作模型以视频生成为主干，需预测稠密的未来视觉轨迹与动作，计算开销大，而中间帧并不直接对应动作的物理结果。作者认为视频生成对世界-动作建模是多余目标，提出DELE-w0.5，直接从预测的未来潜在状态推断机器人动作，只关注动作执行后世界将到达的状态。该工作为机器人操作的世界建模提供了更精简高效的建模范式。",
+      "llm_tldr": "现有世界-动作模型以视频生成为主干，需预测稠密的未来视觉轨迹与动作，计算开销大，而中间帧并不直接对应动作的物理结果。作者认为视频生成对世界-动作建模是多余目标，提出DELE-w0.5，直接从预测的未来潜在状态推断机器人动作，只关注动作执行后世界将到达的状态。该工作为机器人操作的世界建模提供了更精简高效的建模范式。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.22067v3",
+      "source": "arxiv",
+      "title": "DELE-w0.5: Inferring Action from Future Latent State for Robotic Manipulation",
+      "abstract": "World-Action Models (WAMs) build robot control on video-generation backbones, which jointly predict dense future visual trajectories and robot actions. We argue that video generation is an unnecessary intermediate objective for world-action modeling. For robotic manipulation, the goal of a world model is not to reproduce how the world looks at every intermediate moment, but to predict the state that the world will reach after an action is executed. The intermediate frames only describe the visual transition between physical states, which consumes substantial model capacity and computation, but do not directly specify the physical outcome that the robot action is intended to produce. In this paper, we propose DELE-w0.5, which infers robot actions from predicted future states without relying on video generation. Concretely, DELE-w0.5 infers the action sequence from its corresponding compact future latent state. The future latent state captures the action-relevant physical outcome of robot interaction and serves as an explicit bridge between world modeling and action generation. The core design principle of DELE-w0.5 is to model how the physical world changes under robot actions, rather than how its visual appearance evolves frame by frame. This formulation removes the high-dimensional visual redundancy introduced by dense video representations, and it therefore enables cheaper training and low-latency inference. Across 480 real-robot trials on four long-horizon manipulation tasks, our DELE-w0.5 achieves the best performance among all compared policies, attaining 62.5 overall full-task success and 81.3 macro ordered-stage progress, outperforming the strongest baseline by 47.5 and 30.7 percentage points, respectively.",
+      "authors": [
+        "Fenghao Lei",
+        "Zhixiong Huang",
+        "Long Yang",
+        "Jiabao Chen",
+        "Peilin Huang",
+        "Han Fu",
+        "Zhuo Li",
+        "Xiaoxue Ren"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-08-22T18:17:36+00:00",
+      "link": "https://arxiv.org/pdf/2608.22067v3",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "World-action model that predicts future latent state for robot control, skipping video generation",
+      "llm_evidence_cn": "世界-动作模型，从未来潜在状态推断动作以服务机器人操作",
+      "llm_evidence": "世界-动作模型，从未来潜在状态推断动作以服务机器人操作",
+      "canonical_evidence": "世界-动作模型，从未来潜在状态推断动作以服务机器人操作",
+      "llm_tldr_en": "World-action models rely on video generation as an intermediate goal; this paper argues it is unnecessary and proposes DELE-w0.5 to infer robot actions directly from future latent states, focusing world modeling on the physical outcome of actions.",
+      "llm_tldr_cn": "世界-动作模型通常以视频生成作为中间目标，需预测密集未来视觉轨迹，消耗大量算力却未必直接服务于机器人操作。本文提出DELE-w0.5，跳过视频生成，直接从未来潜在状态推断机器人动作，把世界模型的建模目标聚焦于动作执行后世界所达到的物理状态。该思路为机器人操作提供更高效、更贴近物理结果的世界-动作建模范式。",
+      "llm_tldr": "世界-动作模型通常以视频生成作为中间目标，需预测密集未来视觉轨迹，消耗大量算力却未必直接服务于机器人操作。本文提出DELE-w0.5，跳过视频生成，直接从未来潜在状态推断机器人动作，把世界模型的建模目标聚焦于动作执行后世界所达到的物理状态。该思路为机器人操作提供更高效、更贴近物理结果的世界-动作建模范式。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.22067v4",
+      "source": "arxiv",
+      "title": "DELE-w0.5: Inferring Action from Future Latent State for Robotic Manipulation",
+      "abstract": "World-Action Models (WAMs) build robot control on video-generation backbones, which jointly predict dense future visual trajectories and robot actions. We argue that video generation is an unnecessary intermediate objective for world-action modeling. For robotic manipulation, the goal of a world model is not to reproduce how the world looks at every intermediate moment, but to predict the state that the world will reach after an action is executed. The intermediate frames only describe the visual transition between physical states, which consumes substantial model capacity and computation, but do not directly specify the physical outcome that the robot action is intended to produce. In this paper, we propose DELE-w0.5, which infers robot actions from predicted future states without relying on video generation. Concretely, DELE-w0.5 infers the action sequence from its corresponding compact future latent state. The future latent state captures the action-relevant physical outcome of robot interaction and serves as an explicit bridge between world modeling and action generation. The core design principle of DELE-w0.5 is to model how the physical world changes under robot actions, rather than how its visual appearance evolves frame by frame. This formulation removes the high-dimensional visual redundancy introduced by dense video representations, and it therefore enables cheaper training and low-latency inference. Across 640 real-robot trials on four long-horizon manipulation tasks, our DELE-w0.5 achieves the best performance among all compared policies, attaining 62.5% overall full-task success and 81.3% macro ordered-stage progress. It outperforms the strongest baseline by 32.5 percentage points in full-task success and 20.1 percentage points in macro progress.",
+      "authors": [
+        "Fenghao Lei",
+        "Zhixiong Huang",
+        "Long Yang",
+        "Jiabao Chen",
+        "Peilin Huang",
+        "Han Fu",
+        "Zhuo Li",
+        "Xiaoxue Ren"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-08-22T18:17:36+00:00",
+      "link": "https://arxiv.org/pdf/2608.22067v4",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "world-action model infers robot actions from future latent state instead of video generation",
+      "llm_evidence_cn": "世界-动作模型从未来潜在状态推断机器人动作而非生成视频",
+      "llm_evidence": "世界-动作模型从未来潜在状态推断机器人动作而非生成视频",
+      "canonical_evidence": "世界-动作模型从未来潜在状态推断机器人动作而非生成视频",
+      "llm_tldr_en": "World-action models rely on video-generation backbones that predict dense future frames, an unnecessary intermediate objective for manipulation. DELE-w0.5 instead infers robot actions from the future latent state the world reaches after an action, avoiding costly frame reconstruction and better capturing physical outcomes.",
+      "llm_tldr_cn": "世界-动作模型通常基于视频生成骨干，需联合预测稠密未来视觉轨迹与机器人动作，但中间帧只描述视觉过渡，并不直接刻画动作意图产生的物理结果，消耗大量模型容量。本文提出DELE-w0.5，认为世界模型的目标是预测执行动作后世界将达到的状态，因而直接从未来潜在状态推断机器人动作。该设计省去逐帧生成开销，更直接地服务于操作任务，为世界-动作建模提供了新范式。",
+      "llm_tldr": "世界-动作模型通常基于视频生成骨干，需联合预测稠密未来视觉轨迹与机器人动作，但中间帧只描述视觉过渡，并不直接刻画动作意图产生的物理结果，消耗大量模型容量。本文提出DELE-w0.5，认为世界模型的目标是预测执行动作后世界将达到的状态，因而直接从未来潜在状态推断机器人动作。该设计省去逐帧生成开销，更直接地服务于操作任务，为世界-动作建模提供了新范式。",
+      "llm_tags": [
+        "query:embodied-ai:composite"
+      ],
+      "matched_query_tag": "query:embodied-ai:composite",
+      "matched_query_text": "Papers central to 具身智能领域内vla或者wm或者wam或者其他通过大模型方式提出的机器人或机械臂的技术创新, especially work that connects or combines: vision-language-action models for robot learning and manipulation; world models for robot planning and control; embodied intelligence with large-scale models; robotic manipulation using large models; robot learning with foundation models; How are world models applied in embodied AI for robot control and planning?; What are the advancements in large language model based approaches for robotic arms?.",
+      "matched_requirement_id": "req-composite-embodied-ai",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.22294v1",
+      "source": "arxiv",
+      "title": "Beyond Instance Slots: Semantically Rich World Models for Physical Interaction Planning",
+      "abstract": "World models for physical interaction are typically trained to predict future observations or latent features; however, a planning-oriented model must answer a fundamentally different question: whether a candidate action produces a task-consistent future while preserving essential relations.Monolithic state representations obscure the underlying entities, while standard instance-level object slots merely identify \\emph{what} is present without specifying \\emph{what role} each entity plays in the task context. To bridge this gap, we present the Semantically Rich World Model (SR-WM), a task-conditioned world model structured around five functional roles: gripper, target, goal, relation, and phase.Within SR-WM, a visual entity encoder extracts soft entity hypotheses from pretrained patch features, allowing segmentation masks to serve as optional proposal priors without mandating them as required state representations or inference inputs.A role binder subsequently maps these hypotheses to task-specific roles, while an action-conditioned dynamics model predicts role transitions alongside fine-grained semantics, including grasp/contact, predicate establishment, relation preservation, fixture state, and phase change.Crucially, this unified role state grounds downstream multi-candidate action generation, stage-aware reranking, and violation-aware suffix resampling.Our comprehensive evaluation protocol spans all four LIBERO simulation suites, cross-suite transfer, perception diagnostics, and action-sensitivity analysis.Ultimately, this formulation transforms object-centric prediction into a semantic interface linking visual dynamics with planning-oriented decision making.",
+      "authors": [
+        "Juntao Cheng",
+        "Jingkai Wang",
+        "Yijun Shen",
+        "Xiansheng Chen",
+        "Zhiwei Yu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-23T08:37:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.22294v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "task-conditioned semantically rich world model for physical interaction planning",
+      "llm_evidence_cn": "面向物理交互规划的任务条件语义世界模型",
+      "llm_evidence": "面向物理交互规划的任务条件语义世界模型",
+      "canonical_evidence": "面向物理交互规划的任务条件语义世界模型",
+      "llm_tldr_en": "Planning-oriented world models must judge whether actions yield task-consistent futures. SR-WM is a task-conditioned world model structured around five functional roles (gripper, target, goal, relation, phase) with a visual entity encoder.",
+      "llm_tldr_cn": "物理交互的世界模型通常只预测未来观测或潜特征，但面向规划的模型还需判断候选动作能否产生任务一致且保留关键关系的未来，而单块表示与实例槽位难以刻画实体在任务中的角色。本文提出语义丰富世界模型SR-WM，围绕夹爪、目标、终点、关系和阶段五种功能角色构建任务条件世界模型，并由视觉实体编码器显式编码角色。该结构提升了交互规划对任务语义与关系保持的刻画能力。",
+      "llm_tldr": "物理交互的世界模型通常只预测未来观测或潜特征，但面向规划的模型还需判断候选动作能否产生任务一致且保留关键关系的未来，而单块表示与实例槽位难以刻画实体在任务中的角色。本文提出语义丰富世界模型SR-WM，围绕夹爪、目标、终点、关系和阶段五种功能角色构建任务条件世界模型，并由视觉实体编码器显式编码角色。该结构提升了交互规划对任务语义与关系保持的刻画能力。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.24603v1",
+      "source": "arxiv",
+      "title": "Gripper-aware Vision Language Action Models",
+      "abstract": "Vision language action models (VLAs) have advanced general purpose robotic grasping and manipulation by enabling robots to interpret visual observations and natural language instructions to generate executable action sequences. However, existing VLAs often implicitly assume gripper invariance, despite grasping strategies being inherently embodiment-dependent. Different gripper types, such as parallel-jaw and suction, usually require distinct interaction strategies to achieve the same grasping objective. Moreover, current datasets for VLAs predominantly rely on parallel-jaw grippers, limiting gripper-aware learning. To address this gap, we introduce MiGA, a multi-gripper-aware dataset spanning five distinct gripper types across multiple robots with 103,000 demonstrations, explicitly capturing strategy divergence under shared task objectives. We further propose GVLA, which combines a new multi-gripper tokenizer with adapter-based policy routing. Our new gripper encoding induces structured embedding information that balances parameter sharing and strategy differentiation, while layer-wise probing confirms meaningful gripper-conditioned representations for VLAs. Intensive experiments in both simulation and real-world robots show that our GVLA outperforms the current baselines across evaluated settings. Our method also improves zero-shot generalization or few-shot adaptation to new objects or unseen tasks, and enable more efficient gripper adaptation.",
+      "authors": [
+        "Hanyi Zhang",
+        "Zihong Luo",
+        "Tianyu Li",
+        "Khang Nguyen",
+        "Basu Hela",
+        "Shreyas Kumar",
+        "Ngoc Duy Tran",
+        "Feng Dai",
+        "Charith Munasinghe",
+        "Jorge Peña Queralta",
+        "Giovanni Toffetti",
+        "Khoa Vo",
+        "Ngan Le",
+        "Ravi Prakash",
+        "Quan Vuong",
+        "Tung D. Ta",
+        "Long Hu",
+        "Anh Nguyen",
+        "Baoru Huang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-25T14:24:51+00:00",
+      "link": "https://arxiv.org/pdf/2608.24603v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "gripper-aware vision-language-action models",
+      "llm_evidence_cn": "夹爪感知的视觉-语言-动作模型",
+      "llm_evidence": "夹爪感知的视觉-语言-动作模型",
+      "canonical_evidence": "夹爪感知的视觉-语言-动作模型",
+      "llm_tldr_en": "Vision-language-action models implicitly assume gripper invariance, though grasping strategies are embodiment-dependent and datasets mostly use parallel-jaw grippers. MiGA introduces a multi-gripper dataset and gripper-aware VLA learning across five gripper types.",
+      "llm_tldr_cn": "视觉-语言-动作模型推动了通用抓取与操作，但现有模型往往隐含假设夹爪不变，而抓取策略本质上依赖具身，不同夹爪需要不同交互策略。此外，现有VLA数据集多依赖平行夹爪，限制了对夹爪的感知学习。作者提出MiGA多夹爪感知数据集，涵盖五种夹爪类型、多机器人共十万余条演示，支持夹爪感知的VLA学习，推动了具身感知的通用抓取研究。",
+      "llm_tldr": "视觉-语言-动作模型推动了通用抓取与操作，但现有模型往往隐含假设夹爪不变，而抓取策略本质上依赖具身，不同夹爪需要不同交互策略。此外，现有VLA数据集多依赖平行夹爪，限制了对夹爪的感知学习。作者提出MiGA多夹爪感知数据集，涵盖五种夹爪类型、多机器人共十万余条演示，支持夹爪感知的VLA学习，推动了具身感知的通用抓取研究。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "vision-language-action models for robot learning and manipulation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.24882v1",
+      "source": "arxiv",
+      "title": "Latent Action as Intention Enables Efficient Future Imagination for World Action Models",
+      "abstract": "World action models (WAMs) improve robot control by modeling how observations evolve, but generating future observations at test time incurs substantial latency. Fast-WAM removes this process for efficiency; however, our matched implementations show lower generalization for Fast-WAM than for future-aware alternatives, especially with scarce robot demonstrations and in out-of-distribution scenarios. To bridge this gap, we introduce **LAWA**, a WAM architecture that uses compact latent actions as an operational representation of future intentions, enabling efficient test-time future imagination without generating future observations. Specifically, a discrete tokenizer enhanced by action-free pre-training produces manipulation-centric codebook targets. LAWA jointly denoises a continuous latent state anchored to these targets with executable action chunks while omitting the future-video branch at inference. On RoboCasa, LAWA achieves state-of-the-art average success rates of 65.6% and 80.8% in the few-shot and full data settings, improving over the matched Fast-WAM baseline by 9.6 and 4.5 points, respectively. It also preserves the performance level of the matched Joint-WAM variant while requiring 42.9% lower inference latency. LAWA also demonstrates competitive zero-shot robustness on LIBERO-Plus and superior performance on real-world tasks. These results show that future imagination need not be discarded: retaining it with compact latent actions yields an effective trade-off among performance, generalization, and latency. Code and models will be released.",
+      "authors": [
+        "Xiang Li",
+        "Yupeng Zheng",
+        "Songen Gu",
+        "Huailiang Ma",
+        "Feng Yu",
+        "Xian Nie",
+        "Shanshuai Yuan",
+        "Yujie Zang",
+        "Weize Li",
+        "Shuai Tian",
+        "Moyang Liu",
+        "Ya-Qin Zhang",
+        "Wenchao Ding"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-25T17:59:03+00:00",
+      "link": "https://arxiv.org/pdf/2608.24882v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "World action model using latent actions as intentions for efficient robot control",
+      "llm_evidence_cn": "以潜在动作作为意图的世界-动作模型用于高效机器人控制",
+      "llm_evidence": "以潜在动作作为意图的世界-动作模型用于高效机器人控制",
+      "canonical_evidence": "以潜在动作作为意图的世界-动作模型用于高效机器人控制",
+      "llm_tldr_en": "World action models improve robot control but generating future observations is slow, and fast variants generalize worse. LAWA uses compact latent actions as future intentions and an action-free pretrained tokenizer to imagine futures efficiently without generating observations.",
+      "llm_tldr_cn": "世界-动作模型通过建模观测演化来改进机器人控制，但测试时生成未来观测会带来高延迟；去除该过程的快速变体在示范稀缺和分布外场景下泛化较差。本文提出LAWA，用紧凑的潜在动作作为未来意图的操作化表示，并借助动作无关预训练增强的离散分词器，实现高效测试时未来想象而无需生成观测。实验显示其在效率与泛化间取得更好平衡。",
+      "llm_tldr": "世界-动作模型通过建模观测演化来改进机器人控制，但测试时生成未来观测会带来高延迟；去除该过程的快速变体在示范稀缺和分布外场景下泛化较差。本文提出LAWA，用紧凑的潜在动作作为未来意图的操作化表示，并借助动作无关预训练增强的离散分词器，实现高效测试时未来想象而无需生成观测。实验显示其在效率与泛化间取得更好平衡。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.24882v2",
+      "source": "arxiv",
+      "title": "Latent Action as Intention Enables Efficient Future Imagination for World Action Models",
+      "abstract": "World action models (WAMs) improve robot control by modeling how observations evolve, but generating future observations at test time incurs substantial latency. Fast-WAM removes this process for efficiency; however, our matched implementations show lower generalization for Fast-WAM than for future-aware alternatives, especially with scarce robot demonstrations and in out-of-distribution scenarios. To bridge this gap, we introduce **LAWA**, a WAM architecture that uses compact latent actions as an operational representation of future intentions, enabling efficient test-time future imagination without generating future observations. Specifically, a discrete tokenizer enhanced by action-free pre-training produces manipulation-centric codebook targets. LAWA jointly denoises a continuous latent state anchored to these targets with executable action chunks while omitting the future-video branch at inference. On RoboCasa, LAWA achieves state-of-the-art average success rates of 65.6% and 80.8% in the few-shot and full data settings, improving over the matched Fast-WAM baseline by 9.6 and 4.5 points, respectively. It also preserves the performance level of the matched Joint-WAM variant while requiring 42.9% lower inference latency. LAWA also demonstrates competitive zero-shot robustness on LIBERO-Plus and superior performance on real-world tasks. These results show that future imagination need not be discarded: retaining it with compact latent actions yields an effective trade-off among performance, generalization, and latency. Code and models will be released.",
+      "authors": [
+        "Xiang Li",
+        "Yupeng Zheng",
+        "Songen Gu",
+        "Huailiang Ma",
+        "Feng Yu",
+        "Yuhang Zheng",
+        "Xian Nie",
+        "Shanshuai Yuan",
+        "Yujie Zang",
+        "Weize Li",
+        "Shuai Tian",
+        "Moyang Liu",
+        "Ya-Qin Zhang",
+        "Wenchao Ding"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-25T17:59:03+00:00",
+      "link": "https://arxiv.org/pdf/2608.24882v2",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "world action models with latent actions for efficient robot control",
+      "llm_evidence_cn": "利用潜在动作实现高效机器人控制的世界动作模型",
+      "llm_evidence": "利用潜在动作实现高效机器人控制的世界动作模型",
+      "canonical_evidence": "利用潜在动作实现高效机器人控制的世界动作模型",
+      "llm_tldr_en": "LAWA is a world action model that uses compact latent actions as future intentions, enabling efficient test-time imagination for robot control without generating future observations.",
+      "llm_tldr_cn": "世界动作模型通过建模观测演化改善机器人控制，但测试时生成未来观测会带来显著延迟，而追求效率的Fast-WAM泛化性较差。作者提出LAWA，用紧凑潜在动作表示未来意图，从而在不生成未来观测的前提下实现高效的测试时未来想象；其离散分词器经无动作预训练获得操作中心码本。该方法在稀缺示范与分布外场景下提升了泛化性。该工作为世界模型驱动的机器人控制提供了高效且可泛化的新架构。",
+      "llm_tldr": "世界动作模型通过建模观测演化改善机器人控制，但测试时生成未来观测会带来显著延迟，而追求效率的Fast-WAM泛化性较差。作者提出LAWA，用紧凑潜在动作表示未来意图，从而在不生成未来观测的前提下实现高效的测试时未来想象；其离散分词器经无动作预训练获得操作中心码本。该方法在稀缺示范与分布外场景下提升了泛化性。该工作为世界模型驱动的机器人控制提供了高效且可泛化的新架构。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.24885v1",
+      "source": "arxiv",
+      "title": "Do Robotic World Models Really Follow Actions? Diagnosing and Aligning Action-Conditioned Generation for Policy Learning",
+      "abstract": "Action-conditioned world models are increasingly used as learned simulators for policy evaluation and improvement, yet their effectiveness rests on an unverified assumption: generated futures faithfully reflect arbitrary valid actions. Existing benchmarks are typically confined to expert demonstrations, leaving off-expert action following inadequately evaluated. To address this gap, we introduce WorldEcho, which probes action following over a broader action distribution using visual integrity and SE(3) trajectory alignment. Our diagnosis shows that current world models reasonably execute expert actions but struggle with diverse off-expert trajectories, either ignoring the commanded actions or producing visually invalid rollouts. We further propose WorldSync, which strengthens action following along three complementary axes: distributional coverage, representational grounding, and intervention-effect alignment. It broadens the training distribution over action consequences, grounds intermediate video representations in action-induced robot dynamics through an Action-Forcing Expert, and aligns predicted changes under action interventions with the corresponding changes in ground-truth futures. Experiments on RoboTwin benchmarks and real-robot tasks show that WorldSync improves WorldEcho metrics and serves as a more reliable simulator for iterative policy improvement, enabling policies to achieve higher success rates.",
+      "authors": [
+        "Sixiang Chen",
+        "Jiaming Liu",
+        "Jixian Wu",
+        "Yichen Guo",
+        "Tinghao Wang",
+        "Siyuan Qian",
+        "Hao Chen",
+        "Jiajun Cao",
+        "Jian Tang",
+        "Shanghang Zhang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-08-25T17:59:49+00:00",
+      "link": "https://arxiv.org/pdf/2608.24885v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "diagnoses action-conditioned world models as learned simulators for policy learning",
+      "llm_evidence_cn": "诊断动作条件世界模型作为策略学习模拟器的可靠性",
+      "llm_evidence": "诊断动作条件世界模型作为策略学习模拟器的可靠性",
+      "canonical_evidence": "诊断动作条件世界模型作为策略学习模拟器的可靠性",
+      "llm_tldr_en": "Action-conditioned world models are used as learned simulators for policy evaluation, but whether generated futures follow arbitrary valid actions is unverified. WorldEcho diagnoses action following via visual integrity and SE(3) trajectory alignment, showing models handle expert actions but fail diverse off-expert ones.",
+      "llm_tldr_cn": "动作条件世界模型常被当作可学习模拟器用于策略评估与改进，但其生成的未来是否忠实反映任意有效动作这一假设尚未被验证。本文提出WorldEcho诊断框架，通过视觉完整性与SE(3)轨迹对齐，在更广的动作分布上探测动作跟随能力。结果显示现有世界模型能合理执行专家动作，却难以处理多样的非专家轨迹，常忽略指令动作或产生失真。该工作揭示了世界模型动作跟随的关键缺陷，为面向策略学习的动作条件生成对齐提供了评测基础。",
+      "llm_tldr": "动作条件世界模型常被当作可学习模拟器用于策略评估与改进，但其生成的未来是否忠实反映任意有效动作这一假设尚未被验证。本文提出WorldEcho诊断框架，通过视觉完整性与SE(3)轨迹对齐，在更广的动作分布上探测动作跟随能力。结果显示现有世界模型能合理执行专家动作，却难以处理多样的非专家轨迹，常忽略指令动作或产生失真。该工作揭示了世界模型动作跟随的关键缺陷，为面向策略学习的动作条件生成对齐提供了评测基础。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "How are world models applied in embodied AI for robot control and planning?",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.25308v1",
+      "source": "arxiv",
+      "title": "V-Link: Recovering Lost Visual Representations in Action DiT for Vision-Language-Action Models",
+      "abstract": "Vision-language-action (VLA) models provide a scalable path toward generalist robotic manipulation by integrating visual perception, language understanding, and continuous action control. However, we reveal a critical limitation of VLA architectures: the action expert has limited access to the 3D geometric and 2D semantic information available in VLM features. This accessibility gap weakens perceptual grounding and limits performance on fine-grained robotic manipulation. To address this issue, we propose V-Link, which explicitly recovers visual representations during the vision-language (VL) to action (A) feature transfer. Specifically, V-Link learns complementary Spatial and Semantic Query representations within the VLM and injects them into Action DiT through asymmetric pathways. Semantic Queries complement the original VLM image tokens, whereas Spatial Queries provide dedicated geometric conditioning for spatially grounded action generation. Across LIBERO, LIBERO-Plus, and RoboTwin 2.0, our V-Link improves the average success rate over base model GR00T N1.6 by +1.9%, +31.2%, and +18.8%, respectively. On the AGIBOT A3 Ultra, V-Link further achieves gains of +20% and +24% on two real-world humanoid tasks.",
+      "authors": [
+        "Yehao Lu",
+        "Jiarui Yang",
+        "Yuning Su",
+        "Yufeng Xie",
+        "Yu Zhong",
+        "Yazhou Zhang",
+        "Haiyu Lan",
+        "Kaixiang Lu",
+        "Peiwen Lin",
+        "Chuang Wang",
+        "Zequn Qin",
+        "Enyu Li",
+        "Xi Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-26T02:32:18+00:00",
+      "link": "https://arxiv.org/pdf/2608.25308v1",
+      "tags": [
+        "keyword:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "recovers visual representations in VLA action DiT for fine-grained manipulation",
+      "llm_evidence_cn": "在VLA动作DiT中恢复视觉表征以提升细粒度操作",
+      "llm_evidence": "在VLA动作DiT中恢复视觉表征以提升细粒度操作",
+      "canonical_evidence": "在VLA动作DiT中恢复视觉表征以提升细粒度操作",
+      "llm_tldr_en": "VLA models suffer because the action expert has limited access to 3D geometric and 2D semantic VLM features. V-Link explicitly recovers visual representations during VL-to-action transfer by learning complementary spatial and semantic query representations, improving fine-grained robotic manipulation.",
+      "llm_tldr_cn": "视觉-语言-动作模型将感知、语言与连续动作控制结合，但其动作专家难以获取VLM特征中的3D几何与2D语义信息，导致感知基础薄弱、细粒度操作受限。本文提出V-Link，在视觉-语言到动作的特征迁移中显式恢复视觉表征，学习互补的空间与语义查询表示。实验表明该方法能弥合可访问性差距，提升细粒度机器人操作性能，为VLA架构设计提供了重要启示。",
+      "llm_tldr": "视觉-语言-动作模型将感知、语言与连续动作控制结合，但其动作专家难以获取VLM特征中的3D几何与2D语义信息，导致感知基础薄弱、细粒度操作受限。本文提出V-Link，在视觉-语言到动作的特征迁移中显式恢复视觉表征，学习互补的空间与语义查询表示。实验表明该方法能弥合可访问性差距，提升细粒度机器人操作性能，为VLA架构设计提供了重要启示。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "vision-language-action models for robot learning and manipulation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.26067v1",
+      "source": "arxiv",
+      "title": "StreamPI: Streaming Multimodal Temporal Modeling for Vision-Language-Action Models",
+      "abstract": "Vision-Language-Action (VLA) models have demonstrated effectiveness in robot manipulation, yet state-of-the-art models such as pi0.5 operate under a single-frame paradigm, limiting their ability to retain past observations and develop precise spatial perception. In this paper, we propose StreamPI, a streaming multimodal temporal modeling framework that equips single-frame VLA with temporal reasoning capability without introducing any additional parameters. One core design is instruction-anchored temporal modeling. It treats each (visual observation, language instruction) pair as an atomic temporal unit: bidirectional attention within each pair enables cross-modal fusion, while causal attention across pairs preserves autoregressive streaming inference. This ensures the language instruction serves as a persistent semantic anchor throughout task execution. To bridge the gap between synchronous training and asynchronous real-robot deployment, we introduce a andom-interval streaming training strategy: a proper inter-frame interval (e.g., every 3 frames) enables faster and smoother action execution. Beyond this, randomizing the interval further improves robustness to frame-timing perturbations, supporting asynchronous deployment in practice. Furthermore, by leveraging the length extrapolation capability of the LLM backbone, StreamPI seamlessly inherits pretrained single-frame weights and supports flexible single-frame and multi-frame inference. Experiments on real-robot tasks spanning memory-dependent and precise perception scenarios, as well as the simulation benchmark LIBERO, demonstrate that StreamPI outperforms pi0.5 across diverse tasks.",
+      "authors": [
+        "Zhe Liu",
+        "Jinghua Hou",
+        "Yuxiang Lu",
+        "Zhenya Yang",
+        "Xianzhe Fan",
+        "Junwei Luo",
+        "Junyi Li",
+        "Ruihua Han",
+        "Zhi Hou",
+        "Hengshuang Zhao"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-26T17:33:19+00:00",
+      "link": "https://arxiv.org/pdf/2608.26067v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "improving pi0.5 single-frame VLA for manipulation",
+      "llm_evidence_cn": "改进pi0.5单帧VLA以提升操作",
+      "llm_evidence": "改进pi0.5单帧VLA以提升操作",
+      "canonical_evidence": "改进pi0.5单帧VLA以提升操作",
+      "llm_tldr_en": "State-of-the-art VLA models like pi0.5 use a single-frame paradigm, limiting temporal reasoning. StreamPI adds streaming temporal modeling via instruction-anchored attention with no extra parameters, improving spatial perception and manipulation performance of single-frame VLA policies.",
+      "llm_tldr_cn": "pi0.5等先进VLA模型采用单帧范式，难以保留历史观测并形成精确空间感知，限制了机器人操作表现。论文提出StreamPI流式多模态时序建模框架，以指令锚定方式将每个观测与指令对视为时序单元，对对内双向注意力、对间因果注意力。方法在不增加任何参数的前提下为单帧VLA赋予时序推理能力，提升了操作中的时空感知与性能，为改进pi0.5类策略提供了通用思路。",
+      "llm_tldr": "pi0.5等先进VLA模型采用单帧范式，难以保留历史观测并形成精确空间感知，限制了机器人操作表现。论文提出StreamPI流式多模态时序建模框架，以指令锚定方式将每个观测与指令对视为时序单元，对对内双向注意力、对间因果注意力。方法在不增加任何参数的前提下为单帧VLA赋予时序推理能力，提升了操作中的时空感知与性能，为改进pi0.5类策略提供了通用思路。",
+      "llm_tags": [
+        "query:pi-robotics:composite"
+      ],
+      "matched_query_tag": "query:pi-robotics:composite",
+      "matched_query_text": "Papers central to 查找通过改进pi0或者pi0.5提升机器人或机械臂性能的论文, especially work that connects or combines: pi0 policy robot performance; pi0.5 model robotic arm improvement; policy improvement for robotics performance; robot manipulation enhancement through policy; improving pi0 policy for better robot manipulation; pi0.5 enhancement for robotic arm performance.",
+      "matched_requirement_id": "req-composite-pi-robotics",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.26239v1",
+      "source": "arxiv",
+      "title": "WALL-SS: Scaling Long-horizon World Models via Next-Scale Autoregression",
+      "abstract": "Generative world models provide robots with predictive models of how the world evolves under interaction, with growing potential for simulation, planning, policy evaluation, and robot learning. Beyond clip-level future prediction, a unified generative formulation should relate actions to consequences, support flexible horizons and continuous interaction, and enable reward-driven optimization. We introduce WALL-SS, a world model that generates visual futures through Scale-wise autoregressive Scaling, enabling action-controllable and long-horizon robotic simulation. WALL-SS represents embodied trajectories as causal sequences of temporally interleaved observations and actions, making action-dependent state transitions explicit while naturally supporting variable-length generation, streaming extension through reusable causal states, and direct optimization through sequence probabilities. To make this formulation effective over long horizons, we generate each future observation in a coarse-to-fine manner and develop three complementary components within the same hierarchy. Action-conditioned next-scale prediction injects scale-aligned action representations to improve action-future coupling and model both successful and failed behaviors. Scale-compressed long-horizon memory retains recent interactions at fine resolution while compressing distant observations and actions, with scale-wise dream forcing enhancing robustness to self-generated context. Finally, on-policy alignment optimizes autoregressive visual dynamics with action-following and long-term consistency rewards while preserving the pretrained visual distribution. Experiments show that WALL-SS improves action following and trajectory accuracy, supports coherent minute-long streaming rollout under bounded memory, and consistently benefits from on-policy alignment in reducing action drift and long-horizon inconsistency.",
+      "authors": [
+        "Maeve Zhang",
+        "Rain Sun",
+        "Xiang Wang",
+        "Cyril Zhang",
+        "Shalfun Li",
+        "Meng Cao",
+        "Howard Lu",
+        "Ethan Chen",
+        "Harry Jhou",
+        "KZ Zheng",
+        "Lights Shi",
+        "Regis Cheng",
+        "Lorenzin",
+        "Robert Wang",
+        "Victor Yao",
+        "Gody Li",
+        "Elise Mon",
+        "Yohann Tang",
+        "Ryan Yu",
+        "PS Zhang",
+        "Vincent Chen",
+        "Hang Su",
+        "Roy Gan",
+        "Hao Wang",
+        "Qian Wang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-26T17:57:12+00:00",
+      "link": "https://arxiv.org/pdf/2608.26239v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Action-controllable long-horizon world model for robot simulation and planning",
+      "llm_evidence_cn": "面向机器人仿真与规划的动作可控长时域世界模型",
+      "llm_evidence": "面向机器人仿真与规划的动作可控长时域世界模型",
+      "canonical_evidence": "面向机器人仿真与规划的动作可控长时域世界模型",
+      "llm_tldr_en": "Generative world models should relate actions to consequences and support flexible horizons. WALL-SS generates visual futures via scale-wise autoregression, representing embodied trajectories as interleaved observation-action causal sequences for action-controllable long-horizon simulation.",
+      "llm_tldr_cn": "生成式世界模型为机器人提供预测世界演化的能力，可用于仿真、规划与策略评估，但现有方法多局限于片段级预测，难以统一动作与后果、支持长时域连续交互。本文提出WALL-SS，通过尺度自回归生成视觉未来，将具身轨迹表示为观测与动作交错的因果序列，显式刻画动作依赖的状态转移。该方法实现动作可控、长时域机器人仿真，并支持奖励驱动优化。",
+      "llm_tldr": "生成式世界模型为机器人提供预测世界演化的能力，可用于仿真、规划与策略评估，但现有方法多局限于片段级预测，难以统一动作与后果、支持长时域连续交互。本文提出WALL-SS，通过尺度自回归生成视觉未来，将具身轨迹表示为观测与动作交错的因果序列，显式刻画动作依赖的状态转移。该方法实现动作可控、长时域机器人仿真，并支持奖励驱动优化。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.27033v1",
+      "source": "arxiv",
+      "title": "Riemann-1.0: An Embodied World Action Model for Physical AI",
+      "abstract": "We introduce Riemann-1.0, a fully causal autoregressive World Action Model for embodied intelligence. Riemann-1.0 jointly models multi-view visual observations, robot states, and embodiment-specific actions within a unified causal autoregressive sequence, representing robot actions and world evolution as causal state transitions. Unlike existing WAMs based on joint generation, video-first prediction, or decoupled modeling paradigms, Riemann-1.0 unifies online robot policy execution and action-conditioned world simulation within a single model, enabling it to function as both an executable robot policy and a multi-embodiment visual world simulator. To scale embodied experience across heterogeneous data sources, we further develop a progressive embodied pretraining framework that unifies learning from egocentric human videos, handheld-gripper demonstrations, and heterogeneous robot trajectories under a shared World Action Modeling objective. Built upon 200K+ hours of interaction data, Riemann-1.0 progressively transfers large-scale embodied experience into executable robot manipulation capabilities. Riemann-1.0 achieves state-of-the-art performance across both simulation benchmarks and real-world manipulation tasks. It achieves success rates of 94.3% on RoboTwin2.0, 99.0% on LIBERO, and 62.6% on the long-horizon compositional benchmark RoboCasa-365, outperforming the previous best method by 8.4% On long-horizon real-world manipulation tasks, Riemann-1.0 achieves a Success Rate (SR) of 85.0% and a Progress Success Rate (PSR) of 94.4%, exceeding the strongest open-source baseline by 15% in SR. These results demonstrate that unified World Action Modeling together with progressive embodied pretraining effectively transforms large-scale embodied experience into generalizable robot manipulation capabilities.",
+      "authors": [
+        "Haofeng Sun",
+        "Jiangbo Pei",
+        "Fei Kang",
+        "Zexiang Liu",
+        "Yaokun Li",
+        "Boyi Jiang",
+        "Hua Xue",
+        "Cindy Zhou",
+        "Wei Li",
+        "Yichen Wei",
+        "Mengyin An",
+        "Fanliang Zhao",
+        "Biao Jiang",
+        "Zile Wang",
+        "Yang Liu",
+        "Yangguang Li"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-27T12:21:26+00:00",
+      "link": "https://arxiv.org/pdf/2608.27033v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "embodied world action model unifying robot policy execution and world simulation",
+      "llm_evidence_cn": "统一机器人策略执行与世界模拟的具身世界动作模型",
+      "llm_evidence": "统一机器人策略执行与世界模拟的具身世界动作模型",
+      "canonical_evidence": "统一机器人策略执行与世界模拟的具身世界动作模型",
+      "llm_tldr_en": "Riemann-1.0 is a fully causal autoregressive World Action Model unifying multi-view observations, robot states and actions in one sequence, serving as both executable robot policy and multi-embodiment visual world simulator.",
+      "llm_tldr_cn": "现有世界动作模型多基于联合生成、视频优先或解耦建模范式，难以在同一模型中统一机器人策略执行与世界演化模拟。本文提出Riemann-1.0，一个面向具身智能的全因果自回归世界动作模型，将多视角视觉观测、机器人状态与具身动作统一建模为因果状态转移序列。该模型既能作为可执行的机器人策略，又能充当多具身视觉世界模拟器，并借助渐进式具身预训练扩展异构数据。工作统一了在线策略执行与动作条件世界模拟，推进物理AI发展。",
+      "llm_tldr": "现有世界动作模型多基于联合生成、视频优先或解耦建模范式，难以在同一模型中统一机器人策略执行与世界演化模拟。本文提出Riemann-1.0，一个面向具身智能的全因果自回归世界动作模型，将多视角视觉观测、机器人状态与具身动作统一建模为因果状态转移序列。该模型既能作为可执行的机器人策略，又能充当多具身视觉世界模拟器，并借助渐进式具身预训练扩展异构数据。工作统一了在线策略执行与动作条件世界模拟，推进物理AI发展。",
+      "llm_tags": [
+        "query:embodied-ai:composite"
+      ],
+      "matched_query_tag": "query:embodied-ai:composite",
+      "matched_query_text": "Papers central to 具身智能领域内vla或者wm或者wam或者其他通过大模型方式提出的机器人或机械臂的技术创新, especially work that connects or combines: vision-language-action models for robot learning and manipulation; world models for robot planning and control; embodied intelligence with large-scale models; robotic manipulation using large models; robot learning with foundation models; How are world models applied in embodied AI for robot control and planning?; What are the advancements in large language model based approaches for robotic arms?.",
+      "matched_requirement_id": "req-composite-embodied-ai",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.27550v1",
+      "source": "arxiv",
+      "title": "Beyond Data Scaling: Representation-Centric Continued Pre-training for Vision-Language-Action Models",
+      "abstract": "Scaling robot data is crucial for building generalist Vision-Language-Action (VLA) models, yet robot trajectories are harder to scale than web-scale image-text data because embodied collection is costly and sparsely covers the physical world. This makes representation quality a central bottleneck: under a fixed robot-data budget, continued pre-training must turn limited trajectories into transferable visual-action knowledge rather than merely fit actions. We propose VLAct, a VLA-oriented VLM backbone trained on broad, heterogeneous, multi-embodiment robot data before task-specific fine-tuning. VLAct preserves the broad VLM prior and encourages shared action semantics across embodiments through VLM-prior preservation, multi-head continuous action co-supervision, and a partially unified cross-embodiment action layout, while allowing task-specific action heads during fine-tuning. Across simulation, real-world, and unseen-embodiment transfer, VLAct consistently improves downstream performance under fixed fine-tuning protocols. On LIBERO-Plus and RoboTwin 2.0, VLAct surpasses industrial VLA systems including ABot-M0 and LingBot-VLA, achieving success rates of 82.6% and 92.5%. On RoboDojo, VLAct ranks sixth among all policies by success rate and outperforms all explicitly designated world-action model (WAM) entries on both metrics. Most notably, on RoboCasa-GR1, an unseen humanoid embodiment, VLAct using only 20% of downstream trajectories outperforms the full-data GR00T-N1.6 baseline. These results are obtained using fully open-source data and only a 16-GPU training setup, showing that representation-centric continued pre-training can deliver highly competitive performance under a modest compute budget and is an important independent axis of VLA progress beyond data scaling.",
+      "authors": [
+        "Senqiao Yang",
+        "Chengyao Wang",
+        "Yuxin Chen",
+        "Zixuan Wang",
+        "Longxiang Tang",
+        "Haokun Gui",
+        "Jinhui Ye",
+        "Changsheng Lu",
+        "Xiaoyang Wu",
+        "Mingkang Zhu",
+        "Pengguang Chen",
+        "Shu Liu",
+        "Zhuotao Tian",
+        "Hengshuang Zhao",
+        "Bei Yu",
+        "Jiaya Jia"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-08-27T17:59:40+00:00",
+      "link": "https://arxiv.org/pdf/2608.27550v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "representation-centric continued pre-training for generalist Vision-Language-Action models",
+      "llm_evidence_cn": "面向通用VLA模型的表征中心持续预训练",
+      "llm_evidence": "面向通用VLA模型的表征中心持续预训练",
+      "canonical_evidence": "面向通用VLA模型的表征中心持续预训练",
+      "llm_tldr_en": "Scaling robot data is hard, so representation quality becomes the bottleneck for generalist Vision-Language-Action models under fixed data budgets. This paper proposes VLAct, a VLA-oriented VLM backbone pre-trained on heterogeneous multi-embodiment robot data with VLM-prior preservation before task-specific fine-tuning.",
+      "llm_tldr_cn": "机器人轨迹数据难以像图文数据那样大规模扩展，因此在固定机器人数据预算下，表征质量成为通用视觉-语言-动作模型的瓶颈。本文提出 VLAct，一种面向VLA的视觉语言骨干，先在异构、多本体的机器人数据上做持续预训练，再针对任务微调。方法通过保留VLM先验并鼓励跨本体的共享动作语义，将有限轨迹转化为可迁移的视觉-动作知识，为数据受限下的通用VLA模型训练提供了表征中心的新范式。",
+      "llm_tldr": "机器人轨迹数据难以像图文数据那样大规模扩展，因此在固定机器人数据预算下，表征质量成为通用视觉-语言-动作模型的瓶颈。本文提出 VLAct，一种面向VLA的视觉语言骨干，先在异构、多本体的机器人数据上做持续预训练，再针对任务微调。方法通过保留VLM先验并鼓励跨本体的共享动作语义，将有限轨迹转化为可迁移的视觉-动作知识，为数据受限下的通用VLA模型训练提供了表征中心的新范式。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "vision-language-action models for robot learning and manipulation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.27609v1",
+      "source": "arxiv",
+      "title": "PHR-VLA: Planning Horizon Reasoning for Vision-Language-Action Models",
+      "abstract": "Vision-language-action models (VLAs) have shown strong promise for general-purpose robotic manipulation by mapping language instructions and vision observations directly to actions. However, most VLAs primarily condition action prediction on current observations and lack an explicit mechanism for reasoning over future task dynamics, which is particularly important for fine-grained, contact-rich manipulation. We present PHR-VLA, a framework that enables planning-horizon reasoning in VLAs through privileged latent representations of future dynamics. PHR-VLA introduces a lightweight auxiliary future head that, during training, aligns the VLA's internal representations with latent dynamics extracted from future observations. Evaluation results demonstrate that local, contact-centric, patch-level latent dynamics supervision from the wrist camera improves success rate on LIBERO from 84.1% to 88.4% and on real-world disassembly tasks from 63.3% to 82.5%. Patch-level supervision from a third-person camera also improves performance on Meta-World from 56.70% to 57.8%. These results demonstrate that privileged latent dynamics alignment provides an effective training signal for improving anticipatory reasoning in VLA policies. Project website: \\href{https://davoodsz.github.io/PHR-VLA.github.io/}{https://davoodsz.github.io/PHR-VLA.github.io/}",
+      "authors": [
+        "Davood Soleymanzadeh",
+        "Kaidi Zhang",
+        "Zhiyuan Zhang",
+        "Bihao Zhang",
+        "Xiao Liang",
+        "Yu She",
+        "Minghui Zheng"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-27T18:42:35+00:00",
+      "link": "https://arxiv.org/pdf/2608.27609v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "planning-horizon reasoning with future latent dynamics for VLA manipulation",
+      "llm_evidence_cn": "为VLA操作引入未来潜在动态的规划视界推理",
+      "llm_evidence": "为VLA操作引入未来潜在动态的规划视界推理",
+      "canonical_evidence": "为VLA操作引入未来潜在动态的规划视界推理",
+      "llm_tldr_en": "Most VLA models condition action prediction only on current observations, lacking explicit reasoning over future dynamics needed for contact-rich manipulation. PHR-VLA adds a lightweight auxiliary future head that aligns VLA representations with latent dynamics from future observations.",
+      "llm_tldr_cn": "视觉-语言-动作模型在通用机器人操作上表现突出，但多数模型仅以当前观测为条件预测动作，缺乏对未来任务动态的显式推理机制，难以应对细粒度、接触丰富的操作。本文提出PHR-VLA框架，引入轻量级辅助未来预测头，在训练时将VLA内部表征与从未来观测中提取的潜在动态对齐，从而实现规划视界推理。实验表明该设计提升了细粒度操作任务的表现，为VLA注入未来动态先验提供了简洁有效的途径。",
+      "llm_tldr": "视觉-语言-动作模型在通用机器人操作上表现突出，但多数模型仅以当前观测为条件预测动作，缺乏对未来任务动态的显式推理机制，难以应对细粒度、接触丰富的操作。本文提出PHR-VLA框架，引入轻量级辅助未来预测头，在训练时将VLA内部表征与从未来观测中提取的潜在动态对齐，从而实现规划视界推理。实验表明该设计提升了细粒度操作任务的表现，为VLA注入未来动态先验提供了简洁有效的途径。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "vision-language-action models for robot learning and manipulation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2608.30237v1",
+      "source": "arxiv",
+      "title": "Motus2: A Self-Evolving General World Model for Dexterous Manipulation",
+      "abstract": "General embodied agents should perceive, predict, act, evaluate, and improve within a unified system. World models have shown great promise in building such agents, yet existing models typically append an action output head to a world simulator, without coupling them into a closed decision-and-learning loop for policy improvement. We present Motus2, a self-evolving general world model for dexterous manipulation. Motus2 advances world modeling through model scaling and data scaling. For model scaling, a single model with shared weights exposes three control interfaces: a policy (world-action model), a simulator (action-conditioned world model), and an evaluator (value model). The policy proposes candidate action chunks, the simulator predicts their visual consequences, and the evaluator assesses the predicted outcomes. Their coupling forms a closed decision-and-learning loop for policy improvement. This formulation uses curated expert demonstrations for action learning, while failed and suboptimal interactions provide valuable evidence for dynamics modeling and value learning. For data scaling, Motus2 progresses from large-scale monocular egocentric data to synchronized stereo egocentric data, followed by robot-domain adaptation with robot trajectories and supplementary human-robot alignment data. Motus2 further studies global-autoregressive and hybrid-memory extensions of its sliding-window context, adds tactile feedback for contact-aware control, and is instantiated on a fully biomimetic platform with stereo vision, dual arms, dual dexterous hands, and tactile sensing. Together, egocentric data scaling and closed-loop general world model scaling provide a general path toward self-evolving dexterous manipulation.",
+      "authors": [
+        "Hongzhe Bi",
+        "Zihao Zhou",
+        "Yihang Tang",
+        "Jingrui Pang",
+        "Shuhe Huang",
+        "Haitian Liu",
+        "Runqing Wang",
+        "Shuai Huang",
+        "Yichen Wang",
+        "Yiming Cheng",
+        "Ruowen Zhao",
+        "Zhenghua Li",
+        "Hengkai Tan",
+        "Xiaolong Liu",
+        "Jinhui Wan",
+        "Jiabao Liu",
+        "Min Zhao",
+        "Fan Bao",
+        "Jun Zhu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-08-31T04:44:33+00:00",
+      "link": "https://arxiv.org/pdf/2608.30237v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "self-evolving world model with policy-simulator-evaluator loop",
+      "llm_evidence_cn": "含策略-模拟器-评估器闭环的自演化世界模型",
+      "llm_evidence": "含策略-模拟器-评估器闭环的自演化世界模型",
+      "canonical_evidence": "含策略-模拟器-评估器闭环的自演化世界模型",
+      "llm_tldr_en": "Existing world models bolt an action head onto a simulator without closing the decision-and-learning loop for policy improvement. Motus2 uses shared weights to expose policy, simulator, and evaluator interfaces, enabling self-evolving dexterous manipulation.",
+      "llm_tldr_cn": "现有世界模型多在模拟器上附加动作输出头，未将预测与策略改进耦合成闭环决策与学习系统。作者提出Motus2自演化通用世界模型，用共享权重暴露策略、模拟器与评估器三个控制接口：策略提出候选动作块，模拟器预测其视觉结果，评估器给出价值打分。该方法通过模型与数据规模扩展实现灵巧操作中的自我改进，为具身智能体构建了统一的世界模型框架。",
+      "llm_tldr": "现有世界模型多在模拟器上附加动作输出头，未将预测与策略改进耦合成闭环决策与学习系统。作者提出Motus2自演化通用世界模型，用共享权重暴露策略、模拟器与评估器三个控制接口：策略提出候选动作块，模拟器预测其视觉结果，评估器给出价值打分。该方法通过模型与数据规模扩展实现灵巧操作中的自我改进，为具身智能体构建了统一的世界模型框架。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "How are world models applied in embodied AI for robot control and planning?",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.02159v1",
+      "source": "arxiv",
+      "title": "World-Coherent Decoding: Self-Verifying Test-Time Planning for World Action Models",
+      "abstract": "World Action Models (WAMs) aim to control robots by stochastically generating visual futures and then decoding actions, but empirical observations indicate that the results can strongly depend on which future is selected. We propose World-Coherent-Decoding (WCD), a self-verifying test-time planning framework that treats WAM rollouts as falsifiable future--action hypotheses. At each decision step, WCD samples multiple candidates from a frozen WAM and ranks them using internal generative signals: flow-based video surprisal for visual plausibility and action path effort for action-generation stability. After execution, the realized observation audits the selected imagination, yielding an imagination--reality mismatch that trains a lightweight online predictor for future candidate selection. Thus, WCD converts delayed self-verification into pre-execution reliability estimation without updating the backbone model. On RoboTwin 2.0, WCD improves Hard success under limited randomized-scene supervision from $55.80\\%$ to $60.90\\%$, with a $+16.43$ gains on Horizon-3 tasks, and shows qualitative robustness on real Franka visual-shift tests. These results highlight a simple principle: test-time scaling for WAMs depends less on sampling more futures than on selecting reliable ones.",
+      "authors": [
+        "Chuhan Zhang",
+        "Seiji Ito",
+        "Kenta Hoshino",
+        "Satoshi Ikehata",
+        "Ikuro Sato"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-09-02T06:21:36+00:00",
+      "link": "https://arxiv.org/pdf/2609.02159v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "self-verifying test-time planning for world action models controlling robots",
+      "llm_evidence_cn": "面向世界动作模型的机器人自验证测试时规划",
+      "llm_evidence": "面向世界动作模型的机器人自验证测试时规划",
+      "canonical_evidence": "面向世界动作模型的机器人自验证测试时规划",
+      "llm_tldr_en": "World Action Models control robots by sampling visual futures then decoding actions, but results depend heavily on the chosen future. World-Coherent-Decoding ranks sampled rollouts by video surprisal and action effort, auditing them with realized observations.",
+      "llm_tldr_cn": "世界动作模型通过随机生成视觉未来再解码动作来控制机器人，但结果强烈依赖所选未来，可靠性不足。本文提出World-Coherent-Decoding自验证测试时规划框架，将WAM展开视为可证伪的未来-动作假设，每步采样多个候选并依据视频惊异度与动作路径代价排序。执行后的真实观测会审计所选想象，形成想象-现实失配以训练轻量模块。该方法提升了世界动作模型测试时规划的稳定性与解码一致性。",
+      "llm_tldr": "世界动作模型通过随机生成视觉未来再解码动作来控制机器人，但结果强烈依赖所选未来，可靠性不足。本文提出World-Coherent-Decoding自验证测试时规划框架，将WAM展开视为可证伪的未来-动作假设，每步采样多个候选并依据视频惊异度与动作路径代价排序。执行后的真实观测会审计所选想象，形成想象-现实失配以训练轻量模块。该方法提升了世界动作模型测试时规划的稳定性与解码一致性。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "How are world models applied in embodied AI for robot control and planning?",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.02531v1",
+      "source": "arxiv",
+      "title": "Spatially Aware World Action Model via Geometric Latent Diffusion",
+      "abstract": "World Action Models (WAMs) leverage the capabilities of large-scale pretrained video diffusion models to jointly predict future observations and actions, inheriting rich visual and physical priors from internet-scale video. This has made them a promising paradigm for robot policy learning, yet the prevailing models operate exclusively on RGB observations and do not leverage 3D information. To bridge this gap, we introduce a Spatially Aware World Action Model (SA-WAM), which repurposes a pretrained video model for joint action, RGB, and depth prediction, enabling 3D-aware world modeling and action prediction within a single diffusion backbone. We use a nonlinear encoding that maps the unbounded depth signal into the bounded input domain expected by the frozen VAE tokenizer. This allows us to reuse the tokenizer without 3D-specific fine-tuning, incorporating geometric information without sacrificing the pretrained priors. SA-WAM achieves state-of-the-art results on the RoboCasa and LIBERO-Plus benchmarks, while simultaneously improving future-state predictions. Furthermore, SA-WAM outperforms strong baselines in real-world evaluation using a UR5 robotic arm, with strong gains in randomized environments. We analyze the correlation between world model prediction quality and rollout success, providing insights into WAM performance and avenues for its improvement.",
+      "authors": [
+        "Javier Alejandro Lopetegui Gonzalez",
+        "Paul Pacaud",
+        "Cordelia Schmid"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-09-02T12:42:37+00:00",
+      "link": "https://arxiv.org/pdf/2609.02531v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "3D-aware world action model via geometric latent diffusion for robot policy learning",
+      "llm_evidence_cn": "基于几何潜在扩散的3D感知世界-动作模型用于机器人策略学习",
+      "llm_evidence": "基于几何潜在扩散的3D感知世界-动作模型用于机器人策略学习",
+      "canonical_evidence": "基于几何潜在扩散的3D感知世界-动作模型用于机器人策略学习",
+      "llm_tldr_en": "World-action models inherit rich priors from large video diffusion models but operate only on RGB, ignoring 3D information. SA-WAM repurposes a pretrained video model to jointly predict action, RGB and depth within one diffusion backbone, enabling 3D-aware world modeling and robot policy learning.",
+      "llm_tldr_cn": "世界-动作模型借助大规模预训练视频扩散模型联合预测未来观测与动作，继承丰富的视觉与物理先验，但主流模型仅基于RGB观测，未利用3D信息。本文提出空间感知世界-动作模型SA-WAM，复用预训练视频模型，在同一扩散骨干中联合预测动作、RGB与深度，并通过非线性编码将无界深度映射到模型输入域。实验表明该方法在保持视频先验的同时实现3D感知的世界建模与动作预测，提升了机器人策略学习效果。",
+      "llm_tldr": "世界-动作模型借助大规模预训练视频扩散模型联合预测未来观测与动作，继承丰富的视觉与物理先验，但主流模型仅基于RGB观测，未利用3D信息。本文提出空间感知世界-动作模型SA-WAM，复用预训练视频模型，在同一扩散骨干中联合预测动作、RGB与深度，并通过非线性编码将无界深度映射到模型输入域。实验表明该方法在保持视频先验的同时实现3D感知的世界建模与动作预测，提升了机器人策略学习效果。",
+      "llm_tags": [
+        "query:embodied-ai:composite"
+      ],
+      "matched_query_tag": "query:embodied-ai:composite",
+      "matched_query_text": "Papers central to 具身智能领域内vla或者wm或者wam或者其他通过大模型方式提出的机器人或机械臂的技术创新, especially work that connects or combines: vision-language-action models for robot learning and manipulation; world models for robot planning and control; embodied intelligence with large-scale models; robotic manipulation using large models; robot learning with foundation models; How are world models applied in embodied AI for robot control and planning?; What are the advancements in large language model based approaches for robotic arms?.",
+      "matched_requirement_id": "req-composite-embodied-ai",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.03565v1",
+      "source": "arxiv",
+      "title": "Toward Physically Grounded JEPA World Models for Goal-Conditioned Robotic Planning",
+      "abstract": "Action-conditioned JEPA world models enable planning toward visually specified goals without reconstructing future pixels, yet latent prediction alone does not explicitly encourage the learned representations to retain information relevant to robotic control. We introduce an end-to-end JEPA world model that augments latent prediction with inverse dynamics (IDM) and state alignment (SA). While inverse dynamics discourages latent collapse and makes latent transitions informative of the actions that produced them, state alignment grounds consecutive representations in their associated physical configuration and motion. Across four benchmark tasks, our model attains the highest success rates on TwoRoom (100%), PushT (98%), and OGBench-Cube (87%), while performing comparably to LeWorldModel on Reacher. Our ablation further shows that adding state alignment consistently improves planning success over IDM alone across all four tasks. Although LeWorldModel, our primary baseline, attains higher average straightening on OGBench-Cube, transition-subspace analysis shows that its transition energy is concentrated in a substantially lower-dimensional subspace. Our state-aligned model exhibits a higher effective transition dimension than LeWorldModel and improves planning over IDM alone, supporting state alignment as an effective complement to inverse dynamics for robotic planning.",
+      "authors": [
+        "Muyuan Liu",
+        "Yue Huang",
+        "Zheng Liang",
+        "Xiang Gao"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-09-03T09:11:13+00:00",
+      "link": "https://arxiv.org/pdf/2609.03565v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "JEPA world models for goal-conditioned robotic planning",
+      "llm_evidence_cn": "面向目标条件机器人规划的JEPA世界模型",
+      "llm_evidence": "面向目标条件机器人规划的JEPA世界模型",
+      "canonical_evidence": "面向目标条件机器人规划的JEPA世界模型",
+      "llm_tldr_en": "Action-conditioned JEPA world models plan toward visual goals without reconstructing pixels, yet latent prediction alone may not retain control-relevant information. This end-to-end model adds inverse dynamics and state alignment, reaching top success rates on several benchmarks.",
+      "llm_tldr_cn": "动作条件JEPA世界模型可在不重建未来像素的情况下朝视觉目标规划，但仅靠潜预测并不保证表征保留控制相关信息。作者提出端到端JEPA世界模型，在潜预测基础上加入逆动力学与状态对齐：逆动力学防止潜表示坍缩并让转移蕴含动作信息，状态对齐则将连续表征锚定到物理构型与运动。实验在TwoRoom、PushT与OGBench-Cube上分别取得100%、98%与87%的最高成功率。",
+      "llm_tldr": "动作条件JEPA世界模型可在不重建未来像素的情况下朝视觉目标规划，但仅靠潜预测并不保证表征保留控制相关信息。作者提出端到端JEPA世界模型，在潜预测基础上加入逆动力学与状态对齐：逆动力学防止潜表示坍缩并让转移蕴含动作信息，状态对齐则将连续表征锚定到物理构型与运动。实验在TwoRoom、PushT与OGBench-Cube上分别取得100%、98%与87%的最高成功率。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "How are world models applied in embodied AI for robot control and planning?",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.05324v1",
+      "source": "arxiv",
+      "title": "RoboSPA: Can VLA Models Go Beyond Simple Scenes and Short-Horizon Tasks?",
+      "abstract": "Vision-Language-Action (VLA) models have shown promising progress in language-conditioned robotic manipulation. However, existing datasets and benchmarks mainly evaluate task completion under predefined settings, offering limited insight into model reasoning under increasing spatial and procedural complexity. We introduce \\textbf{RoboSPA} (\\textbf{Robo}t \\textbf{S}patial-\\textbf{P}rocedural \\textbf{A}ssessment), a large-scale robotic manipulation dataset and benchmark for diagnosing embodied reasoning in VLA models. \\texttt{RoboSPA} focuses on two core dimensions, Fine-Grained Spatial Reasoning and Long-Horizon Procedural Planning, covering 10 task categories and 56 base tasks. Each task is instantiated across five difficulty levels, yielding 280 variants with increasing spatial ambiguity and procedural complexity. We collect 527K trajectories across multiple embodiments and diverse scenes. Beyond binary success rate, \\texttt{RoboSPA} introduces diagnostic metrics for more detailed evaluation. Experiments on representative VLA models show that current systems still struggle with complex spatial relations, precise low-level execution, and memory-intensive planning. These results establish \\texttt{RoboSPA} as a challenging diagnostic benchmark for developing more capable, reliable, and generalizable embodied agents. Our data and code are available at https://github.com/fanzhenxuan/RoboSPA.",
+      "authors": [
+        "Zhenxuan Fan",
+        "Bo Zhang",
+        "Yutong Lin",
+        "Yuqian Yuan",
+        "Juekai Lin",
+        "Liang Liang",
+        "Zhuoyi Huang",
+        "Wenqiao Zhang",
+        "Juncheng Li",
+        "Siliang Tang",
+        "Jun Xiao",
+        "Yueting Zhuang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-09-04T16:19:01+00:00",
+      "link": "https://arxiv.org/pdf/2609.05324v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "benchmark diagnosing VLA models on spatial reasoning and long-horizon manipulation",
+      "llm_evidence_cn": "面向VLA模型的空间推理与长程操作诊断基准",
+      "llm_evidence": "面向VLA模型的空间推理与长程操作诊断基准",
+      "canonical_evidence": "面向VLA模型的空间推理与长程操作诊断基准",
+      "llm_tldr_en": "Vision-Language-Action models show promise in language-conditioned manipulation, but existing benchmarks only test predefined short tasks. This paper introduces RoboSPA, a large-scale manipulation dataset and benchmark probing fine-grained spatial reasoning and long-horizon procedural planning across 56 tasks and five difficulty levels.",
+      "llm_tldr_cn": "视觉-语言-动作模型在语言条件操作上进展明显，但现有数据集与基准多在预设场景下评估任务完成度，难以揭示模型在空间与流程复杂度上升时的推理能力。本文提出 RoboSPA 大规模机器人操作数据集与基准，聚焦细粒度空间推理与长程流程规划两大维度，覆盖10类任务、56个基础任务并设置五档难度，共生成280个变体。该基准为诊断VLA模型的具身推理短板提供了系统评测工具。",
+      "llm_tldr": "视觉-语言-动作模型在语言条件操作上进展明显，但现有数据集与基准多在预设场景下评估任务完成度，难以揭示模型在空间与流程复杂度上升时的推理能力。本文提出 RoboSPA 大规模机器人操作数据集与基准，聚焦细粒度空间推理与长程流程规划两大维度，覆盖10类任务、56个基础任务并设置五档难度，共生成280个变体。该基准为诊断VLA模型的具身推理短板提供了系统评测工具。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "vision-language-action models for robot learning and manipulation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2609.08162v1",
+      "source": "arxiv",
+      "title": "WorldAgen: Unified State-Action Prediction with Test-Time World Model Training",
+      "abstract": "How can vision-language-action (VLA) models adapt to new environments where world dynamics shift? While recent research has combined world modeling and action prediction to improve VLA performance, existing methods largely rely on pretraining on static datasets, without mechanisms for active adaptation at deployment time. As a result, these models often fail to generalize when deployed in unseen scenarios with novel object configurations or dynamics. We present WorldAgen, a unified framework that jointly learns world modeling and action prediction while enabling Test-Time Training (TTT) to adapt to new environments. WorldAgen employs a shared Transformer backbone with two heads: (1) a world model head that predicts future states from past state-action trajectories, and (2) an agent model head that predicts actions conditioned on task instructions. We design a Mixed Unidirectional Attention Mask to separate these two models. During test time, WorldAgen samples exploratory actions, collects ground-truth state transitions, and performs lightweight TTT updates to refine its world model. This adaptation improves the model's understanding of the environment and leads to more accurate action predictions. Experiments on the CALVIN and LIBERO benchmarks demonstrate that our baseline model achieves comparable, and in some cases superior, performance to current state-of-the-art approaches. Moreover, with TTT on a small number of samples, our method surpasses existing state-of-the-art models, highlighting the effectiveness of adapting world models at inference time.",
+      "authors": [
+        "Chi Wan",
+        "Kangrui Wang",
+        "Yuan Si",
+        "Pingyue Zhang",
+        "Manling Li"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-08T02:46:13+00:00",
+      "link": "https://arxiv.org/pdf/2609.08162v1",
+      "tags": [
+        "keyword:embodied-ai"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "joint world modeling and action prediction with test-time adaptation for VLA",
+      "llm_evidence_cn": "联合世界建模与动作预测并支持测试时自适应的VLA",
+      "llm_evidence": "联合世界建模与动作预测并支持测试时自适应的VLA",
+      "canonical_evidence": "联合世界建模与动作预测并支持测试时自适应的VLA",
+      "llm_tldr_en": "VLA models struggle to adapt to shifted dynamics. WorldAgen jointly learns world modeling and action prediction with a shared Transformer backbone and two heads, using test-time training to adapt to new environments.",
+      "llm_tldr_cn": "视觉-语言-动作模型在动力学变化的新环境中往往难以泛化，现有方法多依赖静态数据预训练，缺乏部署时的主动适应机制。本文提出WorldAgen统一框架，联合学习世界建模与动作预测，并引入测试时训练以适应新环境。该框架采用共享Transformer主干与两个头：世界模型头从过去状态预测未来状态，动作头输出控制。实验表明其能在未见物体配置与动力学场景下提升泛化能力，为VLA部署时自适应提供了新方案。",
+      "llm_tldr": "视觉-语言-动作模型在动力学变化的新环境中往往难以泛化，现有方法多依赖静态数据预训练，缺乏部署时的主动适应机制。本文提出WorldAgen统一框架，联合学习世界建模与动作预测，并引入测试时训练以适应新环境。该框架采用共享Transformer主干与两个头：世界模型头从过去状态预测未来状态，动作头输出控制。实验表明其能在未见物体配置与动力学场景下提升泛化能力，为VLA部署时自适应提供了新方案。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2608.19589v1",
+      "source": "arxiv",
+      "title": "OrthoSkillVLA: Continual Skill Learning via Gradient-Informed Skill Subspace Adaptation",
+      "abstract": "Pretrained Vision-Language-Action models provide a strong foundation for robot learning, but sequentially adapting them to diverse skills can perturb the representations and velocity mappings used by previous skills, leading to catastrophic forgetting. Architecture-based approaches improve retention by isolating skills but lead to increased inference footprint. Recent subspace-constrained methods restrict parameter updates in an orthogonal subspace to minimize interference but impose a unified constraint on the entire model. We analyze the distinct roles of internal VLA components and identify two VLA-specific challenges. First, the VLM maintains broad semantic representations, making it vulnerable to capacity exhaustion, whereas the ActionHead refines semantics into localized velocity patterns that are highly sensitive to perturbations. Second, the final velocity decoder serves as a readout layer. Freezing it forms an output-stage expressivity bottleneck, while updating it risks overwriting previous velocity mappings. To this end, we propose OrthoSkillVLA, a parameter-efficient framework for continual skill learning in pretrained VLA models without demonstration replay. Given the representation heterogeneity, we impose separate subspace constraints on the VLM and ActionHead, preserving reusable semantic capacity while protecting localized velocity patterns. For the output layer, we introduce a lightweight feature-aware MoE decoder, where each skill is allocated a compact expert and a training-free router selects the expert according to feature-space affinity. Extensive simulated and real-world evaluations, together with ablations, demonstrate that OrthoSkillVLA better preserves prior skills while acquiring new ones.",
+      "authors": [
+        "Jiaqi Wang",
+        "Zhou Fang",
+        "Qiongfeng Shi",
+        "Yi Zhou"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-08-20T03:10:31+00:00",
+      "link": "https://arxiv.org/pdf/2608.19589v1",
+      "tags": [
+        "keyword:embodied-ai"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Continual skill learning for pretrained VLA models via skill subspace adaptation",
+      "llm_evidence_cn": "面向预训练VLA模型的技能子空间持续学习",
+      "llm_evidence": "面向预训练VLA模型的技能子空间持续学习",
+      "canonical_evidence": "面向预训练VLA模型的技能子空间持续学习",
+      "llm_tldr_en": "Sequentially adapting pretrained VLA models to new skills causes catastrophic forgetting. OrthoSkillVLA analyzes the roles of VLA components and applies gradient-informed orthogonal subspace updates to retain prior skills with low inference cost.",
+      "llm_tldr_cn": "预训练视觉-语言-动作模型顺序适配多种技能时，会扰动先前技能的表征与速度映射，造成灾难性遗忘；架构隔离方法虽能保留技能却增大推理开销。本文提出OrthoSkillVLA，分析VLA内部VLM与动作模块的不同角色，并利用梯度信息在技能子空间内做正交约束更新。实验表明该方法能缓解遗忘并保持较低推理负担，为VLA持续学习提供高效方案。",
+      "llm_tldr": "预训练视觉-语言-动作模型顺序适配多种技能时，会扰动先前技能的表征与速度映射，造成灾难性遗忘；架构隔离方法虽能保留技能却增大推理开销。本文提出OrthoSkillVLA，分析VLA内部VLM与动作模块的不同角色，并利用梯度信息在技能子空间内做正交约束更新。实验表明该方法能缓解遗忘并保持较低推理负担，为VLA持续学习提供高效方案。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "vision-language-action models for robot learning and manipulation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.19613v1",
+      "source": "arxiv",
+      "title": "What Matters for Latent Actions in Robot Learning",
+      "abstract": "Latent Action Models (LAMs) have emerged as a promising paradigm for enabling robot learning to leverage large-scale unlabeled videos through latent actions that serve as compact surrogates for physical actions. Despite rapid progress, research on LAM remains highly fragmented, with existing methods evaluating different design choices in isolation under inconsistent experimental settings, making it difficult to identify the factors that truly determine downstream robotic manipulation performance. In this work, we present the first comprehensive empirical study of latent action learning for robotic manipulation. We unify representative LAM methods within a common autoencoding framework and systematically investigate 41 LAM design choices across three dimensions, including latent action modeling paradigms, learning objectives and regularization methods, and latent action integration strategies. We further examine four proxy metrics for evaluating latent action quality and assess their ability to reliably predict downstream robotic manipulation performance. Extensive experiments on three widely used benchmarks provide strong empirical evidence that fine-tuning vision-language model (VLM) backbones with latent actions provides a stronger initialization for downstream policy learning, with further validation on real-world robot manipulation tasks.",
+      "authors": [
+        "Xizhou Bu",
+        "Qingda Hu",
+        "Lei Zhou",
+        "Lingfeng Zhang",
+        "Yingbo Tang",
+        "Zihao Liu",
+        "Xinyi Tao",
+        "Zhiqiang Ma",
+        "Qingqiu Huang",
+        "Chufeng Tang",
+        "Hongbo Wang",
+        "Jing Zhang",
+        "Jiayi Ma",
+        "Hangjun Ye",
+        "Wei Li",
+        "Xiaoshuai Hao"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-08-20T03:54:51+00:00",
+      "link": "https://arxiv.org/pdf/2608.19613v1",
+      "tags": [
+        "keyword:embodied-ai"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "comprehensive empirical study of latent action models for robot learning and manipulation",
+      "llm_evidence_cn": "面向机器人学习与操作的潜在动作模型系统性实证研究",
+      "llm_evidence": "面向机器人学习与操作的潜在动作模型系统性实证研究",
+      "canonical_evidence": "面向机器人学习与操作的潜在动作模型系统性实证研究",
+      "llm_tldr_en": "This first comprehensive study unifies latent action models in a common autoencoding framework and systematically tests 41 design choices affecting robotic manipulation performance.",
+      "llm_tldr_cn": "潜在动作模型被视为利用大规模无标注视频进行机器人学习的重要范式，但现有研究设计选择零散、实验设置不一致，难以判断真正影响下游操作性能的因素。作者将代表性方法统一到共同的自编码框架下，系统考察三个维度共41项设计选择。研究揭示了对机器人操作性能起决定作用的关键因素。该工作为潜在动作学习提供了统一的实证基准与设计指南。",
+      "llm_tldr": "潜在动作模型被视为利用大规模无标注视频进行机器人学习的重要范式，但现有研究设计选择零散、实验设置不一致，难以判断真正影响下游操作性能的因素。作者将代表性方法统一到共同的自编码框架下，系统考察三个维度共41项设计选择。研究揭示了对机器人操作性能起决定作用的关键因素。该工作为潜在动作学习提供了统一的实证基准与设计指南。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "robot learning with foundation models",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.19375v1",
+      "source": "arxiv",
+      "title": "Learning the Right Abstraction: Neural Reduced Dynamics for Complex Robot Control",
+      "abstract": "High-fidelity embodied AI simulators provide realistic evaluation of complex robotic systems, but their computational cost limits their direct use for large-scale reinforcement learning campaigns. We advocate the use of less accurate but more expeditious simulations, which might draw on data-driven, e.g., neural dynamics, models. This contribution argues that the practical value of a neural dynamics model for complex robot control lies in learning the \\emph{right abstraction}: a reduced state that preserves the control-relevant physics of the high-fidelity system while enabling high-throughput policy learning. We develop a neural reduced dynamics (NRD) framework that separates the state the model propagates from what can be supplied as an input or recovered analytically, trains policies entirely inside the frozen learned model, and validates them back in the high-fidelity simulator. Two case studies instantiate it across three control tasks: terrain-aware HMMWV trajectory tracking on rigid, bumpy and deformable Continuum Representation Model (CRM) terrain; and goal reaching for a stock tracked vehicle and its front-mounted articulated arm. Every policy transfers back to the high-fidelity simulator. A single policy trained inside the terrain-conditioned dynamics model, and given no terrain input of its own, attains lower median and mean tracking error than both single-terrain specialists on all three terrains, including zero-shot bumpy terrain. Quantitatively, the tracked vehicle reaches 100 of 100 goals and the arm 97 of 100, with zero contacts or joint-limit violations. The NRD models advance roughly four orders of magnitude faster in simulated time than the high-fidelity simulator scenes they replace, making iterative on-policy learning practical and supporting neural reduced dynamics as a bridge between accurate but expensive physics simulation and scalable robot learning.",
+      "authors": [
+        "Harry Zhang",
+        "Dan Negrut"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-19T18:41:27+00:00",
+      "link": "https://arxiv.org/pdf/2608.19375v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "neural reduced dynamics model enabling high-throughput policy learning for robot control",
+      "llm_evidence_cn": "面向机器人控制的神经降维动力学模型与策略学习",
+      "llm_evidence": "面向机器人控制的神经降维动力学模型与策略学习",
+      "canonical_evidence": "面向机器人控制的神经降维动力学模型与策略学习",
+      "llm_tldr_en": "High-fidelity embodied simulators are too costly for large-scale reinforcement learning, so this paper advocates data-driven neural dynamics models. It develops neural reduced dynamics that learn a reduced state preserving control-relevant physics to enable high-throughput policy learning for complex robot control.",
+      "llm_tldr_cn": "高保真具身仿真器虽能真实评估复杂机器人系统，但计算代价高，难以支撑大规模强化学习训练。本文主张采用更廉价的数据驱动神经动力学模型，并提出神经降维动力学框架，将模型传播的状态与可外部提供的状态分离。其核心是学习一种恰当的抽象，即保留控制相关物理特性的降维状态，从而支持高吞吐的策略学习，为复杂机器人控制提供更实用的模型化训练途径。",
+      "llm_tldr": "高保真具身仿真器虽能真实评估复杂机器人系统，但计算代价高，难以支撑大规模强化学习训练。本文主张采用更廉价的数据驱动神经动力学模型，并提出神经降维动力学框架，将模型传播的状态与可外部提供的状态分离。其核心是学习一种恰当的抽象，即保留控制相关物理特性的降维状态，从而支持高吞吐的策略学习，为复杂机器人控制提供更实用的模型化训练途径。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.20114v1",
+      "source": "arxiv",
+      "title": "DECOWAM: Decoupled Whole-Body World-Action Model for Legged Mobile Manipulation",
+      "abstract": "Mobile manipulation requires a robot to predict how locomotion and arm motion jointly alter future observations and control. Existing world-action models, developed largely for fixed-base platforms, do not explicitly distinguish camera ego-motion from base and arm actions. Here we introduce DECOWAM, a whole-body world-action model that separates these factors through dedicated conditional interfaces. DECOWAM freezes an adapted FastWAM backbone and trains residual adapters, an action-equivalent future bottleneck distilled from privileged observations, adversarially separated base and arm latents, and base-velocity conditioning for video prediction. We further introduce ARMDOG, a real-robot dataset that synchronizes video, whole-body state and action, and language. On a fixed replay protocol, DECOWAM improved both future-video and action prediction over FastWAM, reducing action MSE by 21.7% with 25.95M trainable adaptation parameters. Across 79 closed-loop trials per method, it achieved the highest observed whole-body coordination and base-displacement robustness among the compared systems, while task completion remained comparable to the strongest baseline. These results show that embodiment-aware factorization can support parameter-efficient joint visual prediction and whole-body control under moving viewpoints.",
+      "authors": [
+        "Siyuan Ma",
+        "Boshi Zhang",
+        "Yutian Zhang",
+        "Qinglian Wu",
+        "Jiaqi Zhai",
+        "Dong Wei",
+        "Qiaojun Yu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-08-20T14:44:11+00:00",
+      "link": "https://arxiv.org/pdf/2608.20114v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "decoupled whole-body world-action model for legged mobile manipulation control",
+      "llm_evidence_cn": "面向足式移动操作控制的解耦全身世界-动作模型",
+      "llm_evidence": "面向足式移动操作控制的解耦全身世界-动作模型",
+      "canonical_evidence": "面向足式移动操作控制的解耦全身世界-动作模型",
+      "llm_tldr_en": "Mobile manipulation requires predicting how locomotion and arm motion jointly alter future observations, but existing world-action models do not separate camera ego-motion from base and arm actions. DECOWAM introduces decoupled conditional interfaces with residual adapters and adversarially separated latents, plus the ARMDOG dataset.",
+      "llm_tldr_cn": "移动操作要求机器人预测运动与手臂动作如何共同改变未来观测与控制，但现有世界-动作模型多针对固定基座平台，未显式区分相机自运动与底盘、手臂动作。本文提出DECOWAM全身世界-动作模型，冻结适配后的FastWAM骨干并训练残差适配器、动作等价未来瓶颈以及对抗分离的底盘与手臂隐变量。实验表明该解耦设计提升了视频预测与全身控制效果，并配套发布同步视频、全身状态与动作的真实机器人数据集ARMDOG。",
+      "llm_tldr": "移动操作要求机器人预测运动与手臂动作如何共同改变未来观测与控制，但现有世界-动作模型多针对固定基座平台，未显式区分相机自运动与底盘、手臂动作。本文提出DECOWAM全身世界-动作模型，冻结适配后的FastWAM骨干并训练残差适配器、动作等价未来瓶颈以及对抗分离的底盘与手臂隐变量。实验表明该解耦设计提升了视频预测与全身控制效果，并配套发布同步视频、全身状态与动作的真实机器人数据集ARMDOG。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.19794v1",
+      "source": "arxiv",
+      "title": "Towards general embodied intelligence: integrating large language models, knowledge bases, and reasoning capabilities to build the next generation of AI agents",
+      "abstract": "The convergence of large language models (LLMs), structured knowledge bases (KBs), and reasoning ability (RA) presents a promising trajectory toward general embodied intelligence (GEI). This paper reviews the evolution of LLM-centered intelligent systems, emphasising their integration with knowledge representation, logical reasoning, and physical embodiment. We analyse LLM architectures, pre-training methods, and inference mechanisms, along with their interaction with external knowledge sources and structured reasoning frameworks. Furthermore, we examine embodied intelligence (EI) paradigms wherein agents learn and act in physical environments. To synthesise these dimensions, we present a conceptual framework that illustrates the synergy among LLMs, KBs, RA, and embodiment, serving as a guiding model for perception, reasoning, and action rather than an implemented engineering architecture. To advance toward GEI, we identify five key challenges: efficient LLM deployment, closed-loop knowledge integration, hybrid symbolic-neural reasoning, perception-action grounding, and continual learning. This survey provides a comprehensive roadmap for developing adaptive, multimodal agents capable of operating in complex, dynamic settings.",
+      "authors": [
+        "Fujiang Yuan",
+        "Xia Huang",
+        "Lusheng Wang",
+        "Jun Ding",
+        "Zhen Tian",
+        "Yuxin Wang",
+        "Shaojie Gu",
+        "Yuki Funabora",
+        "Yanhong Peng",
+        "Zebing Mao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-08-20T08:45:51+00:00",
+      "link": "https://arxiv.org/pdf/2608.19794v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "integrates LLMs, knowledge bases and reasoning toward general embodied intelligence",
+      "llm_evidence_cn": "融合大语言模型、知识库与推理实现通用具身智能",
+      "llm_evidence": "融合大语言模型、知识库与推理实现通用具身智能",
+      "canonical_evidence": "融合大语言模型、知识库与推理实现通用具身智能",
+      "llm_tldr_en": "This review surveys how large language models, structured knowledge bases and reasoning can be integrated to build general embodied intelligence agents that learn and act in physical environments.",
+      "llm_tldr_cn": "该综述针对具身智能系统缺乏统一架构的问题，梳理了以大语言模型为核心的智能体演进路径。作者分析LLM架构、预训练与推理机制，并讨论其与结构化知识库、逻辑推理框架的耦合方式。文章进一步考察智能体在物理环境中学习与行动的具身智能范式，提出融合知识、推理与物理实体的通用具身智能发展路线。该工作为构建下一代具身AI智能体提供了系统性整合视角。",
+      "llm_tldr": "该综述针对具身智能系统缺乏统一架构的问题，梳理了以大语言模型为核心的智能体演进路径。作者分析LLM架构、预训练与推理机制，并讨论其与结构化知识库、逻辑推理框架的耦合方式。文章进一步考察智能体在物理环境中学习与行动的具身智能范式，提出融合知识、推理与物理实体的通用具身智能发展路线。该工作为构建下一代具身AI智能体提供了系统性整合视角。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "embodied intelligence with large-scale models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.27225v1",
+      "source": "arxiv",
+      "title": "STEP: State-Aware Task Estimation and Planning with Multi-Modal LLMs for Human-Robot Collaboration",
+      "abstract": "Effective human-robot collaboration in industrial settings requires robots to understand human intentions and assist with task planning, reducing workload. Recent works have explored the use of Multi-modal Large Language Models (MM-LLMs) for task planning in such data-scarce scenarios, leveraging in-context learning to interpret user actions and generate long-horizon action plans in natural language. However, MM-LLMs inherently lack an understanding of system states and do not track state transitions, often leading to hallucinated actions that deviate from the intended goal. Additionally, generating action plans in natural language tends to limit the generated plans to a high level, introducing ambiguity in action execution. To address these limitations, we propose the State-aware Task Estimator and Planner (STEP), which prompts a MM-LLM to explicitly estimate the state of the system and predict the state transitions resulting from executed actions. By forecasting future states alongside actions, STEP ensures task-convergent planning while also providing additional assistance parameters necessary for executing the predicted actions. We evaluate STEP in a simulated environment using a robot assembly task. Our approach outperforms the state-of-the-art by 32.8% in action executability and 14.8% in final-state error.",
+      "authors": [
+        "Maitrey Gramopadhye",
+        "Prakash Baskaran",
+        "Xiao Liu",
+        "Songpo Li",
+        "Soshi Iba"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-27T15:08:36+00:00",
+      "link": "https://arxiv.org/pdf/2608.27225v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "multi-modal LLM task planning for human-robot collaboration with state awareness",
+      "llm_evidence_cn": "面向人机协作的多模态大模型状态感知任务规划",
+      "llm_evidence": "面向人机协作的多模态大模型状态感知任务规划",
+      "canonical_evidence": "面向人机协作的多模态大模型状态感知任务规划",
+      "llm_tldr_en": "Multi-modal LLMs are used for task planning in human-robot collaboration but lack system-state understanding and track no state transitions, causing hallucinated actions. This paper proposes state-aware task estimation and planning to ground long-horizon plans and reduce execution ambiguity.",
+      "llm_tldr_cn": "在工业人机协作中，多模态大语言模型被用于任务规划，但其缺乏对系统状态的理解、也不跟踪状态转移，容易产生偏离目标的幻觉动作，且自然语言规划停留在高层导致执行歧义。本文提出 STEP 状态感知任务估计与规划方法，引入状态建模与状态转移跟踪，使长程动作规划更贴合真实系统状态。该工作提升了人机协作中规划的可执行性与可靠性，为多模态大模型落地机器人任务规划提供了改进思路。",
+      "llm_tldr": "在工业人机协作中，多模态大语言模型被用于任务规划，但其缺乏对系统状态的理解、也不跟踪状态转移，容易产生偏离目标的幻觉动作，且自然语言规划停留在高层导致执行歧义。本文提出 STEP 状态感知任务估计与规划方法，引入状态建模与状态转移跟踪，使长程动作规划更贴合真实系统状态。该工作提升了人机协作中规划的可执行性与可靠性，为多模态大模型落地机器人任务规划提供了改进思路。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "embodied intelligence with large-scale models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.20114v2",
+      "source": "arxiv",
+      "title": "DECOWAM: Decoupled Whole-Body World-Action Model for Legged Mobile Manipulation",
+      "abstract": "Mobile manipulation requires a robot to predict how locomotion and arm motion jointly alter future observations and control. Existing world-action models, developed largely for fixed-base platforms, do not explicitly distinguish camera ego-motion from base and arm actions. Here we introduce DECOWAM, a whole-body world-action model that separates these factors through dedicated conditional interfaces. DECOWAM freezes an adapted FastWAM backbone and trains residual adapters, an action-equivalent future bottleneck distilled from privileged observations, adversarially separated base and arm latents, and base-velocity conditioning for video prediction. We further introduce ARMDOG, a real-robot dataset that synchronizes video, whole-body state and action, and language. On a fixed replay protocol, DECOWAM improved both future-video and action prediction over FastWAM, reducing action MSE by 21.7% with 25.95M trainable adaptation parameters. Across 79 closed-loop trials per method, it achieved the highest observed whole-body coordination and base-displacement robustness among the compared systems, while task completion remained comparable to the strongest baseline. These results show that embodiment-aware factorization can support parameter-efficient joint visual prediction and whole-body control under moving viewpoints.",
+      "authors": [
+        "Siyuan Ma",
+        "Boshi Zhang",
+        "Yutian Zhang",
+        "Qinglian Wu",
+        "Jiaqi Zhai",
+        "Dong Wei",
+        "Qiaojun Yu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-08-20T14:44:11+00:00",
+      "link": "https://arxiv.org/pdf/2608.20114v2",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "whole-body world-action model for mobile manipulation",
+      "llm_evidence_cn": "面向移动操作的全身世界动作模型",
+      "llm_evidence": "面向移动操作的全身世界动作模型",
+      "canonical_evidence": "面向移动操作的全身世界动作模型",
+      "llm_tldr_en": "Fixed-base world-action models do not separate camera ego-motion from base and arm actions in mobile manipulation. DECOWAM is a whole-body world-action model with residual adapters and adversarially separated latents, plus the ARMDOG real-robot dataset, improving legged mobile manipulation prediction and control.",
+      "llm_tldr_cn": "移动操作需同时预测运动与机械臂动作对观测和控制的影响，而现有世界动作模型多面向固定基座且不区分相机自运动。论文提出DECOWAM全身世界动作模型，冻结FastWAM骨干并训练残差适配器，以对抗方式分离基座与机械臂隐变量。作者还构建同步视频与全身状态的ARMDOG真机数据集，验证了全身预测与控制的解耦有效性，为腿足移动操作提供新方案。",
+      "llm_tldr": "移动操作需同时预测运动与机械臂动作对观测和控制的影响，而现有世界动作模型多面向固定基座且不区分相机自运动。论文提出DECOWAM全身世界动作模型，冻结FastWAM骨干并训练残差适配器，以对抗方式分离基座与机械臂隐变量。作者还构建同步视频与全身状态的ARMDOG真机数据集，验证了全身预测与控制的解耦有效性，为腿足移动操作提供新方案。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.20936v1",
+      "source": "arxiv",
+      "title": "Graph-Operator World Models for Morphology-Parameter Generalization in Continuous Control",
+      "abstract": "World models for continuous control are commonly trained for a fixed physical system and can degrade when known morphology parameters such as link lengths, masses, damping, and actuation change. Existing approaches often provide these parameters as conditioning information, but leave unspecified which part of the learned transition should remain reusable and which part should change with morphology. We propose Graph-Operator World Models (GraphOp-WM), a structured world model for generalization across unseen morphology parameters within related articulated robot families. GraphOp-WM represents bodies and their kinematic relations as an attributed graph and factorizes each transition into a morphology-independent local dynamics basis and a morphology-conditioned structured operator. The operator combines node-local modulation, kinematic-tree coupling, and a low-rank global correction, while architectural information separation, basis normalization, and paired-morphology supervision encourage static morphology dependence to be carried by the operator pathway. Graph-level readout and edge-wise action representations provide a compatible interface for reward, value, and TD-MPC-style planning. We further define controlled MuJoCo parameter splits covering interpolation, extrapolation, and held-out compositions of link geometry, mass, damping, and actuation parameters in Hopper, Walker2d, and HalfCheetah.",
+      "authors": [
+        "Xu Yang",
+        "Yiqin Yang",
+        "Qianchuan Zhao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-08-21T10:01:46+00:00",
+      "link": "https://arxiv.org/pdf/2608.20936v1",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Structured world model for continuous control generalizing across morphology parameters",
+      "llm_evidence_cn": "面向连续控制、可跨形态参数泛化的结构化世界模型",
+      "llm_evidence": "面向连续控制、可跨形态参数泛化的结构化世界模型",
+      "canonical_evidence": "面向连续控制、可跨形态参数泛化的结构化世界模型",
+      "llm_tldr_en": "World models for continuous control degrade when morphology parameters change. GraphOp-WM represents bodies and kinematics as an attributed graph and factorizes transitions into a morphology-independent local dynamics basis, generalizing to unseen parameters in related robot families.",
+      "llm_tldr_cn": "连续控制中的世界模型多针对固定物理系统训练，当连杆长度、质量、阻尼等形态参数变化时性能退化。本文提出图算子世界模型GraphOp-WM，将刚体及其运动学关系建模为属性图，并把状态转移分解为形态无关的局部动力学基与形态相关部分。该方法能在相关关节机器人族中泛化到未见形态参数，提升世界模型的可迁移性。",
+      "llm_tldr": "连续控制中的世界模型多针对固定物理系统训练，当连杆长度、质量、阻尼等形态参数变化时性能退化。本文提出图算子世界模型GraphOp-WM，将刚体及其运动学关系建模为属性图，并把状态转移分解为形态无关的局部动力学基与形态相关部分。该方法能在相关关节机器人族中泛化到未见形态参数，提升世界模型的可迁移性。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2608.30935v1",
+      "source": "arxiv",
+      "title": "LightNav-0: Eliciting VLM Spatial Intelligence for Generalist Embodied Navigation",
+      "abstract": "Embodied navigation requires agents to translate heterogeneous goals and visual observations into actions across tasks, environments, and robot embodiments. Modern vision-language models (VLMs) already encode spatial priors for visual grounding, spatial reasoning, and pointing, but these capabilities are rarely elicited directly for robot control. Existing navigation systems instead rely on task- or embodiment-specific components, fragmenting perception, reasoning, and action while offering limited generalization. Here we present LightNav-0, a compact generalist embodied navigation model that elicits the spatial intelligence of a pretrained VLM and aligns it with navigation, without task-specific prediction heads. LightNav-0 represents diverse navigation tasks through a unified token interface: dual-channel pointing expresses task-, scene-, and embodiment-agnostic spatial intent, while a residual vector-quantized action tokenizer maps this intent to precise, embodiment-specific trajectories. Together with temporally aware visual history compression, ER mid-training, supervised fine-tuning, and reinforcement learning, this formulation supports instruction following, open-vocabulary object navigation, and visual tracking within a single model. The navigation training corpus spans 2K+ scenes and 4K+ hours of embodied navigation data. LightNav-ER, the embodied-reasoning checkpoint used to initialize LightNav-0, attains the highest complete-set average across 8 embodied-reasoning benchmarks, while LightNav-0 achieves state-of-the-art monocular success rates across all 10 public navigation simulation settings. Real-world evaluations further demonstrate zero-shot generalization across robot embodiments, diverse scenes, and static and dynamic targets. These results establish compact VLMs as a unified and transferable backbone for generalist embodied navigation.",
+      "authors": [
+        "Shaoan Wang",
+        "Aocheng Luo",
+        "Fei Huang",
+        "Jingyi Xu",
+        "Xiaoyang Wang",
+        "Yueyu Wang",
+        "Qianli Ma",
+        "Fan Yang",
+        "Ran Mei",
+        "Jia Wei",
+        "Jiangpeng Hu",
+        "Xuhao Liu",
+        "Hongming Chen",
+        "Yuanbin Shao",
+        "Yiyang Lin",
+        "Ziliang Li",
+        "Liang Pan",
+        "Xinhang Liu",
+        "Yuntao Ma",
+        "Tingxiang Fan"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-31T15:08:53+00:00",
+      "link": "https://arxiv.org/pdf/2608.30935v1",
+      "tags": [
+        "keyword:embodied-ai"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "eliciting VLM spatial intelligence for embodied navigation",
+      "llm_evidence_cn": "激发VLM空间智能的具身导航",
+      "llm_evidence": "激发VLM空间智能的具身导航",
+      "canonical_evidence": "激发VLM空间智能的具身导航",
+      "llm_tldr_en": "Embodied navigation systems often rely on task-specific components, limiting generalization. LightNav-0 is a compact generalist navigation model that elicits a pretrained VLM's spatial intelligence and aligns it with navigation without task-specific heads, unifying perception, reasoning and action across embodiments.",
+      "llm_tldr_cn": "具身导航需将异构目标与视觉观测转为动作，而现有系统依赖任务或本体专用组件，割裂了感知、推理与动作并限制泛化。论文提出紧凑的通用具身导航模型LightNav-0，直接激发预训练VLM的空间智能并与导航对齐，无需任务专用预测头。方法在跨任务、跨环境与跨本体的导航中实现更统一的感知推理与动作生成，表明可直接调用VLM空间先验构建通用导航策略。",
+      "llm_tldr": "具身导航需将异构目标与视觉观测转为动作，而现有系统依赖任务或本体专用组件，割裂了感知、推理与动作并限制泛化。论文提出紧凑的通用具身导航模型LightNav-0，直接激发预训练VLM的空间智能并与导航对齐，无需任务专用预测头。方法在跨任务、跨环境与跨本体的导航中实现更统一的感知推理与动作生成，表明可直接调用VLM空间先验构建通用导航策略。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "embodied intelligence with large-scale models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2608.22294v2",
+      "source": "arxiv",
+      "title": "Beyond Instance Slots: Semantically Rich World Models for Physical Interaction Planning",
+      "abstract": "World models for physical interaction are typically trained to predict future observations or latent features; however, a planning-oriented model must answer a fundamentally different question: whether a candidate action produces a task consistent future while preserving essential relations. Monolithic state representations obscure the underlying entities, while standard instance-level object slots merely identify what is present without specifying what role each entity plays in the task context. To bridge this gap, we present the Semantically Rich World Model (SR-WM), a task-conditioned world model structured around five functional roles: gripper, target, goal, relation, and phase. Within SR-WM, a visual entity encoder extracts soft entity hypotheses from pretrained patch features, allowing segmentation masks to serve as optional proposal priors without mandating them as required state representations or inference inputs. A role binder subsequently maps these hypotheses to task-specific roles, while an action conditioned dynamics model predicts role transitions alongside fine-grained semantics, including grasp/contact, predicate establishment, relation preservation, fixture state, and phase change. Crucially, this unified role state grounds downstream multi-candidate action generation, stage-aware reranking, and violation-aware suffix resampling. Our comprehensive evaluation protocol spans all four LIBERO simulation suites, cross-suite transfer, perception diagnostics, and action sensitivity analysis. Ultimately, this formulation transforms object-centric prediction into a semantic interface linking visual dynamics with planning-oriented decision making",
+      "authors": [
+        "Juntao Cheng",
+        "Jingkai Wang",
+        "Yijun Shen",
+        "Xiansheng Chen",
+        "Zhiwei Yu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-23T08:37:59+00:00",
+      "link": "https://arxiv.org/pdf/2608.22294v2",
+      "tags": [
+        "keyword:embodied-ai",
+        "query:embodied-ai"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "task-conditioned world model for interaction planning",
+      "llm_evidence_cn": "面向交互规划的任务条件世界模型",
+      "llm_evidence": "面向交互规划的任务条件世界模型",
+      "canonical_evidence": "面向交互规划的任务条件世界模型",
+      "llm_tldr_en": "Planning-oriented world models must judge whether actions yield task-consistent futures while preserving relations. SR-WM is a task-conditioned world model structured around five functional roles (gripper, target, goal, relation, phase) with a visual entity encoder, going beyond instance slots.",
+      "llm_tldr_cn": "用于物理交互的世界模型通常只预测未来观测或潜特征，但面向规划的模型还需判断候选动作能否产生任务一致的未来并保持关键关系。本文提出语义丰富世界模型SR-WM，围绕夹爪、目标、终点、关系与阶段五种功能角色构建任务条件表示，并利用视觉实体编码器提取软实体。该表示克服了单体状态与实例槽位的局限，为物理交互规划提供更具语义与可解释性的基础。",
+      "llm_tldr": "用于物理交互的世界模型通常只预测未来观测或潜特征，但面向规划的模型还需判断候选动作能否产生任务一致的未来并保持关键关系。本文提出语义丰富世界模型SR-WM，围绕夹爪、目标、终点、关系与阶段五种功能角色构建任务条件表示，并利用视觉实体编码器提取软实体。该表示克服了单体状态与实例槽位的局限，为物理交互规划提供更具语义与可解释性的基础。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "world models for robot planning and control",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2608.22591v1",
+      "source": "arxiv",
+      "title": "WorldToken: Time-First Sequence Modeling for Robotic Imitation Learning",
+      "abstract": "Robot policies receive heterogeneous observations at each decision step, yet sequence models differ in how they organize these inputs over time. We introduce WorldToken, a time-first policy instantiation that fuses multiview images, proprioception, and task conditioning within each policy timestep into one world token. A causal temporal Transformer models the resulting world-token sequence, and a diffusion action head generates action chunks. On 23 RoboCasa tasks, an 85.3M-parameter policy trained from scratch apart from a frozen pretrained CLIP text encoder achieves 59.45% mean closed-loop success using 2,900 generated demonstrations per task. A complete factorial sweep over five dataset sizes, five model sizes, and two training seeds shows consistent gains from additional target-domain data and diminishing returns beyond moderate model size. Under same-checkpoint history truncation, reducing visible history to one or two policy timesteps lowers closed-loop success for all 50 RoboCasa policies. On RMBench Blocks Ranking, reducing visible history from 146 to 8 seconds lowers evaluator success from 95% to 28%, while an exploratory extended rollout sustains the reference swap sequence for over 850 seconds. These results establish the empirical feasibility of the complete WorldToken instantiation and characterize its data-scaling and temporal-context behavior under the tested recipes. They do not establish superiority over alternative sequence organizations or isolate which components of the complete implementation drive the observed performance.",
+      "authors": [
+        "Chunkai Yang",
+        "Andong Yang",
+        "Chao Gao"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-08-23T20:56:29+00:00",
+      "link": "https://arxiv.org/pdf/2608.22591v1",
+      "tags": [
+        "keyword:embodied-ai"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "time-first policy for robotic imitation learning",
+      "llm_evidence_cn": "面向机器人模仿学习的时间优先策略",
+      "llm_evidence": "面向机器人模仿学习的时间优先策略",
+      "canonical_evidence": "面向机器人模仿学习的时间优先策略",
+      "llm_tldr_en": "Robot policies receive heterogeneous observations per decision step, but sequence models organize inputs over time differently. WorldToken fuses multiview images, proprioception, and task conditioning into one world token, with a causal Transformer and diffusion action head.",
+      "llm_tldr_cn": "机器人策略在每个决策步接收多视角图像、本体感知等异构观测，但不同序列模型对输入在时间上的组织方式各异。作者提出WorldToken时间优先策略，将每个时刻的异构观测融合为单个世界词元，再用因果时序Transformer建模词元序列，并由扩散动作头生成动作块。在23个RoboCasa任务上，85.3M参数策略取得59.45%的平均闭环成功率，为机器人模仿学习的时序建模提供了简洁有效的方案。",
+      "llm_tldr": "机器人策略在每个决策步接收多视角图像、本体感知等异构观测，但不同序列模型对输入在时间上的组织方式各异。作者提出WorldToken时间优先策略，将每个时刻的异构观测融合为单个世界词元，再用因果时序Transformer建模词元序列，并由扩散动作头生成动作块。在23个RoboCasa任务上，85.3M参数策略取得59.45%的平均闭环成功率，为机器人模仿学习的时序建模提供了简洁有效的方案。",
+      "llm_tags": [
+        "query:embodied-ai"
+      ],
+      "matched_query_tag": "query:embodied-ai",
+      "matched_query_text": "vision-language-action models for robot learning and manipulation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
